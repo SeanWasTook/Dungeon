@@ -1,0 +1,29 @@
+Flynn:
+/summon villager ~ ~1 ~ {VillagerData:{profession:fletcher,level:2,type:savanna},PersistenceRequired:1,CustomName:"\"Flynn\"",Offers:{Recipes:[{buy:{id:flint,Count:3},sell:{id:emerald,Count:1},rewardExp:0b,maxUses:9999999},{buy:{id:feather,Count:3},sell:{id:emerald,Count:1},rewardExp:0b,maxUses:9999999},{buy:{id:emerald,Count:1},sell:{id:arrow,Count:6},rewardExp:0b,maxUses:9999999},{buy:{id:emerald,Count:5},sell:{id:bow,Count:1},rewardExp:0b,maxUses:9999999}]}}
+
+Brunhilde:
+/summon villager ~ ~1 ~ {VillagerData:{profession:weaponsmith,level:2,type:savanna},PersistenceRequired:1,CustomName:"\"Brunhilde\"",Offers:{Recipes:[{buy:{id:emerald,Count:12},sell:{id:stone_axe,Count:1},rewardExp:0b,maxUses:9999999},{buy:{id:emerald,Count:12},sell:{id:stone_sword,Count:1},rewardExp:0b,maxUses:9999999},{buy:{id:emerald,Count:44},sell:{id:iron_sword,Count:1,tag:{display:{Name:"\"Brunhilde's Fury\""},Enchantments:[{id:sharpness,lvl:3},{id:fire_aspect,lvl:1}]}},rewardExp:0b,maxUses:9999999}]}}
+
+Veal:
+/summon villager ~ ~1 ~ {VillagerData:{profession:farmer,level:2,type:savanna},PersistenceRequired:1,CustomName:"\"Veal\"",Offers:{Recipes:[{buy:{id:emerald,Count:1},sell:{id:beetroot,Count:3},rewardExp:0b,maxUses:9999999},{buy:{id:beetroot_seeds,Count:3},sell:{id:emerald,Count:1},rewardExp:0b,maxUses:9999999},{buy:{id:wheat_seeds,Count:3},sell:{id:emerald,Count:1},rewardExp:0b,maxUses:9999999},{buy:{id:carrot,Count:2},sell:{id:emerald,Count:1},rewardExp:0b,maxUses:9999999},{buy:{id:potato,Count:2},sell:{id:emerald,Count:1},rewardExp:0b,maxUses:9999999},{buy:{id:emerald,Count:2},sell:{id:bread,Count:1},rewardExp:0b,maxUses:9999999},{buy:{id:emerald,Count:10},sell:{id:beef,Count:1,tag:{display:{Name:"\"Steak\"",Lore:["\"Done Rare\""]}}},rewardExp:0b,maxUses:9999999}]}}
+
+Wyatt:
+/summon villager ~ ~1 ~ {VillagerData:{profession:farmer,level:3,type:savanna},PersistenceRequired:1,CustomName:"\"Wyatt\"",Offers:{Recipes:[{buy:{id:stone_sword,Count:1},sell:{id:emerald,Count:9},rewardExp:0b,maxUses:9999999},{buy:{id:emerald,Count:1},sell:{id:beetroot,Count:3},rewardExp:0b,maxUses:9999999},{buy:{id:emerald,Count:2},sell:{id:bowl,Count:1},rewardExp:0b,maxUses:9999999}]}}
+
+Spawner with spawn potentials format:
+minecraft:spawner{BlockEntityTag:{SpawnPotentials:[{Entity:{id:skeleton}, Weight:1},{Entity:{id:zombie},Weight:1}]}}
+
+Luxan:
+/summon villager ~ ~1 ~ {VillagerData:{profession:toolsmith,level:2,type:savanna},PersistenceRequired:1,CustomName:"\"Luxan\"",Offers:{Recipes:[{buy:{id:emerald,Count:1},sell:{id:soul_torch,Count:10,tag:{CanPlaceOn:["minecraft:bricks", "minecraft:polished_granite", "minecraft:granite", "minecraft:stone_bricks", "minecraft:spruce_planks"]}},rewardExp:0b,maxUses:9999999},{buy:{id:emerald,Count:1},sell:{id:torch,Count:5,tag:{CanPlaceOn:["minecraft:bricks", "minecraft:polished_granite", "minecraft:granite", "minecraft:stone_bricks", "minecraft:spruce_planks"]}},rewardExp:0b,maxUses:9999999},{buy:{id:emerald,Count:1},sell:{id:soul_lantern,Count:2,tag:{CanPlaceOn:["minecraft:bricks", "minecraft:polished_granite", "minecraft:granite", "minecraft:stone_bricks", "minecraft:spruce_planks"]}},rewardExp:0b,maxUses:9999999},{buy:{id:emerald,Count:2},sell:{id:lantern,Count:1,tag:{CanPlaceOn:["minecraft:bricks", "minecraft:polished_granite", "minecraft:granite", "minecraft:stone_bricks", "minecraft:spruce_planks"]}},rewardExp:0b,maxUses:9999999},{buy:{id:emerald,Count:12},sell:{id:stone_pickaxe,Count:1,tag:{CanDestroy:["minecraft:soul_torch", "minecraft:torch", "minecraft:soul_lantern", "minecraft:lantern"]}},rewardExp:0b,maxUses:9999999}]}}
+
+Sette:
+/summon villager ~ ~1 ~ {VillagerData:{profession:fisherman,level:2,type:savanna},PersistenceRequired:1,CustomName:"\"Sette\"",Offers:{Recipes:[{buy:{id:beetroot,Count:6},sell:{id:emerald,Count:1},rewardExp:0b,maxUses:9999999},{buy:{id:apple,Count:1},sell:{id:emerald,Count:1},rewardExp:0b,maxUses:9999999},{buy:{id:bread,Count:1},sell:{id:emerald,Count:1},rewardExp:0b,maxUses:9999999},{buy:{id:mushroom_stew,Count:1},sell:{id:emerald,Count:2},rewardExp:0b,maxUses:9999999},{buy:{id:emerald,Count:16},sell:{id:golden_axe,Count:1,tag:{display:{Name:"\"Ancient Golden Axe\"",Lore:["\"Passed down in the Sette family for generations\""]},Enchantments:[{id:smite,lvl:3},{id:vanishing_curse,lvl:1}],{Unbreakable:1b}}},rewardExp:0b,maxUses:1}]}}
+
+Grisha:
+/summon villager ~ ~1 ~ {VillagerData:{profession:cartographer,level:2,type:plains},PersistenceRequired:1,CustomName:"\"Grisha\"",Offers:{Recipes:[{buy:{id:emerald,Count:8},sell:{id:tripwire_hook,Count:1,tag:{display:{Name:"\"Basement Key\"",Lore:["\"Unlocks the basement of the home Grisha fled\""]}}},rewardExp:0b,maxUses:9999999}]}}
+
+Rosande:
+/summon villager ~ ~1 ~ {VillagerData:{profession:nitwit,level:2,type:plains},PersistenceRequired:1,CustomName:"\"Rosande\""}
+
+Mining Foreman:
+/summon villager ~ ~1 ~ {VillagerData:{profession:toolsmith,level:3,type:plains},Invulnerable:1,PersistenceRequired:1,NoAI:1,CustomName:"\"Mine Foreman\"",Offers:{Recipes:[{buy:{id:emerald,Count:3},sell:{id:wooden_pickaxe,Count:1,tag:{display:{Name:"\"Coal Pick\""},CanDestroy:["minecraft:coal_ore"]}},rewardExp:0b,maxUses:9999999},{buy:{id:emerald,Count:30},sell:{id:stone_pickaxe,Count:1,tag:{display:{Name:"\"Miner's Pick\""},CanDestroy:["minecraft:coal_ore", "minecraft:iron_ore"]}},rewardExp:0b,maxUses:9999999}]}}

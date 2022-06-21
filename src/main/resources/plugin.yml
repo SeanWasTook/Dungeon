@@ -1,0 +1,25 @@
+name: Dungeon
+version: 0.2
+author: Seance
+main: com.gmail.seanduffy797.dungeon.Dungeon
+api-version: 1.19
+commands:
+  heal:
+    description: Heals the player to max health
+    usage: /<command>
+    aliases: [healme, h]
+  spawnmobs:
+    description: Spawns mobs at the location of the player
+    usage: /<command>
+  dgive:
+    description: Gives the player a plugin-specific item
+    usage: /<command> [Player] [Item] [Count]
+  build:
+    description: Builds the dungeon
+    usage: /<command> [Region]
+  clear:
+    description: Clears the dungeon
+    usage: /<command> [Region]
+  gear:
+    description: Gives the player some apples and a wooden sword
+    usage: /<command>

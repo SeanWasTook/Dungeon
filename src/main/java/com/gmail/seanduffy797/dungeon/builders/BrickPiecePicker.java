@@ -71,7 +71,6 @@ public class BrickPiecePicker {
     }
 
     public static void initializeWeights() {
-        System.out.println("Testing the build worked");
         weights.put(BricksZone1.HALL1, 2);
         weights.put(BricksZone1.HALL2, 2);
         weights.put(BricksZone1.HALL3, 2);
@@ -397,13 +396,13 @@ public class BrickPiecePicker {
                 piece = getPiece(halls);
             }
         } else if(layout == PieceLayout.CROSS) {
-            if (openings.get(Region.BRICK) < 3 || (Math.random() < 0.3)) {
+            if (openings.get(Region.BRICK) < 3 || (Math.random() < 0.5)) {
                 piece = getPiece(crosses);
-            } else if (openings.get(Region.BRICK) < 5 || Math.random() < 0.4) {
+            } else if (openings.get(Region.BRICK) < 4 || Math.random() < 0.4) {
                 piece = getPiece(ts);
             } else if (Math.random() < 0.4) {
                 piece = getPiece(halls);
-            }else {
+            } else {
                 piece = getPiece(rooms);
             }
         }
@@ -439,7 +438,7 @@ public class BrickPiecePicker {
         if(layout == PieceLayout.END) {
             piece = getPiece(ends);
         } else if (layout == PieceLayout.CROSS) {
-            if (total > 0 && Math.random() < 0.4) {
+            if (total > 0 && Math.random() < 0.6) {
                 piece = getPiece(crosses2);
             } else if (Math.random() < 0.3) {
                 piece = getPiece(ts2);

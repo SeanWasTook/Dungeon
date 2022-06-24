@@ -2,7 +2,8 @@ package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
 public enum SpawnerEnum {
     GLADIATOR ("{SpawnPotentials:[" +
-                "{Entity:" +
+            "{data:" +
+                "{entity:" +
                     "{id:skeleton," +
                     "LeftHanded:1b," +
                     "HandItems:" +
@@ -15,8 +16,11 @@ public enum SpawnerEnum {
                     "CustomName:\"\\\"Gladiator\\\"\"," +
                     "HandDropChances:[0.08f,0.0f]," +
                     "ArmorDropChances:[0.08f,0.08f,0.08f,0.08f]}," +
-                "Weight:1}," +
-                "{Entity:" +
+                "}," +
+                "weight:1," +
+            "}," +
+            "{data:" +
+                "{entity:" +
                     "{id:skeleton," +
                     "LeftHanded:1b," +
                     "HandItems:" +
@@ -29,33 +33,47 @@ public enum SpawnerEnum {
                     "CustomName:\"\\\"Rudiarius\\\"\"," +
                     "HandDropChances:[0.08f,0.0f]," +
                     "ArmorDropChances:[0.08f,0.08f,0.08f,0.08f]}," +
-                "Weight:2}," +
-                "{Entity:" +
+                "}," +
+                "weight:2," +
+            "}," +
+            "{data:" +
+                "{entity:" +
                     "{id:skeleton," +
                     "CustomName:\"\\\"Cestus\\\"\"}," +
-                "Weight:4}," +
-                "{Entity:" +
+                "}," +
+                "weight:4" +
+            "}," +
+            "{data:" +
+                "{entity:" +
                     "{id:skeleton," +
                     "HandItems:" +
                         "[{Count:1,id:wooden_sword,tag:{display:{Name:\"\\\"Sica\\\"\"}}},{Count:1,id:wooden_sword,tag:{display:{Name:\"\\\"Sica\\\"\"}}}]," +
                     "HandDropChances:[0.08f,0.08f]," +
                     "CustomName:\"\\\"Dimachaerus\\\"\"}," +
-                "Weight:2}," +
-                "{Entity:" +
+                "}," +
+                "weight:2" +
+            "}," +
+            "{data:" +
+                "{entity:" +
                     "{id:skeleton," +
                     "HandItems:" +
                         "[{Count:1,id:bow,tag:{display:{Name:\"\\\"Reflex Bow\\\"\"}}},{}]," +
                     "HandDropChances:[0.08f,0.0f]," +
                     "CustomName:\"\\\"Sagittarius\\\"\"}," +
-                "Weight:3}," +
-                "{Entity:" +
+                "}," +
+                "weight:3" +
+            "}," +
+            "{data:" +
+                "{entity:" +
                     "{id:skeleton," +
                     "HandItems:" +
                         "[{Count:1,id:bamboo,tag:{display:{Name:\"\\\"Palm Branch\\\"\"}}},{}]," +
                     "HandDropChances:[1.0f,0.0f]," +
                     "CustomName:\"\\\"Editor\\\"\"}," +
-                "Weight:1}" +
-                "]," +
+                "}," +
+                "weight:2" +
+            "}" +
+            "]," +
             "SpawnCount:2,MaxNearbyEntities:8,Delay:199,MinSpawnDelay:400,MaxSpawnDelay:1100,RequiredPlayerRange:24}"),
     VEX ("");
 

@@ -7,8 +7,6 @@ import com.gmail.seanduffy797.dungeon.mobs.BrickSkeleton;
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import static org.bukkit.Bukkit.getServer;
-
 public class SpawnMob extends BukkitRunnable {
 
     private Location loc;

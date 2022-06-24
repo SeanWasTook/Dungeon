@@ -18,18 +18,22 @@ public class SkeletonLeather {
 
     private static void createArmor() {
         color = Color.fromRGB(159, 143, 136);
+
         hat = new ItemStack(Material.LEATHER_HELMET);
         LeatherArmorMeta hatMeta = (LeatherArmorMeta) hat.getItemMeta();
         hatMeta.setColor(color);
         hat.setItemMeta(hatMeta);
+
         tunic = new ItemStack(Material.LEATHER_CHESTPLATE);
         LeatherArmorMeta tunicMeta = (LeatherArmorMeta) tunic.getItemMeta();
         tunicMeta.setColor(color);
         tunic.setItemMeta(tunicMeta);
+
         pants = new ItemStack(Material.LEATHER_LEGGINGS);
         LeatherArmorMeta pantsMeta = (LeatherArmorMeta) pants.getItemMeta();
         pantsMeta.setColor(color);
         pants.setItemMeta(pantsMeta);
+
         boots = new ItemStack(Material.LEATHER_BOOTS);
         LeatherArmorMeta bootsMeta = (LeatherArmorMeta) boots.getItemMeta();
         bootsMeta.setColor(color);

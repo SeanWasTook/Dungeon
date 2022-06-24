@@ -31,13 +31,17 @@ public class DungeonEventTest implements Listener {
     public static void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
         Entity entity = event.getRightClicked();
         Player player = event.getPlayer();
+        String entityName = null;
+        if (entity.customName() != null){
+            entityName = ((TextComponent) entity.customName()).content();
+        }
         EquipmentSlot slot = event.getHand();
         PlayerInventory inventory = player.getInventory();
         ItemStack item = inventory.getItem(slot);
         // Name Color Check: BAF3BD
-        if (entity.getType() == EntityType.PARROT && entity.getCustomName() != null && entity.getCustomName().equals("Mayor")) {
+        if (entity.getType() == EntityType.PARROT && entityName != null && entityName.equalsIgnoreCase("Mayor")) {
             player.sendMessage("Hello, I am the Mayor. Bring me 10 Carrots and I'll give you a Diamond");
-        } else if (entity.getType() == EntityType.SKELETON && entity.getCustomName() != null && entity.getCustomName().equalsIgnoreCase(ChatColor.BLUE + "GATEKEEPER")){
+        } else if (entity.getType() == EntityType.SKELETON && entityName != null && entityName.equalsIgnoreCase("GATEKEEPER")){
             if(item != null && item.getItemMeta() != null) {
                 TextComponent textComponent = (TextComponent) item.getItemMeta().displayName();
                 if (textComponent != null) {
@@ -47,6 +51,7 @@ public class DungeonEventTest implements Listener {
                         int number = (int) skelly.getHealth();
                         FocusMeta.ironGates.get(number).destroy();
                         item.subtract();
+                        skelly.remove();
                         return;
                     }
                 }
@@ -54,11 +59,9 @@ public class DungeonEventTest implements Listener {
             if(!slot.equals(EquipmentSlot.OFF_HAND)) {
                 player.sendMessage(ChatColor.BLUE + "You must give me a Palm Branch to prove your worth");
             }
-        } else if (entity.getCustomName() != null && !entity.getCustomName().equalsIgnoreCase(ChatColor.stripColor(entity.getCustomName()))) {
-            //player.sendMessage(entity.getCustomName());
-            //player.sendMessage(Component.text(entity.getCustomName()));
+        } else if (entityName != null) {
             for (NPCEnum npc : NPCEnum.values()) {
-                if (ChatColor.stripColor(entity.getCustomName()).equalsIgnoreCase(npc.getName())) {
+                if (entityName.equalsIgnoreCase(npc.getName())) {
                     for (String line : npc.getDialogue()) {
                         player.sendMessage(line);
                     }

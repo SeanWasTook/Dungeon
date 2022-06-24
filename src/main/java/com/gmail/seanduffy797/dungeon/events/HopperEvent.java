@@ -41,7 +41,10 @@ public class HopperEvent implements Listener {
         Hopper hopper;
         try {hopper = (Hopper)holder;}
         catch (IllegalStateException e) {return;}
-        String name = hopper.getCustomName();
+        String name = null;
+        if (hopper != null && hopper.customName() != null) {
+            name = ((TextComponent)hopper.customName()).content();
+        }
 
         if(name == null) {return;}
 

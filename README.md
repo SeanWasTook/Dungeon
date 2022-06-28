@@ -11,3 +11,7 @@ Useful Commands:
   - Also try "/build data" for some debug info
 - /clear \<region\>
   - Destroys a section of dungeon. Options are the same as for /build, except for data
+- /world spawn building_world
+  - Takes you to the building dimension
+- /world spawn Dungeon
+  - Takes you to the main dimension where the game is played

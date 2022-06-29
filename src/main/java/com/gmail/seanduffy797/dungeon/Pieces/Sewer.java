@@ -3,6 +3,7 @@ package com.gmail.seanduffy797.dungeon.Pieces;
 import com.github.shynixn.structureblocklib.api.bukkit.StructureBlockLibApi;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
+import com.gmail.seanduffy797.dungeon.EntityManager;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Chest;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Loot;
@@ -165,6 +166,12 @@ public enum Sewer implements Bricks{
                 .includeEntities(true)
                 .mirror(mirror)
                 .rotation(rotation)
+                .onProcessEntity(entity -> {
+                    if (entity.getEntity().isPresent()) {
+                        EntityManager.addEntity(entity.getEntity().get().getUniqueId());
+                    }
+                    return true;
+                })
                 .loadFromPath(path)
                 .onException(e -> plugin.getLogger().log(Level.SEVERE, "Failed to load structure." + name, e));
     }

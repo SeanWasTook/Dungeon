@@ -51,7 +51,7 @@ public class BrickPiecePicker {
 
     public static void init(){
         necessarys.put(Region.BRICK, new ArrayList<>(Arrays.asList(BricksZone1.END5, BricksZone1.END6, BricksZone1.ROOM1, BricksZone1.ROOM2, BricksZone1.ROOM3, BricksZone1.ROOM4, BricksZone1.ROOM5, BricksZone1.SHRINE1, BricksZone1.CROSS3, BricksZone1.CROSS11, BricksZone1.ROOM8)));
-        necessarys.put(Region.BRICK2, new ArrayList<>(Arrays.asList(BricksZone2.CROSS7, BricksZone2.HALL104, BricksZone2.HALL115)));
+        necessarys.put(Region.BRICK2, new ArrayList<>(Arrays.asList(BricksZone2.CROSS7, BricksZone2.HALL104, BricksZone2.HALL115, BricksZone2.ROOM101)));
         necessarys.put(Region.SEWER, new ArrayList<>(Arrays.asList(Sewer.CROSS2, Sewer.SEWERROOM1)));
 
         for(Region region: Region.values()) {
@@ -332,6 +332,7 @@ public class BrickPiecePicker {
             if (piece == BricksZone1.STAIRDOWN1 || piece == BricksZone1.STAIRDOWNU1) {
                 weights.put(BricksZone1.STAIRDOWN1, 8);
                 counts.put(BricksZone1.STAIRDOWN1, 0);
+                return Sewer.SEWEREND0;
             }
             if (tries == 1) {
                 return getPiece(sewerHalls);

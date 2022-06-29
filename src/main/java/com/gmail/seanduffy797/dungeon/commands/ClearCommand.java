@@ -1,5 +1,6 @@
 package com.gmail.seanduffy797.dungeon.commands;
 
+import com.gmail.seanduffy797.dungeon.EntityManager;
 import com.gmail.seanduffy797.dungeon.builders.BrickBuilder;
 import com.gmail.seanduffy797.dungeon.builders.MineBuilder;
 import org.bukkit.command.Command;
@@ -30,6 +31,7 @@ public class ClearCommand implements CommandExecutor {
                 task.cancel();
             }
             tasks.clear();
+            EntityManager.clearEntities();
         }
 
         return true;

@@ -1,8 +1,10 @@
 package com.gmail.seanduffy797.dungeon.Pieces;
 
 import com.github.shynixn.structureblocklib.api.bukkit.StructureBlockLibApi;
+import com.github.shynixn.structureblocklib.api.entity.StructureEntity;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
+import com.gmail.seanduffy797.dungeon.EntityManager;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.*;
 import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
@@ -438,13 +440,24 @@ public enum BricksZone1 implements Bricks {
         Plugin plugin = getPluginManager().getPlugin("Dungeon");
         if (plugin == null){ return;}
 
+        List<StructureEntity<org.bukkit.entity.Entity, Location>> entities = new ArrayList<>();
         StructureBlockLibApi.INSTANCE
                 .loadStructure(plugin)
                 .at(location)
                 .includeEntities(true)
                 .mirror(mirror)
                 .rotation(rotation)
+                .onProcessEntity(entity -> {
+                    entities.add(entity);
+                    return true;
+                })
                 .loadFromPath(path)
-                .onException(e -> plugin.getLogger().log(Level.SEVERE, "Failed to load structure." + name, e));
+                .onException(e -> plugin.getLogger().log(Level.SEVERE, "Failed to load structure." + name, e))
+                .onResult(e -> {
+                    for (StructureEntity<org.bukkit.entity.Entity, Location> structureEntity : entities) {
+                        // Do something with the entities
+                        EntityManager.addEntity(structureEntity.getEntity().get().getUniqueId());
+                    }
+                });
     }
 }

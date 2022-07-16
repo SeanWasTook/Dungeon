@@ -12,18 +12,18 @@ import static org.bukkit.Bukkit.getWorld;
 
 public class EntityManager {
 
-    public static ArrayList<UUID> loadedEntities = new ArrayList<>();
+    public static ArrayList<Entity> loadedEntities = new ArrayList<>();
 
-    public static void addEntity(UUID uuid){
-        loadedEntities.add(uuid);
+    public static void addEntity(Entity entity){
+        loadedEntities.add(entity);
     }
 
     public static void clearEntities() {
         // DOES NOT WORK
         // Seems to save the entities before they're loaded in or smth weird
-        for (UUID uuid : loadedEntities) {
-            Entity entity = getWorld("Dungeon").getEntity(uuid);
+        for (Entity entity : loadedEntities) {
             getServer().getConsoleSender().sendMessage("[Dungeon]: Entity removed " + entity.getType());
+            entity.setGlowing(true);
         }
         loadedEntities.clear();
     }

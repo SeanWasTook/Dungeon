@@ -15,6 +15,7 @@ public class Dungeon extends JavaPlugin {
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new DungeonEventTest(), this);
+        getServer().getPluginManager().registerEvents(new UseItemEvent(), this);
         getServer().getPluginManager().registerEvents(new HopperEvent(), this);
         getServer().getPluginManager().registerEvents(new DoorUnlockEvent(), this);
         getServer().getPluginManager().registerEvents(new BlockPlacedEvent(), this);

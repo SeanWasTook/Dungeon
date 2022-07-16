@@ -7,14 +7,14 @@ import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.EntityManager;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.*;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.plugin.Plugin;
 
 import java.nio.file.Path;
 import java.util.*;
 import java.util.logging.Level;
 
-import static org.bukkit.Bukkit.getPluginManager;
-import static org.bukkit.Bukkit.getWorld;
+import static org.bukkit.Bukkit.*;
 
 public enum BricksZone1 implements Bricks {
 
@@ -284,8 +284,8 @@ public enum BricksZone1 implements Bricks {
                     new Location(getWorld("Dungeon"), 7, 0, 0), Region.BRICK,
                     new Location(getWorld("Dungeon"), 3, 0, -4, 270, 0), Region.BRICK)),
             new ArrayList<>(Arrays.asList(
-                    new Entity(new Location(getWorld("Dungeon"), 3, -2, 3.5), Mob.BRICKHUSK, 1703),
-                    new Entity(new Location(getWorld("Dungeon"), 3, -2, 3.5), Mob.BRICKSKELETON, 2100)))),
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 3, -2, 3.5), Mob.BRICKHUSK, 1703),
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 3, -2, 3.5), Mob.BRICKSKELETON, 2100)))),
     T8 ("t8", 7, 5, 7, new Location(getWorld("Dungeon"), 0, -1, -3), true,
             new HashMap<>(Map.of(
                     new Location(getWorld("Dungeon"), 7, 0, 0), Region.BRICK,
@@ -341,7 +341,7 @@ public enum BricksZone1 implements Bricks {
                     new Location(getWorld("Dungeon"), 5, 0, 6, 90, 0), Region.BRICK,
                     new Location(getWorld("Dungeon"), 5, 0, -6, 270, 0), Region.BRICK)),
             new ArrayList<>(Collections.singletonList(
-                    new Entity(new Location(getWorld("Dungeon"), 5.5, 0, 0.5), Mob.BRICKHUSK, 6000)))),
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 5.5, 0, 0.5), Mob.BRICKHUSK, 6000)))),
     CROSS9 ("cross9", 11, 5, 11, new Location(getWorld("Dungeon"), 0, -1, -5), true,
             new HashMap<>(Map.of(
                     new Location(getWorld("Dungeon"), 6, 0, 6, 90, 0), Region.BRICK,
@@ -354,8 +354,8 @@ public enum BricksZone1 implements Bricks {
                     new Location(getWorld("Dungeon"), 7, 0, 8, 90, 0), Region.BRICK,
                     new Location(getWorld("Dungeon"), 7, 0, -8, 270, 0), Region.BRICK)),
             new ArrayList<>(Arrays.asList(
-                    new Entity(new Location(getWorld("Dungeon"), 6, 0, 0), Mob.BRICKSKELETON, 1000),
-                    new Entity(new Location(getWorld("Dungeon"), 6, 3, 0), Mob.BRICKSKELETON, 1300),
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 6, 0, 0), Mob.BRICKSKELETON, 1000),
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 6, 3, 0), Mob.BRICKSKELETON, 1300),
                     new Chest(new Location(getWorld("Dungeon"), 6, 6, 0), Loot.BRICKT2, false, 15000)))),
     CROSS11 ("cross11", 19, 9, 15, new Location(getWorld("Dungeon"), 0, -1, -7), true,
             new HashMap<>(Map.of(
@@ -440,24 +440,13 @@ public enum BricksZone1 implements Bricks {
         Plugin plugin = getPluginManager().getPlugin("Dungeon");
         if (plugin == null){ return;}
 
-        List<StructureEntity<org.bukkit.entity.Entity, Location>> entities = new ArrayList<>();
         StructureBlockLibApi.INSTANCE
                 .loadStructure(plugin)
                 .at(location)
                 .includeEntities(true)
                 .mirror(mirror)
                 .rotation(rotation)
-                .onProcessEntity(entity -> {
-                    entities.add(entity);
-                    return true;
-                })
                 .loadFromPath(path)
-                .onException(e -> plugin.getLogger().log(Level.SEVERE, "Failed to load structure." + name, e))
-                .onResult(e -> {
-                    for (StructureEntity<org.bukkit.entity.Entity, Location> structureEntity : entities) {
-                        // Do something with the entities
-                        EntityManager.addEntity(structureEntity.getEntity().get().getUniqueId());
-                    }
-                });
+                .onException(e -> plugin.getLogger().log(Level.SEVERE, "Failed to load structure." + name, e));
     }
 }

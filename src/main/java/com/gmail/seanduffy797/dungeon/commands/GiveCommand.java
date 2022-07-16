@@ -1,6 +1,7 @@
 package com.gmail.seanduffy797.dungeon.commands;
 
 import com.gmail.seanduffy797.dungeon.Items.ItemManager;
+import com.gmail.seanduffy797.dungeon.Items.TeleportPearl;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -33,6 +34,8 @@ public class GiveCommand implements CommandExecutor {
                 Player player = (Player) sender;
                 if (args[0].equalsIgnoreCase("wand")) {
                     player.getInventory().addItem(ItemManager.wand);
+                } else if (args[0].equalsIgnoreCase("pearl")) {
+                    player.getInventory().addItem(TeleportPearl.teleportPearl);
                 }
                 else {
                     sender.sendMessage("Invalid Item");

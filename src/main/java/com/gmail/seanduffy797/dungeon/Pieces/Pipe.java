@@ -1,6 +1,7 @@
 package com.gmail.seanduffy797.dungeon.Pieces;
 
 import com.github.shynixn.structureblocklib.api.bukkit.StructureBlockLibApi;
+import com.github.shynixn.structureblocklib.api.entity.StructureEntity;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.EntityManager;
@@ -9,13 +10,11 @@ import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Loot;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.plugin.Plugin;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 
 import static org.bukkit.Bukkit.getPluginManager;
@@ -174,12 +173,6 @@ public enum Pipe implements Bricks{
                 .includeEntities(true)
                 .mirror(mirror)
                 .rotation(rotation)
-                .onProcessEntity(entity -> {
-                    if (entity.getEntity().isPresent()) {
-                        EntityManager.addEntity(entity.getEntity().get().getUniqueId());
-                    }
-                    return true;
-                })
                 .loadFromPath(path)
                 .onException(e -> plugin.getLogger().log(Level.SEVERE, "Failed to load structure." + name, e));
     }

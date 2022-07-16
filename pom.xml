@@ -24,6 +24,10 @@
             <id>MG-Dev Jenkins CI Maven Repository</id>
             <url>https://ci.mg-dev.eu/plugin/repository/everything</url>
         </repository>
+        <repository>
+            <id>Central Repository</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -56,6 +60,26 @@
             <artifactId>MyWorlds</artifactId>
             <version>1.19-v1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+        <!-- FAWE Core API -->
+        <dependency>
+            <groupId>com.fastasyncworldedit</groupId>
+            <artifactId>FastAsyncWorldEdit-Core</artifactId>
+            <version>2.4.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- FAWE Bukkit API -->
+        <dependency>
+            <groupId>com.fastasyncworldedit</groupId>
+            <artifactId>FastAsyncWorldEdit-Bukkit</artifactId>
+            <version>2.4.0</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>FastAsyncWorldEdit-Core</artifactId>
+                    <groupId>*</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
     

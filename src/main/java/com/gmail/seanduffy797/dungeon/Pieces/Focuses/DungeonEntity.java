@@ -8,27 +8,27 @@ import org.bukkit.scheduler.BukkitTask;
 
 import static org.bukkit.Bukkit.getPluginManager;
 
-public class Entity extends Focus {
+public class DungeonEntity extends Focus {
 
     public Mob mobType;
     public boolean respawn;
     public int respawnCoolDown;
 
-    public Entity(Location location, Mob mobType) {
+    public DungeonEntity(Location location, Mob mobType) {
         this.location = location;
         this.mobType = mobType;
         this.respawn = false;
         this.respawnCoolDown = 0;
     }
 
-    public Entity(Location location, Mob mobType, int coolDown) {
+    public DungeonEntity(Location location, Mob mobType, int coolDown) {
         this.location = location;
         this.mobType = mobType;
         this.respawn = true;
         this.respawnCoolDown = coolDown;
     }
 
-    private Entity(Location location, Mob mobType, boolean respawn, int coolDown) {
+    private DungeonEntity(Location location, Mob mobType, boolean respawn, int coolDown) {
         this.location = location;
         this.mobType = mobType;
         this.respawn = respawn;
@@ -36,10 +36,10 @@ public class Entity extends Focus {
     }
 
 
-    public Entity makeCopy(Focus entity) {
-        if (entity instanceof Entity) {
-            Entity other = (Entity) entity;
-            return new Entity(other.location.clone(), other.mobType, other.respawn, other.respawnCoolDown);
+    public DungeonEntity makeCopy(Focus entity) {
+        if (entity instanceof DungeonEntity) {
+            DungeonEntity other = (DungeonEntity) entity;
+            return new DungeonEntity(other.location.clone(), other.mobType, other.respawn, other.respawnCoolDown);
         } else {
             return null;
         }

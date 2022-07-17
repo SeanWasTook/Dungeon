@@ -23,6 +23,7 @@ public class Dungeon extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new AgeBabyZombiesEvent(), this);
         getServer().getPluginManager().registerEvents(new ButtonPressEvent(), this);
         getServer().getPluginManager().registerEvents(new DungeonBlockBreakEvent(), this);
+        getServer().getPluginManager().registerEvents(new HitHangingEntityEvent(), this);
         getServer().getPluginManager().registerEvents(new MinecartDropEvent(), this);
         getCommand("heal").setExecutor(new DungeonCommandsTest());
         getCommand("spawnmobs").setExecutor(new SpawnMobs());

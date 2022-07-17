@@ -4,6 +4,7 @@ import com.github.shynixn.structureblocklib.api.bukkit.StructureBlockLibApi;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.*;
+import org.bukkit.Art;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;

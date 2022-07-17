@@ -15,9 +15,9 @@ public class SummonPainting extends BukkitRunnable {
 
     private Location loc;
     private String motif;
-    private BlockFace facing;
+    private int facing;
 
-    public SummonPainting(Location loc, String motif, BlockFace facing) {
+    public SummonPainting(Location loc, String motif, int facing) {
         this.loc = loc;
         this.motif = motif;
         this.facing = facing;
@@ -25,16 +25,11 @@ public class SummonPainting extends BukkitRunnable {
 
     @Override
     public void run() {
-        World world = getServer().getWorld("Dungeon");
-        Painting painting = (Painting) world.spawnEntity(loc, EntityType.PAINTING);
-        painting.setArt(Art.valueOf(motif.toUpperCase()));
-        painting.setFacingDirection(facing);
-
-//        getServer().dispatchCommand(Bukkit.getConsoleSender(),
-//                "summon minecraft:painting " +
-//                        ((int)loc.getX()) + " " +
-//                        ((int)loc.getY()) + " " +
-//                        ((int)loc.getZ()) +
-//                        " {variant:\"minecraft:" + motif + "\", facing: " + facing + "b}");
+        getServer().dispatchCommand(Bukkit.getConsoleSender(),
+                "summon minecraft:painting " +
+                        ((int)loc.getX()) + " " +
+                        ((int)loc.getY()) + " " +
+                        ((int)loc.getZ()) +
+                        " {variant:\"minecraft:" + motif + "\", facing: " + facing + "b}");
     }
 }

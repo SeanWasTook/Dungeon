@@ -4,6 +4,7 @@ import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.builders.BuilderUtils;
 import com.gmail.seanduffy797.dungeon.tasks.SummonPainting;
+import org.bukkit.Art;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.BlockFace;
@@ -69,7 +70,7 @@ public class PaintingSpawner extends Focus {
                     break;
             }
         } else if (isEven && mirror.equals(StructureMirror.LEFT_RIGHT) &&
-                (facing.equals(StructureRotation.NONE)) || facing.equals(StructureRotation.ROTATION_180)) {
+                (facing.equals(StructureRotation.NONE) || facing.equals(StructureRotation.ROTATION_180))) {
             switch(finalRotation) {
                 case NONE:
                     location = new Location(world, location.getX(), location.getY(), location.getZ()+1);
@@ -86,21 +87,21 @@ public class PaintingSpawner extends Focus {
             }
         }
         // 0 = south = +z, 1 = west = -x, 2 = north = -z, 3 = east = +x
-        BlockFace blockFace = BlockFace.DOWN;
+        int intFacing = 4;
         switch(finalRotation) {
             case NONE:
-                blockFace = BlockFace.EAST;
+                intFacing = 3;
                 break;
             case ROTATION_90:
-                blockFace = BlockFace.SOUTH;
+                intFacing = 0;
                 break;
             case ROTATION_180:
-                blockFace = BlockFace.WEST;
+                intFacing = 1;
                 break;
             case ROTATION_270:
-                blockFace = BlockFace.NORTH;
+                intFacing = 2;
                 break;
         }
-        BukkitTask task = new SummonPainting(location, motif, blockFace).runTaskLater(plugin, 400L);
+        BukkitTask task = new SummonPainting(location, motif, intFacing).runTaskLater(plugin, 400L);
     }
 }

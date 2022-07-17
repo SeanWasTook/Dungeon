@@ -21,6 +21,10 @@ public class SummonPainting extends BukkitRunnable {
     @Override
     public void run() {
         getServer().dispatchCommand(Bukkit.getConsoleSender(),
-                "summon minecraft:painting " + ((int)loc.getX()) + " " + ((int)loc.getY()) + " " + ((int)loc.getZ()) + " {variant:\"minecraft:" + motif + "\", Facing:" + facing + "}");
+                "summon minecraft:painting " +
+                        ((int)loc.getX()) + " " +
+                        ((int)loc.getY()) + " " +
+                        ((int)loc.getZ()) +
+                        " {variant:\"minecraft:" + motif + "\", facing: " + facing + "b}");
     }
 }

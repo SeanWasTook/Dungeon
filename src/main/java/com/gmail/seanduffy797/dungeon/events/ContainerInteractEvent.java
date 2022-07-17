@@ -20,7 +20,6 @@ public class ContainerInteractEvent implements Listener {
                 Block block = event.getClickedBlock();
                 // Prevent players in Adventure Mode from opening dispensers
                 if (block != null && block.getType().equals(Material.DISPENSER)) {
-                    player.sendMessage("You clicked on " + block.getType().name());
                     event.setCancelled(true);
                 }
             }

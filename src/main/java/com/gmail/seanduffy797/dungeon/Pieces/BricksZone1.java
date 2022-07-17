@@ -296,7 +296,7 @@ public enum BricksZone1 implements Bricks {
                     new Location(getWorld("Dungeon"), 8, 0, 0), Region.BRICK,
                     new Location(getWorld("Dungeon"), 4, 1, -7, 270, 0), Region.BRICK)),
             new ArrayList<>(Collections.singletonList(
-                    new Painting(new Location(getWorld("Dungeon"), 3, 1, -4), "pointer", StructureRotation.ROTATION_90)))),
+                    new Painting(new Location(getWorld("Dungeon"), 3, 1, -4), "pointer", StructureRotation.ROTATION_90, true)))),
     T10 ("t10", 7, 5, 9, new Location(getWorld("Dungeon"), 0, -1, -3), true,
             new HashMap<>(Map.of(
                     new Location(getWorld("Dungeon"), 7, 0, 0), Region.BRICK,
@@ -363,6 +363,19 @@ public enum BricksZone1 implements Bricks {
                     new Location(getWorld("Dungeon"), 3, 0, -8, 270, 0), Region.BRICK)),
             new ArrayList<>(Collections.singletonList(
                     new Chest(new Location(getWorld("Dungeon"), 17, 4, 6), Loot.BRICKT1, false, 40000)))),
+
+    PAINTING_TEST ("painting_test", 7, 6, 5, new Location(getWorld("Dungeon"), 0, -1, -2), true,
+            new HashMap<>(),
+            new ArrayList<>(Arrays.asList(
+                    new Painting(new Location(getWorld("Dungeon"), 2, 2, -1), "pointer", StructureRotation.ROTATION_90, true),
+                    new Painting(new Location(getWorld("Dungeon"), 1, 0, 0), "sea", StructureRotation.NONE, true),
+                    new Painting(new Location(getWorld("Dungeon"), 1, 2, 1), "match", StructureRotation.NONE, true),
+                    new Painting(new Location(getWorld("Dungeon"), 1, 1, 1), "aztec2", StructureRotation.NONE, false),
+                    new Painting(new Location(getWorld("Dungeon"), 4, 1, 1), "pool", StructureRotation.ROTATION_270, true),
+                    new Painting(new Location(getWorld("Dungeon"), 3, 3, 1), "aztec2", StructureRotation.ROTATION_270, false),
+                    new Painting(new Location(getWorld("Dungeon"), 5, 0, 0), "bomb", StructureRotation.ROTATION_180, false),
+                    new Painting(new Location(getWorld("Dungeon"), 5, 2, -1), "bust", StructureRotation.ROTATION_180, true),
+                    new Painting(new Location(getWorld("Dungeon"), 5, 4, 0), "courbet", StructureRotation.ROTATION_180, true)))),
 
     ARENA ("arena", 31, 23, 31, new Location(getWorld("Dungeon"), 0, -5, -7), true,
             new HashMap<>(Map.of(

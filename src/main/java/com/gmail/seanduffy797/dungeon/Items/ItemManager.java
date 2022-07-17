@@ -21,7 +21,6 @@ public class ItemManager {
         SkeletonLeather.init();
         createWand();
         VindicatorsAxe.init();
-        TeleportPearl.init();
     }
 
     private static void createWand() {

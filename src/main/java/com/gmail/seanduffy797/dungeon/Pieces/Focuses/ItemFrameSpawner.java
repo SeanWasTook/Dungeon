@@ -2,6 +2,7 @@ package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
+import com.gmail.seanduffy797.dungeon.Dungeon;
 import com.gmail.seanduffy797.dungeon.builders.BuilderUtils;
 import com.gmail.seanduffy797.dungeon.tasks.SpawnItemFrame;
 import com.gmail.seanduffy797.dungeon.tasks.SummonPainting;
@@ -12,24 +13,29 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
-import static org.bukkit.Bukkit.getPluginManager;
-import static org.bukkit.Bukkit.getWorld;
-
 public class ItemFrameSpawner extends Focus {
 
     public ItemStack contents;
     public StructureRotation facing;
+    public boolean isGlow;
 
     public ItemFrameSpawner(Location location, ItemStack contents, StructureRotation facing) {
         this.location = location;
         this.contents = contents;
         this.facing = facing;
+        isGlow = false;
+    }
+    public ItemFrameSpawner(Location location, ItemStack contents, StructureRotation facing, boolean isGlow) {
+        this.location = location;
+        this.contents = contents;
+        this.facing = facing;
+        this.isGlow = isGlow;
     }
 
     public ItemFrameSpawner makeCopy(Focus other) {
         if(other instanceof ItemFrameSpawner) {
             ItemFrameSpawner itemFrameSpawner = (ItemFrameSpawner) other;
-            return new ItemFrameSpawner(itemFrameSpawner.location.clone(), itemFrameSpawner.contents.clone(), facing);
+            return new ItemFrameSpawner(itemFrameSpawner.location.clone(), itemFrameSpawner.contents.clone(), facing, itemFrameSpawner.isGlow);
         } else {
             return null;
         }
@@ -37,10 +43,10 @@ public class ItemFrameSpawner extends Focus {
 
     @Override
     public void start() {
-        Plugin plugin = getPluginManager().getPlugin("Dungeon");
-        World world = getWorld("Dungeon");
         StructureRotation finalRotation = BuilderUtils.addRotations(rotation, facing);
-        if (mirror.equals(StructureMirror.LEFT_RIGHT) && (facing.equals(StructureRotation.ROTATION_90) || facing.equals(StructureRotation.ROTATION_270))) {
+        if (mirror.equals(StructureMirror.LEFT_RIGHT)
+                && (facing.equals(StructureRotation.ROTATION_90)
+                || facing.equals(StructureRotation.ROTATION_270))) {
             switch(finalRotation) {
                 case NONE:
                     finalRotation = StructureRotation.ROTATION_180;
@@ -72,6 +78,7 @@ public class ItemFrameSpawner extends Focus {
                 blockFace = BlockFace.NORTH;
                 break;
         }
-        BukkitTask task = new SpawnItemFrame(location, contents, blockFace).runTaskLater(plugin, 400L);
+        BukkitTask task = new SpawnItemFrame(location, contents, blockFace, isGlow)
+                .runTaskLater(Dungeon.getPlugin(), 400L);
     }
 }

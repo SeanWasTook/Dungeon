@@ -115,7 +115,8 @@ public enum BricksZone1 implements Bricks {
     HALL24 ("hall24", 4, 5, 7, new Location(getWorld("Dungeon"), 0, -1, -3), true,
             new HashMap<>(Collections.singletonMap(
                     new Location(getWorld("Dungeon"), 4, 0, 0), Region.INHERIT)),
-            new ArrayList<>()),
+            new ArrayList<>(Collections.singletonList(
+                    new ItemFrameSpawner(new Location(getWorld("Dungeon"), 1, 1, -2), new ItemStack(Material.DRAGON_BREATH), StructureRotation.NONE)))),
     HALL25 ("hall25", 3, 5, 7, new Location(getWorld("Dungeon"), 0, -1, -3), true,
             new HashMap<>(Collections.singletonMap(
                     new Location(getWorld("Dungeon"), 3, 0, 0), Region.INHERIT)),
@@ -380,10 +381,10 @@ public enum BricksZone1 implements Bricks {
     ITEM_FRAME_TEST ("painting_test", 7, 6, 5, new Location(getWorld("Dungeon"), 0, -1, -2), true,
             new HashMap<>(),
             new ArrayList<>(Arrays.asList(
-                    new ItemFrameSpawner(new Location(getWorld("Dungeon"), 1, 1, 0), new ItemStack(Material.APPLE), StructureRotation.NONE),
-                    new ItemFrameSpawner(new Location(getWorld("Dungeon"), 2, 1, -1), new ItemStack(Material.DIAMOND_SWORD), StructureRotation.ROTATION_90),
-                    new ItemFrameSpawner(new Location(getWorld("Dungeon"), 5, 1, 0), new ItemStack(Material.STONE_BRICKS), StructureRotation.ROTATION_180),
-                    new ItemFrameSpawner(new Location(getWorld("Dungeon"), 2, 1, 1), new ItemStack(Material.PUMPKIN_SEEDS), StructureRotation.ROTATION_270)))),
+                    new ItemFrameSpawner(new Location(getWorld("Dungeon"), 1, 1, 0), new ItemStack(Material.APPLE), StructureRotation.NONE, true),
+                    new ItemFrameSpawner(new Location(getWorld("Dungeon"), 2, 1, -1), new ItemStack(Material.DIAMOND_SWORD), StructureRotation.ROTATION_90, true),
+                    new ItemFrameSpawner(new Location(getWorld("Dungeon"), 5, 1, 0), new ItemStack(Material.STONE_BRICKS), StructureRotation.ROTATION_180, true),
+                    new ItemFrameSpawner(new Location(getWorld("Dungeon"), 2, 1, 1), new ItemStack(Material.PUMPKIN_SEEDS), StructureRotation.ROTATION_270, true)))),
 
     ARENA ("arena", 31, 23, 31, new Location(getWorld("Dungeon"), 0, -5, -7), true,
             new HashMap<>(Map.of(

@@ -31,10 +31,10 @@ public class ItemManager {
         List<Component> lore = new ArrayList<>();
         lore.add(Component.text("§6This Powerful Relic"));
         lore.add(Component.text("§6Is an Ancient Minecraftian Artifact"));
-        item.lore(lore);
         meta.addEnchant(Enchantment.KNOCKBACK, 3, true);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         item.setItemMeta(meta);
+        item.lore(lore);
         wand = item;
     }
 }

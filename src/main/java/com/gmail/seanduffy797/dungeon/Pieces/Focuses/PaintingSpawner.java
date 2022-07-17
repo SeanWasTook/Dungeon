@@ -6,29 +6,30 @@ import com.gmail.seanduffy797.dungeon.builders.BuilderUtils;
 import com.gmail.seanduffy797.dungeon.tasks.SummonPainting;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.block.BlockFace;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import static org.bukkit.Bukkit.getPluginManager;
 import static org.bukkit.Bukkit.getWorld;
 
-public class Painting extends Focus {
+public class PaintingSpawner extends Focus {
 
     public String motif;
     public StructureRotation facing;
     public boolean isEven;
 
-    public Painting(Location location, String motif, StructureRotation facing, boolean isEven) {
+    public PaintingSpawner(Location location, String motif, StructureRotation facing, boolean isEven) {
         this.location = location;
         this.motif = motif;
         this.facing = facing;
         this.isEven = isEven;
     }
 
-    public Painting makeCopy(Focus other) {
-        if(other instanceof  Painting) {
-            Painting painting = (Painting) other;
-            return new Painting(painting.location.clone(), painting.motif, painting.facing, painting.isEven);
+    public PaintingSpawner makeCopy(Focus other) {
+        if(other instanceof PaintingSpawner) {
+            PaintingSpawner paintingSpawner = (PaintingSpawner) other;
+            return new PaintingSpawner(paintingSpawner.location.clone(), paintingSpawner.motif, paintingSpawner.facing, paintingSpawner.isEven);
         } else {
             return null;
         }
@@ -85,23 +86,21 @@ public class Painting extends Focus {
             }
         }
         // 0 = south = +z, 1 = west = -x, 2 = north = -z, 3 = east = +x
-        int intFacing;
+        BlockFace blockFace = BlockFace.DOWN;
         switch(finalRotation) {
             case NONE:
-                intFacing = 3;
+                blockFace = BlockFace.EAST;
                 break;
             case ROTATION_90:
-                intFacing = 0;
+                blockFace = BlockFace.SOUTH;
                 break;
             case ROTATION_180:
-                intFacing = 1;
+                blockFace = BlockFace.WEST;
                 break;
             case ROTATION_270:
-                intFacing = 2;
+                blockFace = BlockFace.NORTH;
                 break;
-            default:
-                intFacing = 4;
         }
-        BukkitTask task = new SummonPainting(location, motif, intFacing).runTaskLater(plugin, 400L);
+        BukkitTask task = new SummonPainting(location, motif, blockFace).runTaskLater(plugin, 400L);
     }
 }

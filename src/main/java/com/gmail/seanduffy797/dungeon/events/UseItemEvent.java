@@ -16,6 +16,7 @@ public class UseItemEvent implements Listener {
     public static void onItemUse(PlayerInteractEvent event) {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR){
             if (event.getItem() != null) {
+                // Pearl of Teleportation functionality
                 if (event.getItem().getItemMeta().equals(TeleportPearl.teleportPearl.getItemMeta())) {
                     Player player = event.getPlayer();
                     player.teleport(new Location(getWorld("Dungeon"), 0.5, 102, 0.5));

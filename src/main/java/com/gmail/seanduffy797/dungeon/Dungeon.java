@@ -16,6 +16,7 @@ public class Dungeon extends JavaPlugin {
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new DungeonEventTest(), this);
         getServer().getPluginManager().registerEvents(new UseItemEvent(), this);
+        getServer().getPluginManager().registerEvents(new ContainerInteractEvent(), this);
         getServer().getPluginManager().registerEvents(new HopperEvent(), this);
         getServer().getPluginManager().registerEvents(new DoorUnlockEvent(), this);
         getServer().getPluginManager().registerEvents(new BlockPlacedEvent(), this);
@@ -31,6 +32,7 @@ public class Dungeon extends JavaPlugin {
         getCommand("build").setExecutor(new BuildCommand());
         getCommand("clear").setExecutor(new ClearCommand());
         getCommand("gear").setExecutor(new GearCommand());
+        getCommand("place").setExecutor(new PlaceCommand());
         getServer().getConsoleSender().sendMessage("[Dungeon]: Plugin is enabled");
 
         BukkitTask dungeonTick = new TickDungeon(getServer().getWorld("Dungeon")).runTaskTimer(getPluginManager().getPlugin("Dungeon"), 50L, 10L);

@@ -1,10 +1,14 @@
 package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
+import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
+import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import org.bukkit.Location;
 
 public abstract class Focus {
 
     public Location location;
+    public StructureRotation rotation;
+    public StructureMirror mirror;
 
     public abstract Focus makeCopy(Focus focus);
 

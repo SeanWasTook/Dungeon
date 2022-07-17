@@ -23,6 +23,7 @@ public class ClearCommand implements CommandExecutor {
                     MineBuilder.clear();
                 } else {
                     sender.sendMessage("That's not something I can clear");
+                    // If called without valid arguments, it still clears tasks
                 }
             }
 

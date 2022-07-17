@@ -150,10 +150,13 @@ public class BrickBuilder {
             Focus newFoc = foc.makeCopy(foc);
             Location newLoc = current.clone();
             if(mirror) {
+                newFoc.mirror = StructureMirror.LEFT_RIGHT;
                 newFoc.location = newLoc.add(BuilderUtils.applyRotation(BuilderUtils.applyMirror(newFoc.location, isEven), rotation));
             } else {
+                newFoc.mirror = StructureMirror.NONE;
                 newFoc.location = newLoc.add(BuilderUtils.applyRotation(newFoc.location, rotation));
             }
+            newFoc.rotation = rotation;
             newFoc.start();
         }
 

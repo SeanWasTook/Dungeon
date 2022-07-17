@@ -23,3 +23,6 @@ commands:
   gear:
     description: Gives the player some apples and a wooden sword
     usage: /<command>
+  place:
+    description: Places a specific piece into the world at 50, 50, 50
+    usage: /<command> <region> <name> [90|180|270] [0|1]

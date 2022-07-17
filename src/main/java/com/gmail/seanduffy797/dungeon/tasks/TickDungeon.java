@@ -28,7 +28,7 @@ public class TickDungeon extends BukkitRunnable {
         int i = rd.nextInt(200);
         int j = rd.nextInt(200);
         if (BrickBuilder.map[i][j][50]) {
-            for (int y = 1; y < 256; y++) {
+            for (int y = 40; y < 70; y++) {
                 Location loc = new Location(world, i, y, j - 150);
                 Block block = loc.getBlock();
                 if (block.getType().equals(Material.GRANITE) || block.getType().equals(Material.POLISHED_GRANITE)){

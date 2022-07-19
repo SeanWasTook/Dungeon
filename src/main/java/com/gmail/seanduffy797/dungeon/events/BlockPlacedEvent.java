@@ -20,6 +20,7 @@ public class BlockPlacedEvent implements Listener {
         Player player = event.getPlayer();
         if(player.getGameMode().equals(GameMode.ADVENTURE)) {
             Block block = event.getBlock();
+            // Handles the burning out of torches placed by players
             if(block.getType() == Material.TORCH || block.getType() == Material.SOUL_TORCH) {
                 Plugin plugin = getPluginManager().getPlugin("Dungeon");
                 if(plugin == null) {return;}

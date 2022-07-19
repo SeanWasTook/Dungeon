@@ -3,8 +3,8 @@ package com.gmail.seanduffy797.dungeon.Pieces;
 import com.github.shynixn.structureblocklib.api.bukkit.StructureBlockLibApi;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
+import com.gmail.seanduffy797.dungeon.Dungeon;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.*;
-import org.bukkit.Art;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -435,7 +435,7 @@ public enum BricksZone1 implements Bricks {
 
     BricksZone1(String name, int length, int height, int width, Location startOffset, boolean mirror, boolean even, Map<Location, Region> exits, ArrayList<Focus> focuses) {
         this.name = name;
-        Plugin plugin = getPluginManager().getPlugin("Dungeon");
+        Plugin plugin = Dungeon.getPlugin();
         this.path = plugin.getDataFolder().toPath().resolve("brick/" + this.name + ".nbt");
         this.length = length;
         this.height = height;
@@ -459,8 +459,7 @@ public enum BricksZone1 implements Bricks {
     public ArrayList<Focus> getFocuses() {return focuses;}
 
     public void place(Location location, StructureRotation rotation, StructureMirror mirror) {
-        Plugin plugin = getPluginManager().getPlugin("Dungeon");
-        if (plugin == null){ return;}
+        Plugin plugin = Dungeon.getPlugin();
 
         StructureBlockLibApi.INSTANCE
                 .loadStructure(plugin)

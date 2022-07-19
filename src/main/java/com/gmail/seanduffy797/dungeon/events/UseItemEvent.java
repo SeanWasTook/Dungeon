@@ -14,8 +14,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import static org.bukkit.Bukkit.getWorld;
-
 public class UseItemEvent implements Listener {
 
     @EventHandler

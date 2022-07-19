@@ -35,7 +35,13 @@ public class ItemFrameSpawner extends Focus {
     public ItemFrameSpawner makeCopy(Focus other) {
         if(other instanceof ItemFrameSpawner) {
             ItemFrameSpawner itemFrameSpawner = (ItemFrameSpawner) other;
-            return new ItemFrameSpawner(itemFrameSpawner.location.clone(), itemFrameSpawner.contents.clone(), facing, itemFrameSpawner.isGlow);
+            if (contents != null) {
+                return new ItemFrameSpawner(itemFrameSpawner.location.clone(),
+                        itemFrameSpawner.contents.clone(), facing, itemFrameSpawner.isGlow);
+            } else {
+                return new ItemFrameSpawner(itemFrameSpawner.location.clone(),
+                        null, facing, itemFrameSpawner.isGlow);
+            }
         } else {
             return null;
         }

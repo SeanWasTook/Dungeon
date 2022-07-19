@@ -1,0 +1,134 @@
+{
+  "name": "all",
+  "length": 12,
+  "height": 5,
+  "width": 11,
+  "isEven": false,
+  "offset": [0, -1, -7],
+  "exits": [
+    {
+      "loc": [2, 0, 4],
+      "direction": 90,
+      "region": "test"
+    },
+    {
+      "loc": [12, 0, -3],
+      "direction": 0,
+      "region": "brick"
+    },
+    {
+      "loc": [7, 0, -8],
+      "direction": 270,
+      "region": "brick2"
+    }
+  ],
+  "foci": [
+    {
+      "type": "chest",
+      "loc": [2, 0, -6],
+      "lootType": "brickt1",
+      "refill": true,
+      "refillCoolDown": 200,
+      "prime": true
+    },
+    {
+      "type": "dungeonEntity",
+      "loc": [8, 0, 0],
+      "mobType": "brickhusk",
+      "respawnCoolDown": 300
+    },
+    {
+      "type": "editableBlock",
+      "loc": [5, 0, -4],
+      "material": "diamond_block",
+      "puzzleId": 4
+    },
+    {
+      "type": "ironGate",
+      "loc": [7, 0, -7],
+      "number": 5
+    },
+    {
+      "type": "itemFrameChecker",
+      "loc": [1, 1, 2],
+      "goal": "clockwise",
+      "puzzleId": 4
+    },
+    {
+      "type": "itemFrameSpawner",
+      "loc": [1, 1, 2],
+      "contents": "brown_mushroom",
+      "facing": 0,
+      "isGlow": false
+    },
+    {
+      "type": "itemFrameSpawner",
+      "loc": [4, 1, -6],
+      "facing": 90,
+      "isGlow": true
+    },
+    {
+      "type": "itemFrameSpawner",
+      "loc": [9, 1, 2],
+      "contents": "teleport_Pearl",
+      "itemArgs": ["spawn"],
+      "facing": 270,
+      "isGlow": false
+    },
+    {
+      "type": "lockedDoor",
+      "loc": [11, 0, -3],
+      "lock": "basementkey"
+    },
+    {
+      "type": "lockedTrapdoor",
+      "loc": [10, 0, 1],
+      "lock": "skeletonkey"
+    },
+    {
+      "type": "paintingSpawner",
+      "loc": [1, 1, -3],
+      "motif": "pigscene",
+      "facing": 0,
+      "isEven": true
+    },
+    {
+      "type": "paintingSpawner",
+      "loc": [2, 2, -6],
+      "motif": "wasteland",
+      "facing": 90,
+      "isEven": false
+    },
+    {
+      "type": "paintingSpawner",
+      "loc": [10, 2, -6],
+      "motif": "void",
+      "facing": 180,
+      "isEven": true
+    },
+    {
+      "type": "paintingSpawner",
+      "loc": [10, 2, 2],
+      "motif": "graham",
+      "facing": 180,
+      "isEven": false
+    },
+    {
+      "type": "paintingSpawner",
+      "loc": [7, 1, 2],
+      "motif": "pool",
+      "facing": 270,
+      "isEven": true
+    },
+    {
+      "type": "spawner",
+      "loc": [8, 0, -4],
+      "spawnerType": "gladiator"
+    },
+    {
+      "type": "trigger",
+      "loc": [5, 1, 0],
+      "puzzleId": 4
+    }
+  ]
+}

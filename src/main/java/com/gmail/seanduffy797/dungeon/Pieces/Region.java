@@ -11,5 +11,6 @@ public enum Region {
     CRYPT,
     MINE,
     MINE_DECO,
-    INHERIT
+    INHERIT,
+    TEST
 }

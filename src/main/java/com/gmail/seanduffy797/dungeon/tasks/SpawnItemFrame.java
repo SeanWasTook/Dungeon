@@ -36,7 +36,9 @@ public class SpawnItemFrame extends BukkitRunnable {
             itemFrame = (ItemFrame) DungeonManager.world
                     .spawnEntity(loc, EntityType.ITEM_FRAME);
         }
-        itemFrame.setItem(contents);
+        if (contents != null) {
+            itemFrame.setItem(contents);
+        }
         itemFrame.setFacingDirection(facing);
     }
 }

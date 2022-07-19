@@ -1,0 +1,88 @@
+{
+  "name": "samplePiece",
+  "length": 5,
+  "height": 5,
+  "width": 7,
+  "isEven": false,
+  "offset": [0, -1, -3],
+  "exits": [
+    {
+      "loc": [5, 0, 0],
+      "direction": 0,
+      "region": "region1"
+    },
+    {
+      "loc": [2, 0, -3],
+      "direction": 270,
+      "region": "region2"
+    }
+  ],
+  "foci": [
+    {
+      "type": "chest",
+      "loc": [2, 3, 3],
+      "lootType": "brickt1 -see Loot enum for options",
+      "refill": false,
+      "refillCoolDown": 200,
+      "prime": true
+    },
+    {
+      "type": "dungeonEntity",
+      "loc": [2, 3, 3],
+      "mobType": "brickhusk -see Mob enum for options",
+      "respawnCoolDown": 500
+    },
+    {
+      "type": "editableBlock",
+      "loc": [2, 3, 3],
+      "material": "stone_bricks -see Material enum for options",
+      "puzzleId": 1
+    },
+    {
+      "type": "ironGate",
+      "loc": [2, 3, 3],
+      "number": 5
+    },
+    {
+      "type": "itemFrameChecker",
+      "loc": [2, 3, 3],
+      "goal": "clockwise -see Rotation enum for options",
+      "puzzleId": 1
+    },
+    {
+      "type": "itemFrameSpawner",
+      "loc": [2, 3, 3],
+      "contents": "teleportPearl -see Material and DungeonItem for options",
+      "itemArgs": ["spawn", "only necessary for complex DungeonItems"],
+      "facing": 90,
+      "isGlow": false
+    },
+    {
+      "type": "lockedDoor",
+      "loc": [2, 3, 3],
+      "lock": "oldkey -see LockEnum enum for options"
+    },
+    {
+      "type": "lockedTrapdoor",
+      "loc": [2, 3, 3],
+      "lock": "basementkey -see LockEnum enum for options"
+    },
+    {
+      "type": "paintingSpawner",
+      "loc": [2, 3, 3],
+      "motif": "aztec2 -see painting variants",
+      "facing": 0,
+      "isEven": false
+    },
+    {
+      "type": "spawner",
+      "loc": [2, 3, 3],
+      "spawnerType": "gladiator -see SpawnerEnum enum for options"
+    },
+    {
+      "type": "trigger",
+      "loc": [2, 3, 3],
+      "puzzleId": 1
+    }
+  ]
+}

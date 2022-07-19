@@ -69,6 +69,9 @@ public class PlaceCommand implements CommandExecutor {
                     case PIPE2: case PIPE3:
                         piece = Pipe.valueOf(nameArg.toUpperCase());
                         break;
+                    case TEST:
+                        piece = TestPiece.valueOf(nameArg.toUpperCase());
+                        break;
                     default:
                         sender.sendMessage("Place command is not currently supported for that region");
                         return false;

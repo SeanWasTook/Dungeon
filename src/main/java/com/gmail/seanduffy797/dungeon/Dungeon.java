@@ -1,6 +1,7 @@
 package com.gmail.seanduffy797.dungeon;
 
 import com.gmail.seanduffy797.dungeon.Items.ItemManager;
+import com.gmail.seanduffy797.dungeon.builders.PieceParser;
 import com.gmail.seanduffy797.dungeon.commands.*;
 import com.gmail.seanduffy797.dungeon.events.*;
 import com.gmail.seanduffy797.dungeon.mobs.EntityManager;
@@ -43,7 +44,8 @@ public class Dungeon extends JavaPlugin {
         getCommand("place").setExecutor(new PlaceCommand());
         getServer().getConsoleSender().sendMessage("[Dungeon]: Plugin is enabled");
 
-        BukkitTask dungeonTick = new TickDungeon(DungeonManager.world).runTaskTimer(this, 50L, 10L);
+        BukkitTask dungeonTick = new TickDungeon(DungeonManager.world)
+                .runTaskTimer(this, 50L, 10L);
     }
 
     @Override

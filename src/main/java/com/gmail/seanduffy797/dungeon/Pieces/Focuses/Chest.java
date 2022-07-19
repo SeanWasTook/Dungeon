@@ -1,5 +1,6 @@
 package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
+import com.gmail.seanduffy797.dungeon.Dungeon;
 import com.gmail.seanduffy797.dungeon.tasks.TaskList;
 import com.gmail.seanduffy797.dungeon.tasks.FillChests;
 import org.bukkit.Location;
@@ -52,15 +53,14 @@ public class Chest extends Focus {
 
     @Override
     public void start() {
-        Plugin plugin = getPluginManager().getPlugin("Dungeon");
-        if (plugin == null) {
-            return;
-        }
+        Plugin plugin = Dungeon.getPlugin();
         if(prime) {
-            BukkitTask task = new FillChests(location, lootType.getPath()).runTaskLater(plugin, 400L);
+            BukkitTask task = new FillChests(location, lootType.getPath())
+                    .runTaskLater(plugin, 400L);
         }
         if(refill) {
-            BukkitTask dungeonTick = new FillChests(location, lootType.getPath()).runTaskTimer(plugin, 400L < refillCoolDown ? refillCoolDown : 400L, refillCoolDown);
+            BukkitTask dungeonTick = new FillChests(location, lootType.getPath())
+                    .runTaskTimer(plugin, 400L < refillCoolDown ? refillCoolDown : 400L, refillCoolDown);
             TaskList.tasks.add(dungeonTick);
         }
     }

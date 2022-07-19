@@ -1,5 +1,6 @@
 package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
+import com.gmail.seanduffy797.dungeon.Dungeon;
 import com.gmail.seanduffy797.dungeon.tasks.SpawnMob;
 import com.gmail.seanduffy797.dungeon.tasks.TaskList;
 import org.bukkit.Location;
@@ -26,6 +27,9 @@ public class DungeonEntity extends Focus {
         this.mobType = mobType;
         this.respawn = true;
         this.respawnCoolDown = coolDown;
+        if (respawnCoolDown == 0) {
+            this.respawn = false;
+        }
     }
 
     private DungeonEntity(Location location, Mob mobType, boolean respawn, int coolDown) {
@@ -47,10 +51,11 @@ public class DungeonEntity extends Focus {
 
     @Override
     public void start() {
-        Plugin plugin = getPluginManager().getPlugin("Dungeon");
+        Plugin plugin = Dungeon.getPlugin();
         BukkitTask task;
         if(respawn) {
-            task = new SpawnMob(location, mobType).runTaskTimer(plugin, 400L < respawnCoolDown ? respawnCoolDown : 400L, respawnCoolDown);
+            task = new SpawnMob(location, mobType)
+                    .runTaskTimer(plugin, 400L < respawnCoolDown ? respawnCoolDown : 400L, respawnCoolDown);
         } else {
             task = new SpawnMob(location, mobType).runTaskLater(plugin, 400L);
         }

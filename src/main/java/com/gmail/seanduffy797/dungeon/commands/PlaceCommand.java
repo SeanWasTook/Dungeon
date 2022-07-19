@@ -2,6 +2,7 @@ package com.gmail.seanduffy797.dungeon.commands;
 
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
+import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.Pieces.*;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.FocusMeta;
@@ -108,6 +109,8 @@ public class PlaceCommand implements CommandExecutor {
             }
 
             piece.place(loc.add(offset), rotation, mirror);
+
+            DungeonManager.isGenerated = true;
         }
         return true;
     }

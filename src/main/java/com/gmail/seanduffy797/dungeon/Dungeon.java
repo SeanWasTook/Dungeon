@@ -32,6 +32,7 @@ public class Dungeon extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DungeonBlockBreakEvent(), this);
         getServer().getPluginManager().registerEvents(new HitHangingEntityEvent(), this);
         getServer().getPluginManager().registerEvents(new MinecartDropEvent(), this);
+        getServer().getPluginManager().registerEvents(new ItemEntitySpawnEvent(), this);
         DungeonManager.init(this, getServer().getWorld(worldName));
         ItemManager.init();
         EntityManager.init();

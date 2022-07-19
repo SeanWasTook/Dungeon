@@ -11,12 +11,14 @@ import java.util.Map;
 public class DungeonManager {
 
     public static NamespacedKey customItemKey;
+    public static NamespacedKey customMobKey;
     public static boolean isGenerated;
     public static World world;
     public static Map<KeyLocation, Location> keyLocations = new HashMap<>();
 
     public static void init(Plugin plugin, World dungeonWorld) {
         customItemKey = new NamespacedKey(plugin, "customItem");
+        customMobKey = new NamespacedKey(plugin, "customMob");
         DungeonManager.world = dungeonWorld;
         isGenerated = false;
         keyLocations.put(KeyLocation.SPAWN, new Location(world, 0.5, 102, 0.5));

@@ -34,7 +34,7 @@
     {
       "type": "dungeonEntity",
       "loc": [8, 0, 0],
-      "mobType": "brickhusk",
+      "mobType": "brick_husk",
       "respawnCoolDown": 300
     },
     {

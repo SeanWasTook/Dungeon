@@ -13,20 +13,32 @@
     {
       "type": "DungeonEntity",
       "loc": [1, 0, 0, 0],
-      "mobType": "brickhusk",
+      "mobType": "brick_husk",
       "respawnCoolDown": 300
     },
     {
       "type": "DungeonEntity",
       "loc": [1, 0, 2, 180],
-      "mobType": "brickskeleton",
+      "mobType": "brick_skeleton",
       "respawnCoolDown": 300
     },
     {
       "type": "DungeonEntity",
       "loc": [1, 0, -2],
-      "mobType": "axevindicator",
+      "mobType": "axe_vindicator",
       "respawnCoolDown": 300
+    },
+    {
+      "type": "DungeonEntity",
+      "loc": [2, 0, -1],
+      "mobType": "dungeon_llama",
+      "respawnCoolDown": 500
+    },
+    {
+      "type": "DungeonEntity",
+      "loc": [2, 0, 1],
+      "mobType": "dungeon_llama",
+      "respawnCoolDown": 500
     },
     {
       "type": "itemFrameSpawner",

@@ -286,8 +286,8 @@ public enum BricksZone1 implements Bricks {
                     new Location(getWorld("Dungeon"), 7, 0, 0), Region.BRICK,
                     new Location(getWorld("Dungeon"), 3, 0, -4, 270, 0), Region.BRICK)),
             new ArrayList<>(Arrays.asList(
-                    new DungeonEntity(new Location(getWorld("Dungeon"), 3, -2, 3.5), DungeonMob.BRICKHUSK, 1703),
-                    new DungeonEntity(new Location(getWorld("Dungeon"), 3, -2, 3.5), DungeonMob.BRICKSKELETON, 2100)))),
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 3, -2, 3.5), DungeonMob.BRICK_HUSK, 1703),
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 3, -2, 3.5), DungeonMob.BRICK_SKELETON, 2100)))),
     T8 ("t8", 7, 5, 7, new Location(getWorld("Dungeon"), 0, -1, -3), true,
             new HashMap<>(Map.of(
                     new Location(getWorld("Dungeon"), 7, 0, 0), Region.BRICK,
@@ -343,7 +343,7 @@ public enum BricksZone1 implements Bricks {
                     new Location(getWorld("Dungeon"), 5, 0, 6, 90, 0), Region.BRICK,
                     new Location(getWorld("Dungeon"), 5, 0, -6, 270, 0), Region.BRICK)),
             new ArrayList<>(Collections.singletonList(
-                    new DungeonEntity(new Location(getWorld("Dungeon"), 5.5, 0, 0.5), DungeonMob.BRICKHUSK, 6000)))),
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 5.5, 0, 0.5), DungeonMob.BRICK_HUSK, 6000)))),
     CROSS9 ("cross9", 11, 5, 11, new Location(getWorld("Dungeon"), 0, -1, -5), true,
             new HashMap<>(Map.of(
                     new Location(getWorld("Dungeon"), 6, 0, 6, 90, 0), Region.BRICK,
@@ -356,8 +356,8 @@ public enum BricksZone1 implements Bricks {
                     new Location(getWorld("Dungeon"), 7, 0, 8, 90, 0), Region.BRICK,
                     new Location(getWorld("Dungeon"), 7, 0, -8, 270, 0), Region.BRICK)),
             new ArrayList<>(Arrays.asList(
-                    new DungeonEntity(new Location(getWorld("Dungeon"), 6, 0, 0), DungeonMob.BRICKSKELETON, 1000),
-                    new DungeonEntity(new Location(getWorld("Dungeon"), 6, 3, 0), DungeonMob.BRICKSKELETON, 1300),
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 6, 0, 0), DungeonMob.BRICK_SKELETON, 1000),
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 6, 3, 0), DungeonMob.BRICK_SKELETON, 1300),
                     new Chest(new Location(getWorld("Dungeon"), 6, 6, 0), Loot.BRICKT2, false, 15000)))),
     CROSS11 ("cross11", 19, 9, 15, new Location(getWorld("Dungeon"), 0, -1, -7), true,
             new HashMap<>(Map.of(

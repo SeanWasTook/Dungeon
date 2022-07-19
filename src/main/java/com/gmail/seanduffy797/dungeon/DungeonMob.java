@@ -1,17 +1,17 @@
 package com.gmail.seanduffy797.dungeon;
 
-import com.gmail.seanduffy797.dungeon.mobs.AxeVindicator;
-import com.gmail.seanduffy797.dungeon.mobs.BrickHusk;
-import com.gmail.seanduffy797.dungeon.mobs.BrickSkeleton;
-import com.gmail.seanduffy797.dungeon.mobs.CustomMob;
+import com.gmail.seanduffy797.dungeon.mobs.*;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
+import org.bukkit.persistence.PersistentDataType;
 
 public enum DungeonMob {
 
-    BRICKHUSK (new BrickHusk()),
-    BRICKSKELETON (new BrickSkeleton()),
-    AXEVINDICATOR (new AxeVindicator());
+    BRICK_HUSK(new BrickHusk()),
+    BRICK_SKELETON(new BrickSkeleton()),
+    AXE_VINDICATOR(new AxeVindicator()),
+    DUNGEON_LLAMA(new DungeonLlama());
 
     private final CustomMob mobClass;
 
@@ -21,6 +21,8 @@ public enum DungeonMob {
 
     public Entity spawn(Location location) {
         Entity entity = mobClass.spawn(location);
+        entity.getPersistentDataContainer().set(
+                DungeonManager.customMobKey, PersistentDataType.STRING, this.name());
         EntityManager.addEntity(entity);
         return entity;
     }

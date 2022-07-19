@@ -1,5 +1,6 @@
 package com.gmail.seanduffy797.dungeon.commands;
 
+import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.EntityManager;
 import com.gmail.seanduffy797.dungeon.builders.BrickBuilder;
 import com.gmail.seanduffy797.dungeon.builders.MineBuilder;
@@ -33,6 +34,7 @@ public class ClearCommand implements CommandExecutor {
             }
             tasks.clear();
             EntityManager.clearEntities();
+            DungeonManager.isGenerated = false;
         }
 
         return true;

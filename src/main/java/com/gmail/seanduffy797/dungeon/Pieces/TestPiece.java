@@ -20,6 +20,7 @@ import static com.bergerkiller.bukkit.mw.MyWorlds.plugin;
 public enum TestPiece implements Bricks {
 
     PAINTING("painting"),
+    MANY_ENTITIES("many_entities"),
     ITEMFRAME("itemFrame"),
     BASIC("basic"),
     ALL("all");

@@ -1,10 +1,9 @@
 package com.gmail.seanduffy797.dungeon.Pieces;
 
 import com.github.shynixn.structureblocklib.api.bukkit.StructureBlockLibApi;
-import com.github.shynixn.structureblocklib.api.entity.StructureEntity;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
-import com.gmail.seanduffy797.dungeon.EntityManager;
+import com.gmail.seanduffy797.dungeon.DungeonMob;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.*;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -195,7 +194,7 @@ public enum BricksZone2 implements Bricks {
                     new Location(getWorld("Dungeon"), 13, 0, 15, 90, 0), Region.BRICK2,
                     new Location(getWorld("Dungeon"), 14, 0, -15, 270, 0), Region.BRICK2)),
             new ArrayList<>(Collections.singletonList(
-                    new DungeonEntity(new Location(getWorld("Dungeon"), 14, -1, 0.5), Mob.AXEVINDICATOR, 10000)))),
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 14, -1, 0.5), DungeonMob.AXEVINDICATOR, 10000)))),
     CROSS8 ("cross8", 11, 16, 9, new Location(getWorld("Dungeon"), 0, -1, -3), true,
             new HashMap<>(Map.of(
                     new Location(getWorld("Dungeon"), 11, 2, 1, 0, 0), Region.BRICK2,

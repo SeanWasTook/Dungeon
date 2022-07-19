@@ -1,28 +1,27 @@
 package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
 import com.gmail.seanduffy797.dungeon.Dungeon;
+import com.gmail.seanduffy797.dungeon.DungeonMob;
 import com.gmail.seanduffy797.dungeon.tasks.SpawnMob;
 import com.gmail.seanduffy797.dungeon.tasks.TaskList;
 import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
-import static org.bukkit.Bukkit.getPluginManager;
-
 public class DungeonEntity extends Focus {
 
-    public Mob mobType;
+    public DungeonMob mobType;
     public boolean respawn;
     public int respawnCoolDown;
 
-    public DungeonEntity(Location location, Mob mobType) {
+    public DungeonEntity(Location location, DungeonMob mobType) {
         this.location = location;
         this.mobType = mobType;
         this.respawn = false;
         this.respawnCoolDown = 0;
     }
 
-    public DungeonEntity(Location location, Mob mobType, int coolDown) {
+    public DungeonEntity(Location location, DungeonMob mobType, int coolDown) {
         this.location = location;
         this.mobType = mobType;
         this.respawn = true;
@@ -32,7 +31,7 @@ public class DungeonEntity extends Focus {
         }
     }
 
-    private DungeonEntity(Location location, Mob mobType, boolean respawn, int coolDown) {
+    private DungeonEntity(Location location, DungeonMob mobType, boolean respawn, int coolDown) {
         this.location = location;
         this.mobType = mobType;
         this.respawn = respawn;

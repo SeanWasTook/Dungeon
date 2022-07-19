@@ -1,0 +1,46 @@
+{
+  "name": "many_entities",
+  "length": 5,
+  "height": 4,
+  "width": 5,
+  "isEven": false,
+  "offset": [
+    0,
+    -1,
+    -2
+  ],
+  "foci": [
+    {
+      "type": "DungeonEntity",
+      "loc": [1, 0, 0, 0],
+      "mobType": "brickhusk",
+      "respawnCoolDown": 300
+    },
+    {
+      "type": "DungeonEntity",
+      "loc": [1, 0, 2, 180],
+      "mobType": "brickskeleton",
+      "respawnCoolDown": 300
+    },
+    {
+      "type": "DungeonEntity",
+      "loc": [1, 0, -2],
+      "mobType": "axevindicator",
+      "respawnCoolDown": 300
+    },
+    {
+      "type": "itemFrameSpawner",
+      "loc": [3, 1, 0],
+      "contents": "brown_mushroom",
+      "facing": 180,
+      "isGlow": false
+    },
+    {
+      "type": "paintingSpawner",
+      "loc": [3, 1, 1],
+      "motif": "aztec2",
+      "facing": 180,
+      "isEven": false
+    }
+  ]
+}

@@ -1,10 +1,7 @@
 package com.gmail.seanduffy797.dungeon.builders;
 
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
-import com.gmail.seanduffy797.dungeon.Dungeon;
-import com.gmail.seanduffy797.dungeon.DungeonItem;
-import com.gmail.seanduffy797.dungeon.DungeonManager;
-import com.gmail.seanduffy797.dungeon.ItemManager;
+import com.gmail.seanduffy797.dungeon.*;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.*;
 import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import org.bukkit.ChatColor;
@@ -48,7 +45,6 @@ public class PieceParser {
             ex.printStackTrace();
             return;
         }
-        getServer().getConsoleSender().sendMessage(json.toJSONString());
         parseName(json, pieceData);
         parseLength(json, pieceData);
         parseHeight(json, pieceData);
@@ -57,8 +53,6 @@ public class PieceParser {
         parseOffset(json, pieceData);
         parseExits(json, pieceData);
         parseFoci(json, pieceData);
-
-        getServer().getConsoleSender().sendMessage(pieceData.toString());
     }
 
     private static void parseName(JSONObject json, PieceData pieceData) {
@@ -234,6 +228,10 @@ public class PieceParser {
         int x = (int) (long) json.get(0);
         int y = (int) (long) json.get(1);
         int z = (int) (long) json.get(2);
+        if (json.size() > 3) {
+            int yaw = (int) (long) json.get(3);
+            return new Location(DungeonManager.world, x, y, z, yaw, 0);
+        }
         return new Location(DungeonManager.world, x, y, z);
     }
     private static void parseChest(JSONObject json, PieceData pieceData) {
@@ -291,10 +289,10 @@ public class PieceParser {
             return;
         }
         Location location = getLocation(jsonLoc);
-        Mob mobType;
+        DungeonMob mobType;
         if (json.containsKey("mobType")) {
             try {
-                mobType = Mob.valueOf(((String) json.get("mobType")).toUpperCase());
+                mobType = DungeonMob.valueOf(((String) json.get("mobType")).toUpperCase());
             } catch (IllegalArgumentException e) {
                 getServer().getConsoleSender().sendMessage
                         (ChatColor.RED + "[Dungeon]: Parsing Error: " + pieceData.templatePath +

@@ -1,6 +1,7 @@
 package com.gmail.seanduffy797.dungeon.tasks;
 
 import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.EntityManager;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.BlockFace;
@@ -40,5 +41,6 @@ public class SpawnItemFrame extends BukkitRunnable {
             itemFrame.setItem(contents);
         }
         itemFrame.setFacingDirection(facing);
+        EntityManager.addEntity(itemFrame);
     }
 }

@@ -19,11 +19,9 @@ public class EntityManager {
     }
 
     public static void clearEntities() {
-        // DOES NOT WORK
-        // Seems to save the entities before they're loaded in or smth weird
         for (Entity entity : loadedEntities) {
             getServer().getConsoleSender().sendMessage("[Dungeon]: Entity removed " + entity.getType());
-            entity.setGlowing(true);
+            entity.remove();
         }
         loadedEntities.clear();
     }

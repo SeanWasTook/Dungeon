@@ -17,6 +17,8 @@ import static org.bukkit.Bukkit.getServer;
 
 public class EntityManager {
 
+    // This class is deprecated and should not be used
+
     public static Entity parrot;
 
     public static void init() {

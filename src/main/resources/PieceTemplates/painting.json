@@ -1,0 +1,74 @@
+{
+  "name": "painting",
+  "length": 7,
+  "height": 6,
+  "width": 5,
+  "isEven": false,
+  "offset": [0, -1, -2],
+  "exits": [],
+  "foci": [
+    {
+      "type": "paintingSpawner",
+      "loc": [2,2, -1],
+      "motif": "pointer",
+      "facing": 90,
+      "isEven": true
+    },
+    {
+      "type": "paintingSpawner",
+      "loc": [1, 0, 0],
+      "motif": "sea",
+      "facing": 0,
+      "isEven": true
+    },
+    {
+      "type": "paintingSpawner",
+      "loc": [1, 2, 1],
+      "motif": "match",
+      "facing": 0,
+      "isEven": true
+    },
+    {
+      "type": "paintingSpawner",
+      "loc": [1, 1, 1],
+      "motif": "aztec2",
+      "facing": 0,
+      "isEven": false
+    },
+    {
+      "type": "paintingSpawner",
+      "loc": [4, 1, 1],
+      "motif": "pool",
+      "facing": 270,
+      "isEven": true
+    },
+    {
+      "type": "paintingSpawner",
+      "loc": [3, 3, 1],
+      "motif": "aztec2",
+      "facing": 270,
+      "isEven": false
+    },
+    {
+      "type": "paintingSpawner",
+      "loc": [5, 0, 0],
+      "motif": "bomb",
+      "facing": 180,
+      "isEven": false
+    },
+    {
+      "type": "paintingSpawner",
+      "loc": [5, 2, -1],
+      "motif": "bust",
+      "facing": 180,
+      "isEven": true
+    },
+    {
+      "type": "paintingSpawner",
+      "loc": [5, 4, 0],
+      "motif": "courbet",
+      "facing": 180,
+      "isEven": true
+    }
+  ]
+}

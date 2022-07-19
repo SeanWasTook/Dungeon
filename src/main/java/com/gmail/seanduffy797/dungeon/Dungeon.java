@@ -8,6 +8,7 @@ import com.gmail.seanduffy797.dungeon.mobs.EntityManager;
 import com.gmail.seanduffy797.dungeon.tasks.TickDungeon;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
+import org.bukkit.event.hanging.HangingPlaceEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -33,6 +34,7 @@ public class Dungeon extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new HitHangingEntityEvent(), this);
         getServer().getPluginManager().registerEvents(new MinecartDropEvent(), this);
         getServer().getPluginManager().registerEvents(new ItemEntitySpawnEvent(), this);
+        getServer().getPluginManager().registerEvents(new PaintingPlacedEvent(), this);
         DungeonManager.init(this, getServer().getWorld(worldName));
         ItemManager.init();
         EntityManager.init();

@@ -2,6 +2,7 @@ package com.gmail.seanduffy797.dungeon.builders;
 
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
+import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.Pieces.Bricks;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.FocusMeta;
@@ -40,6 +41,7 @@ public class BrickBuilder {
         BrickPiecePicker.init();
         TaskList.tasks = new ArrayList<>();
         FocusMeta.init();
+        DungeonManager.isGenerated = true;
 
         Location startPoint = new Location(Bukkit.getWorld("Dungeon"), 55, 50, 0);
 

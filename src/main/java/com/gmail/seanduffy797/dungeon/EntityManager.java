@@ -20,7 +20,6 @@ public class EntityManager {
 
     public static void clearEntities() {
         for (Entity entity : loadedEntities) {
-            getServer().getConsoleSender().sendMessage("[Dungeon]: Entity removed " + entity.getType());
             entity.remove();
         }
         loadedEntities.clear();

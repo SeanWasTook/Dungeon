@@ -30,7 +30,7 @@ public class Spawner extends Focus {
     public void start() {
         Plugin plugin = Dungeon.getPlugin();
 
-        BukkitTask task = new SetSpawner(location, spawnerType.getDetails())
+        BukkitTask task = new SetSpawner(location, spawnerType)
                 .runTaskLater(plugin, 400L);
     }
 }

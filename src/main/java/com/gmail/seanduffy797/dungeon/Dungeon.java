@@ -1,18 +1,12 @@
 package com.gmail.seanduffy797.dungeon;
 
 import com.gmail.seanduffy797.dungeon.Items.ItemManager;
-import com.gmail.seanduffy797.dungeon.builders.PieceParser;
 import com.gmail.seanduffy797.dungeon.commands.*;
 import com.gmail.seanduffy797.dungeon.events.*;
 import com.gmail.seanduffy797.dungeon.mobs.EntityManager;
 import com.gmail.seanduffy797.dungeon.tasks.TickDungeon;
-import org.bukkit.NamespacedKey;
-import org.bukkit.World;
-import org.bukkit.event.hanging.HangingPlaceEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
-
-import static org.bukkit.Bukkit.getPluginManager;
 
 public class Dungeon extends JavaPlugin {
 
@@ -22,6 +16,9 @@ public class Dungeon extends JavaPlugin {
     @Override
     public void onEnable() {
         pluginInstance = this;
+        DungeonManager.init(this, getServer().getWorld(worldName));
+        ItemManager.init();
+        EntityManager.init();
         getServer().getPluginManager().registerEvents(new DungeonEventTest(), this);
         getServer().getPluginManager().registerEvents(new UseItemEvent(), this);
         getServer().getPluginManager().registerEvents(new ContainerInteractEvent(), this);
@@ -35,9 +32,7 @@ public class Dungeon extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new MinecartDropEvent(), this);
         getServer().getPluginManager().registerEvents(new ItemEntitySpawnEvent(), this);
         getServer().getPluginManager().registerEvents(new PaintingPlacedEvent(), this);
-        DungeonManager.init(this, getServer().getWorld(worldName));
-        ItemManager.init();
-        EntityManager.init();
+        getServer().getPluginManager().registerEvents(new SpawnerOverride(), this);
         getCommand("heal").setExecutor(new DungeonCommandsTest());
         getCommand("spawnmobs").setExecutor(new SpawnMobs());
         getCommand("dgive").setExecutor(new GiveCommand());

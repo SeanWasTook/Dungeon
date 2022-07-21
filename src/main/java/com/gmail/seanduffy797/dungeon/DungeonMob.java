@@ -2,15 +2,22 @@ package com.gmail.seanduffy797.dungeon;
 
 import com.gmail.seanduffy797.dungeon.mobs.*;
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.persistence.PersistentDataType;
+
+import static org.bukkit.Bukkit.getServer;
 
 public enum DungeonMob {
 
     BRICK_HUSK(new BrickHusk()),
     BRICK_SKELETON(new BrickSkeleton()),
     AXE_VINDICATOR(new AxeVindicator()),
+    GLADIATOR_SKELETON(new GladiatorSkeleton()),
+    RUDIARIUS(new Rudiarius()),
+    CESTUS(new Cestus()),
+    DIMACHAERUS(new Dimachaerus()),
+    SAGITTARIUS(new Sagittarius()),
+    EDITOR(new Editor()),
     DUNGEON_LLAMA(new DungeonLlama());
 
     private final CustomMob mobClass;

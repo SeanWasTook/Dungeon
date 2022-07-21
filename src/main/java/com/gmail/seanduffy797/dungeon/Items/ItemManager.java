@@ -1,6 +1,8 @@
 package com.gmail.seanduffy797.dungeon.Items;
 
+import com.gmail.seanduffy797.dungeon.Items.Armor.GladiatorArmor;
 import com.gmail.seanduffy797.dungeon.Items.Armor.HuskLeather;
+import com.gmail.seanduffy797.dungeon.Items.Armor.RudiariusArmor;
 import com.gmail.seanduffy797.dungeon.Items.Armor.SkeletonLeather;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
@@ -12,6 +14,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.bukkit.Bukkit.getServer;
+
 public class ItemManager {
 
     public static ItemStack wand;
@@ -21,6 +25,9 @@ public class ItemManager {
         SkeletonLeather.init();
         createWand();
         VindicatorsAxe.init();
+        GladiatorArmor.init();
+        RudiariusArmor.init();
+        GladiatorWeapons.init();
     }
 
     private static void createWand() {

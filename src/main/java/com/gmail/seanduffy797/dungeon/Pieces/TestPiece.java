@@ -23,6 +23,7 @@ public enum TestPiece implements Bricks {
     MANY_ENTITIES("many_entities"),
     ITEMFRAME("itemFrame"),
     BASIC("basic"),
+    SPAWNER("spawner"),
     ALL("all");
 
     private final PieceData data;

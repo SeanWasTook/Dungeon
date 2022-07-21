@@ -3,6 +3,7 @@ version: 0.2
 author: Seance
 main: com.gmail.seanduffy797.dungeon.Dungeon
 api-version: 1.19
+depend: [NBTAPI]
 commands:
   heal:
     description: Heals the player to max health

@@ -19,6 +19,9 @@ public class SpawnerOverride implements Listener {
     public static void onCreatureSpawn(CreatureSpawnEvent event) {
         if (event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.SPAWNER) {
             LivingEntity creature = event.getEntity();
+            if (creature.customName() == null) {
+                return;
+            }
             String name = "empty";
             try {
                 name = ((TextComponent) creature.customName()).content();

@@ -28,6 +28,9 @@ public class ItemManager {
         GladiatorArmor.init();
         RudiariusArmor.init();
         GladiatorWeapons.init();
+        Weapons.init();
+        Keys.init();
+        BuildingItems.init();
     }
 
     private static void createWand() {

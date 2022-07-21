@@ -1,5 +1,6 @@
 package com.gmail.seanduffy797.dungeon.commands;
 
+import com.gmail.seanduffy797.dungeon.DungeonItem;
 import com.gmail.seanduffy797.dungeon.Items.ItemManager;
 import com.gmail.seanduffy797.dungeon.Items.TeleportPearl;
 import com.gmail.seanduffy797.dungeon.KeyLocation;
@@ -39,7 +40,12 @@ public class GiveCommand implements CommandExecutor {
                     player.getInventory().addItem(TeleportPearl.createItemStack(KeyLocation.SPAWN));
                 }
                 else {
-                    sender.sendMessage("Invalid Item");
+                    try {
+                        ItemStack item = DungeonItem.valueOf(args[0].toUpperCase()).getItemStack();
+                        player.getInventory().addItem(item);
+                    } catch (IllegalArgumentException e) {
+                        sender.sendMessage("Invalid Item");
+                    }
                 }
             }
 

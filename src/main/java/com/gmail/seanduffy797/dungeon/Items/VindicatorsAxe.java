@@ -14,11 +14,12 @@ public class VindicatorsAxe {
 
     public static void init() { createAxe();}
 
-    private static void createAxe() {
+    public static ItemStack createAxe() {
         vindicatorsAxe = new ItemStack(Material.IRON_AXE);
         ItemMeta meta = vindicatorsAxe.getItemMeta();
         meta.displayName(Component.text("Vindicator's Axe"));
-        meta.setDestroyableKeys(Collections.singletonList(NamespacedKey.minecraft("dark_oak_log")));
+        meta.setDestroyableKeys(Collections.singletonList(Material.DARK_OAK_LOG.getKey()));
         vindicatorsAxe.setItemMeta(meta);
+        return vindicatorsAxe;
     }
 }

@@ -1,61 +1,72 @@
 package com.gmail.seanduffy797.dungeon;
 
+import com.gmail.seanduffy797.dungeon.Items.*;
 import com.gmail.seanduffy797.dungeon.Items.Armor.GladiatorArmor;
 import com.gmail.seanduffy797.dungeon.Items.Armor.HuskLeather;
 import com.gmail.seanduffy797.dungeon.Items.Armor.RudiariusArmor;
 import com.gmail.seanduffy797.dungeon.Items.Armor.SkeletonLeather;
-import com.gmail.seanduffy797.dungeon.Items.GladiatorWeapons;
-import com.gmail.seanduffy797.dungeon.Items.VindicatorsAxe;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
-import static org.bukkit.Bukkit.getServer;
+import java.util.function.Supplier;
 
 public enum DungeonItem {
 
     TELEPORT_PEARL,
-    VINDICATORS_AXE (VindicatorsAxe.vindicatorsAxe),
-    GLADIATOR_HELMET (GladiatorArmor.helmet),
-    GLADIATOR_CHESTPLATE (GladiatorArmor.chestplate),
-    GLADIATOR_GREAVES (GladiatorArmor.greaves),
-    GLADIATOR_BOOTS (GladiatorArmor.boots),
-    GLADIUS (GladiatorWeapons.gladius),
-    RUDIS (GladiatorWeapons.rudis),
-    SICA (GladiatorWeapons.sica),
-    REFLEX_BOW (GladiatorWeapons.reflexBow),
-    PALM_BRANCH (GladiatorWeapons.palmBranch),
-    RUDIARIUS_HELMET (RudiariusArmor.helmet),
-    RUDIARIUS_CHESTPLATE (RudiariusArmor.chestplate),
-    RUDIARIUS_GREAVES (RudiariusArmor.greaves),
-    RUDIARIUS_BOOTS (RudiariusArmor.boots),
-    HUSK_LEATHER_HAT (HuskLeather.hat),
-    HUSK_LEATHER_TUNIC (HuskLeather.tunic),
-    HUSK_LEATHER_PANTS (HuskLeather.pants),
-    HUSK_LEATHER_BOOTS (HuskLeather.boots),
-    SKELETON_LEATHER_HAT (SkeletonLeather.hat),
-    SKELETON_LEATHER_TUNIC (SkeletonLeather.tunic),
-    SKELETON_LEATHER_PANTS (SkeletonLeather.pants),
-    SKELETON_LEATHER_BOOTS (SkeletonLeather.boots);
+    GUARD_BOW (Weapons::createGuardBow),
+    ARACHNICIDE (Weapons::createArachnicide),
+    ACHILLOBATOR (Weapons::createAchillobator),
+    VINDICATORS_AXE (VindicatorsAxe::createAxe),
+    SKELETON_KEY (Keys::createSkeletonKey),
+    BASEMENT_KEY (Keys::createBasementKey),
+    OLD_KEY (Keys::createOldKey),
+    CHISELED_STONE_PICK (BuildingItems::createChiseledStonePick),
+    GLADIATOR_HELMET (GladiatorArmor::createHelmet),
+    GLADIATOR_CHESTPLATE (GladiatorArmor::createChestplate),
+    GLADIATOR_GREAVES (GladiatorArmor::createGreaves),
+    GLADIATOR_BOOTS (GladiatorArmor::createBoots),
+    GLADIUS (GladiatorWeapons::createGladius),
+    RUDIS (GladiatorWeapons::createRudis),
+    SICA (GladiatorWeapons::createSica),
+    REFLEX_BOW (GladiatorWeapons::createReflexBow),
+    PALM_BRANCH (GladiatorWeapons::createPalmBranch),
+    RUDIARIUS_HELMET (RudiariusArmor::createHelmet),
+    RUDIARIUS_CHESTPLATE (RudiariusArmor::createChestplate),
+    RUDIARIUS_GREAVES (RudiariusArmor::createGreaves),
+    RUDIARIUS_BOOTS (RudiariusArmor::createBoots),
+    HUSK_LEATHER_HAT (HuskLeather::createHat),
+    HUSK_LEATHER_TUNIC (HuskLeather::createTunic),
+    HUSK_LEATHER_PANTS (HuskLeather::createPants),
+    HUSK_LEATHER_BOOTS (HuskLeather::createBoots),
+    SKELETON_LEATHER_HAT (SkeletonLeather::createHat),
+    SKELETON_LEATHER_TUNIC (SkeletonLeather::createTunic),
+    SKELETON_LEATHER_PANTS (SkeletonLeather::createPants),
+    SKELETON_LEATHER_BOOTS (SkeletonLeather::createBoots);
 
-    private final ItemStack itemStack;
+    private final Supplier<ItemStack> supplier;
 
     DungeonItem(){
-        this.itemStack = null;
+        this.supplier = null;
     }
 
-    DungeonItem(ItemStack itemStack) {
-        this.itemStack = itemStack;
-        ItemMeta meta = itemStack.getItemMeta();
-        meta.getPersistentDataContainer()
-                .set(DungeonManager.customItemKey, PersistentDataType.STRING, this.name());
+    DungeonItem(Supplier<ItemStack> supplier) {
+        this.supplier = supplier;
     }
 
     public boolean hasItemStack() {
-        return this.itemStack != null;
+        return this.supplier != null;
     }
 
     public ItemStack getItemStack() {
-        return this.itemStack;
+        if (this.supplier != null) {
+            ItemStack item = this.supplier.get();
+            ItemMeta meta = item.getItemMeta();
+            meta.getPersistentDataContainer()
+                    .set(DungeonManager.customItemKey, PersistentDataType.STRING, this.name());
+            return item;
+        } else {
+            return null;
+        }
     }
 }

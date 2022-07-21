@@ -36,4 +36,33 @@ public class GladiatorArmor {
         bootsMeta.displayName(Component.text("Gladiator Boots"));
         boots.setItemMeta(bootsMeta);
     }
+
+    public static ItemStack createHelmet() {
+        helmet = new ItemStack(Material.CHAINMAIL_HELMET);
+        ItemMeta helmetMeta = helmet.getItemMeta();
+        helmetMeta.displayName(Component.text("Gladiator Helmet"));
+        helmet.setItemMeta(helmetMeta);
+        return helmet;
+    }
+    public static ItemStack createChestplate() {
+        chestplate = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
+        ItemMeta chestplateMeta = chestplate.getItemMeta();
+        chestplateMeta.displayName(Component.text("Gladiator Chestplate"));
+        chestplate.setItemMeta(chestplateMeta);
+        return chestplate;
+    }
+    public static ItemStack createGreaves() {
+        greaves = new ItemStack(Material.CHAINMAIL_LEGGINGS);
+        ItemMeta greavesMeta = greaves.getItemMeta();
+        greavesMeta.displayName(Component.text("Gladiator Greaves"));
+        greaves.setItemMeta(greavesMeta);
+        return greaves;
+    }
+    public static ItemStack createBoots() {
+        boots = new ItemStack(Material.CHAINMAIL_BOOTS);
+        ItemMeta bootsMeta = boots.getItemMeta();
+        bootsMeta.displayName(Component.text("Gladiator Boots"));
+        boots.setItemMeta(bootsMeta);
+        return boots;
+    }
 }

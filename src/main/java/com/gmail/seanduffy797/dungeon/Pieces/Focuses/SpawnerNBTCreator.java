@@ -68,4 +68,82 @@ public class SpawnerNBTCreator {
 
         return container;
     }
+
+    public static NBTContainer brickHuskSpawner() {
+        NBTContainer container = new NBTContainer();
+        container.setInteger("SpawnCount", 3);
+        container.setInteger("Delay", 60);
+        container.setInteger("MinSpawnDelay", 400);
+        container.setInteger("MaxSpawnDelay", 700);
+        container.setInteger("MaxNearbyEntities", 8);
+        container.setInteger("RequiredPlayerRange", 20);
+
+        NBTCompound spawnData = container.addCompound("SpawnData");
+        NBTCompound data = spawnData.addCompound("entity");
+        data.setString("id", "husk");
+        data.setString("CustomName", "{\"text\":\"" + DungeonMob.BRICK_HUSK.name() + "\"}");
+
+        NBTCompoundList potentials = container.getCompoundList( "SpawnPotentials");
+
+        NBTListCompound mob1 = potentials.addCompound();
+        mob1.setInteger("weight", 1);
+        NBTCompound data1 = mob1.addCompound("data");
+        NBTCompound skelly1 = data1.addCompound("entity");
+        skelly1.setString("id", "husk");
+        skelly1.setString("CustomName", "{\"text\":\"" + DungeonMob.BRICK_HUSK.name() + "\"}");
+
+        return container;
+    }
+
+    public static NBTContainer commonSpiderSpawner() {
+        NBTContainer container = new NBTContainer();
+        container.setInteger("SpawnCount", 3);
+        container.setInteger("Delay", 60);
+        container.setInteger("MinSpawnDelay", 500);
+        container.setInteger("MaxSpawnDelay", 900);
+        container.setInteger("MaxNearbyEntities", 5);
+        container.setInteger("RequiredPlayerRange", 21);
+
+        NBTCompound spawnData = container.addCompound("SpawnData");
+        NBTCompound data = spawnData.addCompound("entity");
+        data.setString("id", "spider");
+        data.setString("CustomName", "{\"text\":\"" + DungeonMob.COMMON_SPIDER.name() + "\"}");
+
+        NBTCompoundList potentials = container.getCompoundList( "SpawnPotentials");
+
+        NBTListCompound mob1 = potentials.addCompound();
+        mob1.setInteger("weight", 1);
+        NBTCompound data1 = mob1.addCompound("data");
+        NBTCompound skelly1 = data1.addCompound("entity");
+        skelly1.setString("id", "spider");
+        skelly1.setString("CustomName", "{\"text\":\"" + DungeonMob.COMMON_SPIDER.name() + "\"}");
+
+        return container;
+    }
+
+    public static NBTContainer brickSkeletonSpawner() {
+        NBTContainer container = new NBTContainer();
+        container.setInteger("SpawnCount", 3);
+        container.setInteger("Delay", 60);
+        container.setInteger("MinSpawnDelay", 500);
+        container.setInteger("MaxSpawnDelay", 900);
+        container.setInteger("MaxNearbyEntities", 5);
+        container.setInteger("RequiredPlayerRange", 21);
+
+        NBTCompound spawnData = container.addCompound("SpawnData");
+        NBTCompound data = spawnData.addCompound("entity");
+        data.setString("id", "skeleton");
+        data.setString("CustomName", "{\"text\":\"" + DungeonMob.BRICK_SKELETON.name() + "\"}");
+
+        NBTCompoundList potentials = container.getCompoundList( "SpawnPotentials");
+
+        NBTListCompound mob1 = potentials.addCompound();
+        mob1.setInteger("weight", 1);
+        NBTCompound data1 = mob1.addCompound("data");
+        NBTCompound skelly1 = data1.addCompound("entity");
+        skelly1.setString("id", "skeleton");
+        skelly1.setString("CustomName", "{\"text\":\"" + DungeonMob.BRICK_SKELETON.name() + "\"}");
+
+        return container;
+    }
 }

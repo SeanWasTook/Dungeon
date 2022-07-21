@@ -187,12 +187,14 @@ public enum BricksZone1 implements Bricks {
             new ArrayList<>()),
     END13 ("end13", 3, 5, 7, new Location(getWorld("Dungeon"), 0, -1, -3), false,
             new HashMap<>(),
-            new ArrayList<>(Collections.singletonList(
+            new ArrayList<>(Arrays.asList(
+                    new PaintingSpawner(new Location(getWorld("Dungeon"), 0, 1, 0), "wasteland", StructureRotation.ROTATION_180, false),
                     new Chest(new Location(getWorld("Dungeon"), 2, 1, 0), Loot.BRICKT1)))),
 
     ROOM1 ("room1", 13, 7, 13, new Location(getWorld("Dungeon"), 0, -1, -6), true,
             new HashMap<>(),
             new ArrayList<>(Arrays.asList(
+                    new Spawner(new Location(getWorld("Dungeon"), 6, 1, 0), SpawnerEnum.BRICK_HUSK),
                     new Chest(new Location(getWorld("Dungeon"), 10, 1, -5), Loot.BRICKT1),
                     new Chest(new Location(getWorld("Dungeon"), 9, 0, 5), Loot.BRICKT1)))),
     ROOM2 ("room2", 17, 9, 17, new Location(getWorld("Dungeon"), 0, -5, -8), true,

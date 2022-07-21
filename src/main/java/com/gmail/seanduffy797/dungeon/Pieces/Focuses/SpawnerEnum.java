@@ -3,7 +3,8 @@ package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 import de.tr7zw.nbtapi.NBTContainer;
 
 public enum SpawnerEnum {
-    GLADIATOR (SpawnerNBTCreator.gladiatorSpawner());
+    GLADIATOR (SpawnerNBTCreator.gladiatorSpawner()),
+    BRICK_HUSK (SpawnerNBTCreator.brickHuskSpawner());
 
     private final NBTContainer nbtContainer;
 

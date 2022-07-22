@@ -1,10 +1,15 @@
 package com.gmail.seanduffy797.dungeon.events;
 
+import com.gmail.seanduffy797.dungeon.DungeonItem;
+import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.Items.TeleportPearl;
+import com.gmail.seanduffy797.dungeon.KeyLocation;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.FocusMeta;
 import com.gmail.seanduffy797.dungeon.mobs.NPCEnum;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -17,6 +22,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 
 public class DungeonEventTest implements Listener {
 
@@ -42,11 +49,12 @@ public class DungeonEventTest implements Listener {
         if (entity.getType() == EntityType.PARROT && entityName != null && entityName.equalsIgnoreCase("Mayor")) {
             player.sendMessage("Hello, I am the Mayor. Bring me 10 Carrots and I'll give you a Diamond");
         } else if (entity.getType() == EntityType.SKELETON && entityName != null && entityName.equalsIgnoreCase("GATEKEEPER")){
-            if(item != null && item.getItemMeta() != null) {
-                TextComponent textComponent = (TextComponent) item.getItemMeta().displayName();
-                if (textComponent != null) {
-                    String name = textComponent.content();
-                    if (item.getType() == Material.BAMBOO && name.equalsIgnoreCase("Palm Branch")) {
+            if(item.getItemMeta() != null) {
+                PersistentDataContainer tags = item.getItemMeta().getPersistentDataContainer();
+                if (tags.has(DungeonManager.customItemKey)) {
+                    String itemName = tags.get(DungeonManager.customItemKey, PersistentDataType.STRING);
+                    DungeonItem dungeonItem = DungeonItem.valueOf(itemName);
+                    if (dungeonItem == DungeonItem.PALM_BRANCH) {
                         Skeleton skelly = (Skeleton) entity;
                         int number = (int) skelly.getHealth();
                         FocusMeta.ironGates.get(number).destroy();
@@ -55,6 +63,18 @@ public class DungeonEventTest implements Listener {
                         return;
                     }
                 }
+//                TextComponent textComponent = (TextComponent) item.getItemMeta().displayName();
+//                if (textComponent != null) {
+//                    String name = textComponent.content();
+//                    if (item.getType() == Material.BAMBOO && name.equalsIgnoreCase("Palm Branch")) {
+//                        Skeleton skelly = (Skeleton) entity;
+//                        int number = (int) skelly.getHealth();
+//                        FocusMeta.ironGates.get(number).destroy();
+//                        item.subtract();
+//                        skelly.remove();
+//                        return;
+//                    }
+//                }
             }
             if(!slot.equals(EquipmentSlot.OFF_HAND)) {
                 player.sendMessage(ChatColor.BLUE + "You must give me a Palm Branch to prove your worth");

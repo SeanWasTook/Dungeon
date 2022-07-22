@@ -1,9 +1,10 @@
 package com.gmail.seanduffy797.dungeon.commands;
 
-import com.gmail.seanduffy797.dungeon.builders.BrickBuilder;
-import com.gmail.seanduffy797.dungeon.builders.BrickPiecePicker;
-import com.gmail.seanduffy797.dungeon.builders.CryptBuilder;
-import com.gmail.seanduffy797.dungeon.builders.MineBuilder;
+import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
+import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.builders.*;
+import com.gmail.seanduffy797.dungeon.builders.maze.StoneBrickMazeBuilder;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -25,6 +26,9 @@ public class BuildCommand implements CommandExecutor {
                     CryptBuilder.build();
                 } else if (args[0].equalsIgnoreCase("mine")) {
                     MineBuilder.build();
+                } else if (args[0].equalsIgnoreCase("maze")) {
+                    StoneBrickMazeBuilder builder = new StoneBrickMazeBuilder();
+                    builder.buildStoneBrickMaze(new Location(DungeonManager.world, 85, 50, 0), StructureRotation.NONE);
                 } else if (args[0].equalsIgnoreCase("data")){
                     getServer().getConsoleSender().sendMessage("[Dungeon]: Counts: " + BrickPiecePicker.counts);
                     getServer().getConsoleSender().sendMessage("[Dungeon]: Necessary: " + BrickPiecePicker.necessarys);

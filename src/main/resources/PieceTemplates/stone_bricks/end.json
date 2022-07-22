@@ -1,0 +1,13 @@
+{
+  "name": "end",
+  "length": 3,
+  "height": 4,
+  "width": 3,
+  "isEven": false,
+  "offset": [
+    0,
+    -1,
+    -1
+  ],
+  "exits": []
+}

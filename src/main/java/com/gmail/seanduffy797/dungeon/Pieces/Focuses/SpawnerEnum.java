@@ -4,7 +4,9 @@ import de.tr7zw.nbtapi.NBTContainer;
 
 public enum SpawnerEnum {
     GLADIATOR (SpawnerNBTCreator.gladiatorSpawner()),
-    BRICK_HUSK (SpawnerNBTCreator.brickHuskSpawner());
+    BRICK_HUSK (SpawnerNBTCreator.brickHuskSpawner()),
+    COMMON_SPIDER (SpawnerNBTCreator.commonSpiderSpawner()),
+    BRICK_SKELETON (SpawnerNBTCreator.brickSkeletonSpawner());
 
     private final NBTContainer nbtContainer;
 

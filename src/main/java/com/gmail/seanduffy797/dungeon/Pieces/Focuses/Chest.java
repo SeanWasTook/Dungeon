@@ -57,6 +57,7 @@ public class Chest extends Focus {
         if(prime) {
             BukkitTask task = new FillChests(location, lootType.getPath())
                     .runTaskLater(plugin, 400L);
+            TaskList.tasks.add(task);
         }
         if(refill) {
             BukkitTask dungeonTick = new FillChests(location, lootType.getPath())

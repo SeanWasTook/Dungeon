@@ -1,0 +1,23 @@
+{
+  "name": "straight_door",
+  "length": 3,
+  "height": 4,
+  "width": 3,
+  "isEven": false,
+  "offset": [
+    0,
+    -1,
+    -1
+  ],
+  "exits": [
+    {
+      "loc": [
+        3,
+        0,
+        0
+      ],
+      "direction": 0,
+      "region": "test"
+    }
+  ]
+}

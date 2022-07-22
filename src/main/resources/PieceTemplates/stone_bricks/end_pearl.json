@@ -1,0 +1,23 @@
+{
+  "name": "end_pearl",
+  "length": 3,
+  "height": 4,
+  "width": 3,
+  "isEven": false,
+  "offset": [
+    0,
+    -1,
+    -1
+  ],
+  "exits": [],
+  "foci": [
+    {
+      "type": "itemFrameSpawner",
+      "loc": [1, 1, 0],
+      "contents": "teleport_Pearl",
+      "itemArgs": ["spawn"],
+      "facing": 180,
+      "isGlow": false
+    }
+  ]
+}

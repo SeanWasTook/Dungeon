@@ -9,6 +9,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
+import java.util.ArrayList;
+
+import static java.lang.Double.parseDouble;
 import static org.bukkit.Bukkit.getServer;
 
 public class BuildCommand implements CommandExecutor {
@@ -19,7 +22,7 @@ public class BuildCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
         if (cmd.getName().equalsIgnoreCase("build")){
-            if (args.length == 1) {
+            if (args.length >= 1) {
                 if (args[0].equalsIgnoreCase("brick")) {
                     BrickBuilder.build();
                 } else if (args[0].equalsIgnoreCase("crypt")) {
@@ -27,7 +30,25 @@ public class BuildCommand implements CommandExecutor {
                 } else if (args[0].equalsIgnoreCase("mine")) {
                     MineBuilder.build();
                 } else if (args[0].equalsIgnoreCase("maze")) {
-                    StoneBrickMazeBuilder builder = new StoneBrickMazeBuilder();
+                    double chance = 0.3;
+                    if (args.length >= 2) {
+                        chance = parseDouble(args[1]);
+                    }
+                    int[] start = new int[2];
+                    start[0] = 0;
+                    start[1] = 10;
+                    int[] exit1 = new int[3];
+                    exit1[0] = 18;
+                    exit1[1] = 0;
+                    exit1[2] = 270;
+                    int[] exit2 = new int[3];
+                    exit2[0] = 20;
+                    exit2[1] = 18;
+                    exit2[2] = 0;
+                    ArrayList<int[]> exits = new ArrayList<>();
+                    exits.add(exit1);
+                    exits.add(exit2);
+                    StoneBrickMazeBuilder builder = new StoneBrickMazeBuilder(21, 21, start, exits, chance);
                     builder.buildStoneBrickMaze(new Location(DungeonManager.world, 85, 50, 0), StructureRotation.NONE);
                 } else if (args[0].equalsIgnoreCase("data")){
                     getServer().getConsoleSender().sendMessage("[Dungeon]: Counts: " + BrickPiecePicker.counts);

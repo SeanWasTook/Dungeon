@@ -1,0 +1,39 @@
+{
+  "name": "straight_paintings",
+  "length": 3,
+  "height": 4,
+  "width": 3,
+  "isEven": false,
+  "offset": [
+    0,
+    -1,
+    -1
+  ],
+  "exits": [
+    {
+      "loc": [
+        3,
+        0,
+        0
+      ],
+      "direction": 0,
+      "region": "test"
+    }
+  ],
+  "foci": [
+    {
+      "type": "paintingSpawner",
+      "loc": [0, 1, 0],
+      "motif": "pool",
+      "facing": 90,
+      "isEven": true
+    },
+    {
+      "type": "paintingSpawner",
+      "loc": [2, 1, 0],
+      "motif": "alban",
+      "facing": 270,
+      "isEven": false
+    }
+  ]
+}

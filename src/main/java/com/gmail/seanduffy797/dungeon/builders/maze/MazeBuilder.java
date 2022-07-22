@@ -8,13 +8,18 @@ import java.util.Random;
 
 public class MazeBuilder {
 
-    public int length = 21; // Number of pieces front to back
-    public int width = 21; // Number of pieces left to right
-    public MazeUnit[][] maze = new MazeUnit[length][width];
+    public int length; // Number of pieces front to back
+    public int width; // Number of pieces left to right
+    public MazeUnit[][] maze;
     public MazeUnit startUnit;
     public double loopingChance;
 
-    public MazeBuilder() {
+    public MazeBuilder(int length, int width, int[] start, ArrayList<int[]> exits, double loopingChance) {
+        this.length = length;
+        this.width = width;
+        maze = new MazeUnit[length][width];
+        this.loopingChance = loopingChance;
+
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < width; j++) {
                 maze[i][j] = new MazeUnit();
@@ -33,7 +38,25 @@ public class MazeBuilder {
             }
         }
 
-        startUnit = maze[0][10];
+        // Open the exits to the outside
+        for (int[] exit : exits) {
+            switch(exit[2]) {
+                case(0):
+                    maze[exit[0]][exit[1]].forwardException = true;
+                    break;
+                case(90):
+                    maze[exit[0]][exit[1]].rightException = true;
+                    break;
+                case(180):
+                    maze[exit[0]][exit[1]].backException = true;
+                    break;
+                case(270):
+                    maze[exit[0]][exit[1]].leftException = true;
+                    break;
+            }
+        }
+
+        startUnit = maze[start[0]][start[1]];
         startUnit.setExplored(true);
         startUnit.backException = true;
         ArrayList<MazeConnection> frontier = startUnit.getConnections();

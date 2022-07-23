@@ -22,7 +22,7 @@ public class SpawnerOverride implements Listener {
             if (creature.customName() == null) {
                 return;
             }
-            String name = "empty";
+            String name;
             try {
                 name = ((TextComponent) creature.customName()).content();
                 DungeonMob mob = DungeonMob.valueOf(name.toUpperCase());

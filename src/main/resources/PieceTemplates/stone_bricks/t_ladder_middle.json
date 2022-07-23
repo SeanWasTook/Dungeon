@@ -1,5 +1,5 @@
 {
-  "name": "t_shelf",
+  "name": "t_ladder_middle",
   "length": 3,
   "height": 4,
   "width": 3,
@@ -27,15 +27,6 @@
       ],
       "direction": 270,
       "region": "test"
-    }
-  ],
-  "foci": [
-    {
-      "type": "paintingSpawner",
-      "loc": [2, 1, 0],
-      "motif": "wasteland",
-      "facing": 270,
-      "isEven": false
     }
   ]
 }

@@ -12,6 +12,9 @@ public class PieceOutline {
 
     public StructureMirror mirror;
 
+    public boolean goingUp = false;
+    public boolean goingDown = false;
+
     public PieceOutline(MazeUnitShape shape, StructureRotation rotation, StructureMirror mirror) {
         this.shape = shape;
         this.rotation = rotation;

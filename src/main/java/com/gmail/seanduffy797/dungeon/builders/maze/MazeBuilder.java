@@ -8,55 +8,65 @@ import java.util.Random;
 
 public class MazeBuilder {
 
+    public int height = 3;
     public int length; // Number of pieces front to back
     public int width; // Number of pieces left to right
-    public MazeUnit[][] maze;
+    public MazeUnit[][][] maze;
     public MazeUnit startUnit;
     public double loopingChance;
 
     public MazeBuilder(int length, int width, int[] start, ArrayList<int[]> exits, double loopingChance) {
         this.length = length;
         this.width = width;
-        maze = new MazeUnit[length][width];
+        maze = new MazeUnit[height][length][width];
         this.loopingChance = loopingChance;
 
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < width; j++) {
-                maze[i][j] = new MazeUnit();
-                if (i > 0) {
-                    // Order of args is important - increasing index = going forward
-                    MazeConnection connection = new MazeConnection(maze[i-1][j], maze[i][j]);
-                    maze[i][j].setBack(connection);
-                    maze[i-1][j].setForward(connection);
-                }
-                if (j > 0) {
-                    // Order of args is important - increasing index = going to the right
-                    MazeConnection connection = new MazeConnection(maze[i][j-1], maze[i][j]);
-                    maze[i][j].setLeft(connection);
-                    maze[i][j-1].setRight(connection);
+        for (int k = 0; k < height; k++) {
+            for (int i = 0; i < length; i++) {
+                for (int j = 0; j < width; j++) {
+                    maze[k][i][j] = new MazeUnit();
+                    if (k > 0) {
+                        // Order of args is important - increasing index = going up
+                        MazeConnection connection = new MazeConnection(maze[k-1][i][j], maze[k][i][j]);
+                        connection.setVertical();
+                        maze[k][i][j].setDown(connection);
+                        maze[k-1][i][j].setUp(connection);
+                    }
+                    if (i > 0) {
+                        // Order of args is important - increasing index = going forward
+                        MazeConnection connection = new MazeConnection(maze[k][i - 1][j], maze[k][i][j]);
+                        maze[k][i][j].setBack(connection);
+                        maze[k][i - 1][j].setForward(connection);
+                    }
+                    if (j > 0) {
+                        // Order of args is important - increasing index = going to the right
+                        MazeConnection connection = new MazeConnection(maze[k][i][j - 1], maze[k][i][j]);
+                        maze[k][i][j].setLeft(connection);
+                        maze[k][i][j - 1].setRight(connection);
+                    }
                 }
             }
         }
 
         // Open the exits to the outside
         for (int[] exit : exits) {
-            switch(exit[2]) {
+            switch(exit[3]) {
                 case(0):
-                    maze[exit[0]][exit[1]].forwardException = true;
+                    maze[exit[0]][exit[1]][exit[2]].forwardException = true;
                     break;
                 case(90):
-                    maze[exit[0]][exit[1]].rightException = true;
+                    maze[exit[0]][exit[1]][exit[2]].rightException = true;
                     break;
                 case(180):
-                    maze[exit[0]][exit[1]].backException = true;
+                    maze[exit[0]][exit[1]][exit[2]].backException = true;
                     break;
                 case(270):
-                    maze[exit[0]][exit[1]].leftException = true;
+                    maze[exit[0]][exit[1]][exit[2]].leftException = true;
                     break;
             }
         }
 
-        startUnit = maze[start[0]][start[1]];
+        startUnit = maze[start[0]][start[1]][start[2]];
         startUnit.setExplored(true);
         startUnit.backException = true;
         ArrayList<MazeConnection> frontier = startUnit.getConnections();
@@ -76,10 +86,10 @@ public class MazeBuilder {
         MazeUnit newUnit = connection.getUnexploredUnit();
         connection.markExplored();
         for (MazeConnection next: newUnit.getConnections()) {
-            if (next != connection) {
+            if (next != connection && !next.isLocked()) {
                 if (next.isExplored()) {
                     frontier.remove(next);
-                    if (Math.random() < loopingChance) {
+                    if (!next.isVertical() && Math.random() < loopingChance) {
                         next.open();
                     }
                 } else {
@@ -90,16 +100,18 @@ public class MazeBuilder {
         ExploreMaze(frontier);
     }
 
-    public MazeUnit[][] getMaze() {
+    public MazeUnit[][][] getMaze() {
         return maze;
     }
 
-    public PieceOutline[][] getMazePieceOutlines() {
-        PieceOutline[][] outlines = new PieceOutline[length][width];
+    public PieceOutline[][][] getMazePieceOutlines() {
+        PieceOutline[][][] outlines = new PieceOutline[height][length][width];
 
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < width; j++) {
-                outlines[i][j] = getOutlineForMazeUnit(maze[i][j]);
+        for (int k = 0; k < height; k++) {
+            for (int i = 0; i < length; i++) {
+                for (int j = 0; j < width; j++) {
+                    outlines[k][i][j] = getOutlineForMazeUnit(maze[k][i][j]);
+                }
             }
         }
         return outlines;
@@ -142,7 +154,13 @@ public class MazeBuilder {
         } else if (forward && back && right && left) {
             outline = new PieceOutline(MazeUnitShape.CROSS, StructureRotation.NONE, StructureMirror.NONE);
         } else {
-            outline = new PieceOutline(MazeUnitShape.CROSS, StructureRotation.NONE, StructureMirror.LEFT_RIGHT);
+            outline = new PieceOutline(MazeUnitShape.SOLID, StructureRotation.NONE, StructureMirror.LEFT_RIGHT);
+        }
+        if (unit.isUpOpen()) {
+            outline.goingUp = true;
+        }
+        if (unit.isDownOpen()) {
+            outline.goingDown = true;
         }
         return outline;
     }

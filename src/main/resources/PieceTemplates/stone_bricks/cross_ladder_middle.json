@@ -1,5 +1,5 @@
 {
-  "name": "t_shelf",
+  "name": "cross_ladder_middle",
   "length": 3,
   "height": 4,
   "width": 3,
@@ -22,20 +22,20 @@
     {
       "loc": [
         1,
-        0,
-        -2
+        -2,
+        0
       ],
       "direction": 270,
       "region": "test"
-    }
-  ],
-  "foci": [
+    },
     {
-      "type": "paintingSpawner",
-      "loc": [2, 1, 0],
-      "motif": "wasteland",
-      "facing": 270,
-      "isEven": false
+      "loc": [
+        1,
+        2,
+        0
+      ],
+      "direction": 90,
+      "region": "test"
     }
   ]
 }

@@ -5,5 +5,6 @@ public enum MazeUnitShape {
     TURN,
     T,
     CROSS,
-    END
+    END,
+    SOLID
 }

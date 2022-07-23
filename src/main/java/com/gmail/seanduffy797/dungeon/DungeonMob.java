@@ -5,8 +5,6 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.persistence.PersistentDataType;
 
-import static org.bukkit.Bukkit.getServer;
-
 public enum DungeonMob {
 
     BRICK_HUSK(new BrickHusk()),

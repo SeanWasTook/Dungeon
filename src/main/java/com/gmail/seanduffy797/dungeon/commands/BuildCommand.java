@@ -34,17 +34,20 @@ public class BuildCommand implements CommandExecutor {
                     if (args.length >= 2) {
                         chance = parseDouble(args[1]);
                     }
-                    int[] start = new int[2];
-                    start[0] = 0;
-                    start[1] = 10;
-                    int[] exit1 = new int[3];
-                    exit1[0] = 18;
-                    exit1[1] = 0;
-                    exit1[2] = 270;
-                    int[] exit2 = new int[3];
-                    exit2[0] = 20;
-                    exit2[1] = 18;
-                    exit2[2] = 0;
+                    int[] start = new int[3];
+                    start[0] = 1;
+                    start[1] = 0;
+                    start[2] = 10;
+                    int[] exit1 = new int[4];
+                    exit1[0] = 1;
+                    exit1[1] = 18;
+                    exit1[2] = 0;
+                    exit1[3] = 270;
+                    int[] exit2 = new int[4];
+                    exit2[0] = 1;
+                    exit2[1] = 20;
+                    exit2[2] = 18;
+                    exit2[3] = 0;
                     ArrayList<int[]> exits = new ArrayList<>();
                     exits.add(exit1);
                     exits.add(exit2);

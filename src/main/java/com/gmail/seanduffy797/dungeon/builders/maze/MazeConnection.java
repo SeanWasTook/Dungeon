@@ -6,11 +6,14 @@ public class MazeConnection {
     public MazeUnit increasingUnit; // Unit with the higher index (to the front or the right)
 
     private boolean isOpen;
+    private boolean isLocked;
+    private boolean isVertical;
 
     public MazeConnection(MazeUnit lower, MazeUnit upper) {
         this.decreasingUnit = lower;
         this.increasingUnit = upper;
         this.isOpen = false;
+        this.isLocked = false;
     }
 
     public boolean isOpen() {
@@ -18,6 +21,18 @@ public class MazeConnection {
     }
     public void open() {
         this.isOpen = true;
+    }
+    public boolean isLocked() {
+        return isLocked;
+    }
+    public void lock() {
+        this.isLocked = true;
+    }
+    public boolean isVertical() {
+        return isVertical;
+    }
+    public void setVertical() {
+        this.isVertical = true;
     }
     public MazeUnit getIncreasingUnit() {
         return decreasingUnit;

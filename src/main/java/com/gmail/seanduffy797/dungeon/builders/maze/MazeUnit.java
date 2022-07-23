@@ -12,6 +12,10 @@ public class MazeUnit {
     public boolean backException = false;
     private MazeConnection left;
     public boolean leftException = false;
+    private MazeConnection up;
+    public boolean upException = false;
+    private MazeConnection down;
+    public boolean downException = false;
 
     private boolean isExplored;
 
@@ -20,6 +24,8 @@ public class MazeUnit {
         right = null;
         back = null;
         left = null;
+        up = null;
+        down = null;
 
         isExplored = false;
     }
@@ -40,6 +46,12 @@ public class MazeUnit {
     }
     public void setLeft(MazeConnection left) {
         this.left = left;
+    }
+    public void setUp(MazeConnection up) {
+        this.up = up;
+    }
+    public void setDown(MazeConnection down) {
+        this.down = down;
     }
     public boolean isForwardOpen() {
         if (this.forward == null) {
@@ -67,6 +79,20 @@ public class MazeUnit {
             return leftException;
         } else {
             return this.left.isOpen();
+        }
+    }
+    public boolean isUpOpen() {
+        if (this.up == null) {
+            return upException;
+        } else {
+            return this.up.isOpen();
+        }
+    }
+    public boolean isDownOpen() {
+        if (this.down == null) {
+            return downException;
+        } else {
+            return this.down.isOpen();
         }
     }
     public MazeUnit getForwardUnit() {
@@ -97,6 +123,20 @@ public class MazeUnit {
             return this.left.getDecreasingUnit();
         }
     }
+    public MazeUnit getUpUnit() {
+        if (this.up == null) {
+            return null;
+        } else {
+            return this.up.getIncreasingUnit();
+        }
+    }
+    public MazeUnit getDownUnit() {
+        if (this.down == null) {
+            return null;
+        } else {
+            return this.down.getDecreasingUnit();
+        }
+    }
     public ArrayList<MazeConnection> getConnections() {
         ArrayList<MazeConnection> list = new ArrayList<>();
         if (this.forward != null) {
@@ -110,6 +150,12 @@ public class MazeUnit {
         }
         if (this.left != null) {
             list.add(this.left);
+        }
+        if (this.up != null) {
+            list.add(this.up);
+        }
+        if (this.down != null) {
+            list.add(this.down);
         }
         return list;
     }

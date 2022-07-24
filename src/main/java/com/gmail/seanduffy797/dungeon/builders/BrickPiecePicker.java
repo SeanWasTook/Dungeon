@@ -50,7 +50,7 @@ public class BrickPiecePicker {
     public static Map<Region, ArrayList<Bricks>> necessarys = new HashMap<>();
 
     public static void init(){
-        necessarys.put(Region.BRICK, new ArrayList<>(Arrays.asList(BricksZone1.END5, BricksZone1.END6, BricksZone1.ROOM1, BricksZone1.ROOM2, BricksZone1.ROOM3, BricksZone1.ROOM4, BricksZone1.ROOM5, BricksZone1.SHRINE1, BricksZone1.CROSS3, BricksZone1.CROSS11, BricksZone1.ROOM8)));
+        necessarys.put(Region.BRICK, new ArrayList<>(Arrays.asList(BricksZone1.ARENA, BricksZone1.CROSS11, BricksZone1.END5, BricksZone1.END6, BricksZone1.CROSS3, BricksZone1.ROOM1, BricksZone1.ROOM2, BricksZone1.ROOM3, BricksZone1.ROOM4, BricksZone1.ROOM5, BricksZone1.SHRINE1, BricksZone1.ROOM8)));
         necessarys.put(Region.BRICK2, new ArrayList<>(Arrays.asList(BricksZone2.CROSS7, BricksZone2.HALL104, BricksZone2.HALL115, BricksZone2.ROOM101)));
         necessarys.put(Region.SEWER, new ArrayList<>(Arrays.asList(Sewer.CROSS2, Sewer.SEWERROOM1)));
 
@@ -71,7 +71,7 @@ public class BrickPiecePicker {
     }
 
     public static void initializeWeights() {
-        weights.put(BricksZone1.HALL1, 2);
+        weights.put(BricksZone1.HALL1, 3);
         weights.put(BricksZone1.HALL2, 2);
         weights.put(BricksZone1.HALL3, 2);
         weights.put(Sewer.HALL4, 4);
@@ -118,7 +118,7 @@ public class BrickPiecePicker {
         weights.put(BricksZone1.CROSS1, 2);
         weights.put(Sewer.CROSS2, 3);
         weights.put(BricksZone1.CROSS3, 0);
-        weights.put(BricksZone1.CROSS4, 3);
+        weights.put(BricksZone1.CROSS4, 4);
         weights.put(BricksZone1.CROSS9, 2);
         weights.put(BricksZone1.CROSS10, 0);
         weights.put(BricksZone1.CROSS11, 4);
@@ -128,7 +128,7 @@ public class BrickPiecePicker {
         weights.put(BricksZone1.TURN1, 5);
         weights.put(BricksZone1.TURN2, 4);
 
-        weights.put(BricksZone1.T1, 3);
+        weights.put(BricksZone1.T1, 4);
         weights.put(BricksZone1.T2, 4);
         weights.put(BricksZone1.T3, 2);
         weights.put(BricksZone1.T4, 2);
@@ -401,7 +401,7 @@ public class BrickPiecePicker {
                 piece = getPiece(crosses);
             } else if (openings.get(Region.BRICK) < 4 || Math.random() < 0.4) {
                 piece = getPiece(ts);
-            } else if (Math.random() < 0.4) {
+            } else if (Math.random() < 0.45) {
                 piece = getPiece(halls);
             } else {
                 piece = getPiece(rooms);

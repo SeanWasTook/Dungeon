@@ -2,20 +2,22 @@ package com.gmail.seanduffy797.dungeon.builders.maze;
 
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
+import com.gmail.seanduffy797.dungeon.builders.BuilderUtils;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class MazeBuilder {
 
-    public int height = 3;
+    public int height;
     public int length; // Number of pieces front to back
     public int width; // Number of pieces left to right
     public MazeUnit[][][] maze;
     public MazeUnit startUnit;
     public double loopingChance;
 
-    public MazeBuilder(int length, int width, int[] start, ArrayList<int[]> exits, double loopingChance) {
+    public MazeBuilder(int height, int length, int width, int[] start, ArrayList<int[]> exits, double loopingChance) {
+        this.height = height;
         this.length = length;
         this.width = width;
         maze = new MazeUnit[height][length][width];
@@ -152,9 +154,9 @@ public class MazeBuilder {
         } else if (!forward && back && right && left) {
             outline = new PieceOutline(MazeUnitShape.T, StructureRotation.ROTATION_270, StructureMirror.NONE);
         } else if (forward && back && right && left) {
-            outline = new PieceOutline(MazeUnitShape.CROSS, StructureRotation.NONE, StructureMirror.NONE);
+            outline = new PieceOutline(MazeUnitShape.CROSS, BuilderUtils.randomRotation(), StructureMirror.NONE);
         } else {
-            outline = new PieceOutline(MazeUnitShape.SOLID, StructureRotation.NONE, StructureMirror.LEFT_RIGHT);
+            outline = new PieceOutline(MazeUnitShape.SOLID, BuilderUtils.randomRotation(), StructureMirror.LEFT_RIGHT);
         }
         if (unit.isUpOpen()) {
             outline.goingUp = true;

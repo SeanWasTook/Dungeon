@@ -1,0 +1,42 @@
+{
+  "name": "t_crawl",
+  "length": 3,
+  "height": 4,
+  "width": 3,
+  "isEven": false,
+  "offset": [
+    0,
+    -1,
+    -1
+  ],
+  "exits": [
+    {
+      "loc": [
+        3,
+        0,
+        0
+      ],
+      "direction": 0,
+      "region": "test"
+    },
+    {
+      "loc": [
+        1,
+        0,
+        -2
+      ],
+      "direction": 270,
+      "region": "test"
+    }
+  ],
+  "foci": [
+    {
+      "type": "chest",
+      "loc": [1, 2, 0],
+      "lootType": "cryptt1",
+      "refill": true,
+      "refillCoolDown": 6000,
+      "prime": true
+    }
+  ]
+}

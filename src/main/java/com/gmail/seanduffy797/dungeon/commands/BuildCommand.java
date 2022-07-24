@@ -30,29 +30,35 @@ public class BuildCommand implements CommandExecutor {
                 } else if (args[0].equalsIgnoreCase("mine")) {
                     MineBuilder.build();
                 } else if (args[0].equalsIgnoreCase("maze")) {
-                    double chance = 0.3;
+                    double chance = 0.25;
                     if (args.length >= 2) {
                         chance = parseDouble(args[1]);
                     }
                     int[] start = new int[3];
-                    start[0] = 1;
-                    start[1] = 0;
-                    start[2] = 10;
+                    start[0] = 1; // Height level
+                    start[1] = 0; // # of units from the front
+                    start[2] = 5; // # of units from the left
                     int[] exit1 = new int[4];
                     exit1[0] = 1;
-                    exit1[1] = 18;
+                    exit1[1] = 8;
                     exit1[2] = 0;
                     exit1[3] = 270;
                     int[] exit2 = new int[4];
-                    exit2[0] = 1;
-                    exit2[1] = 20;
-                    exit2[2] = 18;
+                    exit2[0] = 6;
+                    exit2[1] = 10;
+                    exit2[2] = 7;
                     exit2[3] = 0;
                     ArrayList<int[]> exits = new ArrayList<>();
-                    exits.add(exit1);
-                    exits.add(exit2);
-                    StoneBrickMazeBuilder builder = new StoneBrickMazeBuilder(21, 21, start, exits, chance);
-                    builder.buildStoneBrickMaze(new Location(DungeonManager.world, 85, 50, 0), StructureRotation.NONE);
+                    // exits.add(exit1);
+                    // exits.add(exit2);
+                    StoneBrickMazeBuilder builder = new StoneBrickMazeBuilder(
+                            4,
+                            15,
+                            13,
+                            start,
+                            exits,
+                            chance);
+                    builder.buildStoneBrickMaze(new Location(DungeonManager.world, -2, 100, -47), StructureRotation.ROTATION_270);
                 } else if (args[0].equalsIgnoreCase("data")){
                     getServer().getConsoleSender().sendMessage("[Dungeon]: Counts: " + BrickPiecePicker.counts);
                     getServer().getConsoleSender().sendMessage("[Dungeon]: Necessary: " + BrickPiecePicker.necessarys);

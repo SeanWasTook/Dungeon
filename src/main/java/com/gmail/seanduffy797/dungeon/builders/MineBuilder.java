@@ -2,6 +2,7 @@ package com.gmail.seanduffy797.dungeon.builders;
 
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
+import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.FocusMeta;
 import com.gmail.seanduffy797.dungeon.Pieces.Mine;
@@ -29,12 +30,13 @@ public class MineBuilder {
 
     private static int minX = -30;
     private static int maxX = 41;
-    private static int minY = 10;
+    private static int minY = 20;
     private static int maxY = 96;
     private static int minZ = 36;
-    private static int maxZ = 148;
+    private static int maxZ = 128;
 
-    public static boolean[][][] map = new boolean[Math.abs(maxX - minX + 1)][Math.abs(maxY - minY) + 1][Math.abs(maxZ - minZ) + 1];
+    // USES X, Y, Z ORDER
+    public static boolean[][][] map = new boolean[Math.abs(maxX - minX + 2)][Math.abs(maxY - minY) + 2][Math.abs(maxZ - minZ) + 2];
 
     public static List<Location> starts = Arrays.asList(
             new Location(world, -12, 97, 42),
@@ -51,8 +53,11 @@ public class MineBuilder {
 
         fillWithStone();
         MinePiecePicker.init();
-        TaskList.tasks = new ArrayList<>();
-        FocusMeta.init();
+        if (!DungeonManager.isGenerated) {
+            TaskList.tasks = new ArrayList<>();
+            FocusMeta.init();
+            DungeonManager.isGenerated = true;
+        }
 
         for (boolean[][] row: map)
             for (boolean[] col: row)
@@ -124,7 +129,13 @@ public class MineBuilder {
         if (depth > 1 && BuilderUtils.checkBounds(start, corner, minX, maxX, minY, maxY, minZ, maxZ)) {
             return;
         }
+        if (depth > 1 && BuilderUtils.checkMap(map, current, corner, minX, minY, minZ)) {
+            if (Math.random() < 0.9) {
+                return;
+            }
+        }
 
+        BuilderUtils.fillMap(map, current, corner, minX, minY, minZ);
         MinePiecePicker.update(piece);
         piece.place(start, rotation, mirrorType);
         int newDepth = depth + 1;

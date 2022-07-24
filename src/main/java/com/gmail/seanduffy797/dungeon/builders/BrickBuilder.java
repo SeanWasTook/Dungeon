@@ -18,11 +18,12 @@ import static org.bukkit.Bukkit.*;
 
 public class BrickBuilder {
 
-    static int minX = 56;
-    static int maxX = 298;
+    static int minX = -260;
+    static int maxX = -50;
     static int minZ = -148;
     static int maxZ = 148;
 
+    // USES X, Z, Y ORDER
     public static boolean[][][] map = new boolean[300][300][130];
 
     // This queue is used to build the dungeon outwards in a breadth first style
@@ -39,13 +40,15 @@ public class BrickBuilder {
                 Arrays.fill(col, false);
 
         BrickPiecePicker.init();
-        TaskList.tasks = new ArrayList<>();
-        FocusMeta.init();
-        DungeonManager.isGenerated = true;
+        if (!DungeonManager.isGenerated) {
+            TaskList.tasks = new ArrayList<>();
+            FocusMeta.init();
+            DungeonManager.isGenerated = true;
+        }
 
-        Location startPoint = new Location(Bukkit.getWorld("Dungeon"), 55, 50, 0);
+        Location startPoint = new Location(Bukkit.getWorld("Dungeon"), -48, 102, 0);
 
-        buildQueue(Region.BRICK, startPoint, StructureRotation.NONE);
+        buildQueue(Region.BRICK, startPoint, StructureRotation.ROTATION_180);
     }
 
     public static void buildQueue(Region region, Location startPoint, StructureRotation rotation) {
@@ -65,8 +68,8 @@ public class BrickBuilder {
 
     public static void clear() {
         for (int z = minZ; z < maxZ; z += 5) {
-            for (int x = minX - 1; x < maxX; x += 5) {
-                getServer().dispatchCommand(Bukkit.getConsoleSender(), "fill " + x + " 1 " + z + " " + (x + 5) + " 80 " + (z + 5) + " minecraft:air");
+            for (int x = -48; x > minX; x -= 5) {
+                getServer().dispatchCommand(Bukkit.getConsoleSender(), "fill " + x + " 51 " + z + " " + (x - 5) + " 130 " + (z + 5) + " minecraft:air");
             }
         }
     }

@@ -40,6 +40,7 @@ public class BuilderUtils {
         return false;
     }
 
+    // Automatically Uses settings for brick test area
     public static boolean checkMap(boolean[][][] map, Location current, Location corner) {
         if (current.getX() < BrickBuilder.minX || current.getX() > BrickBuilder.maxX ||
                 current.getZ() < BrickBuilder.minZ || current.getZ() > BrickBuilder.maxZ ||
@@ -52,7 +53,22 @@ public class BuilderUtils {
         for(int i = (int)(corner.getX() > current.getX() ? current.getX() : corner.getX()); i <= (int)(corner.getX() > current.getX() ? corner.getX() : current.getX()); i++) {
             for (int j = ((int) (corner.getZ() > current.getZ() ? current.getZ() : corner.getZ()) + 150); j <= ((int) (corner.getZ() > current.getZ() ? corner.getZ() : current.getZ()) + 150); j++) {
                 for (int k = (int)(corner.getY() > current.getY() ? current.getY() : corner.getY()); k <= (int)(corner.getY() > current.getY() ? corner.getY() : current.getY()); k++) {
-                    if (map[i][j][k]) {
+                    if (map[-i][j][k-50]) {
+                        //getPluginManager().getPlugin("Dungeon").getLogger().log(Level.INFO, ChatColor.RED + "Intersection at: " + i + " " + k + " " + (j - 150) + ". Tried to place " + name);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    // Here, the map uses X Y Z order instead of BrickBuilder, which uses X Z Y. Gives a vertical buffer to account for the mine pieces needing floors
+    public static boolean checkMap(boolean[][][] map, Location current, Location corner, int minX, int minY, int minZ) {
+        for(int i = (int)(corner.getX() > current.getX() ? current.getX() : corner.getX()) - minX; i <= (int)(corner.getX() > current.getX() ? corner.getX() : current.getX()) - minX; i++) {
+            for (int j = ((int) (corner.getZ() > current.getZ() ? current.getZ() : corner.getZ()) - minZ); j <= ((int) (corner.getZ() > current.getZ() ? corner.getZ() : current.getZ()) - minZ); j++) {
+                for (int k = (int)(corner.getY() > current.getY() ? current.getY() : corner.getY()) - minY - 1; k <= (int)(corner.getY() > current.getY() ? corner.getY() : current.getY()) - minY + 1; k++) {
+                    if (map[i][k][j]) {
                         //getPluginManager().getPlugin("Dungeon").getLogger().log(Level.INFO, ChatColor.RED + "Intersection at: " + i + " " + k + " " + (j - 150) + ". Tried to place " + name);
                         return true;
                     }
@@ -70,11 +86,22 @@ public class BuilderUtils {
         }
     }
 
+    // Automatically uses settings for the brick test area
     public static void fillMap(boolean[][][] map, Location current, Location corner) {
         for(int i = (int)(corner.getX() > current.getX() ? current.getX() : corner.getX()); i <= (int)(corner.getX() > current.getX() ? corner.getX() : current.getX()); i++) {
             for (int j = ((int)(corner.getZ() > current.getZ() ? current.getZ() : corner.getZ()) + 150); j <= ((int)(corner.getZ() > current.getZ() ? corner.getZ() : current.getZ()) + 150); j++) {
                 for (int k = (int)(corner.getY() > current.getY() ? current.getY() : corner.getY()); k <= (int)(corner.getY() > current.getY() ? corner.getY() : current.getY()); k++) {
-                    map[i][j][k] = true;
+                    map[-i][j][k-50] = true;
+                }
+            }
+        }
+    }
+    // Uses X, Y, Z ordering
+    public static void fillMap(boolean[][][] map, Location current, Location corner, int minX, int minY, int minZ) {
+        for(int i = (int)(corner.getX() > current.getX() ? current.getX() : corner.getX()) - minX; i <= (int)(corner.getX() > current.getX() ? corner.getX() : current.getX()) - minX; i++) {
+            for (int j = ((int)(corner.getZ() > current.getZ() ? current.getZ() : corner.getZ()) - minZ); j <= ((int)(corner.getZ() > current.getZ() ? corner.getZ() : current.getZ()) - minZ); j++) {
+                for (int k = (int)(corner.getY() > current.getY() ? current.getY() : corner.getY()) - minY; k <= (int)(corner.getY() > current.getY() ? corner.getY() : current.getY()) - minY; k++) {
+                    map[i][k][j] = true;
                 }
             }
         }
@@ -264,5 +291,18 @@ public class BuilderUtils {
             return StructureRotation.ROTATION_180;
         }
         return StructureRotation.NONE;
+    }
+
+    public static StructureRotation randomRotation() {
+        double rand = Math.random();
+        if (rand < 0.25) {
+            return StructureRotation.NONE;
+        } else if (rand < 0.5) {
+            return StructureRotation.ROTATION_90;
+        } else if (rand < 0.75) {
+            return StructureRotation.ROTATION_180;
+        } else {
+            return StructureRotation.ROTATION_270;
+        }
     }
 }

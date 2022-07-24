@@ -1,0 +1,52 @@
+{
+  "name": "cross_skeleton_door",
+  "length": 3,
+  "height": 4,
+  "width": 3,
+  "isEven": false,
+  "offset": [
+    0,
+    -1,
+    -1
+  ],
+  "exits": [
+    {
+      "loc": [
+        3,
+        0,
+        0
+      ],
+      "direction": 0,
+      "region": "test"
+    },
+    {
+      "loc": [
+        1,
+        -2,
+        0
+      ],
+      "direction": 270,
+      "region": "test"
+    },
+    {
+      "loc": [
+        1,
+        2,
+        0
+      ],
+      "direction": 90,
+      "region": "test"
+    }
+  ],
+  "foci": [
+    {
+      "type": "lockedDoor",
+      "lock": "skeletonkey",
+      "loc": [
+        2,
+        0,
+        0
+      ]
+    }
+  ]
+}

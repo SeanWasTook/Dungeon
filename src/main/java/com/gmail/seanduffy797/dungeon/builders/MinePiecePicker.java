@@ -34,16 +34,16 @@ public class MinePiecePicker {
 
         weights.put(Early.TRANSITION1, 0);
 
-        weights.put(Early.STRAIGHT1, 45);
-        weights.put(Early.STRAIGHT2, 45);
-        weights.put(Early.STRAIGHT3, 45);
-        weights.put(Early.STRAIGHT4, 10);
-        weights.put(Early.STRAIGHT5, 20);
+        weights.put(Early.STRAIGHT1, 55);
+        weights.put(Early.STRAIGHT2, 55);
+        weights.put(Early.STRAIGHT3, 55);
+        weights.put(Early.STRAIGHT4, 15);
+        weights.put(Early.STRAIGHT5, 25);
 
-        weights.put(Early.T1, 50);
+        weights.put(Early.T1, 30);
 
-        weights.put(Early.STAIRDOWN1, 30);
-        weights.put(Early.STAIRUP1, 30);
+        weights.put(Early.STAIRDOWN1, 40);
+        weights.put(Early.STAIRUP1, 40);
 
         weights.put(Early.DECO1, 5);
         weights.put(Early.DECO2, 15);
@@ -70,20 +70,21 @@ public class MinePiecePicker {
         if(shaft) {
             if (depth < 5) {
                 piece = getPiece(downs);
-            } else if (depth > 13) {
+            } else if (depth > 10) {
                 piece = Early.TRANSITION1;
             } else {
                 double rand = Math.random();
                 if (rand < (0.4 - modifyHeight)) {
                     piece = Early.TRANSITION1;
-                    modifyHeight += 0.15;
+                    modifyHeight += 0.2;
                 } else {
                     piece = getPiece(downs);
+                    modifyHeight -= 0.1;
                 }
             }
         } else if (region == Region.MINE_DECO) {
             piece = getPiece(decos);
-        } else if (depth > 30) {
+        } else if (depth > 70) {
             piece = null;
         } else {
             double rand = Math.random();

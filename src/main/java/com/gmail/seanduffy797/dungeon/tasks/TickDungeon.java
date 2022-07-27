@@ -45,20 +45,20 @@ public class TickDungeon extends BukkitRunnable {
                 }
             }
         }
-        for (int y = 1; y < 100; y++) {
-            Location loc = new Location(world, i, y, j - 150);
-            Block block = loc.getBlock();
-            if (block.getType().equals(Material.STONE_BRICKS)){
-                Block block2 = block.getRelative(0,1, 0);
-                Block block3 = block.getRelative(0,2, 0);
-                if (block2.getType().equals(Material.AIR) && block3.getType().equals(Material.AIR) && block2.getLightLevel() < 8) {
-                    Skeleton skelly = (Skeleton)world.spawnEntity(block2.getLocation(), EntityType.SKELETON);
-                    if (Math.random() < 0.5) {
-                        skelly.getEquipment().setItemInMainHand(new ItemStack(Material.STONE_SWORD));
-                    }
-                    getServer().getConsoleSender().sendMessage("Spawned Skeleton at " + ((int)loc.getX()) + ", " + ((int)loc.getY() + 1) + ", " + ((int)loc.getZ()));
-                }
-            }
-        }
+//        for (int y = 1; y < 100; y++) {
+//            Location loc = new Location(world, i, y, j - 150);
+//            Block block = loc.getBlock();
+//            if (block.getType().equals(Material.STONE_BRICKS)){
+//                Block block2 = block.getRelative(0,1, 0);
+//                Block block3 = block.getRelative(0,2, 0);
+//                if (block2.getType().equals(Material.AIR) && block3.getType().equals(Material.AIR) && block2.getLightLevel() < 8) {
+//                    Skeleton skelly = (Skeleton)world.spawnEntity(block2.getLocation(), EntityType.SKELETON);
+//                    if (Math.random() < 0.5) {
+//                        skelly.getEquipment().setItemInMainHand(new ItemStack(Material.STONE_SWORD));
+//                    }
+//                    getServer().getConsoleSender().sendMessage("Spawned Skeleton at " + ((int)loc.getX()) + ", " + ((int)loc.getY() + 1) + ", " + ((int)loc.getZ()));
+//                }
+//            }
+//        }
     }
 }

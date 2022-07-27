@@ -43,6 +43,7 @@ public class StoneBrickMazeBuilder {
 
         PieceOutline[][][] outlines = mazeBuilder.getMazePieceOutlines();
 
+        MazePieceTable.init();
         StoneBrickMaze[][][] pieces = getPiecesFromOutline(outlines);
 
         int startY = start[0];
@@ -50,6 +51,8 @@ public class StoneBrickMazeBuilder {
         int startZ = start[2];
 
         // Hey, it's ugly! gotta find a better solution to not hard code this, maybe
+        // "center" is used to rotate the pieces around their center point
+        // "center to front" is used for focuses, since they're saved relative to the front
         Location center = new Location(DungeonManager.world, -1, -1, -1);
         Location centerToFront = new Location(DungeonManager.world, -1, 0, 0);
         Location[][][] offsets = getLocationOffsets(startY, startX, startZ, facing);
@@ -60,6 +63,7 @@ public class StoneBrickMazeBuilder {
             DungeonManager.isGenerated = true;
         }
 
+        // Keep track of opposite corners of the maze, so it can be cleared efficiently afterwards
         corner1 = offsets[0][0][0].clone()
                 .add(startLocation)
                 .add(BuilderUtils.applyRotation(center, facing));
@@ -89,6 +93,7 @@ public class StoneBrickMazeBuilder {
                     }
 
                     Location loc = location.subtract(pieceOffset);
+
                     // Handle focuses
                     for (Focus foc : piece.getFocuses()) {
                         Focus newFoc = foc.makeCopy(foc);
@@ -122,146 +127,7 @@ public class StoneBrickMazeBuilder {
         return pieces;
     }
     public StoneBrickMaze getPieceFromOutline(PieceOutline outline) {
-        double rand = Math.random();
-        if (outline.shape == MazeUnitShape.STRAIGHT) {
-            if (outline.goingUp) {
-                if (outline.goingDown) {
-                    return StoneBrickMaze.STRAIGHT_LADDER_MIDDLE;
-                }
-                return StoneBrickMaze.STRAIGHT_LADDER_UP;
-            }
-            if (outline.goingDown) {
-                return StoneBrickMaze.STRAIGHT_LADDER_DOWN;
-            }
-            if (rand < 0.18) {
-                return StoneBrickMaze.STRAIGHT;
-            } else if (rand < 0.36) {
-                return StoneBrickMaze.STRAIGHT_DOOR;
-            } else if (rand < 0.54) {
-                return StoneBrickMaze.STRAIGHT_COBWEBS;
-            } else if (rand < 0.72) {
-                return StoneBrickMaze.STRAIGHT_WOOD;
-            } else if (rand < 0.84) {
-                return StoneBrickMaze.STRAIGHT_SECRET;
-            } else {
-                return StoneBrickMaze.STRAIGHT_PAINTINGS;
-            }
-        } else if (outline.shape == MazeUnitShape.TURN) {
-            if (outline.goingUp) {
-                if (outline.goingDown) {
-                    return StoneBrickMaze.TURN_LADDER_MIDDLE;
-                }
-                return StoneBrickMaze.TURN_LADDER_UP;
-            }
-            if (outline.goingDown) {
-                return StoneBrickMaze.TURN_LADDER_DOWN;
-            }
-            if (rand < 0.2) {
-                return StoneBrickMaze.TURN_OPEN;
-            } else if (rand < 0.4) {
-                return StoneBrickMaze.TURN_BOOKS;
-            } else if (rand < 0.6) {
-                return StoneBrickMaze.TURN_DOORS;
-            } else if (rand < 0.8) {
-                return StoneBrickMaze.TURN_LIGHT;
-            } else {
-                return StoneBrickMaze.TURN_CANDLES;
-            }
-        } else if (outline.shape == MazeUnitShape.T) {
-            if (outline.goingUp) {
-                if (outline.goingDown) {
-                    return StoneBrickMaze.T_LADDER_MIDDLE;
-                }
-                return StoneBrickMaze.T_LADDER_UP;
-            }
-            if (outline.goingDown) {
-                return StoneBrickMaze.T_LADDER_DOWN;
-            }
-            if (rand < 0.1) {
-                return StoneBrickMaze.T_OPEN;
-            } else if (rand < 0.2) {
-                return StoneBrickMaze.T_TABLE;
-            } else if (rand < 0.3) {
-                return StoneBrickMaze.T_BOOKS;
-            } else if (rand < 0.4) {
-                return StoneBrickMaze.T_PILLARS;
-            } else if (rand < 0.5) {
-                return StoneBrickMaze.T_SHELF;
-            } else if (rand < 0.6) {
-                return StoneBrickMaze.T_SHELF2;
-            } else if (rand < 0.7) {
-                return StoneBrickMaze.T_SHELF3;
-            } else if (rand < 0.8) {
-                return StoneBrickMaze.T_SHELF4;
-            } else {
-                return StoneBrickMaze.T_DOOR;
-            }
-        } else if (outline.shape == MazeUnitShape.CROSS) {
-            if (outline.goingUp) {
-                if (outline.goingDown) {
-                    return StoneBrickMaze.CROSS_LADDER_MIDDLE;
-                }
-                if (rand < .5) {
-                    return StoneBrickMaze.CROSS_LADDER_UP;
-                } else {
-                    return StoneBrickMaze.CROSS_LADDER_UP2;
-                }
-            }
-            if (outline.goingDown) {
-                if (rand < .5) {
-                    return StoneBrickMaze.CROSS_LADDER_DOWN;
-                } else {
-                    return StoneBrickMaze.CROSS_LADDER_DOWN2;
-                }
-            }
-            if (rand < 0.16) {
-                return StoneBrickMaze.CROSS_OPEN;
-            } else if (rand < 0.32) {
-                return StoneBrickMaze.CROSS_PILLAR;
-            } else if (rand < 0.48) {
-                return StoneBrickMaze.CROSS_LOGS;
-            } else if (rand < 0.64) {
-                return StoneBrickMaze.CROSS_BOOKS;
-            } else if (rand < 0.80) {
-                return StoneBrickMaze.CROSS_SKELETON_DOOR;
-            } else {
-                return StoneBrickMaze.CROSS_CANDLE;
-            }
-        } else if (outline.shape == MazeUnitShape.END) {
-            if (outline.goingUp) {
-                if (outline.goingDown) {
-                    return StoneBrickMaze.END_LADDER_MIDDLE;
-                }
-                return StoneBrickMaze.END_LADDER_UP;
-            }
-            if (outline.goingDown) {
-                return StoneBrickMaze.END_LADDER_DOWN;
-            }
-            if (rand < 0.25) {
-                return StoneBrickMaze.END;
-            } else if (rand < 0.5) {
-                return StoneBrickMaze.END_CHEST;
-            } else if (rand < 0.75) {
-                return StoneBrickMaze.END_PEARL;
-            } else {
-                return StoneBrickMaze.END_SPAWNER;
-            }
-        } else if (outline.shape == MazeUnitShape.SOLID) {
-            if (outline.goingUp) {
-                if (outline.goingDown) {
-                    return StoneBrickMaze.SOLID_LADDER_MIDDLE;
-                }
-                return StoneBrickMaze.SOLID_LADDER_UP;
-            }
-            if (outline.goingDown) {
-                if (rand < .5) {
-                    return StoneBrickMaze.SOLID_LADDER_DOWN;
-                } else {
-                    return StoneBrickMaze.SOLID_LADDER_DOWN2;
-                }
-            }
-        }
-        return StoneBrickMaze.CROSS;
+        return MazePieceTable.getPiece(outline.shape);
     }
 
     public Location[][][] getLocationOffsets(int startY, int startX, int startZ, StructureRotation rotation) {

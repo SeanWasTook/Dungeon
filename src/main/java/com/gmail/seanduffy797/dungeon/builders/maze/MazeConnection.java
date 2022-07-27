@@ -8,6 +8,7 @@ public class MazeConnection {
     private boolean isOpen;
     private boolean isLocked;
     private boolean isVertical;
+    public int height;
 
     public MazeConnection(MazeUnit lower, MazeUnit upper) {
         this.decreasingUnit = lower;

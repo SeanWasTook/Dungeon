@@ -1,0 +1,24 @@
+{
+  "name": "end_ladder_up_door",
+  "length": 3,
+  "height": 4,
+  "width": 3,
+  "isEven": false,
+  "offset": [
+    0,
+    -1,
+    -1
+  ],
+  "exits": [],
+  "foci": [
+    {
+      "type": "lockedDoor",
+      "lock": "skeletonkey",
+      "loc": [
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

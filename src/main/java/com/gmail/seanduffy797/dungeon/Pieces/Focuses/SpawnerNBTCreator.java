@@ -11,10 +11,10 @@ public class SpawnerNBTCreator {
     public static NBTContainer gladiatorSpawner() {
         NBTContainer container = new NBTContainer();
         container.setInteger("SpawnCount", 1);
-        container.setInteger("Delay", 60);
-        container.setInteger("MinSpawnDelay", 300);
-        container.setInteger("MaxSpawnDelay", 600);
-        container.setInteger("MaxNearbyEntities", 8);
+        container.setInteger("Delay", 200);
+        container.setInteger("MinSpawnDelay", 400);
+        container.setInteger("MaxSpawnDelay", 900);
+        container.setInteger("MaxNearbyEntities", 6);
         container.setInteger("RequiredPlayerRange", 24);
 
         NBTCompound spawnData = container.addCompound("SpawnData");
@@ -72,10 +72,10 @@ public class SpawnerNBTCreator {
     public static NBTContainer brickHuskSpawner() {
         NBTContainer container = new NBTContainer();
         container.setInteger("SpawnCount", 3);
-        container.setInteger("Delay", 60);
-        container.setInteger("MinSpawnDelay", 400);
-        container.setInteger("MaxSpawnDelay", 700);
-        container.setInteger("MaxNearbyEntities", 8);
+        container.setInteger("Delay", 200);
+        container.setInteger("MinSpawnDelay", 500);
+        container.setInteger("MaxSpawnDelay", 900);
+        container.setInteger("MaxNearbyEntities", 4);
         container.setInteger("RequiredPlayerRange", 20);
 
         NBTCompound spawnData = container.addCompound("SpawnData");
@@ -101,7 +101,7 @@ public class SpawnerNBTCreator {
         container.setInteger("Delay", 60);
         container.setInteger("MinSpawnDelay", 500);
         container.setInteger("MaxSpawnDelay", 900);
-        container.setInteger("MaxNearbyEntities", 5);
+        container.setInteger("MaxNearbyEntities", 4);
         container.setInteger("RequiredPlayerRange", 21);
 
         NBTCompound spawnData = container.addCompound("SpawnData");
@@ -123,12 +123,12 @@ public class SpawnerNBTCreator {
 
     public static NBTContainer brickSkeletonSpawner() {
         NBTContainer container = new NBTContainer();
-        container.setInteger("SpawnCount", 3);
-        container.setInteger("Delay", 60);
+        container.setInteger("SpawnCount", 2);
+        container.setInteger("Delay", 150);
         container.setInteger("MinSpawnDelay", 500);
         container.setInteger("MaxSpawnDelay", 900);
-        container.setInteger("MaxNearbyEntities", 5);
-        container.setInteger("RequiredPlayerRange", 21);
+        container.setInteger("MaxNearbyEntities", 3);
+        container.setInteger("RequiredPlayerRange", 16);
 
         NBTCompound spawnData = container.addCompound("SpawnData");
         NBTCompound data = spawnData.addCompound("entity");

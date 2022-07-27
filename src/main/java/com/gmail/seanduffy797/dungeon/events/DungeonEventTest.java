@@ -54,6 +54,7 @@ public class DungeonEventTest implements Listener {
                 if (tags.has(DungeonManager.customItemKey)) {
                     String itemName = tags.get(DungeonManager.customItemKey, PersistentDataType.STRING);
                     DungeonItem dungeonItem = DungeonItem.valueOf(itemName);
+                    player.sendMessage(ChatColor.BLUE + "That is a " + dungeonItem.name());
                     if (dungeonItem == DungeonItem.PALM_BRANCH) {
                         Skeleton skelly = (Skeleton) entity;
                         int number = (int) skelly.getHealth();

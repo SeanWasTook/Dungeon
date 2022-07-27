@@ -64,6 +64,7 @@ public enum DungeonItem {
             ItemMeta meta = item.getItemMeta();
             meta.getPersistentDataContainer()
                     .set(DungeonManager.customItemKey, PersistentDataType.STRING, this.name());
+            item.setItemMeta(meta);
             return item;
         } else {
             return null;

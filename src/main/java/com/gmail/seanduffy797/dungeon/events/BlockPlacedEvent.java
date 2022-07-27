@@ -21,10 +21,11 @@ public class BlockPlacedEvent implements Listener {
         if(player.getGameMode().equals(GameMode.ADVENTURE)) {
             Block block = event.getBlock();
             // Handles the burning out of torches placed by players
-            if(block.getType() == Material.TORCH || block.getType() == Material.SOUL_TORCH) {
+            if(block.getType() == Material.WALL_TORCH || block.getType() == Material.SOUL_WALL_TORCH
+                    || block.getType() == Material.TORCH || block.getType() == Material.SOUL_TORCH) {
                 Plugin plugin = getPluginManager().getPlugin("Dungeon");
                 if(plugin == null) {return;}
-                BukkitTask task = new BurnOut(block).runTaskLater(plugin, 6000L);
+                BukkitTask task = new BurnOut(block).runTaskLater(plugin, 12000L);
             }
         }
     }

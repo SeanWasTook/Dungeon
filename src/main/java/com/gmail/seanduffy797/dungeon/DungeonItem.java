@@ -22,6 +22,8 @@ public enum DungeonItem {
     BASEMENT_KEY (Keys::createBasementKey),
     OLD_KEY (Keys::createOldKey),
     CHISELED_STONE_PICK (BuildingItems::createChiseledStonePick),
+    TORCH (Torch::createTorch),
+    SOUL_TORCH (Torch::createSoulTorch),
     GLADIATOR_HELMET (GladiatorArmor::createHelmet),
     GLADIATOR_CHESTPLATE (GladiatorArmor::createChestplate),
     GLADIATOR_GREAVES (GladiatorArmor::createGreaves),

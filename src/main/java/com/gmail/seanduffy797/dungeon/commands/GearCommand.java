@@ -1,5 +1,6 @@
 package com.gmail.seanduffy797.dungeon.commands;
 
+import com.gmail.seanduffy797.dungeon.DungeonItem;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -20,6 +21,9 @@ public class GearCommand implements CommandExecutor {
             Player player = (Player) sender;
             player.getInventory().addItem(new ItemStack(Material.WOODEN_SWORD));
             player.getInventory().addItem(new ItemStack(Material.APPLE, 3));
+            for (int i = 0; i < 16; i++) {
+                player.getInventory().addItem(DungeonItem.SOUL_TORCH.getItemStack());
+            }
         }
         return true;
     }

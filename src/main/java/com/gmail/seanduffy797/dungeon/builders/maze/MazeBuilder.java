@@ -96,7 +96,7 @@ public class MazeBuilder {
 
         MazeConnection connection = frontier.remove(index);
         while (connection.isVertical()) {
-            if (Math.random() < 0.2) {
+            if (Math.random() < 0.15) {
                 break;
             }
             frontier.add(connection);

@@ -1,10 +1,7 @@
 package com.gmail.seanduffy797.dungeon;
 
 import com.gmail.seanduffy797.dungeon.Items.*;
-import com.gmail.seanduffy797.dungeon.Items.Armor.GladiatorArmor;
-import com.gmail.seanduffy797.dungeon.Items.Armor.HuskLeather;
-import com.gmail.seanduffy797.dungeon.Items.Armor.RudiariusArmor;
-import com.gmail.seanduffy797.dungeon.Items.Armor.SkeletonLeather;
+import com.gmail.seanduffy797.dungeon.Items.Armor.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -24,6 +21,11 @@ public enum DungeonItem {
     CHISELED_STONE_PICK (BuildingItems::createChiseledStonePick),
     TORCH (Torch::createTorch),
     SOUL_TORCH (Torch::createSoulTorch),
+    CANDLE (Torch::createCandle),
+    WATER_HAT (Hats::createWaterHat),
+    FIRE_HAT (Hats::createFireHat),
+    PROJECTILE_HAT (Hats::createProjectileHat),
+    BLAST_HAT (Hats::createBlastHat),
     GLADIATOR_HELMET (GladiatorArmor::createHelmet),
     GLADIATOR_CHESTPLATE (GladiatorArmor::createChestplate),
     GLADIATOR_GREAVES (GladiatorArmor::createGreaves),
@@ -61,8 +63,12 @@ public enum DungeonItem {
     }
 
     public ItemStack getItemStack() {
+        return this.getItemStack(1);
+    }
+    public ItemStack getItemStack(int count) {
         if (this.supplier != null) {
             ItemStack item = this.supplier.get();
+            item.setAmount(count);
             ItemMeta meta = item.getItemMeta();
             meta.getPersistentDataContainer()
                     .set(DungeonManager.customItemKey, PersistentDataType.STRING, this.name());

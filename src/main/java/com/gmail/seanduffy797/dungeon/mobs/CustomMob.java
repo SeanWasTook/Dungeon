@@ -6,4 +6,11 @@ import org.bukkit.entity.Entity;
 public abstract class CustomMob {
 
     public abstract Entity spawn(Location location);
+
+    public void onDeath() {
+        return;
+    }
+    public void onDespawn() {
+        return;
+    }
 }

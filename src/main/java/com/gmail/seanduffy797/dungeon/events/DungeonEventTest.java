@@ -11,10 +11,7 @@ import net.kyori.adventure.text.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Skeleton;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -64,18 +61,6 @@ public class DungeonEventTest implements Listener {
                         return;
                     }
                 }
-//                TextComponent textComponent = (TextComponent) item.getItemMeta().displayName();
-//                if (textComponent != null) {
-//                    String name = textComponent.content();
-//                    if (item.getType() == Material.BAMBOO && name.equalsIgnoreCase("Palm Branch")) {
-//                        Skeleton skelly = (Skeleton) entity;
-//                        int number = (int) skelly.getHealth();
-//                        FocusMeta.ironGates.get(number).destroy();
-//                        item.subtract();
-//                        skelly.remove();
-//                        return;
-//                    }
-//                }
             }
             if(!slot.equals(EquipmentSlot.OFF_HAND)) {
                 player.sendMessage(ChatColor.BLUE + "You must give me a Palm Branch to prove your worth");

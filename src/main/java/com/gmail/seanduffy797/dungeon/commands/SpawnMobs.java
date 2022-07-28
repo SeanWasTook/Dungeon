@@ -1,5 +1,7 @@
 package com.gmail.seanduffy797.dungeon.commands;
 
+import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.DungeonMob;
 import com.gmail.seanduffy797.dungeon.mobs.EntityManager;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -18,25 +20,23 @@ public class SpawnMobs implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("spawnmobs")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                if (args.length >= 2) {
-                    EntityType entity = EntityType.BAT;
-                    int numMobs = 1;
-                    if(args[0].equalsIgnoreCase("Mayor")) {
-                        EntityManager.spawnMayor(player.getLocation());
-                        return true;
-                    }
+                World world = DungeonManager.world;
+                if (args.length >= 4) {
+                    DungeonMob mob;
+                    double x = 0, y = 0, z = 0;
                     try {
-                        entity = EntityType.valueOf(args[0].toUpperCase());
-                        numMobs = Integer.parseInt(args[1]);
-                    } catch (IllegalArgumentException e) { sender.sendMessage("Invalid Argument"); return true; }
-                    for (int i = 0; i < numMobs; i++) {
-                        player.getWorld().spawnEntity(player.getLocation(), entity);
+                        mob = DungeonMob.valueOf(args[0].toUpperCase());
+                        x = Double.parseDouble(args[1]);
+                        y = Double.parseDouble(args[2]);
+                        z = Double.parseDouble(args[3]);
+                        mob.spawn(new Location(world, x, y, z));
+                    } catch (IllegalArgumentException e) {
+                        e.printStackTrace();
+                        sender.sendMessage("Invalid Argument");
                     }
-                } else {
-                    sender.sendMessage("Usage: /spawnmobs <mob> <amount>");
                 }
             } else {
-                World world = getServer().getWorld("Dungeon");
+                World world = DungeonManager.world;
                 if (args.length >= 5) {
                     EntityType entity = EntityType.BAT;
                     int numMobs = 1;

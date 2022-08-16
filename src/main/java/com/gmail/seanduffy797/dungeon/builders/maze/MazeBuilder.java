@@ -76,6 +76,12 @@ public class MazeBuilder {
                 case(270):
                     maze[exit[0]][exit[1]][exit[2]].leftException = true;
                     break;
+                case(1): // Upward Exit
+                    maze[exit[0]][exit[1]][exit[2]].upException = true;
+                    break;
+                case(2): // Downward Exit
+                    maze[exit[0]][exit[1]][exit[2]].downException = true;
+                    break;
             }
         }
 

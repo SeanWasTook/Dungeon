@@ -76,6 +76,8 @@ public enum StoneBrickMaze {
     END("stone_bricks/end", MazeUnitShape.END, 1, 0, 999),
     END_CHEST("stone_bricks/end_chest", MazeUnitShape.END, 3, 0, 999),
     END_PEARL("stone_bricks/end_pearl", MazeUnitShape.END, 1, 0, 999),
+    END_SWORD("stone_bricks/end_sword", MazeUnitShape.END, 1, 0, 999),
+    END_KEY("stone_bricks/end_key", MazeUnitShape.END, 1, 0, 999),
     END_SPAWNER("stone_bricks/end_spawner", MazeUnitShape.END, 2, 0, 999),
     END_SKULL("stone_bricks/end_skull", MazeUnitShape.END, 1, 0, 999),
     END_PLANT("stone_bricks/end_plant", MazeUnitShape.END, 2, 0, 999),

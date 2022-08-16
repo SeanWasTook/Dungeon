@@ -71,23 +71,23 @@ public class BrickPiecePicker {
     }
 
     public static void initializeWeights() {
-        weights.put(BricksZone1.HALL1, 3);
-        weights.put(BricksZone1.HALL2, 2);
-        weights.put(BricksZone1.HALL3, 2);
+        weights.put(BricksZone1.HALL1, 2);
+        weights.put(BricksZone1.HALL2, 1);
+        weights.put(BricksZone1.HALL3, 1);
         weights.put(Sewer.HALL4, 4);
-        weights.put(BricksZone1.HALL5, 3);
-        weights.put(BricksZone1.HALL6, 5);
+        weights.put(BricksZone1.HALL5, 2);
+        weights.put(BricksZone1.HALL6, 3);
         weights.put(BricksZone1.HALL7, 2);
         weights.put(BricksZone1.HALL8, 0);
-        weights.put(BricksZone1.HALL9, 4);
+        weights.put(BricksZone1.HALL9, 3);
         weights.put(BricksZone1.HALL10, 0);
-        weights.put(BricksZone1.HALL11, 3);
-        weights.put(BricksZone1.HALL12, 3);
-        weights.put(BricksZone1.HALL13, 3);
-        weights.put(BricksZone1.HALL14, 3);
-        weights.put(BricksZone1.HALL15, 3);
-        weights.put(BricksZone1.HALL16, 3);
-        weights.put(BricksZone1.HALL17, 4);
+        weights.put(BricksZone1.HALL11, 2);
+        weights.put(BricksZone1.HALL12, 2);
+        weights.put(BricksZone1.HALL13, 2);
+        weights.put(BricksZone1.HALL14, 2);
+        weights.put(BricksZone1.HALL15, 2);
+        weights.put(BricksZone1.HALL16, 2);
+        weights.put(BricksZone1.HALL17, 3);
         weights.put(BricksZone1.HALL18, 1);
         weights.put(BricksZone1.HALL19, 1);
         weights.put(BricksZone1.HALL20, 1);
@@ -96,13 +96,13 @@ public class BrickPiecePicker {
         weights.put(BricksZone1.HALL23, 2);
         weights.put(BricksZone1.HALL24, 1);
         weights.put(BricksZone1.HALL25, 2);
-        weights.put(BricksZone1.HALL26, 3);
+        weights.put(BricksZone1.HALL26, 2);
 
-        weights.put(BricksZone1.DOOR1, 5);
+        weights.put(BricksZone1.DOOR1, 2);
 
         weights.put(BricksZone1.END0, 0);
         weights.put(BricksZone1.END1, 0);
-        weights.put(BricksZone1.END2, 4);
+        weights.put(BricksZone1.END2, 2);
         weights.put(BricksZone1.END3, 3);
         weights.put(BricksZone1.END4, 1);
         weights.put(BricksZone1.END5, 1);
@@ -110,21 +110,21 @@ public class BrickPiecePicker {
         weights.put(BricksZone1.END7, 2);
         weights.put(BricksZone1.END8, 1);
         weights.put(BricksZone1.END9, 2);
-        weights.put(BricksZone1.END10, 4);
-        weights.put(BricksZone1.END11, 4);
+        weights.put(BricksZone1.END10, 2);
+        weights.put(BricksZone1.END11, 2);
         weights.put(BricksZone1.END12, 2);
         weights.put(BricksZone1.END13, 1);
         weights.put(BricksZone1.END14, 2);
-        weights.put(BricksZone1.END15, 3);
+        weights.put(BricksZone1.END15, 2);
 
         weights.put(BricksZone1.CROSS1, 2);
         weights.put(Sewer.CROSS2, 3);
         weights.put(BricksZone1.CROSS3, 0);
-        weights.put(BricksZone1.CROSS4, 4);
+        weights.put(BricksZone1.CROSS4, 3);
         weights.put(BricksZone1.CROSS9, 2);
         weights.put(BricksZone1.CROSS10, 0);
-        weights.put(BricksZone1.CROSS11, 4);
-        weights.put(BricksZone1.CROSS12, 3);
+        weights.put(BricksZone1.CROSS11, 3);
+        weights.put(BricksZone1.CROSS12, 2);
         weights.put(BricksZone1.CROSS13, 2);
 
         weights.put(BricksZone1.ARENA, 0);
@@ -132,14 +132,14 @@ public class BrickPiecePicker {
         weights.put(BricksZone1.TURN1, 5);
         weights.put(BricksZone1.TURN2, 4);
 
-        weights.put(BricksZone1.T1, 4);
-        weights.put(BricksZone1.T2, 4);
+        weights.put(BricksZone1.T1, 2);
+        weights.put(BricksZone1.T2, 2);
         weights.put(BricksZone1.T3, 2);
-        weights.put(BricksZone1.T4, 2);
+        weights.put(BricksZone1.T4, 1);
         weights.put(BricksZone1.T5, 1);
         weights.put(BricksZone1.T6, 2);
-        weights.put(BricksZone1.T7, 3);
-        weights.put(BricksZone1.T8, 4);
+        weights.put(BricksZone1.T7, 2);
+        weights.put(BricksZone1.T8, 3);
         weights.put(BricksZone1.T9, 1);
         weights.put(BricksZone1.T10, 1);
         weights.put(BricksZone1.T11, 1);
@@ -149,10 +149,10 @@ public class BrickPiecePicker {
         weights.put(BricksZone1.ROOM3, 1);
         weights.put(BricksZone1.ROOM4, 0);
         weights.put(BricksZone1.ROOM5, 0);
-        weights.put(BricksZone1.ROOM6, 2);
+        weights.put(BricksZone1.ROOM6, 3);
         weights.put(BricksZone1.ROOM7, 2);
         weights.put(BricksZone1.ROOM8, 1);
-        weights.put(BricksZone1.SHRINE1, 2);
+        weights.put(BricksZone1.SHRINE1, 3);
 
         weights.put(BricksZone1.STAIRDOWN1, 6);
         weights.put(BricksZone1.STAIRDOWNU1, 0);
@@ -277,7 +277,7 @@ public class BrickPiecePicker {
             piece = getPiece(earlyHalls);
             return piece;
         }
-        if (!flag && depth > 6) {
+        if (!flag && depth > 8) {
             flag = true;
             weights.put(BricksZone1.ROOM1, 1);
             weights.put(BricksZone1.ROOM2, 1);
@@ -377,7 +377,12 @@ public class BrickPiecePicker {
     public static Bricks pickZone1Piece(PieceLayout layout) {
         Bricks piece = getPiece(halls);
 
-        if ((weights.get(BricksZone1.T1) == 0 || weights.get(BricksZone1.HALL1) == 0 || weights.get(BricksZone1.CROSS4) == 0) && weights.get(BricksZone1.STAIRDOWN1) == 0) {
+        int total = 0;
+        for(Bricks cross: crosses2) {
+            total += weights.get(cross);
+        }
+
+        if (total < 3 && weights.get(BricksZone1.STAIRDOWN1) == 0) {
             if (necessarys.get(Region.BRICK).size() == 0) {
                 piece = getPiece(ends);
             } else {

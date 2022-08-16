@@ -4,6 +4,7 @@ import com.github.shynixn.structureblocklib.api.bukkit.StructureBlockLibApi;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.Dungeon;
+import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.DungeonMob;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.*;
 import org.bukkit.Location;
@@ -59,7 +60,8 @@ public enum BricksZone1 implements Bricks {
     HALL10 ("hall10", 12, 12, 9, new Location(getWorld("Dungeon"), 0, -1, -4), true,
             new HashMap<>(Collections.singletonMap(
                     new Location(getWorld("Dungeon"), 12, 0, 0), Region.BRICK)),
-            new ArrayList<>()),
+            new ArrayList<>(Collections.singletonList(
+                    new Spawner(new Location(DungeonManager.world, 5, 5, 1), SpawnerEnum.COMMON_SPIDER)))),
     HALL11 ("hall11", 6, 5, 7, new Location(getWorld("Dungeon"), 0, -1, -3), true,
             new HashMap<>(Collections.singletonMap(
                     new Location(getWorld("Dungeon"), 6, 0, 0), Region.INHERIT)),
@@ -190,6 +192,16 @@ public enum BricksZone1 implements Bricks {
             new ArrayList<>(Arrays.asList(
                     new PaintingSpawner(new Location(getWorld("Dungeon"), 0, 1, 0), "wasteland", StructureRotation.ROTATION_180, false),
                     new Chest(new Location(getWorld("Dungeon"), 2, 1, 0), Loot.BRICKT1)))),
+    END14 ("end14", 3, 5, 7, new Location(getWorld("Dungeon"), 0, -1, -3), true,
+            new HashMap<>(),
+            new ArrayList<>(Arrays.asList(
+                    new Chest(new Location(getWorld("Dungeon"), 1, 1, 2), Loot.BRICKT1),
+                    new Chest(new Location(getWorld("Dungeon"), 1, 1, -2), Loot.BRICKT1)))),
+    END15 ("end15", 2, 5, 7, new Location(getWorld("Dungeon"), 0, -1, -3), false,
+            new HashMap<>(),
+            new ArrayList<>(Arrays.asList(
+                    new PaintingSpawner(new Location(getWorld("Dungeon"), 0, 1, 0), "sea", StructureRotation.ROTATION_180, true),
+                    new PaintingSpawner(new Location(getWorld("Dungeon"), 0, 2, -1), "sunset", StructureRotation.ROTATION_180, true)))),
 
     ROOM1 ("room1", 13, 7, 13, new Location(getWorld("Dungeon"), 0, -1, -6), true,
             new HashMap<>(),
@@ -249,7 +261,10 @@ public enum BricksZone1 implements Bricks {
     TURN2 ("turn2", 10, 5, 10, new Location(getWorld("Dungeon"), 0, -1, -4), true,
             new HashMap<>(Collections.singletonMap(
                     new Location(getWorld("Dungeon"), 4, 0, -5, 270, 0), Region.BRICK)),
-            new ArrayList<>()),
+            new ArrayList<>(Arrays.asList(
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 6, 0, 0), DungeonMob.DUNGEON_LLAMA),
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 6, 0, 1), DungeonMob.DUNGEON_LLAMA),
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 6, 0, 2), DungeonMob.DUNGEON_LLAMA)))),
 
     T1 ("t1", 7, 5, 9, new Location(getWorld("Dungeon"), 0, -1, -3), true,
             new HashMap<>(Map.of(
@@ -367,6 +382,18 @@ public enum BricksZone1 implements Bricks {
                     new Location(getWorld("Dungeon"), 3, 0, -8, 270, 0), Region.BRICK)),
             new ArrayList<>(Collections.singletonList(
                     new Chest(new Location(getWorld("Dungeon"), 17, 4, 6), Loot.BRICKT1, false, 40000)))),
+    CROSS12 ("cross12", 17, 5, 17, new Location(getWorld("Dungeon"), 0, -1, -8), true,
+            new HashMap<>(Map.of(
+                    new Location(getWorld("Dungeon"), 17, 0, 0, 0, 0), Region.BRICK,
+                    new Location(getWorld("Dungeon"), 8, 0, 9, 90, 0), Region.BRICK,
+                    new Location(getWorld("Dungeon"), 8, 0, -9, 270, 0), Region.BRICK)),
+            new ArrayList<>()),
+    CROSS13 ("cross13", 9, 11, 9, new Location(getWorld("Dungeon"), 0, -1, -4), true,
+            new HashMap<>(Map.of(
+                    new Location(getWorld("Dungeon"), 9, 0, 0, 0, 0), Region.BRICK,
+                    new Location(getWorld("Dungeon"), 4, 0, 5, 90, 0), Region.BRICK,
+                    new Location(getWorld("Dungeon"), 4, 0, -5, 270, 0), Region.BRICK)),
+            new ArrayList<>()),
 
     PAINTING_TEST ("painting_test", 7, 6, 5, new Location(getWorld("Dungeon"), 0, -1, -2), true,
             new HashMap<>(),

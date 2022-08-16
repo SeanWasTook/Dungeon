@@ -3,9 +3,8 @@ package com.gmail.seanduffy797.dungeon.Pieces;
 import com.github.shynixn.structureblocklib.api.bukkit.StructureBlockLibApi;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
-import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Chest;
-import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
-import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Loot;
+import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.Pieces.Focuses.*;
 import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 
@@ -101,8 +100,16 @@ public enum Early implements Mine {
                     new Location(getWorld("Dungeon"), 7, 0, 8, 90, 0), Region.MINE,
                     new Location(getWorld("Dungeon"), 7, 0, -8, 270, 0), Region.MINE)),
             new ArrayList<>(Arrays.asList(
+                    new Spawner(new Location(DungeonManager.world, 5, 0, -3), SpawnerEnum.COMMON_SPIDER),
                     new Chest(new Location(getWorld("Dungeon"), 2, 0, -4), Loot.MINE1, false, -1),
-                    new Chest(new Location(getWorld("Dungeon"), 11, 0, 4), Loot.MINE1, false, -1))));
+                    new Chest(new Location(getWorld("Dungeon"), 11, 0, 4), Loot.MINE1, false, -1)))),
+
+    CROSS4 ("cross4", 5, 6, 5, new Location(getWorld("Dungeon"), 0, 0, -2),
+            new HashMap<>(Map.of(
+                new Location(getWorld("Dungeon"), 5, 0, 0, 0, 0), Region.MINE,
+                new Location(getWorld("Dungeon"), 2, 3, 3, 90, 0), Region.MINE,
+                new Location(getWorld("Dungeon"), 2, 3, -3, 270, 0), Region.MINE)),
+            new ArrayList<>());
 
     private final String name;
     private final Path path;

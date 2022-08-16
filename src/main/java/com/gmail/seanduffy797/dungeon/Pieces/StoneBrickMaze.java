@@ -24,9 +24,11 @@ public enum StoneBrickMaze {
     STRAIGHT_WOOD("stone_bricks/straight_wood", MazeUnitShape.STRAIGHT, 3, 0, 999),
     STRAIGHT_MAGMA("stone_bricks/straight_magma", MazeUnitShape.STRAIGHT, 1, 0, 999),
     STRAIGHT_TRAP("stone_bricks/straight_trap", MazeUnitShape.STRAIGHT, 2, 0, 999),
+    STRAIGHT_NOISY("stone_bricks/straight_noisy", MazeUnitShape.STRAIGHT, 2, 0, 999),
     STRAIGHT_LADDER_UP("stone_bricks/straight_ladder_up", MazeUnitShape.STRAIGHT_UP, 1, 0, 999),
     STRAIGHT_LADDER_DOWN("stone_bricks/straight_ladder_down", MazeUnitShape.STRAIGHT_DOWN, 1, 0, 999),
     STRAIGHT_LADDER_MIDDLE("stone_bricks/straight_ladder_middle", MazeUnitShape.STRAIGHT_MIDDLE, 1, 0, 999),
+
     TURN("stone_bricks/turn", MazeUnitShape.TURN, 1, 0, 999),
     TURN_OPEN("stone_bricks/turn_open", MazeUnitShape.TURN, 1, 0, 999),
     TURN_BOOKS("stone_bricks/turn_books", MazeUnitShape.TURN, 2, 0, 999),
@@ -38,6 +40,7 @@ public enum StoneBrickMaze {
     TURN_LADDER_UP("stone_bricks/turn_ladder_up", MazeUnitShape.TURN_UP, 1, 0, 999),
     TURN_LADDER_DOWN("stone_bricks/turn_ladder_down", MazeUnitShape.TURN_DOWN, 1, 0, 999),
     TURN_LADDER_MIDDLE("stone_bricks/turn_ladder_middle", MazeUnitShape.TURN_MIDDLE, 1, 0, 999),
+
     T("stone_bricks/t", MazeUnitShape.T, 1, 0, 999),
     T_OPEN("stone_bricks/t_open", MazeUnitShape.T, 1, 0, 999),
     T_BOOKS("stone_bricks/t_books", MazeUnitShape.T, 2, 0, 999),
@@ -54,6 +57,7 @@ public enum StoneBrickMaze {
     T_LADDER_UP("stone_bricks/t_ladder_up", MazeUnitShape.T_UP, 1, 0, 999),
     T_LADDER_DOWN("stone_bricks/t_ladder_down", MazeUnitShape.T_DOWN, 1, 0, 999),
     T_LADDER_MIDDLE("stone_bricks/t_ladder_middle", MazeUnitShape.T_MIDDLE, 1, 0, 999),
+
     CROSS("stone_bricks/cross", MazeUnitShape.CROSS, 1, 0, 999),
     CROSS_OPEN("stone_bricks/cross_open", MazeUnitShape.CROSS, 1, 0, 999),
     CROSS_CANDLE("stone_bricks/cross_candle", MazeUnitShape.CROSS, 2, 0, 999),
@@ -68,19 +72,25 @@ public enum StoneBrickMaze {
     CROSS_LADDER_DOWN("stone_bricks/cross_ladder_down", MazeUnitShape.CROSS_DOWN, 1, 0, 999),
     CROSS_LADDER_DOWN2("stone_bricks/cross_ladder_down2", MazeUnitShape.CROSS_DOWN, 2, 0, 999),
     CROSS_LADDER_MIDDLE("stone_bricks/cross_ladder_middle", MazeUnitShape.CROSS_MIDDLE, 1, 0, 999),
+
     END("stone_bricks/end", MazeUnitShape.END, 1, 0, 999),
     END_CHEST("stone_bricks/end_chest", MazeUnitShape.END, 3, 0, 999),
     END_PEARL("stone_bricks/end_pearl", MazeUnitShape.END, 1, 0, 999),
     END_SPAWNER("stone_bricks/end_spawner", MazeUnitShape.END, 2, 0, 999),
     END_SKULL("stone_bricks/end_skull", MazeUnitShape.END, 1, 0, 999),
+    END_PLANT("stone_bricks/end_plant", MazeUnitShape.END, 2, 0, 999),
+    END_NOISY("stone_bricks/end_noisy", MazeUnitShape.END, 2, 0, 999),
+    END_BOOKS("stone_bricks/end_books", MazeUnitShape.END, 2, 0, 999),
     END_LADDER_UP("stone_bricks/end_ladder_up", MazeUnitShape.END_UP, 2, 0, 999),
     END_LADDER_UP_DOOR("stone_bricks/end_ladder_up_door", MazeUnitShape.END_UP, 1, 0, 999),
     END_LADDER_DOWN("stone_bricks/end_ladder_down", MazeUnitShape.END_DOWN, 1, 0, 999),
     END_LADDER_MIDDLE("stone_bricks/end_ladder_middle", MazeUnitShape.END_MIDDLE, 1, 0, 999),
+
     SOLID_LADDER_UP("stone_bricks/solid_ladder_up", MazeUnitShape.SOLID_UP, 1, 0, 999),
     SOLID_LADDER_DOWN("stone_bricks/solid_ladder_down", MazeUnitShape.SOLID_DOWN, 2, 0, 999),
     SOLID_LADDER_DOWN2("stone_bricks/solid_ladder_down2", MazeUnitShape.SOLID_DOWN, 1, 0, 999),
     SOLID_LADDER_MIDDLE("stone_bricks/solid_ladder_middle", MazeUnitShape.SOLID_MIDDLE, 1, 0, 999),
+
     ROOF("stone_bricks/roof", MazeUnitShape.END, 0, 0, 0);
 
     private final PieceData data;

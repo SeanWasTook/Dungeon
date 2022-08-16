@@ -6,6 +6,7 @@ public enum SpawnerEnum {
     GLADIATOR (SpawnerNBTCreator.gladiatorSpawner()),
     BRICK_HUSK (SpawnerNBTCreator.brickHuskSpawner()),
     COMMON_SPIDER (SpawnerNBTCreator.commonSpiderSpawner()),
+    COMMON_DROWNED (SpawnerNBTCreator.commonDrownedSpawner()),
     BRICK_SKELETON (SpawnerNBTCreator.brickSkeletonSpawner());
 
     private final NBTContainer nbtContainer;

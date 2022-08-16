@@ -12,6 +12,7 @@ public enum DungeonMob {
     BRICK_SKELETON(new BrickSkeleton()),
     AXE_VINDICATOR(new AxeVindicator()),
     COMMON_SPIDER(new CommonSpider()),
+    COMMON_DROWNED(new CommonDrowned()),
     GUARD_SKELETON(new SkeletonGuard()),
     GLADIATOR_SKELETON(new GladiatorSkeleton()),
     RUDIARIUS(new Rudiarius()),
@@ -28,6 +29,8 @@ public enum DungeonMob {
     CANDLESTICK_MAKER(new CandlestickMaker()),
     HABADASHER(new Habadasher()),
     WEAPON_MERCHANT(new WeaponMerchant()),
+    BLACKSMITH(new Blacksmith()),
+    LIEUTENANT(new Lieutenant()),
     DUNGEON_PIG(new DungeonPig()),
     DUNGEON_LLAMA(new DungeonLlama());
 

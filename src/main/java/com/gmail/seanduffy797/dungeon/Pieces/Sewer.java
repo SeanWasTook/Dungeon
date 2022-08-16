@@ -4,10 +4,9 @@ import com.github.shynixn.structureblocklib.api.bukkit.StructureBlockLibApi;
 import com.github.shynixn.structureblocklib.api.entity.StructureEntity;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
+import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.EntityManager;
-import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Chest;
-import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
-import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Loot;
+import com.gmail.seanduffy797.dungeon.Pieces.Focuses.*;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -72,6 +71,7 @@ public enum Sewer implements Bricks{
                     new Location(getWorld("Dungeon"), 6, 5, 7, 90, 0), Region.PIPE2,
                     new Location(getWorld("Dungeon"), 5, 5, -7, 270, 0), Region.PIPE2)),
             new ArrayList<>(Arrays.asList(
+                    new Spawner(new Location(DungeonManager.world, 6, 1,3), SpawnerEnum.COMMON_DROWNED),
                     new Chest(new Location(getWorld("Dungeon"), 1, 6, -3), Loot.BRICKWATER, false, 30000),
                     new Chest(new Location(getWorld("Dungeon"), 7, -4, 2), Loot.BRICKWATER, false, 30000)))),
     SEWERROOM2 ("sewerroom2", 4, 10, 7, new Location(getWorld("Dungeon"), 0, -5, -3), true,

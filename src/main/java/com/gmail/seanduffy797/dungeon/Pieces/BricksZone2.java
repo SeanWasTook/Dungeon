@@ -3,6 +3,7 @@ package com.gmail.seanduffy797.dungeon.Pieces;
 import com.github.shynixn.structureblocklib.api.bukkit.StructureBlockLibApi;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
+import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.DungeonMob;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.*;
 import org.bukkit.Location;
@@ -141,7 +142,8 @@ public enum BricksZone2 implements Bricks {
             new HashMap<>(Map.of(
                     new Location(getWorld("Dungeon"), 7, 0, 0, 0, 0), Region.BRICK2,
                     new Location(getWorld("Dungeon"), 3, 0, -4, 270, 0), Region.BRICK2)),
-            new ArrayList<>()),
+            new ArrayList<>(Collections.singletonList(
+                    new DungeonEntity(new Location(DungeonManager.world, 3, 0, 3.5), DungeonMob.DUNGEON_LLAMA)))),
 
     END101 ("end101", 2, 7, 7, new Location(getWorld("Dungeon"), 0, -1, -3), true,
             new HashMap<>(Collections.singletonMap(

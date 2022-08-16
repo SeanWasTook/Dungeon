@@ -53,7 +53,7 @@ public class BuildCommand implements CommandExecutor {
                     // exits.add(exit2);
                     StoneBrickMazeBuilder builder = new StoneBrickMazeBuilder(
                             6,
-                            25,
+                            20,
                             18,
                             start,
                             exits,

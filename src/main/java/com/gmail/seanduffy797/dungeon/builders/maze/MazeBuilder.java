@@ -24,10 +24,10 @@ public class MazeBuilder {
         maze = new MazeUnit[height][length][width];
         this.loopingChance = loopingChance;
         chances = new double[height];
-        chances[0] = 0.1;
+        chances[0] = 0.07;
         chances[1] = 0.01;
-        chances[2] = 0.1;
-        chances[3] = 0.2;
+        chances[2] = 0.07;
+        chances[3] = 0.15;
         chances[4] = 0.4;
         chances[5] = 0.1;
 
@@ -96,7 +96,7 @@ public class MazeBuilder {
 
         MazeConnection connection = frontier.remove(index);
         while (connection.isVertical()) {
-            if (Math.random() < 0.15) {
+            if (Math.random() < 0.05) {
                 break;
             }
             frontier.add(connection);

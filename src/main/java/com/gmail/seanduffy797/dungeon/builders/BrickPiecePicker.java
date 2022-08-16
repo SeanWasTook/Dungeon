@@ -11,8 +11,8 @@ public class BrickPiecePicker {
     public static Bricks[] halls = {BricksZone1.HALL1, BricksZone1.HALL2, BricksZone1.HALL3, BricksZone1.STAIRDOWN1, BricksZone1.HALL5, BricksZone1.HALL6, BricksZone1.HALL7, BricksZone1.HALL8, BricksZone1.HALL9, BricksZone1.HALL10, BricksZone1.HALL11, BricksZone1.HALL12, BricksZone1.HALL13, BricksZone1.HALL14, BricksZone1.HALL15, BricksZone1.HALL16, BricksZone1.HALL17, BricksZone1.HALL18, BricksZone1.HALL19, BricksZone1.HALL20, BricksZone1.HALL21, BricksZone1.HALL22, BricksZone1.HALL23, BricksZone1.HALL24, BricksZone1.HALL25, BricksZone1.HALL26, BricksZone1.DOOR1};
     public static Bricks[] narrowHalls = {BricksZone1.HALL1, BricksZone1.HALL2, BricksZone1.HALL3, BricksZone1.HALL11, BricksZone1.HALL12, BricksZone1.HALL13, BricksZone1.HALL14, BricksZone1.HALL15, BricksZone1.HALL16, BricksZone1.HALL17, BricksZone1.HALL18, BricksZone1.HALL19, BricksZone1.HALL23, BricksZone1.HALL24, BricksZone1.HALL25, BricksZone1.HALL26};
     public static Bricks[] earlyHalls = {BricksZone1.HALL1, BricksZone1.HALL2, BricksZone1.HALL5, BricksZone1.HALL11, BricksZone1.HALL12, BricksZone1.HALL18, BricksZone1.HALL23};
-    public static Bricks[] ends = {BricksZone1.END2, BricksZone1.END3, BricksZone1.END4, BricksZone1.END5, BricksZone1.END6, BricksZone1.END7, BricksZone1.END8, BricksZone1.END9, BricksZone1.END10, BricksZone1.END11, BricksZone1.END12, BricksZone1.END13};
-    public static Bricks[] crosses = {BricksZone1.CROSS1, BricksZone1.CROSS3, BricksZone1.CROSS4, BricksZone1.CROSS9, BricksZone1.CROSS10, BricksZone1.CROSS11, BricksZone1.ARENA};
+    public static Bricks[] ends = {BricksZone1.END2, BricksZone1.END3, BricksZone1.END4, BricksZone1.END5, BricksZone1.END6, BricksZone1.END7, BricksZone1.END8, BricksZone1.END9, BricksZone1.END10, BricksZone1.END11, BricksZone1.END12, BricksZone1.END13, BricksZone1.END14, BricksZone1.END15};
+    public static Bricks[] crosses = {BricksZone1.CROSS1, BricksZone1.CROSS3, BricksZone1.CROSS4, BricksZone1.CROSS9, BricksZone1.CROSS10, BricksZone1.CROSS11, BricksZone1.ARENA, BricksZone1.CROSS12, BricksZone1.CROSS13};
     public static Bricks[] ts = {BricksZone1.T1, BricksZone1.T2, BricksZone1.T3, BricksZone1.T4, BricksZone1.T5, BricksZone1.T6, BricksZone1.T7, BricksZone1.T8, BricksZone1.T9, BricksZone1.T10, BricksZone1.T11};
     public static Bricks[] turns = {BricksZone1.TURN1,  BricksZone1.TURN2};
     public static Bricks[] rooms = {BricksZone1.ROOM1, BricksZone1.ROOM2, BricksZone1.ROOM3, BricksZone1.ROOM4, BricksZone1.ROOM5, BricksZone1.SHRINE1, BricksZone1.ROOM6, BricksZone1.ROOM7, BricksZone1.ROOM8};
@@ -114,6 +114,8 @@ public class BrickPiecePicker {
         weights.put(BricksZone1.END11, 4);
         weights.put(BricksZone1.END12, 2);
         weights.put(BricksZone1.END13, 1);
+        weights.put(BricksZone1.END14, 2);
+        weights.put(BricksZone1.END15, 3);
 
         weights.put(BricksZone1.CROSS1, 2);
         weights.put(Sewer.CROSS2, 3);
@@ -122,6 +124,8 @@ public class BrickPiecePicker {
         weights.put(BricksZone1.CROSS9, 2);
         weights.put(BricksZone1.CROSS10, 0);
         weights.put(BricksZone1.CROSS11, 4);
+        weights.put(BricksZone1.CROSS12, 3);
+        weights.put(BricksZone1.CROSS13, 2);
 
         weights.put(BricksZone1.ARENA, 0);
 

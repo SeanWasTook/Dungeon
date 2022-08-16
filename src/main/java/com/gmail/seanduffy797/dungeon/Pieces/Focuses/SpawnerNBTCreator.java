@@ -121,6 +121,32 @@ public class SpawnerNBTCreator {
         return container;
     }
 
+    public static NBTContainer commonDrownedSpawner() {
+        NBTContainer container = new NBTContainer();
+        container.setInteger("SpawnCount", 3);
+        container.setInteger("Delay", 600);
+        container.setInteger("MinSpawnDelay", 700);
+        container.setInteger("MaxSpawnDelay", 1500);
+        container.setInteger("MaxNearbyEntities", 5);
+        container.setInteger("RequiredPlayerRange", 21);
+
+        NBTCompound spawnData = container.addCompound("SpawnData");
+        NBTCompound data = spawnData.addCompound("entity");
+        data.setString("id", "zombie");
+        data.setString("CustomName", "{\"text\":\"" + DungeonMob.COMMON_DROWNED.name() + "\"}");
+
+        NBTCompoundList potentials = container.getCompoundList( "SpawnPotentials");
+
+        NBTListCompound mob1 = potentials.addCompound();
+        mob1.setInteger("weight", 1);
+        NBTCompound data1 = mob1.addCompound("data");
+        NBTCompound skelly1 = data1.addCompound("entity");
+        skelly1.setString("id", "zombie");
+        skelly1.setString("CustomName", "{\"text\":\"" + DungeonMob.COMMON_DROWNED.name() + "\"}");
+
+        return container;
+    }
+
     public static NBTContainer brickSkeletonSpawner() {
         NBTContainer container = new NBTContainer();
         container.setInteger("SpawnCount", 2);

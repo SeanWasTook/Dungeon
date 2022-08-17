@@ -24,7 +24,7 @@ public class PlaceCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("place")) {
             World world = getServer().getWorld("Dungeon");
-            Location loc = new Location(world, 50, 50, 50);
+            Location loc = new Location(world, 70, 50, 70);
 
             StructureRotation rotation = StructureRotation.NONE;
             StructureMirror mirror = StructureMirror.NONE;
@@ -99,11 +99,12 @@ public class PlaceCommand implements CommandExecutor {
                 Location newLoc = loc.clone();
                 if(mirror.equals(StructureMirror.LEFT_RIGHT)) {
                     newFoc.mirror = StructureMirror.LEFT_RIGHT;
-                    newFoc.location = newLoc.add(BuilderUtils.applyRotation(BuilderUtils.applyMirror(newFoc.location, piece.isEven()), rotation));
+                    newFoc.location = BuilderUtils.applyRotation(BuilderUtils.applyMirror(newFoc.location, piece.isEven()), rotation);
                 } else {
                     newFoc.mirror = StructureMirror.NONE;
-                    newFoc.location = newLoc.add(BuilderUtils.applyRotation(newFoc.location, rotation));
+                    newFoc.location = BuilderUtils.applyRotation(newFoc.location, rotation);
                 }
+                newFoc.location = newFoc.location.add(newLoc);
                 newFoc.rotation = rotation;
                 newFoc.start();
             }

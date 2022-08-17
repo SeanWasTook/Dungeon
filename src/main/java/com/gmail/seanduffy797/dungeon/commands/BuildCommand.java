@@ -2,6 +2,7 @@ package com.gmail.seanduffy797.dungeon.commands;
 
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import com.gmail.seanduffy797.dungeon.builders.*;
 import com.gmail.seanduffy797.dungeon.builders.maze.StoneBrickMazeBuilder;
 import org.bukkit.Location;
@@ -63,6 +64,9 @@ public class BuildCommand implements CommandExecutor {
                     getServer().getConsoleSender().sendMessage("[Dungeon]: Counts: " + BrickPiecePicker.counts);
                     getServer().getConsoleSender().sendMessage("[Dungeon]: Necessary: " + BrickPiecePicker.necessarys);
                     getServer().getConsoleSender().sendMessage("[Dungeon]: Openings: " + BrickPiecePicker.openings);
+                    getServer().getConsoleSender().sendMessage("[Dungeon]: Brick Layouts: " + BrickPiecePicker.layouts.get(Region.BRICK));
+                    getServer().getConsoleSender().sendMessage("[Dungeon]: Brick2 Layouts: " + BrickPiecePicker.layouts.get(Region.BRICK2));
+                    getServer().getConsoleSender().sendMessage("[Dungeon]: Sewer Layouts: " + BrickPiecePicker.layouts.get(Region.SEWER));
                 } else {
                     sender.sendMessage("That's not something I can build");
                 }

@@ -6,6 +6,7 @@ import com.gmail.seanduffy797.dungeon.Dungeon;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.builders.BuilderUtils;
 import com.gmail.seanduffy797.dungeon.tasks.SummonPainting;
+import com.gmail.seanduffy797.dungeon.tasks.TaskList;
 import org.bukkit.Art;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -110,5 +111,6 @@ public class PaintingSpawner extends Focus {
         }
         BukkitTask task = new SummonPainting(location, motif, intFacing)
                 .runTaskLater(plugin, 400L);
+        TaskList.tasks.add(task);
     }
 }

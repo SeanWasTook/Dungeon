@@ -8,11 +8,14 @@ import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
+import static org.bukkit.Bukkit.getServer;
+
 public class DungeonEntity extends Focus {
 
     public DungeonMob mobType;
     public boolean respawn;
     public int respawnCoolDown;
+    public int id = -1;
 
     public DungeonEntity(Location location, DungeonMob mobType) {
         this.location = location;
@@ -26,23 +29,25 @@ public class DungeonEntity extends Focus {
         this.mobType = mobType;
         this.respawn = true;
         this.respawnCoolDown = coolDown;
-        if (respawnCoolDown == 0) {
+        if (respawnCoolDown <= 0) {
             this.respawn = false;
         }
     }
-
-    private DungeonEntity(Location location, DungeonMob mobType, boolean respawn, int coolDown) {
+    public DungeonEntity(Location location, DungeonMob mobType, int coolDown, int id) {
         this.location = location;
         this.mobType = mobType;
-        this.respawn = respawn;
+        this.respawn = true;
         this.respawnCoolDown = coolDown;
+        if (respawnCoolDown <= 0) {
+            this.respawn = false;
+        }
+        this.id = id;
     }
-
 
     public DungeonEntity makeCopy(Focus entity) {
         if (entity instanceof DungeonEntity) {
             DungeonEntity other = (DungeonEntity) entity;
-            return new DungeonEntity(other.location.clone(), other.mobType, other.respawn, other.respawnCoolDown);
+            return new DungeonEntity(other.location.clone(), other.mobType, other.respawnCoolDown, other.id);
         } else {
             return null;
         }
@@ -53,10 +58,19 @@ public class DungeonEntity extends Focus {
         Plugin plugin = Dungeon.getPlugin();
         BukkitTask task;
         if(respawn) {
-            task = new SpawnMob(location, mobType)
-                    .runTaskTimer(plugin, 400L < respawnCoolDown ? respawnCoolDown : 400L, respawnCoolDown);
+            if(id < 0) {
+                task = new SpawnMob(location, mobType)
+                        .runTaskTimer(plugin, 400L < respawnCoolDown ? respawnCoolDown : 400L, respawnCoolDown);
+            } else {
+                task = new SpawnMob(location, mobType, id)
+                        .runTaskTimer(plugin, 400L < respawnCoolDown ? respawnCoolDown : 400L, respawnCoolDown);
+            }
         } else {
-            task = new SpawnMob(location, mobType).runTaskLater(plugin, 400L);
+            if(id < 0) {
+                task = new SpawnMob(location, mobType).runTaskLater(plugin, 400L);
+            } else {
+                task = new SpawnMob(location, mobType, id).runTaskLater(plugin, 400L);
+            }
         }
 
         TaskList.tasks.add(task);

@@ -3,6 +3,7 @@ package com.gmail.seanduffy797.dungeon;
 import com.gmail.seanduffy797.dungeon.mobs.*;
 import com.gmail.seanduffy797.dungeon.mobs.villagers.*;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -35,6 +36,7 @@ public enum DungeonMob {
     DUNGEON_LLAMA(new DungeonLlama());
 
     private final CustomMob mobClass;
+    public static final NamespacedKey customId = new NamespacedKey(Dungeon.getPlugin(), "customId");
 
     DungeonMob(CustomMob mobClass) {
         this.mobClass = mobClass;
@@ -45,6 +47,12 @@ public enum DungeonMob {
         entity.getPersistentDataContainer().set(
                 DungeonManager.customMobKey, PersistentDataType.STRING, this.name());
         EntityManager.addEntity(entity);
+        return entity;
+    }
+    public Entity spawn(Location location, int id) {
+        Entity entity = spawn(location);
+        entity.getPersistentDataContainer().set(
+                customId, PersistentDataType.INTEGER, id);
         return entity;
     }
 }

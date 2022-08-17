@@ -21,25 +21,6 @@ public class BuilderUtils {
         return true;
     }
 
-    public static boolean checkMap(boolean[][] map, Location current, Location corner) {
-
-        if (current.getX() < BrickBuilder.minX || current.getX() > BrickBuilder.maxX ||
-                current.getZ() < BrickBuilder.minZ || current.getZ() > BrickBuilder.maxZ ||
-                corner.getX() < BrickBuilder.minX || corner.getX() > BrickBuilder.maxX ||
-                corner.getZ() < BrickBuilder.minZ || corner.getZ() > BrickBuilder.maxZ) {
-            return true;
-        }
-
-        for(int i = (int)(corner.getX() > current.getX() ? current.getX() : corner.getX()); i <= (int)(corner.getX() > current.getX() ? corner.getX() : current.getX()); i++) {
-            for (int j = ((int) (corner.getZ() > current.getZ() ? current.getZ() : corner.getZ()) + 150); j <= ((int) (corner.getZ() > current.getZ() ? corner.getZ() : current.getZ()) + 150); j++) {
-                if (map[i][j]) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     // Automatically Uses settings for brick test area
     public static boolean checkMap(boolean[][][] map, Location current, Location corner) {
         if (current.getX() < BrickBuilder.minX || current.getX() > BrickBuilder.maxX ||
@@ -76,14 +57,6 @@ public class BuilderUtils {
             }
         }
         return false;
-    }
-
-    public static void fillMap(boolean[][] map, Location current, Location corner) {
-        for(int i = (int)(corner.getX() > current.getX() ? current.getX() : corner.getX()); i <= (int)(corner.getX() > current.getX() ? corner.getX() : current.getX()); i++) {
-            for (int j = ((int)(corner.getZ() > current.getZ() ? current.getZ() : corner.getZ()) + 150); j <= ((int)(corner.getZ() > current.getZ() ? corner.getZ() : current.getZ()) + 150); j++) {
-                map[i][j] = true;
-            }
-        }
     }
 
     // Automatically uses settings for the brick test area
@@ -144,9 +117,9 @@ public class BuilderUtils {
         } else if (!spaces.left2 && !spaces.front2 && !spaces.right2) {
             shape = PieceLayout.ROOM;
         } else {
-            if (spaces.front2 && spaces.right2) {
+            if (spaces.right2) {
                 shape = PieceLayout.RIGHT_T;
-            } else if (spaces.front2 && spaces.left2) {
+            } else if (spaces.left2) {
                 shape = PieceLayout.LEFT_T;
             } else {
                 shape = PieceLayout.STRAIGHT;
@@ -177,14 +150,18 @@ public class BuilderUtils {
 
     // Applies transformations to all the offsets. Thanks linear algebra
     public static Location applyRotation(Location input, StructureRotation rotation) {
+        int center = 0;
+        if (Math.abs(input.getZ() - ((int)input.getZ())) > .1) {
+            center = 1; // Used for entities that are meant to be spawned centered on a block
+        }
         if(rotation == StructureRotation.NONE) {
             return input;
         } else if (rotation == StructureRotation.ROTATION_90) {
-            return new Location(getWorld("Dungeon"), input.getZ() * -1, input.getY(), input.getX());
+            return new Location(getWorld("Dungeon"), input.getZ() * -1 + center, input.getY(), input.getX(), (input.getYaw() + 90) % 360, input.getPitch());
         } else if (rotation == StructureRotation.ROTATION_180) {
-            return new Location(getWorld("Dungeon"), input.getX() * -1, input.getY(), input.getZ() * -1);
+            return new Location(getWorld("Dungeon"), input.getX() * -1 + center, input.getY(), input.getZ() * -1 + center, (input.getYaw() + 180) % 360, input.getPitch());
         } else if (rotation == StructureRotation.ROTATION_270) {
-            return new Location(getWorld("Dungeon"), input.getZ(), input.getY(), input.getX() * -1);
+            return new Location(getWorld("Dungeon"), input.getZ(), input.getY(), input.getX() * -1 + center, (input.getYaw() + 270) % 360, input.getPitch());
         }
         return input;
     }
@@ -192,25 +169,42 @@ public class BuilderUtils {
     // Only does left-right mirroring for now, and maybe forever
     // Warning: nightmare fuel
     public static Location applyMirror(Location input, boolean even) {
+        int center = 0;
+        if (Math.abs(input.getZ() - ((int)input.getZ())) > .1) {
+            center = 1; // Used for entities that are meant to be spawned centered on a block
+        }
         if (!even) {
-            return new Location(getWorld("Dungeon"), input.getX(), input.getY(), input.getZ() * -1);
+            Location newLoc;
+            if ((int) input.getYaw() == 90) {
+                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), input.getZ() * -1 + center, 90, input.getPitch());
+                return newLoc;
+            } else if ((int) input.getYaw() == 270) {
+                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), input.getZ() * -1 + center, 270, input.getPitch());
+                return newLoc;
+            } else if ((int) input.getYaw() == 180) {
+                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), input.getZ() * -1 + center, 0, input.getPitch());
+                return newLoc;
+            } else {
+                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), input.getZ() * -1 + center, 180, input.getPitch());
+                return newLoc;
+            }
         } else {
             Location newLoc;
             if (input.getX() == 0 && (int)input.getYaw() == 0) {
-                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), (input.getZ() - 1) * -1);
+                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), (input.getZ() - 1) * -1, 180, input.getPitch());
                 return newLoc;
             }
             if ((int)input.getYaw() == 90) {
-                newLoc = new Location(getWorld("Dungeon"), input.getX() - 1, input.getY(), input.getZ() * -1 + 1);
+                newLoc = new Location(getWorld("Dungeon"), input.getX() - 1, input.getY(), input.getZ() * -1 + 1,  90, input.getPitch());
                 return newLoc;
             } else if ((int)input.getYaw() == 270) {
-                newLoc = new Location(getWorld("Dungeon"), input.getX() + 1, input.getY(), input.getZ() * -1 + 1);
+                newLoc = new Location(getWorld("Dungeon"), input.getX() + 1, input.getY(), input.getZ() * -1 + 1, 270, input.getPitch());
                 return newLoc;
             } else if ((int)input.getYaw() == 180) {
-                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), (input.getZ() - 1) * -1 + 1);
+                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), (input.getZ() - 1) * -1 + 1, 0, input.getPitch());
                 return newLoc;
             } else {
-                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), (input.getZ() - 1) * -1 - 1);
+                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), (input.getZ() - 1) * -1 - 1, 180, input.getPitch());
                 return newLoc;
             }
         }

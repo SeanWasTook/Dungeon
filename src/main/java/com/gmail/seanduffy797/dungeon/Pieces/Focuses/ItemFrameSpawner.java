@@ -6,6 +6,7 @@ import com.gmail.seanduffy797.dungeon.Dungeon;
 import com.gmail.seanduffy797.dungeon.builders.BuilderUtils;
 import com.gmail.seanduffy797.dungeon.tasks.SpawnItemFrame;
 import com.gmail.seanduffy797.dungeon.tasks.SummonPainting;
+import com.gmail.seanduffy797.dungeon.tasks.TaskList;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.BlockFace;
@@ -86,5 +87,6 @@ public class ItemFrameSpawner extends Focus {
         }
         BukkitTask task = new SpawnItemFrame(location, contents, blockFace, isGlow)
                 .runTaskLater(Dungeon.getPlugin(), 400L);
+        TaskList.tasks.add(task);
     }
 }

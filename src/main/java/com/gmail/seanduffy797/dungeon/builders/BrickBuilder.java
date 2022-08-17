@@ -3,7 +3,9 @@ package com.gmail.seanduffy797.dungeon.builders;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.DungeonMob;
 import com.gmail.seanduffy797.dungeon.Pieces.Bricks;
+import com.gmail.seanduffy797.dungeon.Pieces.Focuses.DungeonEntity;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.FocusMeta;
 import com.gmail.seanduffy797.dungeon.Pieces.PieceLayout;
@@ -145,6 +147,69 @@ public class BrickBuilder {
         BuilderUtils.fillMap(map, current, corner);
         BrickPiecePicker.update(piece, region);
         piece.place(current, rotation, mirrorType);
+        // For debugging:
+        if (BrickPiecePicker.latestAssignmentSpot > 0) {
+            Material woolType = Material.MAGENTA_WOOL;
+            switch (BrickPiecePicker.latestAssignmentSpot) {
+                case 1:
+                    // Necessary empty, end or straight shape
+                    woolType = Material.PINK_WOOL;
+                    break;
+                case 2:
+                    // Necessary empty, other shape
+                    woolType = Material.RED_WOOL;
+                    break;
+                case 3:
+                    // Necessary empty, all rooms used
+                    woolType = Material.LIGHT_BLUE_WOOL;
+                    break;
+                case 4:
+                    // Necessary used
+                    woolType = Material.BLUE_WOOL;
+                    break;
+                case 5:
+                    // End layout
+                    woolType = Material.YELLOW_WOOL;
+                    break;
+                case 6:
+                    // Straight layout
+                    woolType = Material.ORANGE_WOOL;
+                    break;
+                case 7:
+                    // Room layout
+                    woolType = Material.CYAN_WOOL;
+                    break;
+                case 8:
+                    // Turn layout
+                    woolType = Material.PURPLE_WOOL;
+                    break;
+                case 9:
+                    // T layout, stick with T
+                    woolType = Material.LIME_WOOL;
+                    break;
+                case 10:
+                    // T layout, replace with hall
+                    woolType = Material.GREEN_WOOL;
+                    break;
+                case 11:
+                    // Cross layout, stick with cross
+                    woolType = Material.WHITE_WOOL;
+                    break;
+                case 12:
+                    // Cross layout, replace with T
+                    woolType = Material.LIGHT_GRAY_WOOL;
+                    break;
+                case 13:
+                    // Cross layout, replace with hall
+                    woolType = Material.GRAY_WOOL;
+                    break;
+                case 14:
+                    // Cross layout, replace with room
+                    woolType = Material.BLACK_WOOL;
+                    break;
+            }
+            coverWithWool(woolType, current, corner);
+        }
 
         corner.subtract(cornerOffset);
         current.subtract(finalOffset);
@@ -156,10 +221,13 @@ public class BrickBuilder {
             Location newLoc = current.clone();
             if(mirror) {
                 newFoc.mirror = StructureMirror.LEFT_RIGHT;
-                newFoc.location = newLoc.add(BuilderUtils.applyRotation(BuilderUtils.applyMirror(newFoc.location, isEven), rotation));
+                newFoc.location = BuilderUtils.applyMirror(newFoc.location, isEven);
+                newFoc.location = BuilderUtils.applyRotation(newFoc.location, rotation);
+                newFoc.location = newFoc.location.add(newLoc);
             } else {
                 newFoc.mirror = StructureMirror.NONE;
-                newFoc.location = newLoc.add(BuilderUtils.applyRotation(newFoc.location, rotation));
+                newFoc.location = BuilderUtils.applyRotation(newFoc.location, rotation);
+                newFoc.location = newFoc.location.add(newLoc);
             }
             newFoc.rotation = rotation;
             newFoc.start();
@@ -201,6 +269,19 @@ public class BrickBuilder {
                 }
             } else {
                 openEnds.add(new BrickUnit(newRegion, newLoc.add(BuilderUtils.applyRotation(loc, rotation)), newRotation, StructureMirror.NONE, newDepth, piece));
+            }
+        }
+    }
+
+    private static void coverWithWool(Material woolType, Location corner1, Location corner2) {
+        int startX = Math.min((int) corner1.getX(), (int) corner2.getX());
+        int endX = Math.max((int) corner1.getX(), (int) corner2.getX());
+        int startZ = Math.min((int) corner1.getZ(), (int) corner2.getZ());
+        int endZ = Math.max((int) corner1.getZ(), (int) corner2.getZ());
+
+        for (int xVal = startX; xVal <= endX; xVal++) {
+            for (int zVal = startZ; zVal <= endZ; zVal++) {
+                DungeonManager.world.getBlockAt(new Location(DungeonManager.world, xVal, corner2.getY() + 1, zVal)).setType(woolType);
             }
         }
     }

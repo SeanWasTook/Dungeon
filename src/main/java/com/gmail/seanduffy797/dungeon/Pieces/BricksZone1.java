@@ -426,12 +426,25 @@ public enum BricksZone1 implements Bricks {
                     new Location(getWorld("Dungeon"), 7, 0, -8, 270, 0), Region.BRICK,
                     new Location(getWorld("Dungeon"), 23, 0, -8, 270, 0), Region.BRICK)),
             new ArrayList<>(Arrays.asList(
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 29.5, 0, 0.5, 90, 0), DungeonMob.GATEKEEPER_SKELETON, -1, 3),
                     new IronGate(new Location(getWorld("Dungeon"), 30, 0, 0), 3),
+
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 29.5, 0, 16.5, 90, 0), DungeonMob.GATEKEEPER_SKELETON, -1, 4),
                     new IronGate(new Location(getWorld("Dungeon"), 30, 0, 16), 4),
+
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 7.5, 0, 22.5, 180, 0), DungeonMob.GATEKEEPER_SKELETON, -1, 6),
                     new IronGate(new Location(getWorld("Dungeon"), 7, 0, 23), 6),
+
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 23.5, 0, 22.5, 180, 0), DungeonMob.GATEKEEPER_SKELETON, -1, 5),
                     new IronGate(new Location(getWorld("Dungeon"), 23, 0, 23), 5),
+
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 1.5, 0, 16.5, 270, 0), DungeonMob.GATEKEEPER_SKELETON, -1, 7),
                     new IronGate(new Location(getWorld("Dungeon"), 0, 0, 16), 7),
+
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 7.5, 0, -5.5, 0, 0), DungeonMob.GATEKEEPER_SKELETON, -1, 1),
                     new IronGate(new Location(getWorld("Dungeon"), 7, 0, -7), 1),
+
+                    new DungeonEntity(new Location(getWorld("Dungeon"), 23.5, 0, -4.5, 0, 0), DungeonMob.GATEKEEPER_SKELETON, -1, 2),
                     new IronGate(new Location(getWorld("Dungeon"), 23, 0, -7), 2),
                     new Spawner(new Location(getWorld("Dungeon"), 10, 6, 8), SpawnerEnum.GLADIATOR),
                     new Spawner(new Location(getWorld("Dungeon"), 15, 6, 3), SpawnerEnum.GLADIATOR),

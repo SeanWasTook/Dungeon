@@ -9,18 +9,18 @@ public class OpenSpaces {
 
     static World world = getWorld("Dungeon");
 
-    public static Location l1Start = new Location(world, 1, 0, -5);
-    public static Location l1Corner = new Location(world, 9, 5, -6);
-    public static Location l2Start = new Location(world, 1, 0, -20);
-    public static Location l2Corner = new Location(world, 9, 5, -21);
-    public static Location r1Start = new Location(world, 1, 0, 5);
-    public static Location r1Corner = new Location(world, 9, 5, 6);
-    public static Location r2Start = new Location(world, 1, 0, 20);
-    public static Location r2Corner = new Location(world, 9, 5, 21);
-    public static Location f1Start = new Location(world, 9, 0, -3);
-    public static Location f1Corner = new Location(world, 10, 5, 3);
-    public static Location f2Start = new Location(world, 26, 0, -3);
-    public static Location f2Corner = new Location(world, 27, 5, 3);
+    public static Location l1Start = new Location(world, 1, -1, -5);
+    public static Location l1Corner = new Location(world, 8, 4, -6);
+    public static Location l2Start = new Location(world, 1, -1, -15);
+    public static Location l2Corner = new Location(world, 9, 4, -16);
+    public static Location r1Start = new Location(world, 1, -1, 5);
+    public static Location r1Corner = new Location(world, 8, 4, 6);
+    public static Location r2Start = new Location(world, 1, -1, 15);
+    public static Location r2Corner = new Location(world, 9, 4, 16);
+    public static Location f1Start = new Location(world, 9, -1, -3);
+    public static Location f1Corner = new Location(world, 10, 4, 3);
+    public static Location f2Start = new Location(world, 26, -1, -3);
+    public static Location f2Corner = new Location(world, 27, 4, 3);
 
     public boolean left1;
     public boolean left2;

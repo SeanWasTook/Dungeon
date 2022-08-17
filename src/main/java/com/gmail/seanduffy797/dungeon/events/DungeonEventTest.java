@@ -2,6 +2,7 @@ package com.gmail.seanduffy797.dungeon.events;
 
 import com.gmail.seanduffy797.dungeon.DungeonItem;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.DungeonMob;
 import com.gmail.seanduffy797.dungeon.Items.TeleportPearl;
 import com.gmail.seanduffy797.dungeon.KeyLocation;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.FocusMeta;
@@ -39,22 +40,30 @@ public class DungeonEventTest implements Listener {
         if (entity.customName() != null){
             entityName = ((TextComponent) entity.customName()).content();
         }
+        DungeonMob customEntityType = null;
+        PersistentDataContainer entityTags = entity.getPersistentDataContainer();
+        if (entityTags.has(DungeonManager.customMobKey)) {
+            String mobName = entityTags.get(DungeonManager.customMobKey, PersistentDataType.STRING);
+            customEntityType = DungeonMob.valueOf(mobName);
+        }
+
         EquipmentSlot slot = event.getHand();
         PlayerInventory inventory = player.getInventory();
         ItemStack item = inventory.getItem(slot);
+
         // Name Color Check: BAF3BD
         if (entity.getType() == EntityType.PARROT && entityName != null && entityName.equalsIgnoreCase("Mayor")) {
             player.sendMessage("Hello, I am the Mayor. Bring me 10 Carrots and I'll give you a Diamond");
-        } else if (entity.getType() == EntityType.SKELETON && entityName != null && entityName.equalsIgnoreCase("GATEKEEPER")){
+        } else if (customEntityType == DungeonMob.GATEKEEPER_SKELETON && entityTags.has(DungeonMob.customId)){
             if(item.getItemMeta() != null) {
                 PersistentDataContainer tags = item.getItemMeta().getPersistentDataContainer();
                 if (tags.has(DungeonManager.customItemKey)) {
                     String itemName = tags.get(DungeonManager.customItemKey, PersistentDataType.STRING);
                     DungeonItem dungeonItem = DungeonItem.valueOf(itemName);
-                    player.sendMessage(ChatColor.BLUE + "That is a " + dungeonItem.name());
+                    player.sendMessage(ChatColor.BLUE + "You may pass");
                     if (dungeonItem == DungeonItem.PALM_BRANCH) {
                         Skeleton skelly = (Skeleton) entity;
-                        int number = (int) skelly.getHealth();
+                        int number = entityTags.get(DungeonMob.customId, PersistentDataType.INTEGER);
                         FocusMeta.ironGates.get(number).destroy();
                         item.subtract();
                         skelly.remove();
@@ -65,6 +74,27 @@ public class DungeonEventTest implements Listener {
             if(!slot.equals(EquipmentSlot.OFF_HAND)) {
                 player.sendMessage(ChatColor.BLUE + "You must give me a Palm Branch to prove your worth");
             }
+            // Legacy code in case this breaks:
+//        } else if (entity.getType() == EntityType.SKELETON && entityName != null && entityName.equalsIgnoreCase("GATEKEEPER")){
+//            if(item.getItemMeta() != null) {
+//                PersistentDataContainer tags = item.getItemMeta().getPersistentDataContainer();
+//                if (tags.has(DungeonManager.customItemKey)) {
+//                    String itemName = tags.get(DungeonManager.customItemKey, PersistentDataType.STRING);
+//                    DungeonItem dungeonItem = DungeonItem.valueOf(itemName);
+//                    player.sendMessage(ChatColor.BLUE + "You may pass");
+//                    if (dungeonItem == DungeonItem.PALM_BRANCH) {
+//                        Skeleton skelly = (Skeleton) entity;
+//                        int number = (int) skelly.getHealth();
+//                        FocusMeta.ironGates.get(number).destroy();
+//                        item.subtract();
+//                        skelly.remove();
+//                        return;
+//                    }
+//                }
+//            }
+//            if(!slot.equals(EquipmentSlot.OFF_HAND)) {
+//                player.sendMessage(ChatColor.BLUE + "You must give me a Palm Branch to prove your worth");
+//            }
         } else if (entityName != null) {
             for (NPCEnum npc : NPCEnum.values()) {
                 if (entityName.equalsIgnoreCase(npc.getName())) {

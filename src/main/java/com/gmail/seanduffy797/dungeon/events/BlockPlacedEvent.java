@@ -3,6 +3,7 @@ package com.gmail.seanduffy797.dungeon.events;
 import com.gmail.seanduffy797.dungeon.DungeonItem;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.tasks.BurnOut;
+import com.gmail.seanduffy797.dungeon.tasks.TaskList;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -33,6 +34,7 @@ public class BlockPlacedEvent implements Listener {
                 Plugin plugin = getPluginManager().getPlugin("Dungeon");
                 if(plugin == null) {return;}
                 BukkitTask task = new BurnOut(block).runTaskLater(plugin, 12000L);
+                TaskList.tasks.add(task);
             }
             if (tags.has(DungeonManager.customItemKey)) {
                 String itemName = tags.get(DungeonManager.customItemKey, PersistentDataType.STRING);

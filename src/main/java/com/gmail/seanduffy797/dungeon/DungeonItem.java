@@ -12,15 +12,24 @@ public enum DungeonItem {
 
     TELEPORT_PEARL,
     GUARD_BOW (Weapons::createGuardBow),
+    PILLAGER_CROSSBOW (Weapons::createPillagerCrossbow),
     ARACHNICIDE (Weapons::createArachnicide),
     ACHILLOBATOR (Weapons::createAchillobator),
     VINDICATORS_AXE (VindicatorsAxe::createAxe),
+    BRUNHILDES_FURY (Weapons::createBrunhildesFury),
+    ANCIENT_GOLD_AXE (Weapons::createAncientGoldAxe),
     SKELETON_KEY (Keys::createSkeletonKey),
     BASEMENT_KEY (Keys::createBasementKey),
     OLD_KEY (Keys::createOldKey),
     CHISELED_STONE_PICK (BuildingItems::createChiseledStonePick),
+    LIGHTBREAKER_PICK (BuildingItems::createLightbreakerPick),
+    COAL_PICK (BuildingItems::createCoalPick),
+    NOVICE_PICK (BuildingItems::createNovicePick),
+    CANDLE_LIGHTER (BuildingItems::createCandleLighter),
     TORCH (Torch::createTorch),
     SOUL_TORCH (Torch::createSoulTorch),
+    LANTERN (Torch::createLantern),
+    SOUL_LANTERN (Torch::createSoulLantern),
     CANDLE (Torch::createCandle),
     WATER_HAT (Hats::createWaterHat),
     FIRE_HAT (Hats::createFireHat),
@@ -46,7 +55,10 @@ public enum DungeonItem {
     SKELETON_LEATHER_HAT (SkeletonLeather::createHat),
     SKELETON_LEATHER_TUNIC (SkeletonLeather::createTunic),
     SKELETON_LEATHER_PANTS (SkeletonLeather::createPants),
-    SKELETON_LEATHER_BOOTS (SkeletonLeather::createBoots);
+    SKELETON_LEATHER_BOOTS (SkeletonLeather::createBoots),
+    SPECIAL_LEATHER_HAT (SpecialLeather::createSpecialLeatherHat),
+    JEREMIAHS_SOUP (FoodItems::createJeremiahsSoup),
+    RARE_STEAK (FoodItems::createRareSteak);
 
     private final Supplier<ItemStack> supplier;
 

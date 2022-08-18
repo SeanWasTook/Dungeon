@@ -19,6 +19,7 @@ public class ItemFrameSpawner extends Focus {
     public ItemStack contents;
     public StructureRotation facing;
     public boolean isGlow;
+    public boolean isFixed = false;
 
     public ItemFrameSpawner(Location location, ItemStack contents, StructureRotation facing) {
         this.location = location;
@@ -33,15 +34,23 @@ public class ItemFrameSpawner extends Focus {
         this.isGlow = isGlow;
     }
 
+    public ItemFrameSpawner(Location location, ItemStack contents, StructureRotation facing, boolean isGlow, boolean isFixed) {
+        this.location = location;
+        this.contents = contents;
+        this.facing = facing;
+        this.isGlow = isGlow;
+        this.isFixed = isFixed;
+    }
+
     public ItemFrameSpawner makeCopy(Focus other) {
         if(other instanceof ItemFrameSpawner) {
             ItemFrameSpawner itemFrameSpawner = (ItemFrameSpawner) other;
             if (contents != null) {
                 return new ItemFrameSpawner(itemFrameSpawner.location.clone(),
-                        itemFrameSpawner.contents.clone(), facing, itemFrameSpawner.isGlow);
+                        itemFrameSpawner.contents.clone(), facing, itemFrameSpawner.isGlow, itemFrameSpawner.isFixed);
             } else {
                 return new ItemFrameSpawner(itemFrameSpawner.location.clone(),
-                        null, facing, itemFrameSpawner.isGlow);
+                        null, facing, itemFrameSpawner.isGlow, itemFrameSpawner.isFixed);
             }
         } else {
             return null;

@@ -12,7 +12,11 @@ import java.util.List;
 public abstract class CustomVillager extends CustomMob {
 
     public static void addTrade(Villager villager, ItemStack input1, @Nullable ItemStack input2, ItemStack output) {
-        MerchantRecipe newRecipe = new MerchantRecipe(output, 99999999);
+        addTrade(villager, input1, input2, output, 99999999);
+    }
+
+    public static void addTrade(Villager villager, ItemStack input1, @Nullable ItemStack input2, ItemStack output, int maxUses) {
+        MerchantRecipe newRecipe = new MerchantRecipe(output, maxUses);
         newRecipe.addIngredient(input1);
         if(input2 != null) {
             newRecipe.addIngredient(input2);

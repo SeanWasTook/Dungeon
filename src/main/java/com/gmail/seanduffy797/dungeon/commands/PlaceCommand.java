@@ -99,7 +99,7 @@ public class PlaceCommand implements CommandExecutor {
                 Location newLoc = loc.clone();
                 if(mirror.equals(StructureMirror.LEFT_RIGHT)) {
                     newFoc.mirror = StructureMirror.LEFT_RIGHT;
-                    newFoc.location = BuilderUtils.applyRotation(BuilderUtils.applyMirror(newFoc.location, piece.isEven()), rotation);
+                    newFoc.location = BuilderUtils.applyRotation(BuilderUtils.applyMirrorFocus(newFoc.location, piece.isEven()), rotation);
                 } else {
                     newFoc.mirror = StructureMirror.NONE;
                     newFoc.location = BuilderUtils.applyRotation(newFoc.location, rotation);

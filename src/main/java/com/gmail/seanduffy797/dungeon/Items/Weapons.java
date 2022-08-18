@@ -16,13 +16,16 @@ import java.util.Random;
 public class Weapons {
 
     public static ItemStack guardBow;
+    public static ItemStack pillagerCrossbow;
     public static ItemStack arachnicide;
     public static ItemStack achillobator;
+    public static ItemStack brunhildesFury;
 
     public static void init() {
         createGuardBow();
         createArachnicide();
         createAchillobator();
+        createPillagerCrossbow();
     }
 
     public static ItemStack createGuardBow() {
@@ -42,7 +45,7 @@ public class Weapons {
         meta.setDestroyableKeys(Collections.singletonList(Material.COBWEB.getKey()));
         arachnicide.setItemMeta(meta);
         List<Component> lore = new ArrayList<>();
-        lore.add(Component.text("Adept at clearing cobwebs too").color(NamedTextColor.GOLD));
+        lore.add(Component.text("Adept at clearing cobwebs").color(NamedTextColor.GOLD));
         arachnicide.lore(lore);
         return arachnicide;
     }
@@ -54,5 +57,34 @@ public class Weapons {
         meta.addEnchant(Enchantment.DAMAGE_UNDEAD, rnd + 1, true);
         achillobator.setItemMeta(meta);
         return achillobator;
+    }
+    public static ItemStack createPillagerCrossbow() {
+        pillagerCrossbow = new ItemStack(Material.CROSSBOW);
+        ItemMeta meta = pillagerCrossbow.getItemMeta();
+        meta.displayName(Component.text("Raiding Crossbow"));
+        pillagerCrossbow.setItemMeta(meta);
+        return pillagerCrossbow;
+    }
+    public static ItemStack createBrunhildesFury() {
+        brunhildesFury = new ItemStack(Material.IRON_SWORD);
+        ItemMeta meta = brunhildesFury.getItemMeta();
+        meta.displayName(Component.text("Brunhilde's Fury"));
+        meta.addEnchant(Enchantment.DAMAGE_ALL, 3, true);
+        meta.addEnchant(Enchantment.FIRE_ASPECT, 1, true);
+        brunhildesFury.setItemMeta(meta);
+        return brunhildesFury;
+    }
+    public static ItemStack createAncientGoldAxe() {
+        ItemStack ancientGoldAxe = new ItemStack(Material.GOLDEN_AXE);
+        ItemMeta meta = ancientGoldAxe.getItemMeta();
+        meta.setUnbreakable(true);
+        meta.displayName(Component.text("Ancient Gold Axe"));
+        meta.addEnchant(Enchantment.DAMAGE_UNDEAD, 3, true);
+        meta.addEnchant(Enchantment.VANISHING_CURSE, 1, true);
+        ancientGoldAxe.setItemMeta(meta);
+        List<Component> lore = new ArrayList<>();
+        lore.add(Component.text("Passed down in Sette's family for generations").color(NamedTextColor.GOLD));
+        ancientGoldAxe.lore(lore);
+        return ancientGoldAxe;
     }
 }

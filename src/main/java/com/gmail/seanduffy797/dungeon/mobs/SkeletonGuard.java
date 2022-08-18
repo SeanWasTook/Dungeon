@@ -15,6 +15,8 @@ public class SkeletonGuard extends CustomMob {
     @Override
     public Entity spawn(Location location) {
         Skeleton skelly = (Skeleton) DungeonManager.world.spawnEntity(location, EntityType.SKELETON);
+        skelly.setPersistent(true);
+        skelly.setRemoveWhenFarAway(false);
         EntityEquipment gear = skelly.getEquipment();
         gear.setItemInMainHand(DungeonItem.GUARD_BOW.getItemStack());
         gear.setItemInMainHandDropChance(0.1f);

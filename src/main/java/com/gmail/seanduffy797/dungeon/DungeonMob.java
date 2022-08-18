@@ -1,5 +1,6 @@
 package com.gmail.seanduffy797.dungeon;
 
+import com.gmail.seanduffy797.dungeon.Pieces.Mine;
 import com.gmail.seanduffy797.dungeon.mobs.*;
 import com.gmail.seanduffy797.dungeon.mobs.villagers.*;
 import org.bukkit.Location;
@@ -14,7 +15,10 @@ public enum DungeonMob {
     AXE_VINDICATOR(new AxeVindicator()),
     COMMON_SPIDER(new CommonSpider()),
     COMMON_DROWNED(new CommonDrowned()),
+    TRIDENT_DROWNED(new TridentDrowned()),
     GUARD_SKELETON(new SkeletonGuard()),
+    PERSISTENT_ZOMBIE_VILLAGER(new PersistentZombieVillager()),
+    PERSISTENT_PILLAGER(new PersistentPillager()),
     GLADIATOR_SKELETON(new GladiatorSkeleton()),
     RUDIARIUS(new Rudiarius()),
     CESTUS(new Cestus()),
@@ -32,6 +36,18 @@ public enum DungeonMob {
     WEAPON_MERCHANT(new WeaponMerchant()),
     BLACKSMITH(new Blacksmith()),
     LIEUTENANT(new Lieutenant()),
+    MINE_FOREMAN(new MineForeman()),
+    BRUNHILDE(new Brunhilde()),
+    FLYNN(new Flynn()),
+    GRISHA(new Grisha()),
+    LUXAN(new Luxan()),
+    ROSANDE(new Rosande()),
+    SETTE(new Sette()),
+    VEAL(new Veal()),
+    WYATT(new Wyatt()),
+    JEREMIAH(new Jeremiah()),
+    DUNGEON_MOOSHROOM(new DungeonMooshroom()),
+    BABY_MOOSHROOM(new BabyMooshroom()),
     DUNGEON_PIG(new DungeonPig()),
     DUNGEON_LLAMA(new DungeonLlama());
 

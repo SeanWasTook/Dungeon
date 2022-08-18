@@ -5,6 +5,7 @@ import com.github.shynixn.structureblocklib.api.entity.StructureEntity;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.DungeonMob;
 import com.gmail.seanduffy797.dungeon.EntityManager;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.*;
 import org.bukkit.ChatColor;
@@ -33,8 +34,13 @@ public enum Sewer implements Bricks{
                     new Location(getWorld("Dungeon"), 41, 11, -7, 0, 0), Region.PIPE2,
                     new Location(getWorld("Dungeon"), 27, 7, 21, 90, 0), Region.PIPE3)),
             new ArrayList<>(Arrays.asList(
-                    new Chest(new Location(getWorld("Dungeon"), 4, 0, 9), Loot.BRICKWATER, false, 30000),
-                    new Chest(new Location(getWorld("Dungeon"), 4, 6, 15), Loot.BRICKWATER, false, 30000)))),
+                    new Chest(new Location(getWorld("Dungeon"), 4, 0, 9), Loot.BRICKWATER, true, 30000),
+                    new Chest(new Location(getWorld("Dungeon"), 10, 9, -1), Loot.BRICKT1, true, 30000),
+                    new Chest(new Location(getWorld("Dungeon"), 4, 6, 15), Loot.BRICKWATER, true, 30000),
+                    new Chest(new Location(getWorld("Dungeon"), 22, 9, 10), Loot.BRICKT1, true, 30000),
+                    new Chest(new Location(getWorld("Dungeon"), 27, 13, 7), Loot.BRICKT2, true, 30000),
+                    new DungeonEntity(new Location(DungeonManager.world, 20.5, -5, -1.5), DungeonMob.COMMON_DROWNED, 8000),
+                    new DungeonEntity(new Location(DungeonManager.world, 20.5, -5, 2.5), DungeonMob.COMMON_DROWNED, 8000)))),
 
     SEWERTRANSITION ("sewertransition", 1, 10, 7, new Location(getWorld("Dungeon"), 0, -5, -3), true,
             new HashMap<>(Collections.singletonMap(
@@ -43,11 +49,15 @@ public enum Sewer implements Bricks{
     SEWERHALL2 ("sewerhall2", 5, 10, 7, new Location(getWorld("Dungeon"), 0, -5, -3), true,
             new HashMap<>(Collections.singletonMap(
                     new Location(getWorld("Dungeon"), 5, 0, 0), Region.SEWER)),
-            new ArrayList<>()),
+            new ArrayList<>(Collections.singletonList(
+                    new DungeonEntity(new Location(DungeonManager.world, 2.5, -3, 0.5), DungeonMob.COMMON_DROWNED, 8000)
+            ))),
     SEWERTURN1 ("sewerturn1", 7, 10, 7, new Location(getWorld("Dungeon"), 0, -5, -3), true,
             new HashMap<>(Collections.singletonMap(
                     new Location(getWorld("Dungeon"), 3, 0, -4, 270, 0), Region.SEWER)),
-            new ArrayList<>()),
+            new ArrayList<>(Collections.singletonList(
+                    new PaintingSpawner(new Location(DungeonManager.world, 2, 2, 2), "wasteland", StructureRotation.ROTATION_270, false)
+            ))),
     SEWERT1 ("sewert1", 7, 10, 7, new Location(getWorld("Dungeon"), 0, -5, -3), true,
             new HashMap<>(Map.of(
                     new Location(getWorld("Dungeon"), 7, 0, 0), Region.SEWER,
@@ -63,7 +73,7 @@ public enum Sewer implements Bricks{
     SEWEREND2 ("sewerend2", 3, 10, 7, new Location(getWorld("Dungeon"), 0, -5, -3), true,
             new HashMap<>(),
             new ArrayList<>(Collections.singletonList(
-                    new Chest(new Location(getWorld("Dungeon"), 1, 1, -1), Loot.BRICKWATER, false, 35000)))),
+                    new Chest(new Location(getWorld("Dungeon"), 1, 1, -1), Loot.BRICKWATER, true, 35000)))),
 
     SEWERROOM1 ("sewerroom1", 12, 15, 13, new Location(getWorld("Dungeon"), 0, -5, -6), true,
             new HashMap<>(Map.of(
@@ -72,8 +82,9 @@ public enum Sewer implements Bricks{
                     new Location(getWorld("Dungeon"), 5, 5, -7, 270, 0), Region.PIPE2)),
             new ArrayList<>(Arrays.asList(
                     new Spawner(new Location(DungeonManager.world, 6, 1,3), SpawnerEnum.COMMON_DROWNED),
-                    new Chest(new Location(getWorld("Dungeon"), 1, 6, -3), Loot.BRICKWATER, false, 30000),
-                    new Chest(new Location(getWorld("Dungeon"), 7, -4, 2), Loot.BRICKWATER, false, 30000)))),
+                    new Chest(new Location(getWorld("Dungeon"), 1, 6, -3), Loot.BRICKWATER, true, 30000),
+                    new Chest(new Location(getWorld("Dungeon"), 7, -4, 2), Loot.BRICKWATER, true, 30000),
+                    new DungeonEntity(new Location(DungeonManager.world, 5.5, -2, 0.5), DungeonMob.COMMON_DROWNED, 8000)))),
     SEWERROOM2 ("sewerroom2", 4, 10, 7, new Location(getWorld("Dungeon"), 0, -5, -3), true,
             new HashMap<>(Collections.singletonMap(
                     new Location(getWorld("Dungeon"), 4, 1, 0), Region.PIPE3)),
@@ -99,7 +110,7 @@ public enum Sewer implements Bricks{
                     new Location(getWorld("Dungeon"), 4, 0, -5, 270, 0), Region.SEWER,
                     new Location(getWorld("Dungeon"), 4, 2, 6, 90, 0), Region.PIPE2)),
             new ArrayList<>(Collections.singletonList(
-                    new Chest(new Location(getWorld("Dungeon"), 2, 0, 4), Loot.BRICKWATER, false, 35000)))),
+                    new Chest(new Location(getWorld("Dungeon"), 6, 0, 4), Loot.BRICKWATER, true, 35000)))),
 
     HALLPIPE3CROSS ("hallpipe3cross", 9, 13, 7, new Location(getWorld("Dungeon"), 0, -5, -3), true,
             new HashMap<>(Map.of(

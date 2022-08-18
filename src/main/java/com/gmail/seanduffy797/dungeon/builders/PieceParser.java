@@ -468,7 +468,13 @@ public class PieceParser {
         } else {
             isGlow = false;
         }
-        pieceData.foci.add(new ItemFrameSpawner(location, contents, facing, isGlow));
+        boolean isFixed;
+        if (json.containsKey("isFixed")) {
+            isFixed = (boolean) json.get("isFixed");
+        } else {
+            isFixed = false;
+        }
+        pieceData.foci.add(new ItemFrameSpawner(location, contents, facing, isGlow, isFixed));
     }
     private static void parseLockedDoor(JSONObject json, PieceData pieceData) {
         JSONArray jsonLoc;

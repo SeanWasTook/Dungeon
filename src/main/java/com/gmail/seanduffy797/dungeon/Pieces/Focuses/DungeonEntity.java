@@ -60,10 +60,10 @@ public class DungeonEntity extends Focus {
         if(respawn) {
             if(id < 0) {
                 task = new SpawnMob(location, mobType)
-                        .runTaskTimer(plugin, 400L < respawnCoolDown ? respawnCoolDown : 400L, respawnCoolDown);
+                        .runTaskTimer(plugin, 400L, respawnCoolDown);
             } else {
                 task = new SpawnMob(location, mobType, id)
-                        .runTaskTimer(plugin, 400L < respawnCoolDown ? respawnCoolDown : 400L, respawnCoolDown);
+                        .runTaskTimer(plugin, 400L, respawnCoolDown);
             }
         } else {
             if(id < 0) {

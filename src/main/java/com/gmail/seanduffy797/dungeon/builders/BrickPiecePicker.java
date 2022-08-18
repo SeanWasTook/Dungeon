@@ -132,7 +132,7 @@ public class BrickPiecePicker {
         weights.put(BricksZone1.CROSS10, 0);
         weights.put(BricksZone1.CROSS11, 3);
         weights.put(BricksZone1.CROSS12, 2);
-        weights.put(BricksZone1.CROSS13, 2);
+        weights.put(BricksZone1.CROSS13, 1);
 
         weights.put(BricksZone1.ARENA, 0);
 
@@ -158,7 +158,7 @@ public class BrickPiecePicker {
         weights.put(BricksZone1.ROOM5, 0);
         weights.put(BricksZone1.ROOM6, 3);
         weights.put(BricksZone1.ROOM7, 2);
-        weights.put(BricksZone1.ROOM8, 1);
+        weights.put(BricksZone1.ROOM8, 3);
         weights.put(BricksZone1.SHRINE1, 3);
 
         weights.put(BricksZone1.STAIRDOWN1, 6);
@@ -182,34 +182,34 @@ public class BrickPiecePicker {
         weights.put(Sewer.HALLPIPE2T, 3);
         weights.put(Sewer.HALLPIPE3CROSS, 2);
 
-        weights.put(Pipe.P2HALL1, 3);
-        weights.put(Pipe.P2HALL2, 9);
-        weights.put(Pipe.P2TURN1, 1);
-        weights.put(Pipe.P2T1, 4);
-        weights.put(Pipe.P2CROSS1, 3);
+        weights.put(Pipe.P2HALL1, 5);
+        weights.put(Pipe.P2HALL2, 12);
+        weights.put(Pipe.P2TURN1, 4);
+        weights.put(Pipe.P2T1, 6);
+        weights.put(Pipe.P2CROSS1, 7);
         weights.put(Pipe.P2END0, 0);
-        weights.put(Pipe.P2END1, 4);
-        weights.put(Pipe.P2END2, 3);
+        weights.put(Pipe.P2END1, 6);
+        weights.put(Pipe.P2END2, 6);
 
-        weights.put(Pipe.P3HALL1, 3);
-        weights.put(Pipe.P3HALL2, 6);
-        weights.put(Pipe.P3HALL3, 6);
-        weights.put(Pipe.P3HALL4, 3);
-        weights.put(Pipe.P3HALL5, 3);
-        weights.put(Pipe.P3HALL6, 5);
-        weights.put(Pipe.P3TURN1, 2);
-        weights.put(Pipe.P3T1, 6);
-        weights.put(Pipe.P3CROSS1, 3);
-        weights.put(Pipe.P3CROSS2, 3);
+        weights.put(Pipe.P3HALL1, 4);
+        weights.put(Pipe.P3HALL2, 8);
+        weights.put(Pipe.P3HALL3, 8);
+        weights.put(Pipe.P3HALL4, 4);
+        weights.put(Pipe.P3HALL5, 4);
+        weights.put(Pipe.P3HALL6, 7);
+        weights.put(Pipe.P3TURN1, 3);
+        weights.put(Pipe.P3T1, 7);
+        weights.put(Pipe.P3CROSS1, 5);
+        weights.put(Pipe.P3CROSS2, 5);
         weights.put(Pipe.P3END0, 0);
-        weights.put(Pipe.P3END1, 8);
-        weights.put(Pipe.P3ROOM1, 3);
+        weights.put(Pipe.P3END1,9);
+        weights.put(Pipe.P3ROOM1, 6);
 
         weights.put(BricksZone2.HALL101, 3);
         weights.put(BricksZone2.HALL102, 4);
         weights.put(BricksZone2.HALL103, 3);
         weights.put(BricksZone2.HALL104, 0);
-        weights.put(BricksZone2.HALL115, 1);
+        weights.put(BricksZone2.HALL115, 0);
         weights.put(BricksZone2.HALL116, 2);
 
         weights.put(BricksZone2.HALL105, 1);
@@ -317,13 +317,13 @@ public class BrickPiecePicker {
         } else if (region == Region.PIPE3) {
             piece = pickPipe3Piece(layout);
         } else if (region == Region.BRICK2) {
-            piece = pickZone2Piece(layout);
+            piece = pickZone2Piece(layout, previous);
         } else if (region == Region.HOUSE) {
             piece = pickHousePiece(layout);
         } else if (region == Region.SEWER) {
             piece = pickSewerPiece(layout);
         } else {
-            piece = pickZone1Piece(layout);
+            piece = pickZone1Piece(layout, previous);
         }
 
         layouts.get(region).put(layout, layouts.get(region).get(layout) + 1);
@@ -384,20 +384,14 @@ public class BrickPiecePicker {
         }
     }
 
-    public static Bricks pickZone1Piece(PieceLayout layout) {
+    public static Bricks pickZone1Piece(PieceLayout layout, Bricks previous) {
         Bricks piece = getPiece(halls);
 
-        int total = 0;
-        for(Bricks cross: crosses2) {
-            total += weights.get(cross);
-        }
+        int total = typeCount(crosses);
 
-        if (total < 4 && weights.get(BricksZone1.STAIRDOWN1) == 0) {
+        if (total < 3 && weights.get(BricksZone1.STAIRDOWN1) == 0) {
             if (necessarys.get(Region.BRICK).size() == 0) {
-                int totalRooms = 0;
-                for(Bricks room: rooms) {
-                    totalRooms += weights.get(room);
-                }
+                int totalRooms = typeCount(rooms);
                 if (totalRooms > 0) {
                     if (layout == PieceLayout.END || layout == PieceLayout.STRAIGHT) {
                         // Assignment 1
@@ -438,7 +432,7 @@ public class BrickPiecePicker {
             latestAssignmentSpot = 8;
             piece = getPiece(turns);
         } else if(layout == PieceLayout.LEFT_T || layout == PieceLayout.RIGHT_T) {
-            if (Math.random() < 0.65) {
+            if (Math.random() < 0.6 && typeCount(ts) > 0) {
                 // Assignment 9
                 latestAssignmentSpot = 9;
                 piece = getPiece(ts);
@@ -448,7 +442,9 @@ public class BrickPiecePicker {
                 piece = getPiece(halls);
             }
         } else if(layout == PieceLayout.CROSS) {
-            if (openings.get(Region.BRICK) < 3 || (Math.random() < 0.5)) {
+            if (total > 0 && (openings.get(Region.BRICK) < 3
+                    || (isOfType(previous, crosses) && Math.random() < 0.1)
+                    || (!isOfType(previous, crosses) && Math.random() < 0.8))) {
                 // Assignment 11
                 latestAssignmentSpot = 11;
                 piece = getPiece(crosses);
@@ -470,52 +466,60 @@ public class BrickPiecePicker {
         return piece;
     }
 
-    public static Bricks pickZone2Piece(PieceLayout layout) {
+    public static Bricks pickZone2Piece(PieceLayout layout, Bricks previous) {
         Bricks piece = getPiece(halls);
 
-        int total = 0;
-        for(Bricks cross: crosses2) {
-            total += weights.get(cross);
-        }
+        int total = typeCount(crosses2);
 
         if (weights.get(BricksZone2.HALL101) == 0 || weights.get(BricksZone2.HOUSE7) == 0) {
             if (necessarys.get(Region.BRICK2).size() == 0) {
-                int totalRooms = 0;
-                for(Bricks room: rooms2) {
-                    totalRooms += weights.get(room);
-                }
+                int totalRooms = typeCount(rooms2);
                 if (totalRooms > 0) {
+                    latestAssignmentSpot = 2;
                     piece = getPiece(rooms2);
                 } else {
+                    latestAssignmentSpot = 3;
                     piece = getPiece(ends);
                 }
             } else {
+                latestAssignmentSpot = 4;
                 piece = necessarys.get(Region.BRICK2).get(0);
             }
             return piece;
         }
 
         if(layout == PieceLayout.END) {
+            latestAssignmentSpot = 5;
             piece = getPiece(ends);
         } else if (layout == PieceLayout.CROSS) {
-            if (total > 0 && Math.random() < 0.6) {
+            if (total > 0 &&
+                    ((isOfType(previous, crosses2) && Math.random() < 0.01) ||
+                    (!isOfType(previous, crosses2) && !isOfType(previous, crosses) && Math.random() < 0.8))) {
+                latestAssignmentSpot = 11;
                 piece = getPiece(crosses2);
-            } else if (Math.random() < 0.3) {
+            } else if (Math.random() < 0.2) {
+                latestAssignmentSpot = 12;
                 piece = getPiece(ts2);
             } else {
+                latestAssignmentSpot = 13;
                 piece = getPiece(halls2);
             }
         } else if (layout == PieceLayout.LEFTTURN || layout == PieceLayout.RIGHTTURN) {
+            latestAssignmentSpot = 8;
             piece = getPiece(turns2);
         } else if (layout == PieceLayout.RIGHT_T || layout == PieceLayout.LEFT_T) {
             if (Math.random() < 0.2) {
+                latestAssignmentSpot = 9;
                 piece = getPiece(ts2);
             } else {
+                latestAssignmentSpot = 10;
                 piece = getPiece(halls2);
             }
         } else if (layout == PieceLayout.ROOM) {
+            latestAssignmentSpot = 7;
             piece = getPiece(rooms2);
         } else if (layout == PieceLayout.STRAIGHT) {
+            latestAssignmentSpot = 6;
             piece = getPiece(halls2);
         }
 
@@ -523,15 +527,20 @@ public class BrickPiecePicker {
     }
 
     public static Bricks pickHousePiece(PieceLayout layout) {
+        latestAssignmentSpot = 15;
         Bricks piece = getPiece(houses);
 
         if(weights.get(BricksZone2.HOUSEHALL1) == 0 && weights.get(BricksZone2.HOUSEHALL2) == 0){
+            latestAssignmentSpot = 3;
             piece = getPiece(houses);
         } else if(layout == PieceLayout.END || layout == PieceLayout.LEFTTURN || layout == PieceLayout.RIGHTTURN) {
+            latestAssignmentSpot = 5;
             piece = getPiece(houses);
         } else if (layout == PieceLayout.CROSS && Math.random() < 0.3) {
+            latestAssignmentSpot = 11;
             piece = getPiece(houseHalls);
         } else if (Math.random() < 0.1) {
+            latestAssignmentSpot = 9;
             piece = getPiece(houseHalls);
         }
 
@@ -539,30 +548,40 @@ public class BrickPiecePicker {
     }
 
     public static Bricks pickSewerPiece(PieceLayout layout) {
+        latestAssignmentSpot = 15;
         Bricks piece = Sewer.HALL4;
 
         if (layout == PieceLayout.END) {
+            latestAssignmentSpot = 5;
             piece = getPiece(sewerEnds);
         } else if (layout == PieceLayout.STRAIGHT) {
+            latestAssignmentSpot = 6;
             piece = getPiece(sewerHalls);
         } else if (layout == PieceLayout.ROOM) {
+            latestAssignmentSpot = 7;
             piece = getPiece(sewerRooms);
         } else if (layout == PieceLayout.LEFTTURN || layout == PieceLayout.RIGHTTURN) {
+            latestAssignmentSpot = 8;
             piece = Sewer.SEWERTURN1;
         } else if (layout == PieceLayout.LEFT_T || layout == PieceLayout.RIGHT_T) {
             if (openings.get(Region.SEWER) < 3 || Math.random() < 0.5) {
+                latestAssignmentSpot = 9;
                 piece = getPiece(sewerTs);
             } else {
+                latestAssignmentSpot = 10;
                 piece = getPiece(sewerHalls);
             }
         } else if (layout == PieceLayout.CROSS) {
+            latestAssignmentSpot = 11;
             piece = getPiece(sewerCrosses);
         }
 
         if (regionCounts.get(Region.SEWER) > 20) {
             if (necessarys.get(Region.SEWER).size() == 0) {
+                latestAssignmentSpot = 2;
                 piece = getPiece(sewerRooms);
             } else {
+                latestAssignmentSpot = 4;
                 piece = necessarys.get(Region.SEWER).get(0);
             }
         }
@@ -572,9 +591,16 @@ public class BrickPiecePicker {
     public static Bricks pickPipe3Piece(PieceLayout layout) {
         Bricks piece;
         if (layout == PieceLayout.LEFTTURN || layout == PieceLayout.RIGHTTURN) {
+            latestAssignmentSpot = 8;
             piece = Pipe.P3TURN1;
         } else {
-            piece = getPiece(pipe3);
+            if (typeCount(pipe3) > 0) {
+                latestAssignmentSpot = 15;
+                piece = getPiece(pipe3);
+            } else {
+                latestAssignmentSpot = 3;
+                piece = getPiece(pipe3Ends);
+            }
         }
         return piece;
     }
@@ -582,9 +608,16 @@ public class BrickPiecePicker {
     public static Bricks pickPipe2Piece(PieceLayout layout) {
         Bricks piece;
         if (layout == PieceLayout.LEFTTURN || layout == PieceLayout.RIGHTTURN) {
+            latestAssignmentSpot = 8;
             piece = Pipe.P2TURN1;
         } else {
-            piece = getPiece(pipe2);
+            if (typeCount(pipe2) > 0) {
+                latestAssignmentSpot = 15;
+                piece = getPiece(pipe2);
+            } else {
+                latestAssignmentSpot = 3;
+                piece = getPiece(pipe2Ends);
+            }
         }
         return piece;
     }
@@ -630,6 +663,9 @@ public class BrickPiecePicker {
         } else if (placedPiece == BricksZone2.CROSS7) {
             weights.put(BricksZone2.HALL104, 2);
             weights.put(BricksZone2.CROSS7, 0);
+        } else if (placedPiece == BricksZone1.ROOM8) {
+            weights.put(BricksZone1.ROOM8, 0);
+            weights.put(BricksZone2.HALL115, 4);
         }
 
         regionCounts.put(region, regionCounts.get(region) + 1);
@@ -650,5 +686,21 @@ public class BrickPiecePicker {
                 }
             }
         }
+    }
+
+    public static boolean isOfType(Bricks piece, Bricks[] type) {
+        for (Bricks b: type) {
+            if (piece == b) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public static int typeCount(Bricks[] type) {
+        int total = 0;
+        for(Bricks b: type) {
+            total += weights.get(b);
+        }
+        return total;
     }
 }

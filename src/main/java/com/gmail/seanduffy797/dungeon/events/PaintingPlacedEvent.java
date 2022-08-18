@@ -19,6 +19,11 @@ public class PaintingPlacedEvent implements Listener {
             if (DungeonManager.isGenerated) {
                 EntityManager.addEntity(entity);
             }
+        } else if (event.getEntityType() == EntityType.ARMOR_STAND) {
+            Entity entity = event.getEntity();
+            if (DungeonManager.isGenerated) {
+                EntityManager.addEntity(entity);
+            }
         }
     }
 }

@@ -5,7 +5,6 @@ import com.gmail.seanduffy797.dungeon.DungeonManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
@@ -15,40 +14,30 @@ import org.bukkit.inventory.MerchantRecipe;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CandlestickMaker extends CustomVillager {
-
-    public CandlestickMaker() {}
+public class Wyatt extends CustomVillager {
+    public Wyatt() {}
 
     public Entity spawn(Location location) {
         Villager villager = (Villager) DungeonManager.world.spawnEntity(location, EntityType.VILLAGER);
-        villager.setProfession(Villager.Profession.CLERIC);
-        villager.customName(Component.text("Candlestick Maker"));
+        villager.setProfession(Villager.Profession.FARMER);
+        villager.customName(Component.text("Wyatt"));
         villager.setPersistent(true);
-        villager.setVillagerType(Villager.Type.TAIGA);
+        villager.setVillagerType(Villager.Type.SAVANNA);
         villager.setVillagerLevel(3);
-        villager.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.0);
         List<MerchantRecipe> newRecipes = new ArrayList<>();
         villager.setRecipes(newRecipes);
         CustomVillager.addTrade(villager,
-                new ItemStack(Material.EMERALD, 1),
+                new ItemStack(Material.STONE_SWORD, 1),
                 null,
-                DungeonItem.SOUL_TORCH.getItemStack(16));
+                new ItemStack(Material.EMERALD, 9));
         CustomVillager.addTrade(villager,
                 new ItemStack(Material.EMERALD, 1),
                 null,
-                DungeonItem.TORCH.getItemStack(8));
+                new ItemStack(Material.BEETROOT, 5));
         CustomVillager.addTrade(villager,
                 new ItemStack(Material.EMERALD, 1),
                 null,
-                DungeonItem.CANDLE.getItemStack(4));
-        CustomVillager.addTrade(villager,
-                new ItemStack(Material.EMERALD, 2),
-                null,
-                DungeonItem.CANDLE_LIGHTER.getItemStack());
-        CustomVillager.addTrade(villager,
-                new ItemStack(Material.EMERALD, 3),
-                null,
-                DungeonItem.LIGHTBREAKER_PICK.getItemStack());
+                new ItemStack(Material.BOWL, 1));
         return villager;
     }
 }

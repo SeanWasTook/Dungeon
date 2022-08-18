@@ -133,7 +133,7 @@ public class BuilderUtils {
         for (Location chest: chests) {
             Location chestOffset;
             if(mirror){
-                chestOffset = applyRotation(applyMirrorChest(chest, even), rotation);
+                chestOffset = applyRotation(applyMirrorFocus(chest, even), rotation);
             } else {
                 chestOffset = applyRotation(chest, rotation);
             }
@@ -168,43 +168,29 @@ public class BuilderUtils {
 
     // Only does left-right mirroring for now, and maybe forever
     // Warning: nightmare fuel
+    // Note: specifically for pieces, not for focuses
     public static Location applyMirror(Location input, boolean even) {
-        int center = 0;
-        if (Math.abs(input.getZ() - ((int)input.getZ())) > .1) {
-            center = 1; // Used for entities that are meant to be spawned centered on a block
-        }
         if (!even) {
             Location newLoc;
-            if ((int) input.getYaw() == 90) {
-                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), input.getZ() * -1 + center, 90, input.getPitch());
-                return newLoc;
-            } else if ((int) input.getYaw() == 270) {
-                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), input.getZ() * -1 + center, 270, input.getPitch());
-                return newLoc;
-            } else if ((int) input.getYaw() == 180) {
-                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), input.getZ() * -1 + center, 0, input.getPitch());
-                return newLoc;
-            } else {
-                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), input.getZ() * -1 + center, 180, input.getPitch());
-                return newLoc;
-            }
+            newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), input.getZ() * -1);
+            return newLoc;
         } else {
             Location newLoc;
             if (input.getX() == 0 && (int)input.getYaw() == 0) {
-                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), (input.getZ() - 1) * -1, 180, input.getPitch());
+                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), (input.getZ() - 1) * -1);
                 return newLoc;
             }
             if ((int)input.getYaw() == 90) {
-                newLoc = new Location(getWorld("Dungeon"), input.getX() - 1, input.getY(), input.getZ() * -1 + 1,  90, input.getPitch());
+                newLoc = new Location(getWorld("Dungeon"), input.getX() - 1, input.getY(), input.getZ() * -1 + 1);
                 return newLoc;
             } else if ((int)input.getYaw() == 270) {
-                newLoc = new Location(getWorld("Dungeon"), input.getX() + 1, input.getY(), input.getZ() * -1 + 1, 270, input.getPitch());
+                newLoc = new Location(getWorld("Dungeon"), input.getX() + 1, input.getY(), input.getZ() * -1 + 1);
                 return newLoc;
             } else if ((int)input.getYaw() == 180) {
-                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), (input.getZ() - 1) * -1 + 1, 0, input.getPitch());
+                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), (input.getZ() - 1) * -1 + 1);
                 return newLoc;
             } else {
-                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), (input.getZ() - 1) * -1 - 1, 180, input.getPitch());
+                newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), (input.getZ() - 1) * -1 - 1);
                 return newLoc;
             }
         }
@@ -239,12 +225,24 @@ public class BuilderUtils {
         }
     }
 
-    private static Location applyMirrorChest(Location input, boolean even) {
+    public static Location applyMirrorFocus(Location input, boolean even) {
+        int center = 0;
+        if (Math.abs(input.getZ() - ((int)input.getZ())) > .1) {
+            center = 1; // Used for entities that are meant to be spawned centered on a block
+        }
+        int yaw;
+        if ((int)input.getYaw() == 0) {
+            yaw = 180;
+        } else if ((int)input.getYaw() == 180) {
+            yaw = 0;
+        } else {
+            yaw = (int)input.getYaw();
+        }
         if (!even) {
-            return new Location(getWorld("Dungeon"), input.getX(), input.getY(), input.getZ() * -1);
+            return new Location(getWorld("Dungeon"), input.getX(), input.getY(), input.getZ() * -1 + center, yaw, input.getPitch());
         } else {
             Location newLoc;
-            newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), (input.getZ() - 1) * -1);
+            newLoc = new Location(getWorld("Dungeon"), input.getX(), input.getY(), (input.getZ() - 1) * -1 + center, yaw, input.getPitch());
             return newLoc;
         }
     }

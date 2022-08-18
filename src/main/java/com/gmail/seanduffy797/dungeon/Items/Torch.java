@@ -45,4 +45,20 @@ public class Torch {
         candle.setItemMeta(meta);
         return candle;
     }
+
+    public static ItemStack createLantern() {
+        ItemStack lantern = new ItemStack(Material.TORCH);
+        ItemMeta meta = lantern.getItemMeta();
+        meta.setPlaceableKeys(DungeonManager.commonBlocks);
+        lantern.setItemMeta(meta);
+        return lantern;
+    }
+
+    public static ItemStack createSoulLantern() {
+        ItemStack soulLantern = new ItemStack(Material.SOUL_LANTERN);
+        ItemMeta meta = soulLantern.getItemMeta();
+        meta.setPlaceableKeys(DungeonManager.commonBlocks);
+        soulLantern.setItemMeta(meta);
+        return soulLantern;
+    }
 }

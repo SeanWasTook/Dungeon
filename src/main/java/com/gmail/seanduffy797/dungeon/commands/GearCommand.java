@@ -20,7 +20,7 @@ public class GearCommand implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("gear")){
             Player player = (Player) sender;
             player.getInventory().addItem(new ItemStack(Material.WOODEN_SWORD));
-            player.getInventory().addItem(new ItemStack(Material.APPLE, 3));
+            player.getInventory().addItem(new ItemStack(Material.BREAD, 3));
             for (int i = 0; i < 16; i++) {
                 player.getInventory().addItem(DungeonItem.SOUL_TORCH.getItemStack());
             }

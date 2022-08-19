@@ -47,7 +47,7 @@ public class Torch {
     }
 
     public static ItemStack createLantern() {
-        ItemStack lantern = new ItemStack(Material.TORCH);
+        ItemStack lantern = new ItemStack(Material.LANTERN);
         ItemMeta meta = lantern.getItemMeta();
         meta.setPlaceableKeys(DungeonManager.commonBlocks);
         lantern.setItemMeta(meta);

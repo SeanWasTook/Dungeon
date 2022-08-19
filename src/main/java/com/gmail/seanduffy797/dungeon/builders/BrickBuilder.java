@@ -1,5 +1,6 @@
 package com.gmail.seanduffy797.dungeon.builders;
 
+import com.fastasyncworldedit.core.FaweAPI;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.Dungeon;
@@ -11,6 +12,11 @@ import com.gmail.seanduffy797.dungeon.Pieces.PieceLayout;
 import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import com.gmail.seanduffy797.dungeon.tasks.BrickStepTask;
 import com.gmail.seanduffy797.dungeon.tasks.TaskList;
+import com.sk89q.worldedit.EditSession;
+import com.sk89q.worldedit.WorldEdit;
+import com.sk89q.worldedit.math.BlockVector3;
+import com.sk89q.worldedit.regions.CuboidRegion;
+import com.sk89q.worldedit.world.block.BlockTypes;
 import org.bukkit.*;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -22,7 +28,7 @@ import static org.bukkit.Bukkit.*;
 public class BrickBuilder {
 
     static int minX = -260;
-    static int maxX = -50;
+    static int maxX = -48;
     static int minZ = -148;
     static int maxZ = 148;
 
@@ -86,11 +92,16 @@ public class BrickBuilder {
     }
 
     public static void clear() {
-        for (int z = minZ; z < maxZ; z += 5) {
-            for (int x = -48; x > minX; x -= 5) {
-                getServer().dispatchCommand(Bukkit.getConsoleSender(), "fill " + x + " 51 " + z + " " + (x - 5) + " 130 " + (z + 5) + " minecraft:air");
-            }
+        try (EditSession editSession = WorldEdit.getInstance().newEditSession(FaweAPI.getWorld(DungeonManager.world.getName()))) {
+            CuboidRegion region = new CuboidRegion(BlockVector3.at(maxX, 50, minZ), BlockVector3.at(minX, 130, maxZ));
+            editSession.setBlocks((com.sk89q.worldedit.regions.Region) region, BlockTypes.AIR);
         }
+
+//        for (int z = minZ; z < maxZ; z += 5) {
+//            for (int x = -48; x > minX; x -= 5) {
+//                getServer().dispatchCommand(Bukkit.getConsoleSender(), "fill " + x + " 51 " + z + " " + (x - 5) + " 130 " + (z + 5) + " minecraft:air");
+//            }
+//        }
     }
 
     public static void placePiece(Location current, int depth, StructureRotation rotation, Region region, Bricks previous) {
@@ -165,73 +176,8 @@ public class BrickBuilder {
         BrickPiecePicker.update(piece, region);
         piece.place(current, rotation, mirrorType);
         // For debugging:
-        if (isWool) {
-            if (BrickPiecePicker.latestAssignmentSpot > 0) {
-                Material woolType = Material.BROWN_WOOL;
-                switch (BrickPiecePicker.latestAssignmentSpot) {
-                    case 1:
-                        // Necessary empty, end or straight shape
-                        woolType = Material.PINK_WOOL;
-                        break;
-                    case 2:
-                        // Necessary empty, other shape
-                        woolType = Material.RED_WOOL;
-                        break;
-                    case 3:
-                        // Necessary empty, all rooms used
-                        woolType = Material.LIGHT_BLUE_WOOL;
-                        break;
-                    case 4:
-                        // Necessary used
-                        woolType = Material.BLUE_WOOL;
-                        break;
-                    case 5:
-                        // End layout
-                        woolType = Material.YELLOW_WOOL;
-                        break;
-                    case 6:
-                        // Straight layout
-                        woolType = Material.ORANGE_WOOL;
-                        break;
-                    case 7:
-                        // Room layout
-                        woolType = Material.CYAN_WOOL;
-                        break;
-                    case 8:
-                        // Turn layout
-                        woolType = Material.PURPLE_WOOL;
-                        break;
-                    case 9:
-                        // T layout, stick with T
-                        woolType = Material.LIME_WOOL;
-                        break;
-                    case 10:
-                        // T layout, replace with hall
-                        woolType = Material.GREEN_WOOL;
-                        break;
-                    case 11:
-                        // Cross layout, stick with cross
-                        woolType = Material.WHITE_WOOL;
-                        break;
-                    case 12:
-                        // Cross layout, replace with T
-                        woolType = Material.LIGHT_GRAY_WOOL;
-                        break;
-                    case 13:
-                        // Cross layout, replace with hall
-                        woolType = Material.GRAY_WOOL;
-                        break;
-                    case 14:
-                        // Cross layout, replace with room
-                        woolType = Material.BLACK_WOOL;
-                        break;
-                    case 15:
-                        // Any layout, used by default
-                        woolType = Material.MAGENTA_WOOL;
-                        break;
-                }
-                coverWithWool(woolType, current, corner, tries);
-            }
+        if (isWool && BrickPiecePicker.latestAssignmentSpot > 0) {
+            coverWithWool(BrickPiecePicker.latestAssignmentSpot, current, corner, tries);
         }
 
         corner.subtract(cornerOffset);
@@ -299,11 +245,75 @@ public class BrickBuilder {
         }
     }
 
-    private static void coverWithWool(Material woolType, Location corner1, Location corner2, int tries) {
+    private static void coverWithWool(int assignmentIndex, Location corner1, Location corner2, int tries) {
         int startX = Math.min((int) corner1.getX(), (int) corner2.getX());
         int endX = Math.max((int) corner1.getX(), (int) corner2.getX());
         int startZ = Math.min((int) corner1.getZ(), (int) corner2.getZ());
         int endZ = Math.max((int) corner1.getZ(), (int) corner2.getZ());
+
+        Material woolType = Material.BROWN_WOOL;
+        switch (assignmentIndex) {
+            case 1:
+                // Necessary empty, end or straight shape
+                woolType = Material.PINK_WOOL;
+                break;
+            case 2:
+                // Necessary empty, other shape
+                woolType = Material.RED_WOOL;
+                break;
+            case 3:
+                // Necessary empty, all rooms used
+                woolType = Material.LIGHT_BLUE_WOOL;
+                break;
+            case 4:
+                // Necessary used
+                woolType = Material.BLUE_WOOL;
+                break;
+            case 5:
+                // End layout
+                woolType = Material.YELLOW_WOOL;
+                break;
+            case 6:
+                // Straight layout
+                woolType = Material.ORANGE_WOOL;
+                break;
+            case 7:
+                // Room layout
+                woolType = Material.CYAN_WOOL;
+                break;
+            case 8:
+                // Turn layout
+                woolType = Material.PURPLE_WOOL;
+                break;
+            case 9:
+                // T layout, stick with T
+                woolType = Material.LIME_WOOL;
+                break;
+            case 10:
+                // T layout, replace with hall
+                woolType = Material.GREEN_WOOL;
+                break;
+            case 11:
+                // Cross layout, stick with cross
+                woolType = Material.WHITE_WOOL;
+                break;
+            case 12:
+                // Cross layout, replace with T
+                woolType = Material.LIGHT_GRAY_WOOL;
+                break;
+            case 13:
+                // Cross layout, replace with hall
+                woolType = Material.GRAY_WOOL;
+                break;
+            case 14:
+                // Cross layout, replace with room
+                woolType = Material.BLACK_WOOL;
+                break;
+            case 15:
+                // Any layout, used by default
+                woolType = Material.MAGENTA_WOOL;
+                break;
+        }
 
         for (int i = 1; i <= tries; i++) {
             DungeonManager.world.getBlockAt(new Location(DungeonManager.world, startX, corner2.getY() + 1 + i, startZ)).setType(Material.BROWN_WOOL);

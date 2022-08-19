@@ -19,12 +19,14 @@ public class SpawnItemFrame extends BukkitRunnable {
     private ItemStack contents;
     private BlockFace facing;
     private boolean isGlow;
+    private boolean isFixed;
 
-    public SpawnItemFrame(Location loc, ItemStack contents, BlockFace facing, boolean isGlow) {
+    public SpawnItemFrame(Location loc, ItemStack contents, BlockFace facing, boolean isGlow, boolean isFixed) {
         this.loc = loc;
         this.contents = contents;
         this.facing = facing;
         this.isGlow = isGlow;
+        this.isFixed = isFixed;
     }
 
     @Override
@@ -39,6 +41,9 @@ public class SpawnItemFrame extends BukkitRunnable {
         }
         if (contents != null) {
             itemFrame.setItem(contents);
+        }
+        if (isFixed) {
+            itemFrame.setFixed(true);
         }
         itemFrame.setFacingDirection(facing);
         EntityManager.addEntity(itemFrame);

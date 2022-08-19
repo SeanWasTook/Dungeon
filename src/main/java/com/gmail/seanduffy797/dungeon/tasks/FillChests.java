@@ -1,6 +1,7 @@
 package com.gmail.seanduffy797.dungeon.tasks;
 
 import com.gmail.seanduffy797.dungeon.DungeonManager;
+import de.tr7zw.nbtapi.NBTTileEntity;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -29,8 +30,10 @@ public class FillChests extends BukkitRunnable {
         BlockData data = block.getBlockData();
         Material mat = data.getMaterial();
         if (mat == Material.CHEST || mat == Material.TRAPPED_CHEST || mat == Material.BARREL) {
-            getServer().dispatchCommand(Bukkit.getConsoleSender(),
-                    "data modify block " + ((int)loc.getX()) + " " + ((int)loc.getY()) + " " + ((int)loc.getZ()) + " LootTable set value \"" + path + "\"");
+            NBTTileEntity tent = new NBTTileEntity(block.getState());
+            tent.setString("LootTable", path);
+//            getServer().dispatchCommand(Bukkit.getConsoleSender(),
+//                    "data modify block " + ((int)loc.getX()) + " " + ((int)loc.getY()) + " " + ((int)loc.getZ()) + " LootTable set value \"" + path + "\"");
         } else {
             getServer().getConsoleSender().sendMessage("Failed to fill chest (not container): could not fill " + path + " at " + ((int)loc.getX()) + ", " + ((int)loc.getY()) + ", " + ((int)loc.getZ()));
         }

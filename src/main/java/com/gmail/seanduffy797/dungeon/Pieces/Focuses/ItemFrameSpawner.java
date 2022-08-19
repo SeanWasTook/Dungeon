@@ -94,7 +94,7 @@ public class ItemFrameSpawner extends Focus {
                 blockFace = BlockFace.NORTH;
                 break;
         }
-        BukkitTask task = new SpawnItemFrame(location, contents, blockFace, isGlow)
+        BukkitTask task = new SpawnItemFrame(location, contents, blockFace, isGlow, isFixed)
                 .runTaskLater(Dungeon.getPlugin(), 400L);
         TaskList.tasks.add(task);
     }

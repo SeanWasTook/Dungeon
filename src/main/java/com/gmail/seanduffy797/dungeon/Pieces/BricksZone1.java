@@ -434,6 +434,7 @@ public enum BricksZone1 implements Bricks {
                     new Location(getWorld("Dungeon"), 7, 0, 8, 90, 0), Region.BRICK,
                     new Location(getWorld("Dungeon"), 7, 0, -8, 270, 0), Region.BRICK)),
             new ArrayList<>(Arrays.asList(
+                    new LockedDoor(new Location(DungeonManager.world, 3, 0, 0), LockEnum.SKELETONKEY),
                     new Chest(new Location(getWorld("Dungeon"), 6, 6, 0), Loot.BRICKT2, false, 15000),
                     new Chest(new Location(getWorld("Dungeon"), 6, 6, 2), Loot.BRICKT1, true, 15000),
                     new Chest(new Location(getWorld("Dungeon"), 9, 6, 1), Loot.BRICKT1, true, 15000),

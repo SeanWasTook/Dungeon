@@ -1,7 +1,9 @@
 package com.gmail.seanduffy797.dungeon.events;
 
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.FocusMeta;
+import com.gmail.seanduffy797.dungeon.Pieces.Focuses.LockedDoor;
 import net.kyori.adventure.text.TextComponent;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -29,9 +31,14 @@ public class DoorUnlockEvent implements Listener {
                 }
                 boolean success;
                 if(FocusMeta.doors.containsKey(block.getLocation())) {
+//                    player.sendMessage("Test 1: " + name);
                     success = FocusMeta.doors.get(block.getLocation()).open(name);
                 } else {
                     success = false;
+//                    player.sendMessage("Test 2");
+//                    for (Location loc: FocusMeta.doors.keySet()) {
+//                        player.sendMessage(loc.toString() + " " + FocusMeta.doors.get(loc));
+//                    }
                 }
                 if(success) {
                     itemStack.subtract();

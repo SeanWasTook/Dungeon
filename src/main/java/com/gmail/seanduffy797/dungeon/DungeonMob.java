@@ -71,4 +71,12 @@ public enum DungeonMob {
                 customId, PersistentDataType.INTEGER, id);
         return entity;
     }
+    // To be used when you want the entity to stay, even after the dungeon is cleared. Used in SpawnMobs
+    // Intended mainly for NPCs in the center area
+    public Entity spawnUntracked(Location location) {
+        Entity entity = mobClass.spawn(location);
+        entity.getPersistentDataContainer().set(
+                DungeonManager.customMobKey, PersistentDataType.STRING, this.name());
+        return entity;
+    }
 }

@@ -17,7 +17,7 @@ public class Trigger extends Focus {
     public Trigger makeCopy(Focus other) {
         if (other instanceof Trigger) {
             Trigger trigger = (Trigger) other;
-            return new Trigger(trigger.location.clone(), trigger.puzzleId);
+            return new Trigger(other.location.clone(), trigger.puzzleId);
         } else {
             return null;
         }
@@ -25,6 +25,8 @@ public class Trigger extends Focus {
 
     @Override
     public void start() {
+        this.location.setYaw(0);
+        this.location.setPitch(0);
         FocusMeta.triggers.put(this.location, this);
     }
 
@@ -32,14 +34,14 @@ public class Trigger extends Focus {
         ArrayList<ItemFrameChecker> frames = FocusMeta.puzzleFrames;
         for (ItemFrameChecker frame : frames) {
             if(frame.puzzleId.equals(this.puzzleId)) {
-                //player.sendMessage("Mark 1");
+                player.sendMessage("Mark 1");
                 if(!frame.isCorrect(player)) {
-                    //player.sendMessage("Frame is Incorrect");
+                    player.sendMessage("Frame is Incorrect");
                     return false;
                 }
             }
         }
-        //player.sendMessage("Mark 5");
+        player.sendMessage("Mark 5");
         ArrayList<EditableBlock> blocks = FocusMeta.puzzleBlocks;
         for (EditableBlock block : blocks) {
             if(block.puzzleId.equals(this.puzzleId)) {

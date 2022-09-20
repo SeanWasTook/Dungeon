@@ -24,5 +24,6 @@ public enum MazeUnitShape {
     END_MIDDLE,
     SOLID_UP,
     SOLID_DOWN,
-    SOLID_MIDDLE
+    SOLID_MIDDLE,
+    XROOM
 }

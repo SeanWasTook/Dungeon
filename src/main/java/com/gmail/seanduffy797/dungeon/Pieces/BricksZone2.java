@@ -191,6 +191,14 @@ public enum BricksZone2 implements Bricks {
             new ArrayList<>(Collections.singletonList(
                     new DungeonEntity(new Location(DungeonManager.world, 3.5, -2, 7.5), DungeonMob.DUNGEON_LLAMA)
             ))),
+    ROOM104 ("room104", 8, 9, 12, new Location(getWorld("Dungeon"), 0, -5, -4), true,
+            new HashMap<>(),
+            new ArrayList<>(Arrays.asList(
+                    new Chest(new Location(DungeonManager.world, 2, -5, -3), Loot.BRICKT1, true, 40000),
+                    new Chest(new Location(DungeonManager.world, 3, -5, 2), Loot.BRICKT1, true, 40000),
+                    new Chest(new Location(DungeonManager.world, 6, 2, -2), Loot.BRICKT1, true, 40000),
+                    new Chest(new Location(DungeonManager.world, 2, -4, 3), Loot.BRICKT2, true, 40000)
+            ))),
 
     CROSS1 ("cross1", 23, 5, 23, new Location(getWorld("Dungeon"), 0, -1, -11), true,
             new HashMap<>(Map.of(

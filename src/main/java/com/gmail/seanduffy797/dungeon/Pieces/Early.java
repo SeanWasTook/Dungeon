@@ -80,6 +80,9 @@ public enum Early implements Mine {
     DECO2 ("deco2", 2, 3, 3, new Location(getWorld("Dungeon"), 0, 0, -1),
             new HashMap<>(),
             new ArrayList<>()),
+    DECO3 ("deco3", 2, 3, 3, new Location(getWorld("Dungeon"), 0, 0, -1),
+            new HashMap<>(),
+            new ArrayList<>()),
 
     CROSS1 ("cross1", 5, 3, 5, new Location(getWorld("Dungeon"), 0, 0, -2),
             new HashMap<>(Map.of(

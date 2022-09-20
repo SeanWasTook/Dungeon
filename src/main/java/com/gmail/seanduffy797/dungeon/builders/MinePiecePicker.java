@@ -14,7 +14,7 @@ public class MinePiecePicker {
     public static Mine[] downs = {Early.DOWN1, Early.DOWN2, Early.DOWN3};
     public static Mine[] straights = {Early.STRAIGHT1, Early.STRAIGHT2, Early.STRAIGHT3, Early.STRAIGHT4, Early.STRAIGHT5, Early.STAIRDOWN1, Early.STAIRUP1};
     public static Mine[] ts = {Early.T1};
-    public static Mine[] decos = {Early.DECO1, Early.DECO2};
+    public static Mine[] decos = {Early.DECO1, Early.DECO2, Early.DECO3};
     public static Mine[] crosses = {Early.CROSS1, Early.CROSS2, Early.CROSS3, Early.CROSS4};
 
     public static Map<Mine, Integer> weights = new HashMap<>();
@@ -38,7 +38,7 @@ public class MinePiecePicker {
         weights.put(Early.STRAIGHT2, 55);
         weights.put(Early.STRAIGHT3, 55);
         weights.put(Early.STRAIGHT4, 15);
-        weights.put(Early.STRAIGHT5, 25);
+        weights.put(Early.STRAIGHT5, 30);
 
         weights.put(Early.T1, 30);
 
@@ -47,6 +47,7 @@ public class MinePiecePicker {
 
         weights.put(Early.DECO1, 5);
         weights.put(Early.DECO2, 15);
+        weights.put(Early.DECO3, 2);
 
         weights.put(Early.CROSS1, 25);
         weights.put(Early.CROSS2, 10);

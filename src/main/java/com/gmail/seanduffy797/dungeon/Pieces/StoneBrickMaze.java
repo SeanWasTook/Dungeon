@@ -78,6 +78,7 @@ public enum StoneBrickMaze {
     END_PEARL("stone_bricks/end_pearl", MazeUnitShape.END, 1, 0, 999),
     END_SWORD("stone_bricks/end_sword", MazeUnitShape.END, 1, 0, 999),
     END_KEY("stone_bricks/end_key", MazeUnitShape.END, 1, 0, 999),
+    END_DISC("stone_bricks/end_disc", MazeUnitShape.END, 1, 0, 999),
     END_SPAWNER("stone_bricks/end_spawner", MazeUnitShape.END, 2, 0, 999),
     END_SKULL("stone_bricks/end_skull", MazeUnitShape.END, 1, 0, 999),
     END_PLANT("stone_bricks/end_plant", MazeUnitShape.END, 2, 0, 999),
@@ -92,6 +93,8 @@ public enum StoneBrickMaze {
     SOLID_LADDER_DOWN("stone_bricks/solid_ladder_down", MazeUnitShape.SOLID_DOWN, 2, 0, 999),
     SOLID_LADDER_DOWN2("stone_bricks/solid_ladder_down2", MazeUnitShape.SOLID_DOWN, 1, 0, 999),
     SOLID_LADDER_MIDDLE("stone_bricks/solid_ladder_middle", MazeUnitShape.SOLID_MIDDLE, 1, 0, 999),
+
+    XROOM_NETHER("stone_bricks/xroom_nether", MazeUnitShape.XROOM, 1, 0, 999),
 
     ROOF("stone_bricks/roof", MazeUnitShape.END, 0, 0, 0);
 

@@ -58,6 +58,10 @@ public enum Pipe implements Bricks{
             new HashMap<>(),
             new ArrayList<>(Collections.singletonList(
                     new Chest(new Location(getWorld("Dungeon"), 2, 0, 0), Loot.BRICKWATER, true, 6000)))),
+    P2END3 ("pipe/2end3", 4, 9, 4, new Location(getWorld("Dungeon"), 0, -6, -1), true, true,
+            new HashMap<>(),
+            new ArrayList<>(Collections.singletonList(
+                    new Chest(new Location(getWorld("Dungeon"), 2, 0, 0), Loot.BRICKWATER, true, 6000)))),
 
     P3HALL1 ("pipe/3hall1", 3, 5, 5, new Location(getWorld("Dungeon"), 0, -2, -2), false,
             new HashMap<>(Collections.singletonMap(
@@ -120,7 +124,12 @@ public enum Pipe implements Bricks{
             new HashMap<>(),
             new ArrayList<>(Arrays.asList(
                     new Chest(new Location(getWorld("Dungeon"), 5, 1, 0), Loot.BRICKWATER, true, 6000),
-                    new DungeonEntity(new Location(DungeonManager.world, 3.5, -2, 0.5), DungeonMob.COMMON_DROWNED, 6000))));
+                    new DungeonEntity(new Location(DungeonManager.world, 3.5, -2, 0.5), DungeonMob.COMMON_DROWNED, 6000)))),
+    P3ROOM2 ("pipe/3room2", 7, 10, 7, new Location(getWorld("Dungeon"), 0, -2, -3), true,
+            new HashMap<>(),
+            new ArrayList<>(Arrays.asList(
+                    new Chest(new Location(DungeonManager.world, 4, 4, -2), Loot.BRICKWATER, true, 6000),
+                    new Chest(new Location(DungeonManager.world, 3, 4, 2), Loot.BRICKWATER, true, 6000))));
 
     private final String name;
     private final Path path;

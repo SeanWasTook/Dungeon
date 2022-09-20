@@ -29,7 +29,7 @@ public class SpawnMobs implements CommandExecutor {
                         x = Double.parseDouble(args[1]);
                         y = Double.parseDouble(args[2]);
                         z = Double.parseDouble(args[3]);
-                        mob.spawn(new Location(world, x, y, z));
+                        mob.spawnUntracked(new Location(world, x, y, z));
                     } catch (IllegalArgumentException e) {
                         e.printStackTrace();
                         sender.sendMessage("Invalid Argument");

@@ -1,16 +1,13 @@
 package com.gmail.seanduffy797.dungeon.events;
 
+import com.destroystokyo.paper.event.player.PlayerPostRespawnEvent;
 import com.gmail.seanduffy797.dungeon.DungeonItem;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.DungeonMob;
-import com.gmail.seanduffy797.dungeon.Items.TeleportPearl;
-import com.gmail.seanduffy797.dungeon.KeyLocation;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.FocusMeta;
 import com.gmail.seanduffy797.dungeon.mobs.NPCEnum;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -30,6 +27,14 @@ public class DungeonEventTest implements Listener {
         Player player = event.getPlayer();
         String name = ((TextComponent)player.displayName()).content();
         player.sendMessage(ChatColor.AQUA + "Welcome " + name + " to the server! Please enjoy, the server is currently in the pre-alpha phase");
+    }
+
+    @EventHandler
+    public static void onPlayerRespawn(PlayerPostRespawnEvent event) {
+        Player player = event.getPlayer();
+        player.getInventory().addItem(new ItemStack(Material.WOODEN_SWORD));
+        player.getInventory().addItem(new ItemStack(Material.BREAD, 3));
+        player.getInventory().addItem(DungeonItem.SOUL_TORCH.getItemStackNoNBT(16));
     }
 
     @EventHandler

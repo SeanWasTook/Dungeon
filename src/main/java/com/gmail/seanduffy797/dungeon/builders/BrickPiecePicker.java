@@ -24,18 +24,18 @@ public class BrickPiecePicker {
     public static Bricks[] sewerTs = {Sewer.SEWERT1, Sewer.HALLPIPE2T};
     public static Bricks[] sewerRooms = {Sewer.SEWEREND1, Sewer.SEWEREND2, Sewer.SEWERROOM1, Sewer.SEWERROOM2};
 
-    public static Bricks[] pipe2 = {Pipe.P2HALL1, Pipe.P2HALL2, Pipe.P2TURN1, Pipe.P2T1, Pipe.P2CROSS1, Pipe.P2END1, Pipe.P2END2};
+    public static Bricks[] pipe2 = {Pipe.P2HALL1, Pipe.P2HALL2, Pipe.P2TURN1, Pipe.P2T1, Pipe.P2CROSS1, Pipe.P2END1, Pipe.P2END2, Pipe.P2END3};
     public static Bricks[] pipe2Halls = {Pipe.P2HALL1, Pipe.P2HALL2};
-    public static Bricks[] pipe2Ends = {Pipe.P2END1, Pipe.P2END2};
-    public static Bricks[] pipe3 = {Pipe.P3HALL1, Pipe.P3HALL2, Pipe.P3HALL3, Pipe.P3HALL4, Pipe.P3HALL5, Pipe.P3HALL6, Pipe.P3TURN1, Pipe.P3T1, Pipe.P3CROSS1, Pipe.P3CROSS2, Pipe.P3END1, Pipe.P3ROOM1};
+    public static Bricks[] pipe2Ends = {Pipe.P2END1, Pipe.P2END2, Pipe.P2END3};
+    public static Bricks[] pipe3 = {Pipe.P3HALL1, Pipe.P3HALL2, Pipe.P3HALL3, Pipe.P3HALL4, Pipe.P3HALL5, Pipe.P3HALL6, Pipe.P3TURN1, Pipe.P3T1, Pipe.P3CROSS1, Pipe.P3CROSS2, Pipe.P3END1, Pipe.P3ROOM1, Pipe.P3ROOM2};
     public static Bricks[] pipe3Halls = {Pipe.P3HALL1, Pipe.P3HALL2, Pipe.P3HALL3, Pipe.P3HALL4, Pipe.P3HALL5, Pipe.P3HALL6};
-    public static Bricks[] pipe3Ends = {Pipe.P3END1, Pipe.P3ROOM1};
+    public static Bricks[] pipe3Ends = {Pipe.P3END1, Pipe.P3ROOM1, Pipe.P3ROOM2};
 
     public static Bricks[] halls2 = {BricksZone2.HALL101, BricksZone2.HALL102, BricksZone2.HALL103, BricksZone2.HALL104, BricksZone2.HALL115, BricksZone2.HALL116, BricksZone2.HALL105, BricksZone2.HALL106, BricksZone2.HALL107, BricksZone2.HALL108, BricksZone2.HALL109, BricksZone2.HALL110, BricksZone2.HALL111, BricksZone2.HALL112, BricksZone2.HALL113, BricksZone2.HALL114};
     public static Bricks[] turns2 = {BricksZone2.TURN101, BricksZone2.TURN102};
     public static Bricks[] ts2 = {BricksZone2.T101, BricksZone2.T102, BricksZone2.T103};
     public static Bricks[] crosses2 = {BricksZone2.CROSS1, BricksZone2.CROSS4, BricksZone2.CROSS6, BricksZone2.CROSS7, BricksZone2.CROSS8};
-    public static Bricks[] rooms2 = {BricksZone2.ROOM102, BricksZone1.SHRINE1, BricksZone2.ROOM101, BricksZone2.ROOM103, BricksZone1.ROOM6, BricksZone2.END101};
+    public static Bricks[] rooms2 = {BricksZone2.ROOM102, BricksZone1.SHRINE1, BricksZone2.ROOM101, BricksZone2.ROOM103, BricksZone1.ROOM6, BricksZone2.END101, BricksZone2.ROOM104};
 
     public static Bricks[] houses = {BricksZone2.HOUSE3, BricksZone2.HOUSE4, BricksZone2.HOUSE5, BricksZone2.HOUSE6, BricksZone2.HOUSE7, BricksZone2.HOUSE8, BricksZone2.HOUSE9, BricksZone2.HOUSE10, BricksZone2.HOUSE11, BricksZone2.HOUSE12, BricksZone2.HOUSE13, BricksZone2.HOUSE14, BricksZone2.HOUSE15, BricksZone2.HOUSE16, BricksZone2.HOUSE17, BricksZone2.HOUSE18, BricksZone2.HOUSE19, BricksZone2.HOUSE20, BricksZone2.HOUSE21, BricksZone2.HOUSE22, BricksZone2.HOUSE23, BricksZone2.HOUSE24, BricksZone2.HOUSE25, BricksZone2.HOUSE26, BricksZone2.HOUSE27, BricksZone2.HOUSE28, BricksZone2.HOUSE29, BricksZone2.HOUSE30};
     public static Bricks[] houseHalls = {BricksZone2.HOUSEHALL1, BricksZone2.HOUSEHALL2};
@@ -54,7 +54,7 @@ public class BrickPiecePicker {
 
     public static void init(){
         necessarys.put(Region.BRICK, new ArrayList<>(Arrays.asList(BricksZone1.ARENA, BricksZone1.CROSS11, BricksZone1.END5, BricksZone1.END6, BricksZone1.CROSS3, BricksZone1.ROOM1, BricksZone1.ROOM2, BricksZone1.ROOM3, BricksZone1.ROOM4, BricksZone1.ROOM5, BricksZone1.SHRINE1, BricksZone1.ROOM8)));
-        necessarys.put(Region.BRICK2, new ArrayList<>(Arrays.asList(BricksZone2.CROSS7, BricksZone2.HALL104, BricksZone2.HALL115, BricksZone2.ROOM101)));
+        necessarys.put(Region.BRICK2, new ArrayList<>(Arrays.asList(BricksZone2.CROSS7, BricksZone2.HALL104, BricksZone2.HALL115, BricksZone2.ROOM101, BricksZone2.ROOM104)));
         necessarys.put(Region.SEWER, new ArrayList<>(Arrays.asList(Sewer.CROSS2, Sewer.SEWERROOM1)));
 
         for(Region region: Region.values()) {
@@ -190,6 +190,7 @@ public class BrickPiecePicker {
         weights.put(Pipe.P2END0, 0);
         weights.put(Pipe.P2END1, 6);
         weights.put(Pipe.P2END2, 6);
+        weights.put(Pipe.P2END3, 2);
 
         weights.put(Pipe.P3HALL1, 4);
         weights.put(Pipe.P3HALL2, 8);
@@ -204,6 +205,7 @@ public class BrickPiecePicker {
         weights.put(Pipe.P3END0, 0);
         weights.put(Pipe.P3END1,9);
         weights.put(Pipe.P3ROOM1, 6);
+        weights.put(Pipe.P3ROOM2, 2);
 
         weights.put(BricksZone2.HALL101, 3);
         weights.put(BricksZone2.HALL102, 4);
@@ -232,6 +234,7 @@ public class BrickPiecePicker {
 
         weights.put(BricksZone2.ROOM101, 1);
         weights.put(BricksZone2.ROOM103, 1); // Out of order for hopefully a good reason- avoid room103 being chosen when all are 0
+        weights.put(BricksZone2.ROOM104, 1);
         weights.put(BricksZone2.ROOM102, 3);
 
         weights.put(BricksZone2.END101, 3);
@@ -250,7 +253,7 @@ public class BrickPiecePicker {
         weights.put(BricksZone2.HOUSE5, 2);
         weights.put(BricksZone2.HOUSE6, 1);
         weights.put(BricksZone2.HOUSE7, 2);
-        weights.put(BricksZone2.HOUSE8, 1);
+        weights.put(BricksZone2.HOUSE8, 2);
         weights.put(BricksZone2.HOUSE9, 1);
         weights.put(BricksZone2.HOUSE10, 2);
         weights.put(BricksZone2.HOUSE11, 2);
@@ -542,6 +545,8 @@ public class BrickPiecePicker {
         } else if (Math.random() < 0.1) {
             latestAssignmentSpot = 9;
             piece = getPiece(houseHalls);
+        } else if (counts.get(BricksZone2.HOUSE8) == 0) {
+            piece = BricksZone2.HOUSE8;
         }
 
         return piece;
@@ -594,7 +599,7 @@ public class BrickPiecePicker {
             latestAssignmentSpot = 8;
             piece = Pipe.P3TURN1;
         } else {
-            if (typeCount(pipe3) > 0) {
+            if (typeCount(pipe3) > 3) {
                 latestAssignmentSpot = 15;
                 piece = getPiece(pipe3);
             } else {
@@ -611,7 +616,7 @@ public class BrickPiecePicker {
             latestAssignmentSpot = 8;
             piece = Pipe.P2TURN1;
         } else {
-            if (typeCount(pipe2) > 0) {
+            if (typeCount(pipe2) > 3) {
                 latestAssignmentSpot = 15;
                 piece = getPiece(pipe2);
             } else {
@@ -626,6 +631,10 @@ public class BrickPiecePicker {
         double total = 0;
         for(Bricks piece: type) {
             total += weights.get(piece);
+        }
+
+        if (total < 0.01) {
+            return type[0];
         }
 
         // Kinda wonky, this is the weighted random piece picker

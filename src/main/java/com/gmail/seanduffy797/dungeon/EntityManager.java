@@ -3,12 +3,6 @@ package com.gmail.seanduffy797.dungeon;
 import org.bukkit.entity.Entity;
 
 import java.util.ArrayList;
-import java.util.UUID;
-import java.util.logging.Level;
-
-import static com.bergerkiller.bukkit.mw.MyWorlds.plugin;
-import static org.bukkit.Bukkit.getServer;
-import static org.bukkit.Bukkit.getWorld;
 
 public class EntityManager {
 

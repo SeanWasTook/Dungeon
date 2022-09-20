@@ -25,6 +25,18 @@ public enum DungeonItem {
     LIGHTBREAKER_PICK (BuildingItems::createLightbreakerPick),
     COAL_PICK (BuildingItems::createCoalPick),
     NOVICE_PICK (BuildingItems::createNovicePick),
+    EXCAVATOR (BuildingItems::createExcavator),
+    SHROOM_HOE (BuildingItems::createShroomHoe),
+    FARMING_HOE (BuildingItems::createFarmingHoe),
+    SPAWNER_DESTROYER (BuildingItems::spawnerDestroyer),
+    RAIL_PICK (BuildingItems::createRailPick),
+    RAILS (Placeables::createRails),
+    POWERED_RAILS (Placeables::createPoweredRails),
+    ACTIVATOR_RAILS (Placeables::createActivatorRails),
+    DETECTOR_RAILS (Placeables::createDetectorRails),
+    SEA_PICKLES (Placeables::createSeaPickles),
+    LILY_PAD (Placeables::createLilyPad),
+    MINECART (Placeables::createMinecart),
     CANDLE_LIGHTER (BuildingItems::createCandleLighter),
     TORCH (Torch::createTorch),
     SOUL_TORCH (Torch::createSoulTorch),
@@ -85,6 +97,17 @@ public enum DungeonItem {
             meta.getPersistentDataContainer()
                     .set(DungeonManager.customItemKey, PersistentDataType.STRING, this.name());
             item.setItemMeta(meta);
+            return item;
+        } else {
+            return null;
+        }
+    }
+    // This is hacky and should be phased out, but it's a good band-aid fix
+    // Makes custom items stack with vanilla items
+    public ItemStack getItemStackNoNBT(int count) {
+        if (this.supplier != null) {
+            ItemStack item = this.supplier.get();
+            item.setAmount(count);
             return item;
         } else {
             return null;

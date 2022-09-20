@@ -1,9 +1,12 @@
 package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
+import com.gmail.seanduffy797.dungeon.builders.BrickPiecePicker;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.type.Door;
+
+import static org.bukkit.Bukkit.getServer;
 
 public class LockedDoor extends Focus {
 
@@ -25,6 +28,8 @@ public class LockedDoor extends Focus {
 
     @Override
     public void start() {
+        this.location.setYaw(0);
+        this.location.setPitch(0);
         FocusMeta.doors.put(this.location, this);
     }
 

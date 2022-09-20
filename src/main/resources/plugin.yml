@@ -10,19 +10,19 @@ commands:
     usage: /<command>
     aliases: [healme, h]
   spawnmobs:
-    description: Spawns mobs at the location of the player
-    usage: /<command>
+    description: Spawns custom mobs at the specified location
+    usage: /<command> <x> <y> <z>
   dgive:
     description: Gives the player a plugin-specific item
     usage: /<command> [Player] [Item] [Count]
   build:
     description: Builds the dungeon
-    usage: /<command> [Region]
+    usage: /<command> <brick|maze|mine>
   clear:
     description: Clears the dungeon
-    usage: /<command> [Region]
+    usage: /<command> <brick|maze|mine>
   gear:
-    description: Gives the player some apples and a wooden sword
+    description: Gives the player some bread and a wooden sword and torches
     usage: /<command>
   place:
     description: Places a specific piece into the world at 50, 50, 50

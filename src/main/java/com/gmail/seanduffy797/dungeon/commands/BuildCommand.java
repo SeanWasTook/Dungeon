@@ -2,6 +2,9 @@ package com.gmail.seanduffy797.dungeon.commands;
 
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.Pieces.BricksZone1;
+import com.gmail.seanduffy797.dungeon.Pieces.BricksZone2;
+import com.gmail.seanduffy797.dungeon.Pieces.Pipe;
 import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import com.gmail.seanduffy797.dungeon.builders.*;
 import com.gmail.seanduffy797.dungeon.builders.maze.StoneBrickMazeBuilder;
@@ -41,17 +44,23 @@ public class BuildCommand implements CommandExecutor {
                     start[2] = 5; // # of units from the left
                     int[] exit1 = new int[4];
                     exit1[0] = 1;
-                    exit1[1] = 8;
+                    exit1[1] = 16;
                     exit1[2] = 0;
                     exit1[3] = 270;
                     int[] exit2 = new int[4];
-                    exit2[0] = 6;
-                    exit2[1] = 10;
-                    exit2[2] = 7;
+                    exit2[0] = 0;
+                    exit2[1] = 19;
+                    exit2[2] = 15;
                     exit2[3] = 0;
+                    int[] exit3 = new int[4];
+                    exit3[0] = 4;
+                    exit3[1] = 11;
+                    exit3[2] = 17;
+                    exit3[3] = 90;
                     ArrayList<int[]> exits = new ArrayList<>();
-                    // exits.add(exit1);
-                    // exits.add(exit2);
+                    exits.add(exit1);
+                    exits.add(exit2);
+                    exits.add(exit3);
                     StoneBrickMazeBuilder builder = new StoneBrickMazeBuilder(
                             6,
                             20,
@@ -61,7 +70,11 @@ public class BuildCommand implements CommandExecutor {
                             chance);
                     builder.buildStoneBrickMaze(new Location(DungeonManager.world, -2, 100, -47), StructureRotation.ROTATION_270);
                 } else if (args[0].equalsIgnoreCase("data")){
-                    getServer().getConsoleSender().sendMessage("[Dungeon]: Counts: " + BrickPiecePicker.counts);
+                    getServer().getConsoleSender().sendMessage("[Dungeon]: Counts: ");
+                    getServer().getConsoleSender().sendMessage("[Dungeon]: Room6: " + BrickPiecePicker.counts.get(BricksZone1.ROOM6));
+                    getServer().getConsoleSender().sendMessage("[Dungeon]: Room104: " + BrickPiecePicker.counts.get(BricksZone2.ROOM104));
+                    getServer().getConsoleSender().sendMessage("[Dungeon]: p3room2: " + BrickPiecePicker.counts.get(Pipe.P3ROOM2));
+                    getServer().getConsoleSender().sendMessage("[Dungeon]: p2end3: " + BrickPiecePicker.counts.get(Pipe.P2END3));
                     getServer().getConsoleSender().sendMessage("[Dungeon]: Necessary: " + BrickPiecePicker.necessarys);
                     getServer().getConsoleSender().sendMessage("[Dungeon]: Openings: " + BrickPiecePicker.openings);
                     getServer().getConsoleSender().sendMessage("[Dungeon]: Brick Layouts: " + BrickPiecePicker.layouts.get(Region.BRICK));

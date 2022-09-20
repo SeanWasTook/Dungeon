@@ -32,11 +32,11 @@ public class CandlestickMaker extends CustomVillager {
         CustomVillager.addTrade(villager,
                 new ItemStack(Material.EMERALD, 1),
                 null,
-                DungeonItem.SOUL_TORCH.getItemStack(16));
+                DungeonItem.SOUL_TORCH.getItemStackNoNBT(16));
         CustomVillager.addTrade(villager,
                 new ItemStack(Material.EMERALD, 1),
                 null,
-                DungeonItem.TORCH.getItemStack(8));
+                DungeonItem.TORCH.getItemStackNoNBT(8));
         CustomVillager.addTrade(villager,
                 new ItemStack(Material.EMERALD, 1),
                 null,

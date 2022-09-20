@@ -29,19 +29,23 @@ public class Luxan extends CustomVillager {
         CustomVillager.addTrade(villager,
                 new ItemStack(Material.EMERALD, 1),
                 null,
-                DungeonItem.SOUL_TORCH.getItemStack(10));
+                DungeonItem.SOUL_TORCH.getItemStackNoNBT(10));
         CustomVillager.addTrade(villager,
                 new ItemStack(Material.EMERALD, 1),
                 null,
-                DungeonItem.TORCH.getItemStack(6));
+                DungeonItem.TORCH.getItemStackNoNBT(6));
         CustomVillager.addTrade(villager,
                 new ItemStack(Material.EMERALD, 1),
                 null,
-                DungeonItem.SOUL_LANTERN.getItemStack(3));
+                DungeonItem.SOUL_LANTERN.getItemStackNoNBT(3));
         CustomVillager.addTrade(villager,
                 new ItemStack(Material.EMERALD, 1),
                 null,
-                DungeonItem.LANTERN.getItemStack(1));
+                DungeonItem.LANTERN.getItemStackNoNBT(1));
+        CustomVillager.addTrade(villager,
+                new ItemStack(Material.EMERALD, 3),
+                null,
+                DungeonItem.LIGHTBREAKER_PICK.getItemStack());
         return villager;
     }
 }

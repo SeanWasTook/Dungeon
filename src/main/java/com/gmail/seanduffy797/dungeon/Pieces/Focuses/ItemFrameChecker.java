@@ -43,17 +43,17 @@ public class ItemFrameChecker extends Focus {
     }
 
     public boolean isCorrect(Player player) {
-        //player.sendMessage("Mark 2: jLocation: " + this.location);
+        player.sendMessage("Mark 2: jLocation: " + this.location);
         World world  = getWorld("Dungeon");
         if(world == null) { return false;}
         Collection<Entity> entities = world.getNearbyEntities(this.location, 1, 1, 1);
         for(Entity entity : entities) {
-            //player.sendMessage("Mark 3");
+            player.sendMessage("Mark 3");
             if(entity.getType().equals(EntityType.ITEM_FRAME)) {
-                //player.sendMessage("Mark 4");
+                player.sendMessage("Mark 4");
                 ItemFrame itemFrame = (ItemFrame) entity;
                 Rotation rotation = itemFrame.getRotation();
-                //player.sendMessage("Rotation: " + rotation);
+                player.sendMessage("Rotation: " + rotation);
                 return rotation == goal;
             }
         }

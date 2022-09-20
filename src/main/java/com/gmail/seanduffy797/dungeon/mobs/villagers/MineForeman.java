@@ -36,6 +36,10 @@ public class MineForeman extends CustomVillager {
                 new ItemStack(Material.EMERALD, 30),
                 null,
                 DungeonItem.NOVICE_PICK.getItemStack());
+        CustomVillager.addTrade(villager,
+                new ItemStack(Material.EMERALD, 5),
+                null,
+                DungeonItem.EXCAVATOR.getItemStack());
         return villager;
     }
 }

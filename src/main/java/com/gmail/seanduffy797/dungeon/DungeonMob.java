@@ -1,6 +1,6 @@
 package com.gmail.seanduffy797.dungeon;
 
-import com.gmail.seanduffy797.dungeon.Pieces.Mine;
+import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import com.gmail.seanduffy797.dungeon.mobs.*;
 import com.gmail.seanduffy797.dungeon.mobs.villagers.*;
 import org.bukkit.Location;
@@ -62,7 +62,8 @@ public enum DungeonMob {
         Entity entity = mobClass.spawn(location);
         entity.getPersistentDataContainer().set(
                 DungeonManager.customMobKey, PersistentDataType.STRING, this.name());
-        EntityManager.addEntity(entity);
+        Region region = DungeonManager.getRegionAt(location);
+        DungeonManager.addEntityToRegion(region, entity);
         return entity;
     }
     public Entity spawn(Location location, int id) {

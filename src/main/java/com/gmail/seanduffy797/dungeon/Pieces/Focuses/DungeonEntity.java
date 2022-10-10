@@ -1,7 +1,9 @@
 package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
 import com.gmail.seanduffy797.dungeon.Dungeon;
+import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.DungeonMob;
+import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import com.gmail.seanduffy797.dungeon.tasks.SpawnMob;
 import com.gmail.seanduffy797.dungeon.tasks.TaskList;
 import org.bukkit.Location;
@@ -54,7 +56,7 @@ public class DungeonEntity extends Focus {
     }
 
     @Override
-    public void start() {
+    public void start(Region region) {
         Plugin plugin = Dungeon.getPlugin();
         BukkitTask task;
         if(respawn) {
@@ -73,6 +75,6 @@ public class DungeonEntity extends Focus {
             }
         }
 
-        TaskList.tasks.add(task);
+        DungeonManager.addTaskToRegion(region, task);
     }
 }

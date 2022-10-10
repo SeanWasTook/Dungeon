@@ -1,17 +1,15 @@
 package com.gmail.seanduffy797.dungeon.tasks;
 
 import com.gmail.seanduffy797.dungeon.DungeonManager;
-import com.gmail.seanduffy797.dungeon.EntityManager;
+import com.gmail.seanduffy797.dungeon.EntityList;
+import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.GlowItemFrame;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import static org.bukkit.Bukkit.getServer;
 
 public class SpawnItemFrame extends BukkitRunnable {
 
@@ -46,6 +44,6 @@ public class SpawnItemFrame extends BukkitRunnable {
             itemFrame.setFixed(true);
         }
         itemFrame.setFacingDirection(facing);
-        EntityManager.addEntity(itemFrame);
+        DungeonManager.addEntityToRegion(Region.NONE, itemFrame);
     }
 }

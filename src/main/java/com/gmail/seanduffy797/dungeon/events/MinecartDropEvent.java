@@ -26,18 +26,6 @@ public class MinecartDropEvent implements Listener {
 //            ItemMeta meta = itemStack.getItemMeta();
 //            meta.setPlaceableKeys(Collections.singletonList(NamespacedTag.minecraft("rails")));
 //            itemStack.setItemMeta(meta);
-        } else if (item.getItemStack().getType() == Material.RAIL) {
-            item.setItemStack(DungeonItem.RAILS.getItemStack());
-        } else if (item.getItemStack().getType() == Material.POWERED_RAIL) {
-            item.setItemStack(DungeonItem.POWERED_RAILS.getItemStack());
-        } else if (item.getItemStack().getType() == Material.DETECTOR_RAIL) {
-            item.setItemStack(DungeonItem.DETECTOR_RAILS.getItemStack());
-        } else if (item.getItemStack().getType() == Material.ACTIVATOR_RAIL) {
-            item.setItemStack(DungeonItem.ACTIVATOR_RAILS.getItemStack());
-        } else if (item.getItemStack().getType() == Material.SEA_PICKLE) {
-            item.setItemStack(DungeonItem.SEA_PICKLES.getItemStack());
-        } else if (item.getItemStack().getType() == Material.LILY_PAD) {
-            item.setItemStack(DungeonItem.LILY_PAD.getItemStack());
         }
     }
 }

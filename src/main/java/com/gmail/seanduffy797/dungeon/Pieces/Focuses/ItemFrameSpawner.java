@@ -3,6 +3,8 @@ package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.Dungeon;
+import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import com.gmail.seanduffy797.dungeon.builders.BuilderUtils;
 import com.gmail.seanduffy797.dungeon.tasks.SpawnItemFrame;
 import com.gmail.seanduffy797.dungeon.tasks.SummonPainting;
@@ -58,7 +60,7 @@ public class ItemFrameSpawner extends Focus {
     }
 
     @Override
-    public void start() {
+    public void start(Region region) {
         StructureRotation finalRotation = BuilderUtils.addRotations(rotation, facing);
         if (mirror.equals(StructureMirror.LEFT_RIGHT)
                 && (facing.equals(StructureRotation.ROTATION_90)
@@ -96,6 +98,6 @@ public class ItemFrameSpawner extends Focus {
         }
         BukkitTask task = new SpawnItemFrame(location, contents, blockFace, isGlow, isFixed)
                 .runTaskLater(Dungeon.getPlugin(), 400L);
-        TaskList.tasks.add(task);
+        DungeonManager.addTaskToRegion(region, task);
     }
 }

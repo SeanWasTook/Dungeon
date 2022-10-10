@@ -54,7 +54,6 @@ public class MineBuilder {
         fillWithStone();
         MinePiecePicker.init();
         if (!DungeonManager.isGenerated) {
-            TaskList.tasks = new ArrayList<>();
             FocusMeta.init();
             DungeonManager.isGenerated = true;
         }
@@ -63,6 +62,9 @@ public class MineBuilder {
             for (boolean[] col: row)
                 Arrays.fill(col, false);
 
+        Location corner1 = new Location(DungeonManager.world, minX, minY, minZ);
+        Location corner2 = new Location(DungeonManager.world, maxX, maxY, maxZ);
+        DungeonManager.updateRegionMap(corner1, corner2, Region.MINE);
 
         buildQueue(Region.MINE, starts, StructureRotation.ROTATION_90);
     }
@@ -149,7 +151,7 @@ public class MineBuilder {
             } else {
                 newFoc.location = newLoc.add(BuilderUtils.applyRotation(newFoc.location, rotation));
             }
-            newFoc.start();
+            newFoc.start(Region.MINE);
         }
 
         // PREPARING THE NEXT SECTIONS

@@ -5,6 +5,7 @@ import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.FocusMeta;
+import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import com.gmail.seanduffy797.dungeon.Pieces.StoneBrickMaze;
 import com.gmail.seanduffy797.dungeon.builders.BuilderUtils;
 import com.gmail.seanduffy797.dungeon.tasks.TaskList;
@@ -58,7 +59,6 @@ public class StoneBrickMazeBuilder {
         Location[][][] offsets = getLocationOffsets(startY, startX, startZ, facing);
 
         if (!DungeonManager.isGenerated) {
-            TaskList.tasks = new ArrayList<>();
             FocusMeta.init();
             DungeonManager.isGenerated = true;
         }
@@ -107,7 +107,7 @@ public class StoneBrickMazeBuilder {
                             newFoc.location = newLoc.add(BuilderUtils.applyRotation(newFoc.location, rotation));
                         }
                         newFoc.rotation = rotation;
-                        newFoc.start();
+                        newFoc.start(Region.STONE_BRICK);
                     }
                 }
             }

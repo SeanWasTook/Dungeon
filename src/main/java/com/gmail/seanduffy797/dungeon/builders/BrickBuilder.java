@@ -52,9 +52,7 @@ public class BrickBuilder {
 
         BrickPiecePicker.init();
         if (!DungeonManager.isGenerated) {
-            TaskList.tasks = new ArrayList<>();
             FocusMeta.init();
-            DungeonManager.isGenerated = true;
         }
 
         Location startPoint = new Location(Bukkit.getWorld("Dungeon"), -48, 102, 0);
@@ -67,7 +65,7 @@ public class BrickBuilder {
 
         if (isDelayed) {
             BukkitTask task = new BrickStepTask().runTaskLater(Dungeon.getPlugin(), 40);
-            TaskList.tasks.add(task);
+            DungeonManager.addTaskToRegion(Region.BRICK, task);
         } else {
             while (openEnds.size() > 0) {
                 int len = openEnds.size();
@@ -173,6 +171,7 @@ public class BrickBuilder {
         }
 
         BuilderUtils.fillMap(map, current, corner);
+        DungeonManager.updateRegionMap(current, corner, Region.BRICK);
         BrickPiecePicker.update(piece, region);
         piece.place(current, rotation, mirrorType);
         // For debugging:
@@ -199,7 +198,7 @@ public class BrickBuilder {
                 newFoc.location = newFoc.location.add(newLoc);
             }
             newFoc.rotation = rotation;
-            newFoc.start();
+            newFoc.start(Region.BRICK);
         }
 
         // PREPARING THE NEXT SECTIONS

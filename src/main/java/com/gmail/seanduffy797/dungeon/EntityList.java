@@ -4,15 +4,19 @@ import org.bukkit.entity.Entity;
 
 import java.util.ArrayList;
 
-public class EntityManager {
+public class EntityList {
 
-    public static ArrayList<Entity> loadedEntities = new ArrayList<>();
+    public ArrayList<Entity> loadedEntities;
 
-    public static void addEntity(Entity entity){
+    public EntityList() {
+        this.loadedEntities = new ArrayList<>();
+    }
+
+    public void addEntity(Entity entity){
         loadedEntities.add(entity);
     }
 
-    public static void clearEntities() {
+    public void clearEntities() {
         for (Entity entity : loadedEntities) {
             entity.remove();
         }

@@ -82,7 +82,6 @@ public class PlaceCommand implements CommandExecutor {
                 return false;
             }
 
-            TaskList.tasks = new ArrayList<>();
             FocusMeta.init();
 
             // Offset Calculations - Necessary to line up with focuses
@@ -106,7 +105,7 @@ public class PlaceCommand implements CommandExecutor {
                 }
                 newFoc.location = newFoc.location.add(newLoc);
                 newFoc.rotation = rotation;
-                newFoc.start();
+                newFoc.start(region);
             }
 
             piece.place(loc.add(offset), rotation, mirror);

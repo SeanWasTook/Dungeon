@@ -1,6 +1,8 @@
 package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
 import com.gmail.seanduffy797.dungeon.Dungeon;
+import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import com.gmail.seanduffy797.dungeon.tasks.SetSpawner;
 import com.gmail.seanduffy797.dungeon.tasks.TaskList;
 import org.bukkit.Location;
@@ -28,12 +30,12 @@ public class Spawner extends Focus {
     }
 
     @Override
-    public void start() {
+    public void start(Region region) {
         Plugin plugin = Dungeon.getPlugin();
 
         BukkitTask task = new SetSpawner(location, spawnerType)
                 .runTaskLater(plugin, 400L);
 
-        TaskList.tasks.add(task);
+        DungeonManager.addTaskToRegion(region, task);
     }
 }

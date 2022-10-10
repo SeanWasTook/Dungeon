@@ -1,5 +1,6 @@
 package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
+import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -24,7 +25,7 @@ public class Trigger extends Focus {
     }
 
     @Override
-    public void start() {
+    public void start(Region region) {
         this.location.setYaw(0);
         this.location.setPitch(0);
         FocusMeta.triggers.put(this.location, this);

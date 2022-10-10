@@ -1,5 +1,6 @@
 package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
+import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -23,7 +24,7 @@ public class IronGate extends Focus {
     }
 
     @Override
-    public void start() {
+    public void start(Region region) {
         FocusMeta.ironGates.put(this.number, this);
     }
 

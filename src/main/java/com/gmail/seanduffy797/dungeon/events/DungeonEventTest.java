@@ -27,6 +27,9 @@ public class DungeonEventTest implements Listener {
         Player player = event.getPlayer();
         String name = ((TextComponent)player.displayName()).content();
         player.sendMessage(ChatColor.AQUA + "Welcome " + name + " to the server! Please enjoy, the server is currently in the pre-alpha phase");
+        if (player.getWorld().equals(DungeonManager.world) && DungeonManager.isPlaying) {
+            DungeonManager.bossBarCountdown.addPlayer(player);
+        }
     }
 
     @EventHandler

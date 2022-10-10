@@ -1,5 +1,6 @@
 package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
+import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import org.bukkit.Location;
 import org.bukkit.Material;
 
@@ -30,7 +31,7 @@ public class EditableBlock extends Focus {
     }
 
     @Override
-    public void start() {
+    public void start(Region region) {
         FocusMeta.puzzleBlocks.add(this);
     }
 

@@ -1,7 +1,8 @@
 package com.gmail.seanduffy797.dungeon.events;
 
 import com.gmail.seanduffy797.dungeon.DungeonManager;
-import com.gmail.seanduffy797.dungeon.EntityManager;
+import com.gmail.seanduffy797.dungeon.EntityList;
+import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,7 +15,8 @@ public class ItemEntitySpawnEvent implements Listener {
         // Item entities are tracked to be removed when the dungeon is cleared
         if (DungeonManager.isGenerated) {
             Entity entity = event.getEntity();
-            EntityManager.addEntity(entity);
+            Region region = DungeonManager.getRegionAt(entity.getLocation());
+            DungeonManager.addEntityToRegion(region, entity);
         }
     }
 }

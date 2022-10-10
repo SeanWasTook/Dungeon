@@ -1,6 +1,7 @@
 package com.gmail.seanduffy797.dungeon.events;
 
 
+import com.gmail.seanduffy797.dungeon.DungeonItem;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Item;
@@ -20,15 +21,29 @@ public class DungeonBlockBreakEvent implements Listener {
     public static void onBlockBreak(BlockDropItemEvent event) {
         List<Item> items = event.getItems();
         for(Item item: items) {
-            ItemStack itemStack = item.getItemStack();
-            if(itemStack.getType() == Material.TORCH || itemStack.getType() == Material.SOUL_TORCH || itemStack.getType() == Material.LANTERN || itemStack.getType() == Material.SOUL_LANTERN){
-                ItemMeta meta = itemStack.getItemMeta();
-                meta.setPlaceableKeys(Arrays.asList(NamespacedKey.minecraft("bricks"), NamespacedKey.minecraft("polished_granite"), NamespacedKey.minecraft("granite"), NamespacedKey.minecraft("stone_bricks"), NamespacedKey.minecraft("spruce_planks"), NamespacedKey.minecraft("stone")));
-                itemStack.setItemMeta(meta);
-            } else if(itemStack.getType() == Material.RAIL || itemStack.getType() == Material.ACTIVATOR_RAIL || itemStack.getType() == Material.DETECTOR_RAIL || itemStack.getType() == Material.POWERED_RAIL){
-                ItemMeta meta = itemStack.getItemMeta();
-                meta.setPlaceableKeys(Collections.singletonList(NamespacedKey.minecraft("stone")));
-                itemStack.setItemMeta(meta);
+            Material mat = item.getItemStack().getType();
+            if (mat == Material.RAIL) {
+                item.setItemStack(DungeonItem.RAILS.getItemStack());
+            } else if (mat == Material.POWERED_RAIL) {
+                item.setItemStack(DungeonItem.POWERED_RAILS.getItemStack());
+            } else if (mat == Material.DETECTOR_RAIL) {
+                item.setItemStack(DungeonItem.DETECTOR_RAILS.getItemStack());
+            } else if (mat == Material.ACTIVATOR_RAIL) {
+                item.setItemStack(DungeonItem.ACTIVATOR_RAILS.getItemStack());
+            } else if (mat == Material.SEA_PICKLE) {
+                item.setItemStack(DungeonItem.SEA_PICKLES.getItemStack());
+            } else if (mat == Material.LILY_PAD) {
+                item.setItemStack(DungeonItem.LILY_PAD.getItemStack());
+            } else if (mat == Material.TORCH) {
+                item.setItemStack(DungeonItem.TORCH.getItemStack());
+            } else if (mat == Material.SOUL_TORCH) {
+                item.setItemStack(DungeonItem.SOUL_TORCH.getItemStack());
+            } else if (mat == Material.LANTERN) {
+                item.setItemStack(DungeonItem.LANTERN.getItemStack());
+            } else if (mat == Material.SOUL_LANTERN) {
+                item.setItemStack(DungeonItem.SOUL_LANTERN.getItemStack());
+            } else if (mat == Material.CANDLE) {
+                item.setItemStack(DungeonItem.CANDLE.getItemStack());
             }
         }
     }

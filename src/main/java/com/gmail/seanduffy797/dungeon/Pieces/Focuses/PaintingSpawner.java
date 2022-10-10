@@ -4,6 +4,7 @@ import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.Dungeon;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import com.gmail.seanduffy797.dungeon.builders.BuilderUtils;
 import com.gmail.seanduffy797.dungeon.tasks.SummonPainting;
 import com.gmail.seanduffy797.dungeon.tasks.TaskList;
@@ -40,7 +41,7 @@ public class PaintingSpawner extends Focus {
     }
 
     @Override
-    public void start() {
+    public void start(Region region) {
         Plugin plugin = Dungeon.getPlugin();
         World world = DungeonManager.world;
         StructureRotation finalRotation = BuilderUtils.addRotations(rotation, facing);
@@ -111,6 +112,6 @@ public class PaintingSpawner extends Focus {
         }
         BukkitTask task = new SummonPainting(location, motif, intFacing)
                 .runTaskLater(plugin, 400L);
-        TaskList.tasks.add(task);
+        DungeonManager.addTaskToRegion(region, task);
     }
 }

@@ -1,5 +1,6 @@
 package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
+import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import com.gmail.seanduffy797.dungeon.builders.BrickPiecePicker;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -27,7 +28,7 @@ public class LockedDoor extends Focus {
     }
 
     @Override
-    public void start() {
+    public void start(Region region) {
         this.location.setYaw(0);
         this.location.setPitch(0);
         FocusMeta.doors.put(this.location, this);

@@ -1,6 +1,7 @@
 package com.gmail.seanduffy797.dungeon.Pieces;
 
 public enum Region {
+    NONE,
     BRICK,
     BRICK2,
     HOUSE,
@@ -9,6 +10,7 @@ public enum Region {
     PIPE3,
     BIGPIPE,
     CRYPT,
+    STONE_BRICK,
     MINE,
     MINE_DECO,
     INHERIT,

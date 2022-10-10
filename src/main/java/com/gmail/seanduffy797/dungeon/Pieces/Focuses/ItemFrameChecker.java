@@ -1,5 +1,6 @@
 package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
+import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import org.bukkit.Location;
 import org.bukkit.Rotation;
 import org.bukkit.World;
@@ -38,7 +39,7 @@ public class ItemFrameChecker extends Focus {
     }
 
     @Override
-    public void start() {
+    public void start(Region region) {
         FocusMeta.puzzleFrames.add(this);
     }
 

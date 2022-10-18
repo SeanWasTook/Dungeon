@@ -36,41 +36,8 @@ public class BuildCommand implements CommandExecutor {
                     DungeonManager.buildRegion(Region.MINE);
                 } else if (args[0].equalsIgnoreCase("maze")) {
                     DungeonManager.buildRegion(Region.STONE_BRICK);
-//                    double chance = 0.25;
-//                    if (args.length >= 2) {
-//                        chance = parseDouble(args[1]);
-//                    }
-//                    int[] start = new int[3];
-//                    start[0] = 1; // Height level
-//                    start[1] = 0; // # of units from the front
-//                    start[2] = 5; // # of units from the left
-//                    int[] exit1 = new int[4];
-//                    exit1[0] = 1;
-//                    exit1[1] = 16;
-//                    exit1[2] = 0;
-//                    exit1[3] = 270;
-//                    int[] exit2 = new int[4];
-//                    exit2[0] = 0;
-//                    exit2[1] = 19;
-//                    exit2[2] = 15;
-//                    exit2[3] = 0;
-//                    int[] exit3 = new int[4];
-//                    exit3[0] = 4;
-//                    exit3[1] = 11;
-//                    exit3[2] = 17;
-//                    exit3[3] = 90;
-//                    ArrayList<int[]> exits = new ArrayList<>();
-//                    exits.add(exit1);
-//                    exits.add(exit2);
-//                    exits.add(exit3);
-//                    StoneBrickMazeBuilder builder = new StoneBrickMazeBuilder(
-//                            6,
-//                            20,
-//                            18,
-//                            start,
-//                            exits,
-//                            chance);
-//                    builder.buildStoneBrickMaze(new Location(DungeonManager.world, -2, 100, -47), StructureRotation.ROTATION_270);
+                } else if (args[0].equalsIgnoreCase("pueblo")) {
+                    DungeonManager.buildRegion(Region.PUEBLO);
                 } else if (args[0].equalsIgnoreCase("all")) {
                     DungeonManager.buildAll();
                 } else if (args[0].equalsIgnoreCase("data")){

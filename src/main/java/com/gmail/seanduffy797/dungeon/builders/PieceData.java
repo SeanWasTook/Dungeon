@@ -2,6 +2,8 @@ package com.gmail.seanduffy797.dungeon.builders;
 
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.builders.wavefunction.Direction;
+import com.gmail.seanduffy797.dungeon.builders.wavefunction.PuebloConnectType;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Location;
@@ -21,6 +23,8 @@ public class PieceData {
     public Location offset;
     public Map<Location, Region> exits;
     public ArrayList<Focus> foci;
+
+    public Map<Direction, PuebloConnectType> puebloWaveEdges;
 
     public PieceData() {}
 

@@ -4,6 +4,8 @@ import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.*;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.*;
 import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.builders.wavefunction.Direction;
+import com.gmail.seanduffy797.dungeon.builders.wavefunction.PuebloConnectType;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -52,6 +54,7 @@ public class PieceParser {
         parseIsEven(json, pieceData);
         parseOffset(json, pieceData);
         parseExits(json, pieceData);
+        parsePuebloWaveEdges(json, pieceData);
         parseFoci(json, pieceData);
     }
 
@@ -68,8 +71,8 @@ public class PieceParser {
         if (json.containsKey("length")) {
             pieceData.length = (int) (long) json.get("length");
         } else {
-            getServer().getConsoleSender().sendMessage
-                    (ChatColor.RED + "[Dungeon]: Parsing Error: no field length in " + pieceData.templatePath);
+            // getServer().getConsoleSender().sendMessage
+            //        (ChatColor.YELLOW + "[Dungeon]: Parsing Warning: no field length in " + pieceData.templatePath);
             pieceData.length = 5;
         }
     }
@@ -77,8 +80,8 @@ public class PieceParser {
         if (json.containsKey("height")) {
             pieceData.height = (int) (long) json.get("height");
         } else {
-            getServer().getConsoleSender().sendMessage
-                    (ChatColor.RED + "[Dungeon]: Parsing Error: no field height in " + pieceData.templatePath);
+            //getServer().getConsoleSender().sendMessage
+            //        (ChatColor.YELLOW + "[Dungeon]: Parsing Warning: no field height in " + pieceData.templatePath);
             pieceData.height = 5;
         }
     }
@@ -86,8 +89,8 @@ public class PieceParser {
         if (json.containsKey("width")) {
             pieceData.width = (int) (long) json.get("width");
         } else {
-            getServer().getConsoleSender().sendMessage
-                    (ChatColor.RED + "[Dungeon]: Parsing Error: no field width in " + pieceData.templatePath);
+            //getServer().getConsoleSender().sendMessage
+            //        (ChatColor.YELLOW + "[Dungeon]: Parsing Warning: no field width in " + pieceData.templatePath);
             pieceData.width = 5;
         }
     }
@@ -103,8 +106,8 @@ public class PieceParser {
         if (json.containsKey("offset")) {
             offset = (JSONArray) json.get("offset");
         } else {
-            getServer().getConsoleSender().sendMessage
-                    (ChatColor.RED + "[Dungeon]: Parsing Error: no field offset in " + pieceData.templatePath);
+            //getServer().getConsoleSender().sendMessage
+            //        (ChatColor.YELLOW + "[Dungeon]: Parsing Warning: no field offset in " + pieceData.templatePath);
             pieceData.offset = new Location(DungeonManager.world, 0, -1, 0);
             return;
         }
@@ -160,6 +163,47 @@ public class PieceParser {
             }
             pieceData.exits.put(
                     new Location(DungeonManager.world, x, y, z, yaw, 0), region);
+        }
+    }
+    private static void parsePuebloWaveEdges(JSONObject json, PieceData pieceData) {
+        JSONArray puebloWaveEdges;
+        if (json.containsKey("puebloWaveEdges")) {
+            puebloWaveEdges = (JSONArray) json.get("puebloWaveEdges");
+        } else {
+            return;
+        }
+        pieceData.puebloWaveEdges = new HashMap<>();
+        for (Object edge : puebloWaveEdges) {
+            JSONObject jsonEdge = (JSONObject) edge;
+            Direction direction;
+            if (jsonEdge.containsKey("direction")) {
+                try {
+                    direction = Direction.valueOf(((String) jsonEdge.get("direction")).toUpperCase());
+                } catch (IllegalArgumentException e) {
+                    getServer().getConsoleSender().sendMessage
+                            (ChatColor.RED + "[Dungeon]: Parsing Error: " + pieceData.templatePath +
+                                    " has invalid direction " + jsonEdge.get("direction"));
+                    continue;
+                }
+            } else {
+                getServer().getConsoleSender().sendMessage
+                        (ChatColor.RED + "[Dungeon]: Parsing Error: no field direction in puebloWaveEdge in " + pieceData.templatePath);
+                continue;
+            }
+            PuebloConnectType type;
+            if (jsonEdge.containsKey("type")) {
+                try {
+                    type = PuebloConnectType.valueOf(((String) jsonEdge.get("type")).toUpperCase());
+                } catch (IllegalArgumentException e) {
+                    getServer().getConsoleSender().sendMessage
+                            (ChatColor.RED + "[Dungeon]: Parsing Error: " + pieceData.templatePath +
+                                    " has invalid connection type " + jsonEdge.get("type"));
+                    continue;
+                }
+            } else {
+                continue;
+            }
+            pieceData.puebloWaveEdges.put(direction, type);
         }
     }
     private static void parseFoci(JSONObject json, PieceData pieceData) {

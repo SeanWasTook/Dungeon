@@ -17,10 +17,10 @@ commands:
     usage: /<command> [Player] [Item] [Count]
   build:
     description: Builds the dungeon
-    usage: /<command> <brick|maze|mine>
+    usage: /<command> <brick|maze|mine|pueblo>
   clear:
     description: Clears the dungeon
-    usage: /<command> <brick|maze|mine>
+    usage: /<command> <brick|maze|mine|pueblo>
   gear:
     description: Gives the player some bread and a wooden sword and torches
     usage: /<command>

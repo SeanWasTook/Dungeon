@@ -19,6 +19,8 @@ public class ClearCommand implements CommandExecutor {
                     DungeonManager.clearRegion(Region.MINE);
                 } else if (args[0].equalsIgnoreCase("maze")) {
                     DungeonManager.clearRegion(Region.STONE_BRICK);
+                } else if (args[0].equalsIgnoreCase("pueblo")) {
+                    DungeonManager.clearRegion(Region.PUEBLO);
                 } else if (args[0].equalsIgnoreCase("all")) {
                     DungeonManager.clearAll();
                 } else if (args[0].equalsIgnoreCase("fluff")) {

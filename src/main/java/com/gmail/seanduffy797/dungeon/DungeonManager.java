@@ -6,12 +6,10 @@ import com.gmail.seanduffy797.dungeon.Pieces.Region;
 import com.gmail.seanduffy797.dungeon.builders.BrickBuilder;
 import com.gmail.seanduffy797.dungeon.builders.MineBuilder;
 import com.gmail.seanduffy797.dungeon.builders.maze.StoneBrickMazeBuilder;
+import com.gmail.seanduffy797.dungeon.builders.wavefunction.PuebloBuilder;
 import com.gmail.seanduffy797.dungeon.display.BossBarCountdown;
 import com.gmail.seanduffy797.dungeon.tasks.TaskList;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -42,6 +40,7 @@ public class DungeonManager {
     public static Map<Region, EntityList> entityLists = new HashMap<>();
     public static Map<Region, TaskList> taskLists = new HashMap<>();
     public static Map<KeyLocation, Location> keyLocations = new HashMap<>();
+    public static Map<Region, PuebloBuilder> builders = new HashMap<>();
 
     public static void init(Plugin plugin, World dungeonWorld) {
         customItemKey = new NamespacedKey(plugin, "customItem");
@@ -60,6 +59,8 @@ public class DungeonManager {
                 Material.STONE_BRICKS.getKey(),
                 Material.STONE.getKey(),
                 Material.SPRUCE_PLANKS.getKey()));
+
+        builders.put(Region.PUEBLO, new PuebloBuilder());
     }
 
     public static void startPlaying() {
@@ -151,6 +152,9 @@ public class DungeonManager {
                         chance);
                 builder.buildStoneBrickMaze(new Location(DungeonManager.world, -2, 100, -47), StructureRotation.ROTATION_270);
                 break;
+            case PUEBLO:
+                builders.get(Region.PUEBLO).build();
+                break;
         }
         isRegionGenerated.put(region, true);
         isGenerated = true;
@@ -173,6 +177,9 @@ public class DungeonManager {
                     break;
                 case STONE_BRICK:
                     StoneBrickMazeBuilder.clear();
+                    break;
+                case PUEBLO:
+                    builders.get(Region.PUEBLO).clear();
                     break;
             }
             clearEntitiesFromRegion(region);

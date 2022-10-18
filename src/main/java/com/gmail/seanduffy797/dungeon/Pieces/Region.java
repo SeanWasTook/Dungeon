@@ -13,6 +13,7 @@ public enum Region {
     STONE_BRICK,
     MINE,
     MINE_DECO,
+    PUEBLO,
     INHERIT,
     TEST
 }

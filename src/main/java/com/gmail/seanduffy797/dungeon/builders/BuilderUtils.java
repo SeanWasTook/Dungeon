@@ -195,6 +195,11 @@ public class BuilderUtils {
             }
         }
     }
+    public static Location applyMirrorFrontBack(Location input) {
+        Location newLoc;
+        newLoc = new Location(getWorld("Dungeon"), input.getX() * -1, input.getY(), input.getZ());
+        return newLoc;
+    }
 
     // Only partially implemented, this one is for when it transitions from even to odd and maybe even vice versa
     // I thought the last one was painful, this is worse lol.

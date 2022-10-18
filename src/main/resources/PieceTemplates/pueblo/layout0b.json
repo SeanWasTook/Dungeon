@@ -1,0 +1,29 @@
+{
+  "name": "layout0b",
+  "puebloWaveEdges": [
+    {
+      "direction": "north",
+      "type": "outside"
+    },
+    {
+      "direction": "east",
+      "type": "outside"
+    },
+    {
+      "direction": "south",
+      "type": "outside"
+    },
+    {
+      "direction": "west",
+      "type": "outside"
+    },
+    {
+      "direction": "up",
+      "type": "vertical_solid"
+    },
+    {
+      "direction": "down",
+      "type": "floor_solid"
+    }
+  ]
+}

@@ -3,6 +3,7 @@ package com.gmail.seanduffy797.dungeon.players;
 import com.gmail.seanduffy797.dungeon.Dungeon;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.curses.CurseManager;
 import com.gmail.seanduffy797.dungeon.display.DungeonScoreboard;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
@@ -38,7 +39,9 @@ public class PlayerManager {
         if (container.has(currentRegionKey, PersistentDataType.STRING)) {
             Region previousRegion = Region.valueOf(container.get(currentRegionKey, PersistentDataType.STRING));
             if (currentRegion != previousRegion) {
-                player.sendMessage("You are entering the domain of " + currentRegion.name());
+                if (currentRegion != Region.NONE) {
+                    player.sendMessage("You are entering the domain of " + currentRegion.name());
+                }
                 container.set(currentRegionKey, PersistentDataType.STRING, currentRegion.name());
             }
         } else {
@@ -60,6 +63,13 @@ public class PlayerManager {
                 break;
             default:
                 decreaseAllScores(container);
+        }
+        if (currentRegion != Region.NONE) {
+            CurseManager.dispatchCurse(
+                    player,
+                    currentRegion,
+                    getScoreForRegion(player, currentRegion)
+            );
         }
         DungeonScoreboard.updateScoreboard(player);
     }

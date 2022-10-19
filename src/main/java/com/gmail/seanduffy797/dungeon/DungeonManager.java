@@ -7,6 +7,7 @@ import com.gmail.seanduffy797.dungeon.builders.BrickBuilder;
 import com.gmail.seanduffy797.dungeon.builders.MineBuilder;
 import com.gmail.seanduffy797.dungeon.builders.maze.StoneBrickMazeBuilder;
 import com.gmail.seanduffy797.dungeon.builders.wavefunction.PuebloBuilder;
+import com.gmail.seanduffy797.dungeon.curses.CurseManager;
 import com.gmail.seanduffy797.dungeon.display.BossBarCountdown;
 import com.gmail.seanduffy797.dungeon.players.PlayerManager;
 import com.gmail.seanduffy797.dungeon.tasks.TaskList;
@@ -24,6 +25,7 @@ import static org.bukkit.Bukkit.getServer;
 public class DungeonManager {
 
     // Less Dynamic Values
+    public static final int totalLifetimeTicks = 108000; // 1.5 hours
     public static NamespacedKey customItemKey;
     public static NamespacedKey customMobKey;
     public static World world;
@@ -61,12 +63,13 @@ public class DungeonManager {
                 Material.SPRUCE_PLANKS.getKey()));
 
         builders.put(Region.PUEBLO, new PuebloBuilder());
+        CurseManager.init();
     }
 
     public static void startPlaying() {
         if (!isPlaying) {
             isPlaying = true;
-            bossBarCountdown = new BossBarCountdown(20000);
+            bossBarCountdown = new BossBarCountdown(totalLifetimeTicks);
             scheduler.scheduleSyncRepeatingTask(Dungeon.getPlugin(), new Runnable() {
                 @Override
                 public void run() {

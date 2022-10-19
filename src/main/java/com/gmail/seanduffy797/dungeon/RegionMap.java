@@ -30,7 +30,7 @@ public class RegionMap {
         }
     }
     public void fillXYZ(int x, int y, int z, Region region) {
-        regionData[x + x_offset][y + y_offset][z + z_offset] = region;
+        this.regionData[x + x_offset][y + y_offset][z + z_offset] = region;
     }
     public Region getRegionAtLocation(Location loc) {
         int x = (int) Math.floor(loc.getX());
@@ -39,9 +39,14 @@ public class RegionMap {
         return getRegionAtXYZ(x, y, z);
     }
     public Region getRegionAtXYZ(int x, int y, int z) {
-        if (x < x_offset || x >= -x_offset || y < -64 || y >= 320 || z < z_offset || z >= -z_offset) {
+        if (x >= x_offset || x < -x_offset || y < -64 || y >= 320 || z >= z_offset || z < -z_offset) {
             return Region.NONE;
         }
-        return regionData[x + x_offset][y + y_offset][z + z_offset];
+        Region region = regionData[x + x_offset][y + y_offset][z + z_offset];
+        if (region == null) {
+            return Region.NONE;
+        } else {
+            return region;
+        }
     }
 }

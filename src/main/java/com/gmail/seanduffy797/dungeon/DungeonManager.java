@@ -8,17 +8,16 @@ import com.gmail.seanduffy797.dungeon.builders.MineBuilder;
 import com.gmail.seanduffy797.dungeon.builders.maze.StoneBrickMazeBuilder;
 import com.gmail.seanduffy797.dungeon.builders.wavefunction.PuebloBuilder;
 import com.gmail.seanduffy797.dungeon.display.BossBarCountdown;
+import com.gmail.seanduffy797.dungeon.players.PlayerManager;
 import com.gmail.seanduffy797.dungeon.tasks.TaskList;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.bukkit.Bukkit.getServer;
 
@@ -33,6 +32,7 @@ public class DungeonManager {
 
     // More Dynamic Values
     public static BukkitScheduler scheduler;
+    public static Map<UUID, Player> onlinePlayers = new HashMap<>();
     public static boolean isPlaying;
     public static boolean isGenerated;
     public static RegionMap regionMap = null;
@@ -64,17 +64,22 @@ public class DungeonManager {
     }
 
     public static void startPlaying() {
-        isPlaying = true;
-        bossBarCountdown = new BossBarCountdown(20000);
-        scheduler.scheduleSyncRepeatingTask(Dungeon.getPlugin(), new Runnable() {
-            @Override
-            public void run() {
-                DungeonManager.tick();
-            }
-        }, 0L, 1L);
+        if (!isPlaying) {
+            isPlaying = true;
+            bossBarCountdown = new BossBarCountdown(20000);
+            scheduler.scheduleSyncRepeatingTask(Dungeon.getPlugin(), new Runnable() {
+                @Override
+                public void run() {
+                    DungeonManager.tick();
+                }
+            }, 0L, 1L);
+        }
     }
 
     public static void tick() {
+        for (Player player: onlinePlayers.values()) {
+            PlayerManager.updatePlayer(player);
+        }
         if (!isPlaying) {
             return;
         }
@@ -158,6 +163,7 @@ public class DungeonManager {
         }
         isRegionGenerated.put(region, true);
         isGenerated = true;
+        startPlaying();
     }
     public static void buildAll() {
         buildRegion(Region.BRICK);
@@ -217,5 +223,11 @@ public class DungeonManager {
         } else {
             return Region.NONE;
         }
+    }
+    public static void addOnlinePlayer(Player player) {
+        onlinePlayers.put(player.getUniqueId(), player);
+    }
+    public static void removeOnlinePlayer(UUID uuid) {
+        onlinePlayers.remove(uuid);
     }
 }

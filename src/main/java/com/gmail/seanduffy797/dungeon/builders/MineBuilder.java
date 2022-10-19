@@ -200,9 +200,9 @@ public class MineBuilder {
                         block.setType(Material.STONE);
                     }
                     double rand = Math.random();
-                    if(rand < 0.04) {
+                    if(rand < 0.03) {
                         block.setType(Material.COAL_ORE);
-                    } else if(rand < 0.06) {
+                    } else if(rand < 0.045) {
                         block.setType(Material.IRON_ORE);
                     }
                 }

@@ -92,6 +92,13 @@ public class PuebloBuilder {
                 }
             }
         }
+        DungeonManager.updateRegionMap(
+                startLocation,
+                new Location(DungeonManager.world,
+                        x + (sizeNorthSouth+1) * HORIZONTAL_SCALE - 1,
+                        y + (height+1) * VERTICAL_SCALE,
+                        z + (sizeEastWest+1)* HORIZONTAL_SCALE - 1),
+                Region.PUEBLO);
     }
     public void placeFloor() {
         int x = (int) startLocation.getX();

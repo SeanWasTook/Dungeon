@@ -112,7 +112,7 @@ public class StoneBrickMazeBuilder {
                 }
             }
         }
-        DungeonManager.isGenerated = true;
+        DungeonManager.updateRegionMap(corner1, corner2, Region.STONE_BRICK);
     }
 
     public StoneBrickMaze[][][] getPiecesFromOutline(PieceOutline[][][] outlines) {

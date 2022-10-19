@@ -45,14 +45,6 @@ public class Dungeon extends JavaPlugin {
 
         BukkitTask dungeonTick = new TickDungeon(DungeonManager.world)
                 .runTaskTimer(this, 50L, 10L);
-
-        BukkitScheduler scheduler = getServer().getScheduler();
-        scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
-            @Override
-            public void run() {
-                DungeonManager.tick();
-            }
-        }, 0L, 1L);
     }
 
     @Override

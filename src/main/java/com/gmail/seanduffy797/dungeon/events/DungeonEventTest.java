@@ -1,11 +1,13 @@
 package com.gmail.seanduffy797.dungeon.events;
 
 import com.destroystokyo.paper.event.player.PlayerPostRespawnEvent;
+import com.gmail.seanduffy797.dungeon.Dungeon;
 import com.gmail.seanduffy797.dungeon.DungeonItem;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.DungeonMob;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.FocusMeta;
 import com.gmail.seanduffy797.dungeon.mobs.NPCEnum;
+import com.gmail.seanduffy797.dungeon.players.PlayerManager;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -14,6 +16,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -27,9 +30,13 @@ public class DungeonEventTest implements Listener {
         Player player = event.getPlayer();
         String name = ((TextComponent)player.displayName()).content();
         player.sendMessage(ChatColor.AQUA + "Welcome " + name + " to the server! Please enjoy, the server is currently in the pre-alpha phase");
-        if (player.getWorld().equals(DungeonManager.world) && DungeonManager.isPlaying) {
-            DungeonManager.bossBarCountdown.addPlayer(player);
-        }
+        PlayerManager.playerJoin(player);
+    }
+
+    @EventHandler
+    public static void onPlayerQuit(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+        DungeonManager.removeOnlinePlayer(player.getUniqueId());
     }
 
     @EventHandler

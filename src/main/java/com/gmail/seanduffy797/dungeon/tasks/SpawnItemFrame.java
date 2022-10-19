@@ -44,6 +44,7 @@ public class SpawnItemFrame extends BukkitRunnable {
             itemFrame.setFixed(true);
         }
         itemFrame.setFacingDirection(facing);
-        DungeonManager.addEntityToRegion(Region.NONE, itemFrame);
+        Region region = DungeonManager.getRegionAt(loc);
+        DungeonManager.addEntityToRegion(region, itemFrame);
     }
 }

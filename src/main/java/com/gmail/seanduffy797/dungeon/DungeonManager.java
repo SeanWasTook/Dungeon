@@ -2,7 +2,7 @@ package com.gmail.seanduffy797.dungeon;
 
 import com.destroystokyo.paper.Namespaced;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import com.gmail.seanduffy797.dungeon.builders.BrickBuilder;
 import com.gmail.seanduffy797.dungeon.builders.MineBuilder;
 import com.gmail.seanduffy797.dungeon.builders.maze.StoneBrickMazeBuilder;
@@ -118,6 +118,9 @@ public class DungeonManager {
     public static void buildRegion(Region region) {
         if (regionMap == null) {
             regionMap = new RegionMap();
+            Location spawnCorner1 = new Location(world, -48, 97, -48);
+            Location spawnCorner2 = new Location(world, 48, 143, 48);
+            regionMap.fillRegionData(spawnCorner1, spawnCorner2, Region.SPAWN);
         }
         switch (region) {
             case BRICK:

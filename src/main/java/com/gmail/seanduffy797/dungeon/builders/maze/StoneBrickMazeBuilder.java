@@ -5,17 +5,14 @@ import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.FocusMeta;
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import com.gmail.seanduffy797.dungeon.Pieces.StoneBrickMaze;
 import com.gmail.seanduffy797.dungeon.builders.BuilderUtils;
-import com.gmail.seanduffy797.dungeon.tasks.TaskList;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
 import java.util.ArrayList;
-
-import static org.bukkit.Bukkit.getServer;
 
 public class StoneBrickMazeBuilder {
 

@@ -5,11 +5,16 @@ import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.Dungeon;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.builders.PieceData;
 import com.gmail.seanduffy797.dungeon.builders.PieceParser;
+import com.gmail.seanduffy797.dungeon.builders.wavefunction.Direction;
+import com.gmail.seanduffy797.dungeon.builders.wavefunction.PuebloEdge;
 import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.logging.Level;
 
 public enum Pueblo {
@@ -43,34 +48,34 @@ public enum Pueblo {
 //    LAYOUT11b("pueblo/layout11b", 1),
 //    LAYOUT12b("pueblo/layout12b", 1),
 //    LAYOUT13b("pueblo/layout13b", 1),
-    LAYOUT1bt("pueblo/layout1bt",3),
-    LAYOUT2bt("pueblo/layout2bt", 3),
-    LAYOUT3bt("pueblo/layout3bt", 3),
-    LAYOUT4bt("pueblo/layout4bt", 3),
+    LAYOUT1bt("pueblo/layout1bt",4),
+    LAYOUT2bt("pueblo/layout2bt", 4),
+    LAYOUT3bt("pueblo/layout3bt", 6),
+    LAYOUT4bt("pueblo/layout4bt", 6),
     LAYOUT5bt("pueblo/layout5bt", 1),
     LAYOUT6bt("pueblo/layout6bt", 1),
     LAYOUT7bt("pueblo/layout7bt", 1),
     LAYOUT8bt("pueblo/layout8bt", 1),
     LAYOUT9bt("pueblo/layout9bt", 1),
-    LAYOUT10bt("pueblo/layout10bt", 3),
-    LAYOUT11bt("pueblo/layout11bt", 3),
-    LAYOUT12bt("pueblo/layout12bt", 3),
-    LAYOUT13bt("pueblo/layout13bt", 20),
-    LAYOUT1t("pueblo/layout1t", 5),
+    LAYOUT10bt("pueblo/layout10bt", 4),
+    LAYOUT11bt("pueblo/layout11bt", 4),
+    LAYOUT12bt("pueblo/layout12bt", 4),
+    LAYOUT13bt("pueblo/layout13bt", 25),
+    LAYOUT1t("pueblo/layout1t", 4),
     LAYOUT2t("pueblo/layout2t", 5),
-    LAYOUT3t("pueblo/layout3t", 5),
-    LAYOUT4t("pueblo/layout4t", 5),
+    LAYOUT3t("pueblo/layout3t", 7),
+    LAYOUT4t("pueblo/layout4t", 7),
     LAYOUT5t("pueblo/layout5t", 1),
     LAYOUT6t("pueblo/layout6t", 2),
     LAYOUT7t("pueblo/layout7t", 2),
     LAYOUT8t("pueblo/layout8t", 2),
     LAYOUT9t("pueblo/layout9t", 2),
     LAYOUT10t("pueblo/layout10t", 4),
-    LAYOUT11t("pueblo/layout11t", 4),
-    LAYOUT12t("pueblo/layout12t", 4),
-    LAYOUT13t("pueblo/layout13t", 8);
+    LAYOUT11t("pueblo/layout11t", 5),
+    LAYOUT12t("pueblo/layout12t", 5),
+    LAYOUT13t("pueblo/layout13t", 19);
 
-    public final PieceData data;
+    private final PieceData data;
     public final int weight;
 
     Pueblo(String path, int weight) {
@@ -85,6 +90,15 @@ public enum Pueblo {
         this.data.width = 7;
         this.data.length = 7;
         this.data.offset = new Location(DungeonManager.world, -3, 0, -3);
+    }
+    public Location getOffset() {
+        return this.data.offset.clone();
+    }
+    public ArrayList<Focus> getFocuses() {
+        return this.data.foci;
+    }
+    public Map<Direction, PuebloEdge> getEdges() {
+        return this.data.puebloEdges;
     }
 
     public void place(Location location, StructureRotation rotation, StructureMirror mirror) {

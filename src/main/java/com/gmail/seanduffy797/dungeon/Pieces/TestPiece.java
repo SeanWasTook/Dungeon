@@ -7,6 +7,7 @@ import com.gmail.seanduffy797.dungeon.Dungeon;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.builders.PieceData;
 import com.gmail.seanduffy797.dungeon.builders.PieceParser;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 
@@ -57,7 +58,7 @@ public enum TestPiece implements Bricks {
     public boolean isEven() {
         return data.isEven;
     }
-    public Location getStartOffset() {
+    public Location getOffset() {
         return data.offset;
     }
     public boolean getMirror() {

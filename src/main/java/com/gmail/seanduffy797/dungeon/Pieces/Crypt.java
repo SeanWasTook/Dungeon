@@ -195,7 +195,7 @@ public enum Crypt {
     public int getLength() {return length;}
     public int getHeight() {return height;}
     public int getWidth() {return width;}
-    public Location getStartOffset() {return startOffset;}
+    public Location getOffset() {return startOffset;}
     public boolean getMirror() {return canMirror;}
     public ArrayList<Location> getExits() {return exits;}
     public ArrayList<Location> getChests() {return chests;}

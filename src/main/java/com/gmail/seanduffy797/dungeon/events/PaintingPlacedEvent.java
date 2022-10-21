@@ -1,8 +1,7 @@
 package com.gmail.seanduffy797.dungeon.events;
 
 import com.gmail.seanduffy797.dungeon.DungeonManager;
-import com.gmail.seanduffy797.dungeon.EntityList;
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;

@@ -3,8 +3,7 @@ package com.gmail.seanduffy797.dungeon.builders;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.Pieces.PieceStructure;
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
-import com.gmail.seanduffy797.dungeon.Pieces.Bricks;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import org.bukkit.Location;
 
 

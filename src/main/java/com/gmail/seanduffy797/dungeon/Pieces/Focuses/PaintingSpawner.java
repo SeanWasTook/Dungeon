@@ -4,18 +4,14 @@ import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.Dungeon;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import com.gmail.seanduffy797.dungeon.builders.BuilderUtils;
 import com.gmail.seanduffy797.dungeon.tasks.SummonPainting;
-import com.gmail.seanduffy797.dungeon.tasks.TaskList;
-import org.bukkit.Art;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.block.BlockFace;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
-import static org.bukkit.Bukkit.getPluginManager;
 import static org.bukkit.Bukkit.getWorld;
 
 public class PaintingSpawner extends Focus {

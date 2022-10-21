@@ -8,6 +8,7 @@ import com.gmail.seanduffy797.dungeon.DungeonItem;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.DungeonMob;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.*;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -580,7 +581,7 @@ public enum BricksZone1 implements Bricks {
     public int getLength() {return length;}
     public int getHeight() {return height;}
     public int getWidth() {return width;}
-    public Location getStartOffset() {return startOffset;}
+    public Location getOffset() {return startOffset;}
     public boolean getMirror() {return canMirror;}
     public boolean isEven() {return isEven;}
     public Map<Location, Region> getExits() {return exits;}

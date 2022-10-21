@@ -2,9 +2,8 @@ package com.gmail.seanduffy797.dungeon.events;
 
 import com.gmail.seanduffy797.dungeon.DungeonItem;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import com.gmail.seanduffy797.dungeon.tasks.BurnOut;
-import com.gmail.seanduffy797.dungeon.tasks.TaskList;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

@@ -5,6 +5,7 @@ import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.*;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 
@@ -140,7 +141,7 @@ public enum Early implements Mine {
     public int getLength() {return length;}
     public int getHeight() {return height;}
     public int getWidth() {return width;}
-    public Location getStartOffset() {return startOffset;}
+    public Location getOffset() {return startOffset;}
     public Map<Location, Region> getExits() {return exits;}
     public ArrayList<Focus> getFocuses() {return focuses;}
 

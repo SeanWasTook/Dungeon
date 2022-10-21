@@ -1,7 +1,7 @@
 package com.gmail.seanduffy797.dungeon.commands;
 
 import com.gmail.seanduffy797.dungeon.DungeonManager;
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

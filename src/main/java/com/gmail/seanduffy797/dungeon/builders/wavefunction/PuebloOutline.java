@@ -7,7 +7,6 @@ import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Map;
 
 import static org.bukkit.Bukkit.getServer;
 
@@ -24,10 +23,10 @@ public class PuebloOutline {
         this.mirror = mirror;
         this.layout = new PuebloPieceLayout();
 
-        if (pueblo.data.puebloWaveEdges != null) {
+        if (pueblo.getEdges() != null) {
             for (Direction dir : Direction.values()) {
                 Direction newDir = Direction.getAppliedTransforms(dir, rotation, mirror);
-                PuebloConnectType connection = pueblo.data.puebloWaveEdges.get(dir);
+                PuebloEdge connection = pueblo.getEdges().get(dir);
                 if (mirror == StructureMirror.LEFT_RIGHT) {
                     connection = connection.mirror();
                 }

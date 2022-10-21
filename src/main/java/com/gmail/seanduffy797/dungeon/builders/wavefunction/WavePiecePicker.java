@@ -22,7 +22,7 @@ public class WavePiecePicker {
     public ArrayList<PuebloOutline> getPieceForLayout(PuebloPieceLayout layout) {
         ArrayList<PuebloOutline> possibilities = new ArrayList<>();
         for (Pueblo piece: Pueblo.values()) {
-            if (piece.data.puebloWaveEdges != null) {
+            if (piece.getEdges() != null) {
                 possibilities.addAll(getMatchingOutlinesForPiece(layout, piece));
             }
         }
@@ -33,10 +33,10 @@ public class WavePiecePicker {
         ArrayList<PuebloOutline> possibilities = new ArrayList<>();
         for (StructureRotation rotation: StructureRotation.values()) {
             for (StructureMirror mirror: mirrors) {
-                Map<Direction, PuebloConnectType> connectors = new HashMap<>();
+                Map<Direction, PuebloEdge> connectors = new HashMap<>();
                 for (Direction dir: Direction.values()) {
                     Direction newDir = Direction.getAppliedTransforms(dir, rotation, mirror);
-                    PuebloConnectType connection = piece.data.puebloWaveEdges.get(dir);
+                    PuebloEdge connection = piece.getEdges().get(dir);
                     if (connection == null) {
                         getServer().getConsoleSender().sendMessage
                                 (ChatColor.RED + "[Dungeon]: null value for direction " + dir.name() +
@@ -56,7 +56,7 @@ public class WavePiecePicker {
         return possibilities;
     }
 
-    public boolean doConnectionsMatchLayout(PuebloPieceLayout layout, Map<Direction, PuebloConnectType> connectors) {
+    public boolean doConnectionsMatchLayout(PuebloPieceLayout layout, Map<Direction, PuebloEdge> connectors) {
         if (layout.getNorth().contains(connectors.get(Direction.NORTH)) &&
                 layout.getEast().contains(connectors.get(Direction.EAST)) &&
                 layout.getSouth().contains(connectors.get(Direction.SOUTH)) &&

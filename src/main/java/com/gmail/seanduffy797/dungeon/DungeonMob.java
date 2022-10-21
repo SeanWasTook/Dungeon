@@ -1,6 +1,6 @@
 package com.gmail.seanduffy797.dungeon;
 
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import com.gmail.seanduffy797.dungeon.mobs.*;
 import com.gmail.seanduffy797.dungeon.mobs.villagers.*;
 import org.bukkit.Location;

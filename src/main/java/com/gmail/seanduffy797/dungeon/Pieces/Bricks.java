@@ -1,6 +1,7 @@
 package com.gmail.seanduffy797.dungeon.Pieces;
 
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import org.bukkit.Location;
 
 import java.nio.file.Path;
@@ -14,9 +15,7 @@ public interface Bricks extends PieceStructure {
     public int getLength();
     public int getHeight();
     public int getWidth();
-    public Location getStartOffset();
     public boolean getMirror();
     public boolean isEven();
     public Map<Location, Region> getExits();
-    public ArrayList<Focus> getFocuses();
 }

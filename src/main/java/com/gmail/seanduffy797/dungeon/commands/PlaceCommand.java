@@ -7,14 +7,12 @@ import com.gmail.seanduffy797.dungeon.Pieces.*;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.FocusMeta;
 import com.gmail.seanduffy797.dungeon.builders.BuilderUtils;
-import com.gmail.seanduffy797.dungeon.tasks.TaskList;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-
-import java.util.ArrayList;
 
 import static org.bukkit.Bukkit.getServer;
 
@@ -85,7 +83,7 @@ public class PlaceCommand implements CommandExecutor {
             FocusMeta.init();
 
             // Offset Calculations - Necessary to line up with focuses
-            Location offset = piece.getStartOffset().clone();
+            Location offset = piece.getOffset().clone();
             if(mirror.equals(StructureMirror.LEFT_RIGHT)) {
                 offset = BuilderUtils.applyRotation(BuilderUtils.applyMirror(offset, piece.isEven()), rotation);
             } else {

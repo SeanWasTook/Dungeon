@@ -1,6 +1,6 @@
 package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

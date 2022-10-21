@@ -2,14 +2,12 @@ package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
 import com.gmail.seanduffy797.dungeon.Dungeon;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
-import com.gmail.seanduffy797.dungeon.tasks.TaskList;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import com.gmail.seanduffy797.dungeon.tasks.FillChests;
 import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
-import static org.bukkit.Bukkit.getPluginManager;
 import static org.bukkit.Bukkit.getWorld;
 
 public class Chest extends Focus {

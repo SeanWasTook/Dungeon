@@ -1,11 +1,10 @@
 package com.gmail.seanduffy797.dungeon.builders.wavefunction;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public enum PuebloConnectType {
+public enum PuebloEdge {
     OUTSIDE,
     INSIDE,
     WALL_LEFT, // Left and right are as viewed from the center of the piece
@@ -16,7 +15,7 @@ public enum PuebloConnectType {
     FLOOR_SOLID;
 
     // Necessary because one piece's left will be its connection's right
-    public PuebloConnectType mirror() {
+    public PuebloEdge mirror() {
         switch (this) {
             case WALL_LEFT:
                 return WALL_RIGHT;
@@ -26,7 +25,7 @@ public enum PuebloConnectType {
                 return this;
         }
     }
-    public List<PuebloConnectType> getConstraints() {
+    public List<PuebloEdge> getConstraints() {
         switch (this) {
             case INSIDE:
                 return Arrays.asList(INSIDE, WALL_LEFT, WALL_RIGHT, WALL_BOTH, OUTSIDE);

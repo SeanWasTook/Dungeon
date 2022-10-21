@@ -1,22 +1,15 @@
 package com.gmail.seanduffy797.dungeon.commands;
 
-import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
-import com.gmail.seanduffy797.dungeon.Dungeon;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.Pieces.BricksZone1;
 import com.gmail.seanduffy797.dungeon.Pieces.BricksZone2;
 import com.gmail.seanduffy797.dungeon.Pieces.Pipe;
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import com.gmail.seanduffy797.dungeon.builders.*;
-import com.gmail.seanduffy797.dungeon.builders.maze.StoneBrickMazeBuilder;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import java.util.ArrayList;
-
-import static java.lang.Double.parseDouble;
 import static org.bukkit.Bukkit.getServer;
 
 public class BuildCommand implements CommandExecutor {

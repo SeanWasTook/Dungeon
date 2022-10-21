@@ -3,7 +3,6 @@ package com.gmail.seanduffy797.dungeon.builders.wavefunction;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.Pieces.Pueblo;
-import com.gmail.seanduffy797.dungeon.builders.maze.PieceTableEntry;
 import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ public class WaveBuilder {
                     unexplored[i][j][k] = new PuebloPieceLayout();
                     explored[i][j][k] = null;
                     if (k == 0) {
-                        unexplored[i][j][k].setDown(PuebloConnectType.FLOOR_SOLID);
+                        unexplored[i][j][k].setDown(PuebloEdge.FLOOR_SOLID);
                     }
                 }
             }
@@ -137,7 +136,7 @@ public class WaveBuilder {
         if (y < maxUpDown - 1 && explored[x][z][y+1] == null) {
             PuebloPieceLayout frontierLayout = unexplored[x][z][y+1];
             frontierLayout.setDown(outline.layout.getUp().get(0));
-            if (outline.layout.getUp().get(0) == PuebloConnectType.VERTICAL_SOLID) {
+            if (outline.layout.getUp().get(0) == PuebloEdge.VERTICAL_SOLID) {
                 frontierLayout.constrain(Direction.NORTH, outline.layout.getNorth().get(0));
                 frontierLayout.constrain(Direction.EAST, outline.layout.getEast().get(0));
                 frontierLayout.constrain(Direction.SOUTH, outline.layout.getSouth().get(0));

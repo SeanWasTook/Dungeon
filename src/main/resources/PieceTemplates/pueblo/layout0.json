@@ -1,6 +1,6 @@
 {
   "name": "layout0",
-  "puebloWaveEdges": [
+  "puebloEdges": [
     {
       "direction": "north",
       "type": "outside"

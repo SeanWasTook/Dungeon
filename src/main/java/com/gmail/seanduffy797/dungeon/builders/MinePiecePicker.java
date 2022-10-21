@@ -1,14 +1,11 @@
 package com.gmail.seanduffy797.dungeon.builders;
 
-import com.gmail.seanduffy797.dungeon.Pieces.Bricks;
 import com.gmail.seanduffy797.dungeon.Pieces.Early;
 import com.gmail.seanduffy797.dungeon.Pieces.Mine;
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.bukkit.Bukkit.getServer;
 
 public class MinePiecePicker {
     public static Mine[] downs = {Early.DOWN1, Early.DOWN2, Early.DOWN3};

@@ -1,6 +1,7 @@
 package com.gmail.seanduffy797.dungeon.builders;
 
 import com.gmail.seanduffy797.dungeon.Pieces.*;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 
 import java.util.ArrayList;
 import java.util.Arrays;

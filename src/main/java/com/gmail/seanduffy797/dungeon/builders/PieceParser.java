@@ -3,9 +3,9 @@ package com.gmail.seanduffy797.dungeon.builders;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.*;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.*;
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import com.gmail.seanduffy797.dungeon.builders.wavefunction.Direction;
-import com.gmail.seanduffy797.dungeon.builders.wavefunction.PuebloConnectType;
+import com.gmail.seanduffy797.dungeon.builders.wavefunction.PuebloEdge;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -54,7 +54,7 @@ public class PieceParser {
         parseIsEven(json, pieceData);
         parseOffset(json, pieceData);
         parseExits(json, pieceData);
-        parsePuebloWaveEdges(json, pieceData);
+        parsePuebloEdges(json, pieceData);
         parseFoci(json, pieceData);
     }
 
@@ -165,14 +165,14 @@ public class PieceParser {
                     new Location(DungeonManager.world, x, y, z, yaw, 0), region);
         }
     }
-    private static void parsePuebloWaveEdges(JSONObject json, PieceData pieceData) {
+    private static void parsePuebloEdges(JSONObject json, PieceData pieceData) {
         JSONArray puebloWaveEdges;
-        if (json.containsKey("puebloWaveEdges")) {
-            puebloWaveEdges = (JSONArray) json.get("puebloWaveEdges");
+        if (json.containsKey("puebloEdges")) {
+            puebloWaveEdges = (JSONArray) json.get("puebloEdges");
         } else {
             return;
         }
-        pieceData.puebloWaveEdges = new HashMap<>();
+        pieceData.puebloEdges = new HashMap<>();
         for (Object edge : puebloWaveEdges) {
             JSONObject jsonEdge = (JSONObject) edge;
             Direction direction;
@@ -187,13 +187,13 @@ public class PieceParser {
                 }
             } else {
                 getServer().getConsoleSender().sendMessage
-                        (ChatColor.RED + "[Dungeon]: Parsing Error: no field direction in puebloWaveEdge in " + pieceData.templatePath);
+                        (ChatColor.RED + "[Dungeon]: Parsing Error: no field direction in puebloEdge in " + pieceData.templatePath);
                 continue;
             }
-            PuebloConnectType type;
+            PuebloEdge type;
             if (jsonEdge.containsKey("type")) {
                 try {
-                    type = PuebloConnectType.valueOf(((String) jsonEdge.get("type")).toUpperCase());
+                    type = PuebloEdge.valueOf(((String) jsonEdge.get("type")).toUpperCase());
                 } catch (IllegalArgumentException e) {
                     getServer().getConsoleSender().sendMessage
                             (ChatColor.RED + "[Dungeon]: Parsing Error: " + pieceData.templatePath +
@@ -203,7 +203,7 @@ public class PieceParser {
             } else {
                 continue;
             }
-            pieceData.puebloWaveEdges.put(direction, type);
+            pieceData.puebloEdges.put(direction, type);
         }
     }
     private static void parseFoci(JSONObject json, PieceData pieceData) {

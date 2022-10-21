@@ -111,7 +111,7 @@ public enum StoneBrickMaze {
         this.entry = new PieceTableEntry(this, shape, weight, minCount, maxCount);
     }
 
-    public Location getStartOffset() {
+    public Location getOffset() {
         return data.offset;
     }
     public ArrayList<Focus> getFocuses() {

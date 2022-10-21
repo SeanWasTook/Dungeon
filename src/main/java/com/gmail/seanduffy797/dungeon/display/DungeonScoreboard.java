@@ -1,6 +1,6 @@
 package com.gmail.seanduffy797.dungeon.display;
 
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import com.gmail.seanduffy797.dungeon.players.PlayerManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -58,15 +58,19 @@ public class DungeonScoreboard {
 
         Scoreboard board = player.getScoreboard();
 
-        board.getTeam("currentRegion").prefix(Component.text(region.name()).color(NamedTextColor.RED));
+        board.getTeam("currentRegion").prefix(Component.text(region.display()).color(NamedTextColor.RED));
 
-        board.getTeam("brickScore").prefix(Component.text("Brick: ").color(NamedTextColor.GRAY)
+        board.getTeam("brickScore").prefix(
+                Component.text(Region.BRICK.display() +": ").color(NamedTextColor.GRAY)
                 .append(Component.text(brickValue).color(NamedTextColor.DARK_RED)));
-        board.getTeam("mineScore").prefix(Component.text("Mine: ").color(NamedTextColor.GRAY)
+        board.getTeam("mineScore").prefix(
+                Component.text(Region.MINE.display() +": ").color(NamedTextColor.GRAY)
                 .append(Component.text(mineValue).color(NamedTextColor.DARK_RED)));
-        board.getTeam("mazeScore").prefix(Component.text("Maze: ").color(NamedTextColor.GRAY)
+        board.getTeam("mazeScore").prefix(
+                Component.text(Region.STONE_BRICK.display() +": ").color(NamedTextColor.GRAY)
                 .append(Component.text(mazeValue).color(NamedTextColor.DARK_RED)));
-        board.getTeam("puebloScore").prefix(Component.text("Pueblo: ").color(NamedTextColor.GRAY)
+        board.getTeam("puebloScore").prefix(
+                Component.text(Region.PUEBLO.display() +": ").color(NamedTextColor.GRAY)
                 .append(Component.text(puebloValue).color(NamedTextColor.DARK_RED)));
     }
 }

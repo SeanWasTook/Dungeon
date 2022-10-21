@@ -49,7 +49,7 @@ public class CryptBuilder {
         int height  = piece.getHeight();
 
         Location cornerOffset = new Location(getWorld("Dungeon"), length - 1, height - 1, width - 1);
-        Location offset = piece.getStartOffset();
+        Location offset = piece.getOffset();
 
         boolean mirror = false;
         StructureMirror mirrorType = StructureMirror.NONE;
@@ -86,10 +86,10 @@ public class CryptBuilder {
             current.subtract(finalOffset);
             corner.subtract(cornerOffset);
             if(mirror) {
-                finalOffset = BuilderUtils.applyRotation(BuilderUtils.applyMirror(piece.getStartOffset(), true), rotation);
+                finalOffset = BuilderUtils.applyRotation(BuilderUtils.applyMirror(piece.getOffset(), true), rotation);
                 cornerOffset = BuilderUtils.applyRotation(BuilderUtils.applyMirror(new Location(getWorld("Dungeon"), piece.getLength() - 1, piece.getHeight() - 1, piece.getWidth() - 1), true), rotation);
             } else {
-                finalOffset = BuilderUtils.applyRotation(piece.getStartOffset(), rotation);
+                finalOffset = BuilderUtils.applyRotation(piece.getOffset(), rotation);
                 cornerOffset = BuilderUtils.applyRotation(new Location(getWorld("Dungeon"), piece.getLength() - 1, piece.getHeight() - 1, piece.getWidth() - 1), rotation);
             }
             current.add(finalOffset);

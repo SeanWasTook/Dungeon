@@ -2,7 +2,7 @@ package com.gmail.seanduffy797.dungeon.players;
 
 import com.gmail.seanduffy797.dungeon.Dungeon;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import com.gmail.seanduffy797.dungeon.curses.CurseManager;
 import com.gmail.seanduffy797.dungeon.display.DungeonScoreboard;
 import org.bukkit.Location;
@@ -40,7 +40,7 @@ public class PlayerManager {
             Region previousRegion = Region.valueOf(container.get(currentRegionKey, PersistentDataType.STRING));
             if (currentRegion != previousRegion) {
                 if (currentRegion != Region.NONE) {
-                    player.sendMessage("You are entering the domain of " + currentRegion.name());
+                    player.sendMessage("You are entering the domain of " + currentRegion.display());
                 }
                 container.set(currentRegionKey, PersistentDataType.STRING, currentRegion.name());
             }

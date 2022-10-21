@@ -6,8 +6,7 @@ import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.FocusMeta;
 import com.gmail.seanduffy797.dungeon.Pieces.Mine;
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
-import com.gmail.seanduffy797.dungeon.tasks.TaskList;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -107,7 +106,7 @@ public class MineBuilder {
 
         Location start = current.clone();
 
-        Location offset = piece.getStartOffset();
+        Location offset = piece.getOffset();
         int length = piece.getLength();
         int width = piece.getWidth();
         int height = piece.getHeight();

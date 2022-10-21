@@ -1,6 +1,6 @@
 {
   "name": "layout6",
-  "puebloWaveEdges": [
+  "puebloEdges": [
     {
       "direction": "north",
       "type": "wall_both"

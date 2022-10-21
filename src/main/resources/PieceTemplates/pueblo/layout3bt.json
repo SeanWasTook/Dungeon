@@ -1,6 +1,6 @@
 {
   "name": "layout3bt",
-  "puebloWaveEdges": [
+  "puebloEdges": [
     {
       "direction": "north",
       "type": "inside"

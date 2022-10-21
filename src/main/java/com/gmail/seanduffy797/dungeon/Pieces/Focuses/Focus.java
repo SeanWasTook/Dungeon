@@ -2,7 +2,7 @@ package com.gmail.seanduffy797.dungeon.Pieces.Focuses;
 
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import org.bukkit.Location;
 
 public abstract class Focus {

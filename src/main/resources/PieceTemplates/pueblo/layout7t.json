@@ -1,6 +1,6 @@
 {
   "name": "layout7t",
-  "puebloWaveEdges": [
+  "puebloEdges": [
     {
       "direction": "north",
       "type": "wall_both"

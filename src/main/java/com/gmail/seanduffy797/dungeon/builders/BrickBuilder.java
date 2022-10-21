@@ -9,9 +9,8 @@ import com.gmail.seanduffy797.dungeon.Pieces.Bricks;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.FocusMeta;
 import com.gmail.seanduffy797.dungeon.Pieces.PieceLayout;
-import com.gmail.seanduffy797.dungeon.Pieces.Region;
+import com.gmail.seanduffy797.dungeon.regions.Region;
 import com.gmail.seanduffy797.dungeon.tasks.BrickStepTask;
-import com.gmail.seanduffy797.dungeon.tasks.TaskList;
 import com.sk89q.worldedit.EditSession;
 import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.math.BlockVector3;
@@ -120,7 +119,7 @@ public class BrickBuilder {
         int height = piece.getHeight();
         Location cornerOffset = new Location(getWorld("Dungeon"), length - 1, height - 1, width - 1);
 
-        Location offset = piece.getStartOffset();
+        Location offset = piece.getOffset();
 
         boolean isEven = piece.isEven();
         boolean mirror = false;
@@ -159,10 +158,10 @@ public class BrickBuilder {
             corner.subtract(cornerOffset);
             if(mirror) {
                 isEven = piece.isEven();
-                finalOffset = BuilderUtils.applyRotation(BuilderUtils.applyMirror(piece.getStartOffset(), isEven), rotation);
+                finalOffset = BuilderUtils.applyRotation(BuilderUtils.applyMirror(piece.getOffset(), isEven), rotation);
                 cornerOffset = BuilderUtils.applyRotation(BuilderUtils.applyMirror(new Location(getWorld("Dungeon"), piece.getLength() - 1, piece.getHeight() - 1, piece.getWidth() - 1), isEven), rotation);
             } else {
-                finalOffset = BuilderUtils.applyRotation(piece.getStartOffset(), rotation);
+                finalOffset = BuilderUtils.applyRotation(piece.getOffset(), rotation);
                 cornerOffset = BuilderUtils.applyRotation(new Location(getWorld("Dungeon"), piece.getLength() - 1, piece.getHeight() - 1, piece.getWidth() - 1), rotation);
             }
             current.add(finalOffset);

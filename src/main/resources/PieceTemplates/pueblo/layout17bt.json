@@ -1,0 +1,29 @@
+{
+  "name": "layout17bt",
+  "puebloEdges": [
+    {
+      "direction": "north",
+      "type": "outside"
+    },
+    {
+      "direction": "east",
+      "type": "wall_middle"
+    },
+    {
+      "direction": "south",
+      "type": "outside"
+    },
+    {
+      "direction": "west",
+      "type": "wall_middle"
+    },
+    {
+      "direction": "up",
+      "type": "vertical_solid"
+    },
+    {
+      "direction": "down",
+      "type": "floor_solid"
+    }
+  ]
+}

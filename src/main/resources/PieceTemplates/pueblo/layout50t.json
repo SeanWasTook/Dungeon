@@ -1,0 +1,29 @@
+{
+  "name": "layout50t",
+  "puebloEdges": [
+    {
+      "direction": "north",
+      "type": "wall_middle"
+    },
+    {
+      "direction": "east",
+      "type": "open_left"
+    },
+    {
+      "direction": "south",
+      "type": "wall_both"
+    },
+    {
+      "direction": "west",
+      "type": "open_right"
+    },
+    {
+      "direction": "up",
+      "type": "vertical_solid"
+    },
+    {
+      "direction": "down",
+      "type": "vertical_solid"
+    }
+  ]
+}

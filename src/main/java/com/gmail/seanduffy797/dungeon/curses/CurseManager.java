@@ -31,39 +31,39 @@ public class CurseManager {
         ));
         curses.get(Region.BRICK).add(Curse.randomCurse(
                 Region.BRICK,
-                200,
+                20000,
                 -1,
-                .01,
+                .002,
                 400,
                 new PotionEffect(PotionEffectType.HUNGER, 200, 0)
         ));
         curses.get(Region.BRICK).add(Curse.randomCurse(
                 Region.BRICK,
-                400,
+                30000,
                 -1,
-                .01,
+                .002,
                 400,
                 new PotionEffect(PotionEffectType.CONFUSION, 200, 0)
         ));
         curses.get(Region.BRICK).add(Curse.warningCurse(
                 Region.BRICK,
-                180,
+                19000,
                 Component.text("You feel a twisting in your stomach")
         ));
         curses.get(Region.STONE_BRICK).add(Curse.randomCurse(
                 Region.STONE_BRICK,
-                400,
+                14000,
                 -1,
-                .01,
+                .002,
                 400,
                 new PotionEffect(PotionEffectType.BLINDNESS, 150, 0)
         ));
         curses.get(Region.STONE_BRICK).add(Curse.randomCurse(
                 Region.STONE_BRICK,
-                400,
+                14000,
                 -1,
-                .01,
-                400,
+                .001,
+                900,
                 player -> player.sendMessage(Component.text("OOOOooooOOOOoooooOOOOoooo"))
         ));
     }

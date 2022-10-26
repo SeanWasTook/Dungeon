@@ -78,6 +78,7 @@ public class WaveBuilder {
             for (Integer intCoords: frontier) {
                 int[] coords = convertIntegerToCoords(intCoords);
                 explored[coords[0]][coords[1]][coords[2]] = new PuebloOutline(Pueblo.ERROR, StructureRotation.NONE, StructureMirror.NONE);
+                unexplored[coords[0]][coords[1]][coords[2]].printLayout();
                 frontier.remove(convertCoordsToInteger(finalCoords));
             }
         } else {

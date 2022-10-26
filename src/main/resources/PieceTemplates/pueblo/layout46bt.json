@@ -1,0 +1,29 @@
+{
+  "name": "layout46bt",
+  "puebloEdges": [
+    {
+      "direction": "north",
+      "type": "wall_right"
+    },
+    {
+      "direction": "east",
+      "type": "inside"
+    },
+    {
+      "direction": "south",
+      "type": "wall_left"
+    },
+    {
+      "direction": "west",
+      "type": "wall_middle"
+    },
+    {
+      "direction": "up",
+      "type": "vertical_solid"
+    },
+    {
+      "direction": "down",
+      "type": "floor_solid"
+    }
+  ]
+}

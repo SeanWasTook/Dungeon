@@ -1,6 +1,10 @@
 package com.gmail.seanduffy797.dungeon.builders.wavefunction;
 
+import org.bukkit.ChatColor;
+
 import java.util.*;
+
+import static org.bukkit.Bukkit.getServer;
 
 public class PuebloPieceLayout {
 
@@ -71,5 +75,16 @@ public class PuebloPieceLayout {
             list.clear();
             list.addAll(type.getConstraints());
         }
+    }
+
+    public void printLayout() {
+        getServer().getConsoleSender().sendMessage
+                (ChatColor.RED + "[Dungeon]: Layout: " +
+                        " has north: " + this.getNorth().toString() +
+                        " has east: " + this.getEast().toString() +
+                        " has south: " + this.getSouth().toString() +
+                        " has west: " + this.getWest().toString() +
+                        " has up: " + this.getUp().toString() +
+                        " has down: " + this.getDown().toString());
     }
 }

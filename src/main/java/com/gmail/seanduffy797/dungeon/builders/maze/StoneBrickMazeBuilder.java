@@ -22,26 +22,33 @@ public class StoneBrickMazeBuilder {
     private final int length;
     private final int width;
     private int[] start;
-    private ArrayList<int[]> exits;
-    private double loopChance;
-    private static Location corner1;
-    private static Location corner2;
+    MazeOptions options;
+    private MazePieceTable pieceTable;
+    private Location corner1;
+    private Location corner2;
 
-    public StoneBrickMazeBuilder(int height, int length, int width, int[] start, ArrayList<int[]> exits, double loopChance) {
-        this.height = height;
-        this.length = length;
-        this.width = width;
-        this.start = start;
-        this.exits = exits;
-        this.loopChance = loopChance;
+    public StoneBrickMazeBuilder(MazeOptions options) {
+        this.height = options.height;
+        this.length = options.length;
+        this.width = options.width;
+        this.start = options.startIndexes;
+        this.options = options;
+        this.pieceTable = new MazePieceTable();
+    }
+    public StoneBrickMazeBuilder(MazeOptions options, ArrayList<StoneBrickMaze> pieces) {
+        this.height = options.height;
+        this.length = options.length;
+        this.width = options.width;
+        this.start = options.startIndexes;
+        this.options = options;
+        this.pieceTable = new MazePieceTable(pieces);
     }
 
     public void buildStoneBrickMaze(Location startLocation, StructureRotation facing) {
-        MazeBuilder mazeBuilder = new MazeBuilder(height, length, width, start, exits, loopChance);
+        MazeBuilder mazeBuilder = new MazeBuilder(options);
 
         PieceOutline[][][] outlines = mazeBuilder.getMazePieceOutlines();
 
-        MazePieceTable.init();
         StoneBrickMaze[][][] pieces = getPiecesFromOutline(outlines);
 
         int startY = start[0];
@@ -124,7 +131,7 @@ public class StoneBrickMazeBuilder {
         return pieces;
     }
     public StoneBrickMaze getPieceFromOutline(PieceOutline outline) {
-        return MazePieceTable.getPiece(outline.shape);
+        return pieceTable.getPiece(outline.shape);
     }
 
     public Location[][][] getLocationOffsets(int startY, int startX, int startZ, StructureRotation rotation) {
@@ -143,7 +150,7 @@ public class StoneBrickMazeBuilder {
         return offsets;
     }
 
-    public static void clear() {
+    public void clear() {
         for (int x = (int) Math.min(corner1.getX(), corner2.getX()); x <= Math.max(corner1.getX(), corner2.getX()); x++) {
             for (int y = (int) Math.min(corner1.getY(), corner2.getY()); y <= Math.max(corner1.getY(), corner2.getY()); y++) {
                 for (int z = (int) Math.min(corner1.getZ(), corner2.getZ()); z <= Math.max(corner1.getZ(), corner2.getZ()); z++) {

@@ -8,9 +8,9 @@ import java.util.Map;
 
 public class MazePieceTable {
 
-    public static Map<MazeUnitShape, ArrayList<PieceTableEntry>> table;
+    public Map<MazeUnitShape, ArrayList<PieceTableEntry>> table;
 
-    public static void init() {
+    public MazePieceTable() {
         table = new HashMap<>();
         for (MazeUnitShape shape : MazeUnitShape.values()) {
             ArrayList<PieceTableEntry> entries = new ArrayList<>();
@@ -20,8 +20,18 @@ public class MazePieceTable {
             table.get(piece.getEntry().shape).add(piece.getEntry());
         }
     }
+    public MazePieceTable(ArrayList<StoneBrickMaze> pieces) {
+        table = new HashMap<>();
+        for (MazeUnitShape shape : MazeUnitShape.values()) {
+            ArrayList<PieceTableEntry> entries = new ArrayList<>();
+            table.put(shape, entries);
+        }
+        for (StoneBrickMaze piece: pieces) {
+            table.get(piece.getEntry().shape).add(piece.getEntry());
+        }
+    }
 
-    public static StoneBrickMaze getPiece(MazeUnitShape shape) {
+    public StoneBrickMaze getPiece(MazeUnitShape shape) {
         ArrayList<PieceTableEntry> entries = table.get(shape);
 
         double total = 0;

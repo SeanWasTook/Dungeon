@@ -14,22 +14,14 @@ public class MazeBuilder {
     public int width; // Number of pieces left to right
     public MazeUnit[][][] maze;
     public MazeUnit startUnit;
-    public double loopingChance;
     public double[] chances;
 
-    public MazeBuilder(int height, int length, int width, int[] start, ArrayList<int[]> exits, double loopingChance) {
-        this.height = height;
-        this.length = length;
-        this.width = width;
+    public MazeBuilder(MazeOptions options) {
+        this.height = options.height;
+        this.length = options.length;
+        this.width = options.width;
         maze = new MazeUnit[height][length][width];
-        this.loopingChance = loopingChance;
-        chances = new double[height];
-        chances[0] = 0.07;
-        chances[1] = 0.01;
-        chances[2] = 0.07;
-        chances[3] = 0.15;
-        chances[4] = 0.4;
-        chances[5] = 0.1;
+        chances = options.loopingFactors;
 
         for (int k = 0; k < height; k++) {
             for (int i = 0; i < length; i++) {
@@ -62,7 +54,7 @@ public class MazeBuilder {
         }
 
         // Open the exits to the outside
-        for (int[] exit : exits) {
+        for (int[] exit : options.exits) {
             switch(exit[3]) {
                 case(0):
                     maze[exit[0]][exit[1]][exit[2]].forwardException = true;
@@ -85,7 +77,7 @@ public class MazeBuilder {
             }
         }
 
-        startUnit = maze[start[0]][start[1]][start[2]];
+        startUnit = maze[options.startIndexes[0]][options.startIndexes[1]][options.startIndexes[2]];
         startUnit.setExplored(true);
         startUnit.backException = true;
         ArrayList<MazeConnection> frontier = startUnit.getConnections();

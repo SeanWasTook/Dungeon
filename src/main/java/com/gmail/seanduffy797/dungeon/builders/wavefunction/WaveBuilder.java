@@ -41,6 +41,12 @@ public class WaveBuilder {
                     if (k == 0) {
                         unexplored[i][j][k].setDown(PuebloEdge.FLOOR_SOLID);
                     }
+                    if (j == 0) {
+                        unexplored[i][j][k].setWest(PuebloEdge.INSIDE);
+                    }
+                    if (j == maxEastWest - 1) {
+                        unexplored[i][j][k].setEast(PuebloEdge.INSIDE);
+                    }
                 }
             }
         }

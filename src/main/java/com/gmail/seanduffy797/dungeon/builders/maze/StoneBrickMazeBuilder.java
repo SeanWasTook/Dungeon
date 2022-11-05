@@ -5,6 +5,8 @@ import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.FocusMeta;
+import com.gmail.seanduffy797.dungeon.builders.RelativeExit;
+import com.gmail.seanduffy797.dungeon.builders.wavefunction.Direction;
 import com.gmail.seanduffy797.dungeon.regions.Region;
 import com.gmail.seanduffy797.dungeon.Pieces.StoneBrickMaze;
 import com.gmail.seanduffy797.dungeon.builders.BuilderUtils;
@@ -35,7 +37,7 @@ public class StoneBrickMazeBuilder {
         this.options = options;
         this.pieceTable = new MazePieceTable();
     }
-    public StoneBrickMazeBuilder(MazeOptions options, ArrayList<StoneBrickMaze> pieces) {
+    public StoneBrickMazeBuilder(MazeOptions options, ArrayList<PieceTableEntry> pieces) {
         this.height = options.height;
         this.length = options.length;
         this.width = options.width;
@@ -117,6 +119,15 @@ public class StoneBrickMazeBuilder {
             }
         }
         DungeonManager.updateRegionMap(corner1, corner2, Region.STONE_BRICK);
+        Location exitOffset = new Location(DungeonManager.world, 2, 0, 0);
+        for (RelativeExit exit: options.exits) {
+            int[] coords = exit.getCoords();
+            Location loc = offsets[coords[0]][coords[1]][coords[2]].clone();
+            loc = loc.add(BuilderUtils.applyRotation(exitOffset, BuilderUtils.addRotations(facing, Direction.getDirectionAsRotation(exit.getDir()))));
+            exit.getBorderPoint().specify(loc, Direction.getDirectionFromRotation(
+                    BuilderUtils.addRotations(facing, Direction.getDirectionAsRotation(exit.getDir()))
+            ));
+        }
     }
 
     public StoneBrickMaze[][][] getPiecesFromOutline(PieceOutline[][][] outlines) {

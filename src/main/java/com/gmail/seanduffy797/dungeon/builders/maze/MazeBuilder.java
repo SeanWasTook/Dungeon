@@ -3,6 +3,8 @@ package com.gmail.seanduffy797.dungeon.builders.maze;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureMirror;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.builders.BuilderUtils;
+import com.gmail.seanduffy797.dungeon.builders.RelativeExit;
+import com.gmail.seanduffy797.dungeon.builders.wavefunction.Direction;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -54,25 +56,27 @@ public class MazeBuilder {
         }
 
         // Open the exits to the outside
-        for (int[] exit : options.exits) {
-            switch(exit[3]) {
-                case(0):
-                    maze[exit[0]][exit[1]][exit[2]].forwardException = true;
+        for (RelativeExit exit : options.exits) {
+            int[] coords = exit.getCoords();
+            Direction dir = exit.getDir();
+            switch(dir) {
+                case NORTH:
+                    maze[coords[0]][coords[1]][coords[2]].forwardException = true;
                     break;
-                case(90):
-                    maze[exit[0]][exit[1]][exit[2]].rightException = true;
+                case EAST:
+                    maze[coords[0]][coords[1]][coords[2]].rightException = true;
                     break;
-                case(180):
-                    maze[exit[0]][exit[1]][exit[2]].backException = true;
+                case SOUTH:
+                    maze[coords[0]][coords[1]][coords[2]].backException = true;
                     break;
-                case(270):
-                    maze[exit[0]][exit[1]][exit[2]].leftException = true;
+                case WEST:
+                    maze[coords[0]][coords[1]][coords[2]].leftException = true;
                     break;
-                case(1): // Upward Exit
-                    maze[exit[0]][exit[1]][exit[2]].upException = true;
+                case UP: // Upward Exit
+                    maze[coords[0]][coords[1]][coords[2]].upException = true;
                     break;
-                case(2): // Downward Exit
-                    maze[exit[0]][exit[1]][exit[2]].downException = true;
+                case DOWN: // Downward Exit
+                    maze[coords[0]][coords[1]][coords[2]].downException = true;
                     break;
             }
         }

@@ -4,7 +4,9 @@ import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.Pieces.StoneBrickMaze;
 import com.gmail.seanduffy797.dungeon.builders.maze.MazeOptions;
+import com.gmail.seanduffy797.dungeon.builders.maze.PieceTableEntry;
 import com.gmail.seanduffy797.dungeon.builders.maze.StoneBrickMazeBuilder;
+import com.gmail.seanduffy797.dungeon.builders.wavefunction.Direction;
 import org.bukkit.Location;
 
 import java.util.ArrayList;
@@ -13,41 +15,64 @@ import java.util.Arrays;
 public class StoneBrickManager implements RegionManager {
     Location startLocation = new Location(DungeonManager.world, -2, 100, -47);
     StructureRotation startRotation = StructureRotation.ROTATION_270;
-    Location startLocation2 = new Location(DungeonManager.world, -2, 100, -77);
-    StructureRotation startRotation2 = StructureRotation.ROTATION_270;
+    BorderPoint border1 = new BorderPoint(SubRegion.STONE_BRICK_MAZE_ENTRY, SubRegion.STONE_BRICK_MAZE_MAIN);
+    BorderPoint border2 = new BorderPoint(SubRegion.STONE_BRICK_MAZE_MAIN, SubRegion.STONE_BRICK_MAZE_HALLWAY);
+    BorderPoint border3 = new BorderPoint(SubRegion.STONE_BRICK_MAZE_MAIN, SubRegion.STONE_BRICK_ROOM);
+    BorderPoint border4 = new BorderPoint(SubRegion.STONE_BRICK_MAZE_MAIN, SubRegion.STONE_BRICK_ROOM);
     StoneBrickMazeBuilder builder1;
     StoneBrickMazeBuilder builder2;
-    ArrayList<StoneBrickMaze> basic_pieces = new ArrayList<>(Arrays.asList(
-            StoneBrickMaze.STRAIGHT,
-            StoneBrickMaze.TURN,
-            StoneBrickMaze.T,
-            StoneBrickMaze.CROSS,
-            StoneBrickMaze.END
+    StoneBrickMazeBuilder builder3;
+    ArrayList<PieceTableEntry> basic_pieces = new ArrayList<>(Arrays.asList(
+            StoneBrickMaze.STRAIGHT.getDefaultEntry().getCopyWithWeight(10),
+            StoneBrickMaze.STRAIGHT_WOOD.getDefaultEntry().getCopyWithWeight(2),
+            StoneBrickMaze.STRAIGHT_NOISY.getDefaultEntry().getCopyWithWeight(2),
+            StoneBrickMaze.TURN.getDefaultEntry().getCopyWithWeight(10),
+            StoneBrickMaze.TURN_WOOD.getDefaultEntry().getCopyWithWeight(2),
+            StoneBrickMaze.TURN_CANDLES.getDefaultEntry().getCopyWithWeight(3),
+            StoneBrickMaze.T.getDefaultEntry().getCopyWithWeight(10),
+            StoneBrickMaze.T_DOOR.getDefaultEntry().getCopyWithWeight(2),
+            StoneBrickMaze.T_PILLARS.getDefaultEntry().getCopyWithWeight(2),
+            StoneBrickMaze.T_CLOCK.getDefaultEntry().getCopyWithWeight(1),
+            StoneBrickMaze.CROSS.getDefaultEntry().getCopyWithWeight(5),
+            StoneBrickMaze.CROSS_LOGS.getDefaultEntry().getCopyWithWeight(2),
+            StoneBrickMaze.CROSS_PILLAR.getDefaultEntry().getCopyWithWeight(2),
+            StoneBrickMaze.CROSS_CANDLE.getDefaultEntry().getCopyWithWeight(2),
+            StoneBrickMaze.END.getDefaultEntry().getCopyWithWeight(10),
+            StoneBrickMaze.END_CHEST.getDefaultEntry().getCopyWithWeight(1),
+            StoneBrickMaze.END_SKULL.getDefaultEntry().getCopyWithWeight(2),
+            StoneBrickMaze.END_PEARL.getDefaultEntry().getCopyWithWeight(1),
+            StoneBrickMaze.END_KEY.getDefaultEntry().getCopyWithWeight(1)
     ));
 
     public StoneBrickManager() {
         MazeOptions options = new MazeOptions(1, 10, 10);
         options.setStart(0, 0, 5);
-        options.addExit(0, 9, 5, 0);
+        options.addExit(0, 9, 5, Direction.NORTH, border1);
         options.setLoopingFactors(new double[]{0});
         builder1 = new StoneBrickMazeBuilder(options, basic_pieces);
 
         MazeOptions options2 = new MazeOptions(6, 20, 18);
         options2.setStart(1, 0, 5);
-        options2.addExit(1, 15, 0, 270);
-        options2.addExit(0, 19, 15, 0);
-        options2.addExit(4, 11, 17, 90);
+        options2.addExit(1, 15, 0, Direction.WEST, border4);
+        options2.addExit(0, 19, 15, Direction.NORTH, border3);
+        options2.addExit(4, 11, 17, Direction.EAST, border2);
         options2.setLoopingFactors(new double[]{.05, .03, .05, .1, .3, .1});
         builder2 = new StoneBrickMazeBuilder(options2);
+
+        MazeOptions options3 = new MazeOptions(3, 20, 5);
+        options3.setStart(1, 0, 2);
+        builder3 = new StoneBrickMazeBuilder(options3);
     }
 
     public void build() {
         builder1.buildStoneBrickMaze(startLocation, startRotation);
-        builder2.buildStoneBrickMaze(startLocation2, startRotation2);
+        builder2.buildStoneBrickMaze(border1.getLocation(), Direction.getDirectionAsRotation(border1.getDirection()));
+        builder3.buildStoneBrickMaze(border2.getLocation(), Direction.getDirectionAsRotation(border2.getDirection()));
     }
 
     public void clear() {
         builder1.clear();
         builder2.clear();
+        builder3.clear();
     }
 }

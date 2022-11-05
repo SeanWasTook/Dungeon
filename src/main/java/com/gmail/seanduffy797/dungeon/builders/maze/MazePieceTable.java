@@ -17,22 +17,26 @@ public class MazePieceTable {
             table.put(shape, entries);
         }
         for (StoneBrickMaze piece : StoneBrickMaze.values()) {
-            table.get(piece.getEntry().shape).add(piece.getEntry());
+            table.get(piece.getShape()).add(piece.getDefaultEntry());
         }
     }
-    public MazePieceTable(ArrayList<StoneBrickMaze> pieces) {
+    public MazePieceTable(ArrayList<PieceTableEntry> pieces) {
         table = new HashMap<>();
         for (MazeUnitShape shape : MazeUnitShape.values()) {
             ArrayList<PieceTableEntry> entries = new ArrayList<>();
             table.put(shape, entries);
         }
-        for (StoneBrickMaze piece: pieces) {
-            table.get(piece.getEntry().shape).add(piece.getEntry());
+        for (PieceTableEntry entry: pieces) {
+            table.get(entry.getShape()).add(entry);
         }
     }
 
     public StoneBrickMaze getPiece(MazeUnitShape shape) {
         ArrayList<PieceTableEntry> entries = table.get(shape);
+
+        if (entries.size() == 0) {
+            return StoneBrickMaze.ROOF;
+        }
 
         double total = 0;
         for (PieceTableEntry entry : entries) {

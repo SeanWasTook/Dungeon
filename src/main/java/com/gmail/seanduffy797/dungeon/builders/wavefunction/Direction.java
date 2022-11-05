@@ -63,4 +63,29 @@ public enum Direction {
         }
         return transformed;
     }
+
+    public static StructureRotation getDirectionAsRotation(Direction dir) {
+        switch (dir) {
+            case EAST:
+                return StructureRotation.ROTATION_90;
+            case SOUTH:
+                return StructureRotation.ROTATION_180;
+            case WEST:
+                return StructureRotation.ROTATION_270;
+            default:
+                return StructureRotation.NONE;
+        }
+    }
+    public static Direction getDirectionFromRotation(StructureRotation rot) {
+        switch (rot) {
+            case ROTATION_90:
+                return Direction.EAST;
+            case ROTATION_180:
+                return Direction.SOUTH;
+            case ROTATION_270:
+                return Direction.WEST;
+            default:
+                return Direction.NORTH;
+        }
+    }
 }

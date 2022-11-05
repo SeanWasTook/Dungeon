@@ -7,8 +7,8 @@ public class PieceTableEntry {
     StoneBrickMaze piece;
     MazeUnitShape shape;
     int weight;
-    int minCount;
-    int maxCount;
+    int minCount = 0;
+    int maxCount = 999;
 
     public PieceTableEntry(StoneBrickMaze piece, MazeUnitShape shape, int weight, int minCount, int maxCount) {
         this.piece = piece;
@@ -16,5 +16,14 @@ public class PieceTableEntry {
         this.weight = weight;
         this.minCount = minCount;
         this.maxCount = maxCount;
+    }
+    // Gets a copied version with a new weight
+    public PieceTableEntry getCopyWithWeight(int newWeight) {
+        return new PieceTableEntry(this.piece, this.shape, newWeight, this.minCount, this.maxCount);
+    }
+
+
+    public MazeUnitShape getShape() {
+        return shape;
     }
 }

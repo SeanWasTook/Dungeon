@@ -17,8 +17,8 @@ import java.util.logging.Level;
 
 public enum StoneBrickMaze {
     STRAIGHT("stone_bricks/straight", MazeUnitShape.STRAIGHT, 1, 0, 999),
-    STRAIGHT_DOOR("stone_bricks/straight_door", MazeUnitShape.STRAIGHT, 2, 0, 999),
-    STRAIGHT_PAINTINGS("stone_bricks/straight_paintings", MazeUnitShape.STRAIGHT, 2, 0, 999),
+    STRAIGHT_DOOR("stone_bricks/straight_door", MazeUnitShape.STRAIGHT, 3, 0, 999),
+    STRAIGHT_PAINTINGS("stone_bricks/straight_paintings", MazeUnitShape.STRAIGHT, 1, 0, 999),
     STRAIGHT_COBWEBS("stone_bricks/straight_cobwebs", MazeUnitShape.STRAIGHT, 2, 0, 999),
     STRAIGHT_SECRET("stone_bricks/straight_secret", MazeUnitShape.STRAIGHT, 1, 0, 999),
     STRAIGHT_WOOD("stone_bricks/straight_wood", MazeUnitShape.STRAIGHT, 3, 0, 999),
@@ -117,7 +117,8 @@ public enum StoneBrickMaze {
     public ArrayList<Focus> getFocuses() {
         return data.foci;
     }
-    public PieceTableEntry getEntry() {return entry;}
+    public PieceTableEntry getDefaultEntry() {return entry;}
+    public MazeUnitShape getShape() {return entry.getShape();}
 
     public void place(Location location, StructureRotation rotation, StructureMirror mirror) {
         Plugin plugin = Dungeon.getPlugin();

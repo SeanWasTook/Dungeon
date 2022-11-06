@@ -15,7 +15,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
-public enum StoneBrickMaze {
+public enum StoneBrickMaze implements PieceStructure {
     STRAIGHT("stone_bricks/straight", MazeUnitShape.STRAIGHT, 1, 0, 999),
     STRAIGHT_DOOR("stone_bricks/straight_door", MazeUnitShape.STRAIGHT, 3, 0, 999),
     STRAIGHT_PAINTINGS("stone_bricks/straight_paintings", MazeUnitShape.STRAIGHT, 1, 0, 999),

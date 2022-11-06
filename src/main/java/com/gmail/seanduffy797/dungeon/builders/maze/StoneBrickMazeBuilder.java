@@ -5,6 +5,7 @@ import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.FocusMeta;
+import com.gmail.seanduffy797.dungeon.Pieces.PieceStructure;
 import com.gmail.seanduffy797.dungeon.builders.RelativeExit;
 import com.gmail.seanduffy797.dungeon.builders.wavefunction.Direction;
 import com.gmail.seanduffy797.dungeon.regions.Region;
@@ -142,7 +143,12 @@ public class StoneBrickMazeBuilder {
         return pieces;
     }
     public StoneBrickMaze getPieceFromOutline(PieceOutline outline) {
-        return pieceTable.getPiece(outline.shape);
+        PieceStructure piece = pieceTable.getPiece(outline.shape);
+        if (piece instanceof StoneBrickMaze) {
+            return (StoneBrickMaze) piece;
+        } else {
+            return StoneBrickMaze.ROOF;
+        }
     }
 
     public Location[][][] getLocationOffsets(int startY, int startX, int startZ, StructureRotation rotation) {

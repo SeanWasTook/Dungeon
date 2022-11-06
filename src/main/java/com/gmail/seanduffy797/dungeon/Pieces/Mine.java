@@ -8,12 +8,9 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Map;
 
-public interface Mine extends PieceStructure {
+public interface Mine extends PieceStructure, SizeablePiece {
 
     public String getName();
     public Path getPath();
-    public int getLength();
-    public int getHeight();
-    public int getWidth();
     public Map<Location, Region> getExits();
 }

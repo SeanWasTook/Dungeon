@@ -28,8 +28,8 @@ public class PuebloBuilder {
         sizeNorthSouth = 10;
         sizeEastWest = 10;
         startLocation = new Location(DungeonManager.world, 100, 50, 0);
-        startLocationRelative = new int[] {0, 5, 0};
-        startingPiece = new PuebloOutline(Pueblo.LAYOUT4bt, StructureRotation.ROTATION_90, StructureMirror.NONE);
+        startLocationRelative = new int[] {0, 0, 0};
+        startingPiece = new PuebloOutline(Pueblo.LAYOUT13bt, StructureRotation.ROTATION_90, StructureMirror.NONE);
     }
 
     public void build() {

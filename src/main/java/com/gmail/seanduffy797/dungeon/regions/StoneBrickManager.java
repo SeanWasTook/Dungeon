@@ -2,7 +2,9 @@ package com.gmail.seanduffy797.dungeon.regions;
 
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.Pieces.BricksZone1;
 import com.gmail.seanduffy797.dungeon.Pieces.StoneBrickMaze;
+import com.gmail.seanduffy797.dungeon.builders.SingularBuilder;
 import com.gmail.seanduffy797.dungeon.builders.maze.MazeOptions;
 import com.gmail.seanduffy797.dungeon.builders.maze.PieceTableEntry;
 import com.gmail.seanduffy797.dungeon.builders.maze.StoneBrickMazeBuilder;
@@ -22,6 +24,8 @@ public class StoneBrickManager implements RegionManager {
     StoneBrickMazeBuilder builder1;
     StoneBrickMazeBuilder builder2;
     StoneBrickMazeBuilder builder3;
+    SingularBuilder builder4;
+    SingularBuilder builder5;
     ArrayList<PieceTableEntry> basic_pieces = new ArrayList<>(Arrays.asList(
             StoneBrickMaze.STRAIGHT.getDefaultEntry().getCopyWithWeight(10),
             StoneBrickMaze.STRAIGHT_WOOD.getDefaultEntry().getCopyWithWeight(2),
@@ -62,17 +66,24 @@ public class StoneBrickManager implements RegionManager {
         MazeOptions options3 = new MazeOptions(3, 20, 5);
         options3.setStart(1, 0, 2);
         builder3 = new StoneBrickMazeBuilder(options3);
+
+        builder4 = new SingularBuilder(BricksZone1.SHRINE1);
+        builder5 = new SingularBuilder(BricksZone1.ROOM4);
     }
 
     public void build() {
         builder1.buildStoneBrickMaze(startLocation, startRotation);
         builder2.buildStoneBrickMaze(border1.getLocation(), Direction.getDirectionAsRotation(border1.getDirection()));
         builder3.buildStoneBrickMaze(border2.getLocation(), Direction.getDirectionAsRotation(border2.getDirection()));
+        builder4.build(border3.getLocation(), border3.getDirection(), Region.STONE_BRICK);
+        builder5.build(border4.getLocation(), border4.getDirection(), Region.STONE_BRICK);
     }
 
     public void clear() {
         builder1.clear();
         builder2.clear();
         builder3.clear();
+        builder4.clear();
+        builder5.clear();
     }
 }

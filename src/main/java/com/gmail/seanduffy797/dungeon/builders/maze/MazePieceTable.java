@@ -1,5 +1,6 @@
 package com.gmail.seanduffy797.dungeon.builders.maze;
 
+import com.gmail.seanduffy797.dungeon.Pieces.PieceStructure;
 import com.gmail.seanduffy797.dungeon.Pieces.StoneBrickMaze;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class MazePieceTable {
         }
     }
 
-    public StoneBrickMaze getPiece(MazeUnitShape shape) {
+    public PieceStructure getPiece(MazeUnitShape shape) {
         ArrayList<PieceTableEntry> entries = table.get(shape);
 
         if (entries.size() == 0) {

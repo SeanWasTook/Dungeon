@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
 
-public enum Pueblo {
+public enum Pueblo implements PieceStructure {
     FLOOR("pueblo/floor", 0),
     ERROR("pueblo/error", 0),
     LAYOUT0("pueblo/layout0", 1),

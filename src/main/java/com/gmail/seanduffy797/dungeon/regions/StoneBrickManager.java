@@ -3,12 +3,14 @@ package com.gmail.seanduffy797.dungeon.regions;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.Pieces.BricksZone1;
+import com.gmail.seanduffy797.dungeon.Pieces.MiscPiece;
 import com.gmail.seanduffy797.dungeon.Pieces.StoneBrickMaze;
 import com.gmail.seanduffy797.dungeon.builders.SingularBuilder;
 import com.gmail.seanduffy797.dungeon.builders.maze.MazeOptions;
 import com.gmail.seanduffy797.dungeon.builders.maze.PieceTableEntry;
 import com.gmail.seanduffy797.dungeon.builders.maze.StoneBrickMazeBuilder;
 import com.gmail.seanduffy797.dungeon.builders.wavefunction.Direction;
+import com.gmail.seanduffy797.dungeon.builders.wavefunction.PuebloBuilder;
 import org.bukkit.Location;
 
 import java.util.ArrayList;
@@ -21,11 +23,14 @@ public class StoneBrickManager implements RegionManager {
     BorderPoint border2 = new BorderPoint(SubRegion.STONE_BRICK_MAZE_MAIN, SubRegion.STONE_BRICK_MAZE_HALLWAY);
     BorderPoint border3 = new BorderPoint(SubRegion.STONE_BRICK_MAZE_MAIN, SubRegion.STONE_BRICK_ROOM);
     BorderPoint border4 = new BorderPoint(SubRegion.STONE_BRICK_MAZE_MAIN, SubRegion.STONE_BRICK_ROOM);
+    BorderPoint border5 = new BorderPoint(SubRegion.STONE_BRICK_MAZE_MAIN, SubRegion.STONE_BRICK_ROOM);
     StoneBrickMazeBuilder builder1;
     StoneBrickMazeBuilder builder2;
     StoneBrickMazeBuilder builder3;
     SingularBuilder builder4;
     SingularBuilder builder5;
+    SingularBuilder builder6;
+    PuebloBuilder puebloBuilder = new PuebloBuilder();
     ArrayList<PieceTableEntry> basic_pieces = new ArrayList<>(Arrays.asList(
             StoneBrickMaze.STRAIGHT.getDefaultEntry().getCopyWithWeight(10),
             StoneBrickMaze.STRAIGHT_WOOD.getDefaultEntry().getCopyWithWeight(2),
@@ -65,10 +70,12 @@ public class StoneBrickManager implements RegionManager {
 
         MazeOptions options3 = new MazeOptions(3, 20, 5);
         options3.setStart(1, 0, 2);
+        options3.addExit(1, 19, 2, Direction.NORTH, border5);
         builder3 = new StoneBrickMazeBuilder(options3);
 
         builder4 = new SingularBuilder(BricksZone1.SHRINE1);
-        builder5 = new SingularBuilder(BricksZone1.ROOM4);
+        builder5 = new SingularBuilder(MiscPiece.PUEBLO_LEVER);
+        builder6 = new SingularBuilder(MiscPiece.PUEBLO_TRANSITION);
     }
 
     public void build() {
@@ -77,6 +84,11 @@ public class StoneBrickManager implements RegionManager {
         builder3.buildStoneBrickMaze(border2.getLocation(), Direction.getDirectionAsRotation(border2.getDirection()));
         builder4.build(border3.getLocation(), border3.getDirection(), Region.STONE_BRICK);
         builder5.build(border4.getLocation(), border4.getDirection(), Region.STONE_BRICK);
+        builder6.build(border5.getLocation(), border5.getDirection(), Region.STONE_BRICK);
+        for (BorderPoint exitBP: builder6.exits) {
+            puebloBuilder.build(exitBP.getLocation(), exitBP.getDirection());
+            break; // just in case
+        }
     }
 
     public void clear() {
@@ -85,5 +97,7 @@ public class StoneBrickManager implements RegionManager {
         builder3.clear();
         builder4.clear();
         builder5.clear();
+        builder6.clear();
+        puebloBuilder.clear();
     }
 }

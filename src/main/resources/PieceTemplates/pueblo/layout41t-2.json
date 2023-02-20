@@ -1,0 +1,29 @@
+{
+  "name": "layout41t",
+  "puebloEdges": [
+    {
+      "direction": "north",
+      "type": "open_left"
+    },
+    {
+      "direction": "east",
+      "type": "wall_both"
+    },
+    {
+      "direction": "south",
+      "type": "wall_both"
+    },
+    {
+      "direction": "west",
+      "type": "open_right"
+    },
+    {
+      "direction": "up",
+      "type": "vertical_open"
+    },
+    {
+      "direction": "down",
+      "type": "vertical_both"
+    }
+  ]
+}

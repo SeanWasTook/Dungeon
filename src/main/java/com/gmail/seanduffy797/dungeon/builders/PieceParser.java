@@ -2,6 +2,7 @@ package com.gmail.seanduffy797.dungeon.builders;
 
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.*;
+import com.gmail.seanduffy797.dungeon.Items.management.ItemManager;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.*;
 import com.gmail.seanduffy797.dungeon.regions.Region;
 import com.gmail.seanduffy797.dungeon.builders.wavefunction.Direction;
@@ -381,6 +382,10 @@ public class PieceParser {
                     (ChatColor.RED + "[Dungeon]: Parsing Error: no field material in editableBlock focus in " + pieceData.templatePath);
             return;
         }
+        boolean existsWhenOff = false;
+        if (json.containsKey("existsWhenOff")) {
+            existsWhenOff = (boolean) json.get("existsWhenOff");
+        }
         Integer puzzleId;
         if (json.containsKey("puzzleId")) {
             puzzleId = (Integer) (int) (long) json.get("puzzleId");
@@ -389,7 +394,7 @@ public class PieceParser {
                     (ChatColor.RED + "[Dungeon]: Parsing Error: no field puzzleId in editableBlock focus in " + pieceData.templatePath);
             puzzleId = 0;
         }
-        pieceData.foci.add(new EditableBlock(location, material, puzzleId));
+        pieceData.foci.add(new EditableBlock(location, material, puzzleId, existsWhenOff));
     }
     private static void parseIronGate(JSONObject json, PieceData pieceData) {
         JSONArray jsonLoc;

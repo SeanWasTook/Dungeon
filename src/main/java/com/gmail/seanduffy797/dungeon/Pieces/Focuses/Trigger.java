@@ -31,6 +31,7 @@ public class Trigger extends Focus {
         FocusMeta.triggers.put(this.location, this);
     }
 
+    // Generally used by buttons
     public boolean trigger(Player player) {
         ArrayList<ItemFrameChecker> frames = FocusMeta.puzzleFrames;
         for (ItemFrameChecker frame : frames) {
@@ -47,6 +48,34 @@ public class Trigger extends Focus {
         for (EditableBlock block : blocks) {
             if(block.puzzleId.equals(this.puzzleId)) {
                 block.create();
+            }
+        }
+        return true;
+    }
+
+    // Generally used by levers
+    public boolean trigger(Player player, boolean isOn) {
+        ArrayList<ItemFrameChecker> frames = FocusMeta.puzzleFrames;
+        for (ItemFrameChecker frame : frames) {
+            if(frame.puzzleId.equals(this.puzzleId)) {
+                player.sendMessage("Mark 1");
+                if(!frame.isCorrect(player)) {
+                    player.sendMessage("Frame is Incorrect");
+                    return false;
+                }
+            }
+        }
+        player.sendMessage("Mark 5");
+        ArrayList<EditableBlock> blocks = FocusMeta.puzzleBlocks;
+        for (EditableBlock block : blocks) {
+            if(block.puzzleId.equals(this.puzzleId)) {
+                if ((isOn && block.existsWhenOff) || (!isOn && !block.existsWhenOff)) {
+                    player.sendMessage("Mark 6");
+                    block.destroy();
+                } else {
+                    player.sendMessage("Mark 7");
+                    block.create();
+                }
             }
         }
         return true;

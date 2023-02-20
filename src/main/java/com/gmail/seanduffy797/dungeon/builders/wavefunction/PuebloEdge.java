@@ -15,6 +15,7 @@ public enum PuebloEdge {
     OPEN_RIGHT,
     VERTICAL_SOLID,
     VERTICAL_OPEN,
+    VERTICAL_BOTH,
     FLOOR_SOLID;
 
     // Necessary because one piece's left will be its connection's right
@@ -48,6 +49,12 @@ public enum PuebloEdge {
                 return Arrays.asList(OPEN_LEFT, WALL_RIGHT, WALL_MIDDLE, OUTSIDE);
             case OPEN_RIGHT:
                 return Arrays.asList(OPEN_RIGHT, WALL_LEFT, WALL_MIDDLE, OUTSIDE);
+            case VERTICAL_OPEN:
+                return Arrays.asList(VERTICAL_OPEN, VERTICAL_BOTH);
+            case VERTICAL_SOLID:
+                return Arrays.asList(VERTICAL_SOLID, VERTICAL_BOTH);
+            case VERTICAL_BOTH:
+                return Arrays.asList(VERTICAL_BOTH, VERTICAL_SOLID, VERTICAL_OPEN);
             default:
                 return Collections.singletonList(this);
         }

@@ -2,6 +2,8 @@ package com.gmail.seanduffy797.dungeon.Items;
 
 import com.destroystokyo.paper.Namespaced;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.Items.management.ItemManager;
+import com.gmail.seanduffy797.dungeon.Items.management.Rarity;
 import de.tr7zw.nbtapi.NBTItem;
 import de.tr7zw.nbtapi.NBTStringList;
 import org.bukkit.Material;
@@ -19,6 +21,7 @@ public class Placeables {
         ArrayList<Namespaced> keys = new ArrayList<>(DungeonManager.commonBlocks);
         meta.setPlaceableKeys(keys);
         rails.setItemMeta(meta);
+        ItemManager.addRarity(rails, Rarity.COMMON);
         return rails;
     }
 
@@ -28,6 +31,7 @@ public class Placeables {
         ArrayList<Namespaced> keys = new ArrayList<>(DungeonManager.commonBlocks);
         meta.setPlaceableKeys(keys);
         rails.setItemMeta(meta);
+        ItemManager.addRarity(rails, Rarity.COMMON);
         return rails;
     }
 
@@ -37,6 +41,7 @@ public class Placeables {
         ArrayList<Namespaced> keys = new ArrayList<>(DungeonManager.commonBlocks);
         meta.setPlaceableKeys(keys);
         rails.setItemMeta(meta);
+        ItemManager.addRarity(rails, Rarity.COMMON);
         return rails;
     }
 
@@ -46,6 +51,7 @@ public class Placeables {
         ArrayList<Namespaced> keys = new ArrayList<>(DungeonManager.commonBlocks);
         meta.setPlaceableKeys(keys);
         rails.setItemMeta(meta);
+        ItemManager.addRarity(rails, Rarity.COMMON);
         return rails;
     }
 
@@ -55,6 +61,7 @@ public class Placeables {
         ArrayList<Namespaced> keys = new ArrayList<>(DungeonManager.commonBlocks);
         meta.setPlaceableKeys(keys);
         pickles.setItemMeta(meta);
+        ItemManager.addRarity(pickles, Rarity.COMMON);
         return pickles;
     }
 
@@ -63,6 +70,7 @@ public class Placeables {
         ItemMeta meta = lilyPad.getItemMeta();
         meta.setPlaceableKeys(Collections.singletonList(Material.WATER.getKey()));
         lilyPad.setItemMeta(meta);
+        ItemManager.addRarity(lilyPad, Rarity.COMMON);
         return lilyPad;
     }
 
@@ -72,6 +80,7 @@ public class Placeables {
         NBTStringList blocks = (NBTStringList) nbti.getStringList("CanPlaceOn");
         blocks.add("#minecraft:rails");
         minecart = nbti.getItem();
+        ItemManager.addRarity(minecart, Rarity.COMMON);
         return minecart;
     }
 }

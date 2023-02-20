@@ -1,7 +1,7 @@
 package com.gmail.seanduffy797.dungeon.commands;
 
 import com.gmail.seanduffy797.dungeon.DungeonItem;
-import com.gmail.seanduffy797.dungeon.Items.ItemManager;
+import com.gmail.seanduffy797.dungeon.Items.LegacyItemManager;
 import com.gmail.seanduffy797.dungeon.Items.TeleportPearl;
 import com.gmail.seanduffy797.dungeon.KeyLocation;
 import org.bukkit.command.Command;
@@ -35,7 +35,7 @@ public class GiveCommand implements CommandExecutor {
             if (args.length == 1) {
                 Player player = (Player) sender;
                 if (args[0].equalsIgnoreCase("wand")) {
-                    player.getInventory().addItem(ItemManager.wand);
+                    player.getInventory().addItem(LegacyItemManager.wand);
                 } else if (args[0].equalsIgnoreCase("pearl")) {
                     player.getInventory().addItem(TeleportPearl.createItemStack(KeyLocation.SPAWN));
                 }
@@ -55,7 +55,7 @@ public class GiveCommand implements CommandExecutor {
                 Player receiver = getServer().getPlayer(playerName);
                 if (receiver != null) {
                     if (args[1].equalsIgnoreCase("wand")) {
-                        receiver.getInventory().addItem(ItemManager.wand);
+                        receiver.getInventory().addItem(LegacyItemManager.wand);
                     } else {
                         sender.sendMessage("Invalid Item");
                     }
@@ -71,7 +71,7 @@ public class GiveCommand implements CommandExecutor {
                 if (receiver != null) {
                     if (args[1].equalsIgnoreCase("wand")) {
                         int count = Integer.parseInt(args[2]);
-                        ItemStack stack = ItemManager.wand;
+                        ItemStack stack = LegacyItemManager.wand;
                         stack.setAmount(count);
                         try {
                             receiver.getInventory().addItem(stack);

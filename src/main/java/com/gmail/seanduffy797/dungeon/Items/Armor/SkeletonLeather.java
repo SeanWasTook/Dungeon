@@ -1,5 +1,7 @@
 package com.gmail.seanduffy797.dungeon.Items.Armor;
 
+import com.gmail.seanduffy797.dungeon.Items.management.ItemManager;
+import com.gmail.seanduffy797.dungeon.Items.management.Rarity;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -50,6 +52,7 @@ public class SkeletonLeather {
         hatMeta.setColor(color);
         hatMeta.displayName(Component.text("Skeleton Leather Hat"));
         hat.setItemMeta(hatMeta);
+        ItemManager.addRarity(hat, Rarity.COMMON);
         return hat;
     }
     public static ItemStack createTunic() {
@@ -58,6 +61,7 @@ public class SkeletonLeather {
         tunicMeta.setColor(color);
         tunicMeta.displayName(Component.text("Skeleton Leather Tunic"));
         tunic.setItemMeta(tunicMeta);
+        ItemManager.addRarity(tunic, Rarity.COMMON);
         return tunic;
     }
     public static ItemStack createPants() {
@@ -66,6 +70,7 @@ public class SkeletonLeather {
         pantsMeta.setColor(color);
         pantsMeta.displayName(Component.text("Skeleton Leather Pants"));
         pants.setItemMeta(pantsMeta);
+        ItemManager.addRarity(pants, Rarity.COMMON);
         return pants;
     }
     public static ItemStack createBoots() {
@@ -74,6 +79,7 @@ public class SkeletonLeather {
         bootsMeta.setColor(color);
         bootsMeta.displayName(Component.text("Skeleton Leather Boots"));
         boots.setItemMeta(bootsMeta);
+        ItemManager.addRarity(boots, Rarity.COMMON);
         return boots;
     }
 }

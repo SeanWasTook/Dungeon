@@ -1,5 +1,7 @@
 package com.gmail.seanduffy797.dungeon.Items;
 
+import com.gmail.seanduffy797.dungeon.Items.management.ItemManager;
+import com.gmail.seanduffy797.dungeon.Items.management.Rarity;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Material;
@@ -27,6 +29,7 @@ public class Keys {
         ItemMeta meta = skeletonKey.getItemMeta();
         meta.displayName(Component.text("Skeleton Key"));
         skeletonKey.setItemMeta(meta);
+        ItemManager.addRarity(skeletonKey, Rarity.UNCOMMON);
         return skeletonKey;
     }
     public static ItemStack createBasementKey() {
@@ -37,6 +40,7 @@ public class Keys {
         List<Component> lore = new ArrayList<>();
         lore.add(Component.text("Key to the basement of the home Grisha left behind").color(NamedTextColor.GOLD));
         basementKey.lore(lore);
+        ItemManager.addRarity(basementKey, Rarity.RARE);
         return basementKey;
     }
     public static ItemStack createOldKey() {
@@ -44,6 +48,7 @@ public class Keys {
         ItemMeta meta = oldKey.getItemMeta();
         meta.displayName(Component.text("Old Key"));
         oldKey.setItemMeta(meta);
+        ItemManager.addRarity(oldKey, Rarity.RARE);
         return oldKey;
     }
 }

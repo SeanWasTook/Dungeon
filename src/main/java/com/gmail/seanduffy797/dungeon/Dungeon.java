@@ -1,12 +1,11 @@
 package com.gmail.seanduffy797.dungeon;
 
-import com.gmail.seanduffy797.dungeon.Items.ItemManager;
+import com.gmail.seanduffy797.dungeon.Items.LegacyItemManager;
 import com.gmail.seanduffy797.dungeon.commands.*;
 import com.gmail.seanduffy797.dungeon.events.*;
 import com.gmail.seanduffy797.dungeon.mobs.EntityManager;
 import com.gmail.seanduffy797.dungeon.tasks.TickDungeon;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 
 public class Dungeon extends JavaPlugin {
@@ -18,7 +17,7 @@ public class Dungeon extends JavaPlugin {
     public void onEnable() {
         pluginInstance = this;
         DungeonManager.init(this, getServer().getWorld(worldName));
-        ItemManager.init();
+        LegacyItemManager.init();
         EntityManager.init();
         getServer().getPluginManager().registerEvents(new DungeonEventTest(), this);
         getServer().getPluginManager().registerEvents(new UseItemEvent(), this);
@@ -27,7 +26,7 @@ public class Dungeon extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DoorUnlockEvent(), this);
         getServer().getPluginManager().registerEvents(new BlockPlacedEvent(), this);
         getServer().getPluginManager().registerEvents(new AgeBabyZombiesEvent(), this);
-        getServer().getPluginManager().registerEvents(new ButtonPressEvent(), this);
+        getServer().getPluginManager().registerEvents(new InteractEvent(), this);
         getServer().getPluginManager().registerEvents(new DungeonBlockBreakEvent(), this);
         getServer().getPluginManager().registerEvents(new HitHangingEntityEvent(), this);
         getServer().getPluginManager().registerEvents(new MinecartDropEvent(), this);

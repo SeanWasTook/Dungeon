@@ -1,5 +1,7 @@
 package com.gmail.seanduffy797.dungeon.Items;
 
+import com.gmail.seanduffy797.dungeon.Items.management.ItemManager;
+import com.gmail.seanduffy797.dungeon.Items.management.Rarity;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -20,6 +22,7 @@ public class VindicatorsAxe {
         meta.displayName(Component.text("Vindicator's Axe"));
         meta.setDestroyableKeys(Collections.singletonList(Material.DARK_OAK_LOG.getKey()));
         vindicatorsAxe.setItemMeta(meta);
+        ItemManager.addRarity(vindicatorsAxe, Rarity.UNCOMMON);
         return vindicatorsAxe;
     }
 }

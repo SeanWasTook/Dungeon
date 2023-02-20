@@ -1,5 +1,7 @@
 package com.gmail.seanduffy797.dungeon.Items;
 
+import com.gmail.seanduffy797.dungeon.Items.management.ItemManager;
+import com.gmail.seanduffy797.dungeon.Items.management.Rarity;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Material;
@@ -19,6 +21,7 @@ public class FoodItems {
         List<Component> lore = new ArrayList<>();
         lore.add(Component.text("Extra Rare").color(NamedTextColor.GOLD));
         rareSteak.lore(lore);
+        ItemManager.addRarity(rareSteak, Rarity.RARE);
         return rareSteak;
     }
     public static ItemStack createJeremiahsSoup() {
@@ -26,6 +29,7 @@ public class FoodItems {
         List<Component> lore = new ArrayList<>();
         lore.add(Component.text("Prepared with love").color(NamedTextColor.GOLD));
         soup.lore(lore);
+        ItemManager.addRarity(soup, Rarity.UNCOMMON);
         return soup;
     }
 }

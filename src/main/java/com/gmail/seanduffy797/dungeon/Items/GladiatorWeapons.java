@@ -1,5 +1,7 @@
 package com.gmail.seanduffy797.dungeon.Items;
 
+import com.gmail.seanduffy797.dungeon.Items.management.ItemManager;
+import com.gmail.seanduffy797.dungeon.Items.management.Rarity;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -29,6 +31,7 @@ public class GladiatorWeapons {
         ItemMeta meta = gladius.getItemMeta();
         meta.displayName(Component.text("Gladius"));
         gladius.setItemMeta(meta);
+        ItemManager.addRarity(gladius, Rarity.UNCOMMON);
         return gladius;
     }
     public static ItemStack createRudis() {
@@ -37,6 +40,7 @@ public class GladiatorWeapons {
         meta.displayName(Component.text("Rudis"));
         meta.addEnchant(Enchantment.SWEEPING_EDGE, 3, true);
         rudis.setItemMeta(meta);
+        ItemManager.addRarity(rudis, Rarity.UNCOMMON);
         return rudis;
     }
     public static ItemStack createSica() {
@@ -46,6 +50,7 @@ public class GladiatorWeapons {
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED,
                 new AttributeModifier("Speed", 2, AttributeModifier.Operation.ADD_NUMBER));
         sica.setItemMeta(meta);
+        ItemManager.addRarity(sica, Rarity.UNCOMMON);
         return sica;
     }
     public static ItemStack createReflexBow() {
@@ -56,6 +61,7 @@ public class GladiatorWeapons {
         meta.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH,
                 new AttributeModifier("Health", -4, AttributeModifier.Operation.ADD_NUMBER));
         reflexBow.setItemMeta(meta);
+        ItemManager.addRarity(reflexBow, Rarity.UNCOMMON);
         return reflexBow;
     }
     public static ItemStack createPalmBranch() {
@@ -63,6 +69,7 @@ public class GladiatorWeapons {
         ItemMeta meta = palmBranch.getItemMeta();
         meta.displayName(Component.text("Palm Branch"));
         palmBranch.setItemMeta(meta);
+        ItemManager.addRarity(palmBranch, Rarity.COMMON);
         return palmBranch;
     }
 }

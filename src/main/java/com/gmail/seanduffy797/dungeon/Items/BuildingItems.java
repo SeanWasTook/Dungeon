@@ -1,6 +1,8 @@
 package com.gmail.seanduffy797.dungeon.Items;
 
 import com.destroystokyo.paper.Namespaced;
+import com.gmail.seanduffy797.dungeon.Items.management.ItemManager;
+import com.gmail.seanduffy797.dungeon.Items.management.Rarity;
 import de.tr7zw.nbtapi.NBTItem;
 import de.tr7zw.nbtapi.NBTStringList;
 import net.kyori.adventure.text.Component;
@@ -39,6 +41,7 @@ public class BuildingItems {
         meta.setDamage(31);
         meta.displayName(Component.text("Chiseled Stone Brick Pick"));
         chiseledStonePick.setItemMeta(meta);
+        ItemManager.addRarity(chiseledStonePick, Rarity.RARE);
         return chiseledStonePick;
     }
 
@@ -48,6 +51,7 @@ public class BuildingItems {
         meta.setDestroyableKeys(lights);
         meta.displayName(Component.text("Lightbreaker Pick"));
         lightbreakerPick.setItemMeta(meta);
+        ItemManager.addRarity(lightbreakerPick, Rarity.COMMON);
         return lightbreakerPick;
     }
     public static ItemStack createCandleLighter() {
@@ -55,6 +59,7 @@ public class BuildingItems {
         ItemMeta meta = candleLighter.getItemMeta();
         meta.setPlaceableKeys(Collections.singletonList(Material.CANDLE.getKey()));
         candleLighter.setItemMeta(meta);
+        ItemManager.addRarity(candleLighter, Rarity.COMMON);
         return candleLighter;
     }
     public static ItemStack createCoalPick() {
@@ -63,6 +68,7 @@ public class BuildingItems {
         meta.setDestroyableKeys(Collections.singletonList(Material.COAL_ORE.getKey()));
         meta.displayName(Component.text("Coal Pick"));
         coalPick.setItemMeta(meta);
+        ItemManager.addRarity(coalPick, Rarity.COMMON);
         return coalPick;
     }
     public static ItemStack createNovicePick() {
@@ -71,6 +77,7 @@ public class BuildingItems {
         meta.setDestroyableKeys(Arrays.asList(Material.COAL_ORE.getKey(), Material.IRON_ORE.getKey()));
         meta.displayName(Component.text("Novice Miner's Pick"));
         novicePick.setItemMeta(meta);
+        ItemManager.addRarity(novicePick, Rarity.COMMON);
         return novicePick;
     }
     public static ItemStack createExcavator() {
@@ -79,6 +86,7 @@ public class BuildingItems {
         meta.setDestroyableKeys(Collections.singletonList(Material.GRAVEL.getKey()));
         meta.displayName(Component.text("Excavator"));
         excavator.setItemMeta(meta);
+        ItemManager.addRarity(excavator, Rarity.COMMON);
         return excavator;
     }
 
@@ -88,6 +96,7 @@ public class BuildingItems {
         meta.setDestroyableKeys(Arrays.asList(Material.BROWN_MUSHROOM.getKey(), Material.RED_MUSHROOM.getKey()));
         meta.displayName(Component.text("Shroom Hoe"));
         shroomHoe.setItemMeta(meta);
+        ItemManager.addRarity(shroomHoe, Rarity.COMMON);
         return shroomHoe;
     }
 
@@ -102,6 +111,7 @@ public class BuildingItems {
                 Material.POTATOES.getKey()));
         meta.displayName(Component.text("Farming Hoe"));
         farmingHoe.setItemMeta(meta);
+        ItemManager.addRarity(farmingHoe, Rarity.COMMON);
         return farmingHoe;
     }
 
@@ -114,6 +124,7 @@ public class BuildingItems {
         List<Component> lore = new ArrayList<>();
         lore.add(Component.text("Can Break Monster Spawners").color(NamedTextColor.GOLD));
         spawnerDestroyer.lore(lore);
+        ItemManager.addRarity(spawnerDestroyer, Rarity.RARE);
         return spawnerDestroyer;
     }
 
@@ -126,6 +137,7 @@ public class BuildingItems {
         NBTStringList blocks = (NBTStringList) nbti.getStringList("CanDestroy");
         blocks.add("#minecraft:rails");
         railPick = nbti.getItem();
+        ItemManager.addRarity(railPick, Rarity.COMMON);
         return railPick;
     }
 }

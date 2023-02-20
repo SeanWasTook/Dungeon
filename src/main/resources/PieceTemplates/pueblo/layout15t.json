@@ -19,11 +19,11 @@
     },
     {
       "direction": "up",
-      "type": "vertical_solid"
+      "type": "vertical_open"
     },
     {
       "direction": "down",
-      "type": "vertical_solid"
+      "type": "vertical_both"
     }
   ]
 }

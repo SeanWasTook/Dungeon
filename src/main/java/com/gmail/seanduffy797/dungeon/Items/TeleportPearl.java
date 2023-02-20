@@ -3,6 +3,8 @@ package com.gmail.seanduffy797.dungeon.Items;
 import com.gmail.seanduffy797.dungeon.Dungeon;
 import com.gmail.seanduffy797.dungeon.DungeonItem;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.Items.management.ItemManager;
+import com.gmail.seanduffy797.dungeon.Items.management.Rarity;
 import com.gmail.seanduffy797.dungeon.KeyLocation;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -31,6 +33,7 @@ public class TeleportPearl {
         lore.add(Component.text("Teleports you to Spawn").color(NamedTextColor.GOLD));
         teleportPearl.setItemMeta(meta);
         teleportPearl.lore(lore);
+        ItemManager.addRarity(teleportPearl, Rarity.UNCOMMON);
         return teleportPearl;
     }
 }

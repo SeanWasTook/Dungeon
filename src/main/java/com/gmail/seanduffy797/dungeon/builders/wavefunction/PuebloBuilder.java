@@ -24,12 +24,48 @@ public class PuebloBuilder {
     PuebloOutline startingPiece;
 
     public PuebloBuilder() {
-        height = 4;
+        height = 5;
         sizeNorthSouth = 10;
         sizeEastWest = 10;
         startLocation = new Location(DungeonManager.world, 100, 50, 0);
         startLocationRelative = new int[] {0, 0, 0};
         startingPiece = new PuebloOutline(Pueblo.LAYOUT13bt, StructureRotation.ROTATION_90, StructureMirror.NONE);
+    }
+
+    public void build(Location startLocation, Direction facing) {
+        startLocation = new Location(startLocation.getWorld(), startLocation.getX(),
+                startLocation.getY() - 1,
+                startLocation.getZ() - 3);
+        switch (facing) {
+            case NORTH:
+                this.startLocation = startLocation;
+                break;
+            case EAST:
+                this.startLocation = new Location(DungeonManager.world,
+                        startLocation.getX() - HORIZONTAL_SCALE*sizeNorthSouth,
+                        startLocation.getY(),
+                        startLocation.getZ());
+                startLocationRelative[0] = sizeNorthSouth - 1 - startLocationRelative[1];
+                startLocationRelative[1] = 0;
+                break;
+            case SOUTH:
+                this.startLocation = new Location(DungeonManager.world,
+                        startLocation.getX() - HORIZONTAL_SCALE*sizeNorthSouth,
+                        startLocation.getY(),
+                        startLocation.getZ() - HORIZONTAL_SCALE*sizeEastWest);
+                startLocationRelative[0] = sizeNorthSouth - 1;
+                startLocationRelative[1] = sizeEastWest - 1 - startLocationRelative[1];
+                break;
+            case WEST:
+                this.startLocation = new Location(DungeonManager.world,
+                        startLocation.getX(),
+                        startLocation.getY(),
+                        startLocation.getZ() - HORIZONTAL_SCALE*sizeEastWest);
+                startLocationRelative[0] = startLocationRelative[1];
+                startLocationRelative[1] = sizeEastWest - 1;
+                break;
+        }
+        build();
     }
 
     public void build() {
@@ -107,14 +143,30 @@ public class PuebloBuilder {
             for (int j = 0; j < sizeEastWest; j++) {
                 Location loc = new Location(DungeonManager.world, x + i*HORIZONTAL_SCALE, y, z + j*HORIZONTAL_SCALE);
                 Pueblo.FLOOR.place(loc, StructureRotation.NONE, StructureMirror.NONE);
+                Location cielLoc = new Location(DungeonManager.world, x + i*HORIZONTAL_SCALE, y + height*VERTICAL_SCALE + 1, z + j*HORIZONTAL_SCALE);
+                Pueblo.FLOOR.place(cielLoc, StructureRotation.NONE, StructureMirror.NONE);
+            }
+            for (int k = 0; k < height; k++) {
+                // Left Wall
+                Location loc = new Location(DungeonManager.world, x + i * HORIZONTAL_SCALE, y + k*VERTICAL_SCALE + 1, z - 1);
+                Pueblo.WALL.place(loc, StructureRotation.NONE, StructureMirror.NONE);
+                // Front Wall
+                Location loc2 = new Location(DungeonManager.world, x - 1, y + k*VERTICAL_SCALE + 1, z + i * HORIZONTAL_SCALE);
+                Pueblo.WALL.place(loc2, StructureRotation.ROTATION_90, StructureMirror.NONE);
+                // Right Wall
+                Location loc3 = new Location(DungeonManager.world, x + i * HORIZONTAL_SCALE, y + k*VERTICAL_SCALE + 1, z + sizeEastWest * HORIZONTAL_SCALE);
+                Pueblo.WALL.place(loc3, StructureRotation.NONE, StructureMirror.NONE);
+                // Back Wall
+                Location loc4 = new Location(DungeonManager.world, x + sizeNorthSouth * HORIZONTAL_SCALE, y + k*VERTICAL_SCALE + 1, z + i * HORIZONTAL_SCALE);
+                Pueblo.WALL.place(loc4, StructureRotation.ROTATION_90, StructureMirror.NONE);
             }
         }
     }
 
     public void clear() {
-        for (int x = (int) startLocation.getX(); x < (startLocation.getX() + sizeNorthSouth*HORIZONTAL_SCALE); x++) {
-            for (int z = (int) startLocation.getZ(); z < (startLocation.getZ() + sizeEastWest*HORIZONTAL_SCALE); z++) {
-                for (int y = (int) startLocation.getY(); y < (startLocation.getY() + height*VERTICAL_SCALE + 1); y++) {
+        for (int x = (int) startLocation.getX() - 1; x < (startLocation.getX() + sizeNorthSouth*HORIZONTAL_SCALE) + 1; x++) {
+            for (int z = (int) startLocation.getZ() - 1; z < (startLocation.getZ() + sizeEastWest*HORIZONTAL_SCALE) + 1; z++) {
+                for (int y = (int) startLocation.getY(); y < (startLocation.getY() + height*VERTICAL_SCALE + 2); y++) {
                     Block block = DungeonManager.world.getBlockAt(x, y, z);
                     if (block.getType() != Material.AIR) {
                         block.setType(Material.AIR);

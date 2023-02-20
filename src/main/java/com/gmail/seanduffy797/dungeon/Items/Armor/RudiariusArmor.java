@@ -1,5 +1,7 @@
 package com.gmail.seanduffy797.dungeon.Items.Armor;
 
+import com.gmail.seanduffy797.dungeon.Items.management.ItemManager;
+import com.gmail.seanduffy797.dungeon.Items.management.Rarity;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -51,6 +53,7 @@ public class RudiariusArmor {
         hatMeta.setColor(color);
         hatMeta.displayName(Component.text("Rudiarius Helmet"));
         helmet.setItemMeta(hatMeta);
+        ItemManager.addRarity(helmet, Rarity.COMMON);
         return helmet;
     }
     public static ItemStack createChestplate() {
@@ -59,6 +62,7 @@ public class RudiariusArmor {
         tunicMeta.setColor(color);
         tunicMeta.displayName(Component.text("Rudiarius Chestplate"));
         chestplate.setItemMeta(tunicMeta);
+        ItemManager.addRarity(chestplate, Rarity.COMMON);
         return chestplate;
     }
     public static ItemStack createGreaves() {
@@ -67,6 +71,7 @@ public class RudiariusArmor {
         pantsMeta.setColor(color);
         pantsMeta.displayName(Component.text("Rudiarius Greaves"));
         greaves.setItemMeta(pantsMeta);
+        ItemManager.addRarity(greaves, Rarity.COMMON);
         return greaves;
     }
     public static ItemStack createBoots() {
@@ -75,6 +80,7 @@ public class RudiariusArmor {
         bootsMeta.setColor(color);
         bootsMeta.displayName(Component.text("Rudiarius Boots"));
         boots.setItemMeta(bootsMeta);
+        ItemManager.addRarity(boots, Rarity.COMMON);
         return boots;
     }
 }

@@ -40,6 +40,7 @@ public class WaveBuilder {
                     explored[i][j][k] = null;
                     if (k == 0) {
                         unexplored[i][j][k].setDown(PuebloEdge.FLOOR_SOLID);
+                        unexplored[i][j][k].isReady = true;
                     }
                     if (j == 0 && k < 3) {
                         unexplored[i][j][k].setWest(PuebloEdge.INSIDE);
@@ -72,7 +73,7 @@ public class WaveBuilder {
             PuebloPieceLayout layout = unexplored[coords[0]][coords[1]][coords[2]];
             ArrayList<PuebloOutline> possibilities = piecePicker.getPieceForLayout(layout);
             int options = possibilities.size();
-            if (options > 0 && options < minOptions) {
+            if (options > 0 && options < minOptions && layout.isReady) {
                 minOptions = options;
                 finalCoords = coords;
                 finalPossibilities = possibilities;
@@ -85,7 +86,7 @@ public class WaveBuilder {
                 int[] coords = convertIntegerToCoords(intCoords);
                 explored[coords[0]][coords[1]][coords[2]] = new PuebloOutline(Pueblo.ERROR, StructureRotation.NONE, StructureMirror.NONE);
                 unexplored[coords[0]][coords[1]][coords[2]].printLayout();
-                frontier.remove(convertCoordsToInteger(finalCoords));
+                frontier.remove(intCoords);
             }
         } else {
             frontier.remove(convertCoordsToInteger(finalCoords));
@@ -142,13 +143,16 @@ public class WaveBuilder {
         }
         if (y < maxUpDown - 1 && explored[x][z][y+1] == null) {
             PuebloPieceLayout frontierLayout = unexplored[x][z][y+1];
-            frontierLayout.setDown(outline.layout.getUp().get(0));
-            if (outline.layout.getUp().get(0) == PuebloEdge.VERTICAL_SOLID) {
+            // frontierLayout.setDown(outline.layout.getUp().get(0));
+            frontierLayout.constrain(Direction.DOWN, outline.layout.getUp().get(0));
+            if (outline.layout.getUp().get(0) == PuebloEdge.VERTICAL_SOLID
+                    || outline.layout.getUp().get(0) == PuebloEdge.VERTICAL_OPEN) {
                 frontierLayout.constrain(Direction.NORTH, outline.layout.getNorth().get(0));
                 frontierLayout.constrain(Direction.EAST, outline.layout.getEast().get(0));
                 frontierLayout.constrain(Direction.SOUTH, outline.layout.getSouth().get(0));
                 frontierLayout.constrain(Direction.WEST, outline.layout.getWest().get(0));
             }
+            frontierLayout.isReady = true;
             frontier.add(convertCoordsToInteger(new int[] {x, z, y+1}));
         }
 

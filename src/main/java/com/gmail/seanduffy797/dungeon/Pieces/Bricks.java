@@ -14,5 +14,4 @@ public interface Bricks extends PieceStructure, SizeablePiece {
     public Path getPath();
     public boolean getMirror();
     public boolean isEven();
-    public Map<Location, Region> getExits();
 }

@@ -12,5 +12,4 @@ public interface Mine extends PieceStructure, SizeablePiece {
 
     public String getName();
     public Path getPath();
-    public Map<Location, Region> getExits();
 }

@@ -9,6 +9,7 @@ import static org.bukkit.Bukkit.getServer;
 public class PuebloPieceLayout {
 
     Map<Direction, ArrayList<PuebloEdge>> connections;
+    public boolean isReady = false; // Hack to prevent choosing a piece before the piece below it is known
 
     public PuebloPieceLayout() {
         connections = new HashMap<>();
@@ -17,7 +18,7 @@ public class PuebloPieceLayout {
         connections.put(Direction.SOUTH, new ArrayList<>(Arrays.asList(PuebloEdge.values())));
         connections.put(Direction.WEST, new ArrayList<>(Arrays.asList(PuebloEdge.values())));
         connections.put(Direction.UP, new ArrayList<>(Arrays.asList(PuebloEdge.values())));
-        connections.put(Direction.DOWN, new ArrayList<>(Collections.emptyList()));
+        connections.put(Direction.DOWN, new ArrayList<>(Arrays.asList(PuebloEdge.values())));
     }
 
     public void setNorth(PuebloEdge type) {

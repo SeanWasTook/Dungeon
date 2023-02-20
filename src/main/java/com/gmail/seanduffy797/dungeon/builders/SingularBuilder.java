@@ -6,10 +6,14 @@ import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.Pieces.Focuses.Focus;
 import com.gmail.seanduffy797.dungeon.Pieces.SizeablePiece;
 import com.gmail.seanduffy797.dungeon.builders.wavefunction.Direction;
+import com.gmail.seanduffy797.dungeon.regions.BorderPoint;
 import com.gmail.seanduffy797.dungeon.regions.Region;
+import com.gmail.seanduffy797.dungeon.regions.SubRegion;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+
+import java.util.ArrayList;
 
 public class SingularBuilder {
 
@@ -18,6 +22,7 @@ public class SingularBuilder {
     Direction direction;
     Location corner1;
     Location corner2;
+    public ArrayList<BorderPoint> exits = new ArrayList<>();
 
     public SingularBuilder(SizeablePiece piece) {
         this.piece = piece;
@@ -52,6 +57,17 @@ public class SingularBuilder {
             newFoc.location = newFoc.location.add(newLoc);
             newFoc.rotation = rot;
             newFoc.start(region);
+        }
+        // Handles exits
+        // Currently doesn't handle exits with any rotation (only straight halls work)
+        for (Location exitLoc: piece.getExits().keySet()) {
+            Location newLoc = corner1.clone().subtract(newOffset);
+            Location newExitLoc = BuilderUtils.applyRotation(exitLoc, rot);
+            newExitLoc = newExitLoc.add(newLoc);
+            // This bit is very hardcoded because pieces don't correctly use subregions yet
+            BorderPoint bp = new BorderPoint(SubRegion.STONE_BRICK_MAZE_HALLWAY, SubRegion.PUEBLO);
+            bp.specify(newExitLoc, dir);
+            exits.add(bp);
         }
     }
 

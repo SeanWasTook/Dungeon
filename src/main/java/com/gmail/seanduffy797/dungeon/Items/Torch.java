@@ -2,6 +2,8 @@ package com.gmail.seanduffy797.dungeon.Items;
 
 import com.destroystokyo.paper.Namespaced;
 import com.gmail.seanduffy797.dungeon.DungeonManager;
+import com.gmail.seanduffy797.dungeon.Items.management.ItemManager;
+import com.gmail.seanduffy797.dungeon.Items.management.Rarity;
 import de.tr7zw.nbtapi.NBTItem;
 import de.tr7zw.nbtapi.NBTList;
 import de.tr7zw.nbtapi.NBTStringList;
@@ -44,6 +46,7 @@ public class Torch {
 //        ItemMeta meta = soulTorch.getItemMeta();
 //        meta.setPlaceableKeys(DungeonManager.commonBlocks);
 //        soulTorch.setItemMeta(meta);
+        ItemManager.addRarity(soulTorch, Rarity.COMMON);
         return soulTorch;
     }
 
@@ -54,6 +57,7 @@ public class Torch {
         keys.add(Material.CANDLE.getKey());
         meta.setPlaceableKeys(keys);
         candle.setItemMeta(meta);
+        ItemManager.addRarity(candle, Rarity.COMMON);
         return candle;
     }
 
@@ -66,6 +70,7 @@ public class Torch {
 //        ItemMeta meta = lantern.getItemMeta();
 //        meta.setPlaceableKeys(DungeonManager.commonBlocks);
 //        lantern.setItemMeta(meta);
+        ItemManager.addRarity(lantern, Rarity.UNCOMMON);
         return lantern;
     }
 
@@ -78,6 +83,7 @@ public class Torch {
 //        ItemMeta meta = soulLantern.getItemMeta();
 //        meta.setPlaceableKeys(DungeonManager.commonBlocks);
 //        soulLantern.setItemMeta(meta);
+        ItemManager.addRarity(soulLantern, Rarity.UNCOMMON);
         return soulLantern;
     }
 }

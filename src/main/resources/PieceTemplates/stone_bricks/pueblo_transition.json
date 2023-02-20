@@ -1,0 +1,59 @@
+{
+  "name": "pueblo_transition",
+  "length": 7,
+  "height": 5,
+  "width": 7,
+  "isEven": false,
+  "offset": [0, -1, -3],
+  "exits": [
+    {
+      "loc": [7, 0, 0],
+      "direction": 0,
+      "region": "pueblo"
+    }
+  ],
+  "foci": [
+    {
+      "type": "editableBlock",
+      "loc": [4, 0, 1],
+      "material": "jungle_fence",
+      "existsWhenOff": true,
+      "puzzleId": 2
+    },
+    {
+      "type": "editableBlock",
+      "loc": [4, 0, -1],
+      "material": "jungle_fence",
+      "existsWhenOff": true,
+      "puzzleId": 2
+    },
+    {
+      "type": "editableBlock",
+      "loc": [4, 1, 1],
+      "material": "jungle_fence",
+      "existsWhenOff": true,
+      "puzzleId": 2
+    },
+    {
+      "type": "editableBlock",
+      "loc": [4, 1, -1],
+      "material": "jungle_fence",
+      "existsWhenOff": true,
+      "puzzleId": 2
+    },
+    {
+      "type": "editableBlock",
+      "loc": [4, 2, 1],
+      "material": "jungle_fence",
+      "existsWhenOff": true,
+      "puzzleId": 2
+    },
+    {
+      "type": "editableBlock",
+      "loc": [4, 2, -1],
+      "material": "jungle_fence",
+      "existsWhenOff": true,
+      "puzzleId": 2
+    }
+  ]
+}

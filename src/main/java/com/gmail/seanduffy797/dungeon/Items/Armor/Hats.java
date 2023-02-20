@@ -1,5 +1,7 @@
 package com.gmail.seanduffy797.dungeon.Items.Armor;
 
+import com.gmail.seanduffy797.dungeon.Items.management.ItemManager;
+import com.gmail.seanduffy797.dungeon.Items.management.Rarity;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -21,6 +23,7 @@ public class Hats {
         hatMeta.addEnchant(Enchantment.OXYGEN, 1, true);
         hatMeta.addEnchant(Enchantment.WATER_WORKER, 1, true);
         waterHat.setItemMeta(hatMeta);
+        ItemManager.addRarity(waterHat, Rarity.UNCOMMON);
         return waterHat;
     }
     public static ItemStack createFireHat() {
@@ -30,6 +33,7 @@ public class Hats {
         hatMeta.displayName(Component.text("Fire Hat"));
         hatMeta.addEnchant(Enchantment.PROTECTION_FIRE, 3, true);
         fireHat.setItemMeta(hatMeta);
+        ItemManager.addRarity(fireHat, Rarity.UNCOMMON);
         return fireHat;
     }
     public static ItemStack createProjectileHat() {
@@ -39,6 +43,7 @@ public class Hats {
         hatMeta.displayName(Component.text("Anti-Projectile Hat"));
         hatMeta.addEnchant(Enchantment.PROTECTION_PROJECTILE, 3, true);
         projectileHat.setItemMeta(hatMeta);
+        ItemManager.addRarity(projectileHat, Rarity.UNCOMMON);
         return projectileHat;
     }
     public static ItemStack createBlastHat() {
@@ -48,6 +53,7 @@ public class Hats {
         hatMeta.displayName(Component.text("Blasting Hat"));
         hatMeta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 3, true);
         blastHat.setItemMeta(hatMeta);
+        ItemManager.addRarity(blastHat, Rarity.UNCOMMON);
         return blastHat;
     }
 }

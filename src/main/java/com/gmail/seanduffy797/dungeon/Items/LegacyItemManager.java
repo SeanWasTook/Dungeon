@@ -14,9 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.bukkit.Bukkit.getServer;
-
-public class ItemManager {
+public class LegacyItemManager {
 
     public static ItemStack wand;
 

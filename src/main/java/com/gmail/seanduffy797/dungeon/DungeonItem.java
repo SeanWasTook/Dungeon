@@ -21,6 +21,7 @@ public enum DungeonItem {
     SKELETON_KEY (Keys::createSkeletonKey),
     BASEMENT_KEY (Keys::createBasementKey),
     OLD_KEY (Keys::createOldKey),
+    HOUSE_KEY (Keys::createHouseKey),
     CHISELED_STONE_PICK (BuildingItems::createChiseledStonePick),
     LIGHTBREAKER_PICK (BuildingItems::createLightbreakerPick),
     COAL_PICK (BuildingItems::createCoalPick),

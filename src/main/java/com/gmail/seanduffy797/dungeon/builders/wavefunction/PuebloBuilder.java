@@ -11,6 +11,8 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
+import static org.bukkit.Bukkit.getServer;
+
 public class PuebloBuilder {
 
     public static final int HORIZONTAL_SCALE = 7;
@@ -32,13 +34,12 @@ public class PuebloBuilder {
         startingPiece = new PuebloOutline(Pueblo.LAYOUT13bt, StructureRotation.ROTATION_90, StructureMirror.NONE);
     }
 
-    public void build(Location startLocation, Direction facing) {
-        startLocation = new Location(startLocation.getWorld(), startLocation.getX(),
-                startLocation.getY() - 1,
-                startLocation.getZ() - 3);
+    public void build(Location startLocationParam, Direction facing) {
+        startLocation = new Location(startLocationParam.getWorld(), startLocationParam.getX(),
+                startLocationParam.getY() - 1,
+                startLocationParam.getZ() - 3);
         switch (facing) {
             case NORTH:
-                this.startLocation = startLocation;
                 break;
             case EAST:
                 this.startLocation = new Location(DungeonManager.world,
@@ -69,6 +70,8 @@ public class PuebloBuilder {
     }
 
     public void build() {
+        getServer().getConsoleSender().sendMessage("[Dungeon]: Building Pueblo at:  " +
+                startLocation.getX() + ", " + startLocation.getY() + ", " + startLocation.getZ());
         WaveBuilder waveBuilder = new WaveBuilder(sizeNorthSouth, sizeEastWest, height, startLocationRelative, startingPiece);
         waveBuilder.startExploration();
 

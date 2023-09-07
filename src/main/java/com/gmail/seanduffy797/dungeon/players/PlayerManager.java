@@ -5,6 +5,7 @@ import com.gmail.seanduffy797.dungeon.DungeonManager;
 import com.gmail.seanduffy797.dungeon.regions.Region;
 import com.gmail.seanduffy797.dungeon.curses.CurseManager;
 import com.gmail.seanduffy797.dungeon.display.DungeonScoreboard;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -61,8 +62,15 @@ public class PlayerManager {
             case PUEBLO:
                 updateScores(container, puebloScoreKey);
                 break;
+            case PLAYER_HOME:
+                if (player.getGameMode() == GameMode.ADVENTURE) {
+                    player.setGameMode(GameMode.SURVIVAL);
+                }
             default:
                 decreaseAllScores(container);
+        }
+        if (currentRegion != Region.PLAYER_HOME && player.getGameMode() == GameMode.SURVIVAL) {
+            player.setGameMode(GameMode.ADVENTURE);
         }
         if (currentRegion != Region.NONE) {
             CurseManager.dispatchCurse(

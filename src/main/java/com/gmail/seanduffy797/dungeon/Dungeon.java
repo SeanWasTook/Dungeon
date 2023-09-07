@@ -33,6 +33,7 @@ public class Dungeon extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ItemEntitySpawnEvent(), this);
         getServer().getPluginManager().registerEvents(new PaintingPlacedEvent(), this);
         getServer().getPluginManager().registerEvents(new SpawnerOverride(), this);
+        getServer().getPluginManager().registerEvents(new DestroyBlockEvent(), this);
         getCommand("heal").setExecutor(new DungeonCommandsTest());
         getCommand("spawnmobs").setExecutor(new SpawnMobs());
         getCommand("dgive").setExecutor(new GiveCommand());
@@ -40,6 +41,7 @@ public class Dungeon extends JavaPlugin {
         getCommand("clear").setExecutor(new ClearCommand());
         getCommand("gear").setExecutor(new GearCommand());
         getCommand("place").setExecutor(new PlaceCommand());
+        getCommand("home").setExecutor(new HomeCommand());
         getServer().getConsoleSender().sendMessage("[Dungeon]: Plugin is enabled");
 
         BukkitTask dungeonTick = new TickDungeon(DungeonManager.world)

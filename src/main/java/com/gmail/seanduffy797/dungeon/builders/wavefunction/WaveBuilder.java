@@ -79,15 +79,15 @@ public class WaveBuilder {
                 finalPossibilities = possibilities;
             }
         }
-        if (finalPossibilities == null || finalPossibilities.size() == 0) {
+        if (finalPossibilities == null || finalPossibilities.isEmpty()) {
             getServer().getConsoleSender().sendMessage
                     (ChatColor.RED + "[Dungeon]: WaveBuilder ran out of options on frontier");
             for (Integer intCoords: frontier) {
                 int[] coords = convertIntegerToCoords(intCoords);
                 explored[coords[0]][coords[1]][coords[2]] = new PuebloOutline(Pueblo.ERROR, StructureRotation.NONE, StructureMirror.NONE);
                 unexplored[coords[0]][coords[1]][coords[2]].printLayout();
-                frontier.remove(intCoords);
             }
+            frontier.clear();
         } else {
             frontier.remove(convertCoordsToInteger(finalCoords));
             updateMaps(pickOutline(finalPossibilities), finalCoords);

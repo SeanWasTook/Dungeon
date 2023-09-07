@@ -3,6 +3,8 @@ package com.gmail.seanduffy797.dungeon;
 import com.destroystokyo.paper.Namespaced;
 import com.github.shynixn.structureblocklib.api.enumeration.StructureRotation;
 import com.gmail.seanduffy797.dungeon.builders.maze.MazeOptions;
+import com.gmail.seanduffy797.dungeon.housing.House;
+import com.gmail.seanduffy797.dungeon.housing.HousingManager;
 import com.gmail.seanduffy797.dungeon.regions.Region;
 import com.gmail.seanduffy797.dungeon.builders.BrickBuilder;
 import com.gmail.seanduffy797.dungeon.builders.MineBuilder;
@@ -47,6 +49,7 @@ public class DungeonManager {
     public static Map<KeyLocation, Location> keyLocations = new HashMap<>();
     public static Map<Region, PuebloBuilder> builders = new HashMap<>();
     public static Map<Region, RegionManager> regionManagers = new HashMap<>();
+    public static HousingManager housingManager;
 
     public static void init(Plugin plugin, World dungeonWorld) {
         customItemKey = new NamespacedKey(plugin, "customItem");
@@ -68,12 +71,16 @@ public class DungeonManager {
 
         builders.put(Region.PUEBLO, new PuebloBuilder());
         CurseManager.init();
+
+        housingManager = new HousingManager();
+        housingManager.parseHouses();
+
+        regionManagers.put(Region.STONE_BRICK, new StoneBrickManager());
     }
 
     public static void startPlaying() {
         if (!isPlaying) {
             isPlaying = true;
-            regionManagers.put(Region.STONE_BRICK, new StoneBrickManager());
             bossBarCountdown = new BossBarCountdown(totalLifetimeTicks);
             scheduler.scheduleSyncRepeatingTask(Dungeon.getPlugin(), new Runnable() {
                 @Override
@@ -146,10 +153,10 @@ public class DungeonManager {
         }
     }
     public static void buildAll() {
+        startPlaying();
         buildRegion(Region.BRICK);
         buildRegion(Region.MINE);
         buildRegion(Region.STONE_BRICK);
-        startPlaying();
     }
 
     public static void clearRegion(Region region) {
@@ -197,11 +204,21 @@ public class DungeonManager {
     public static void updateRegionMap(Location corner1, Location corner2, Region region) {
         regionMap.fillRegionData(corner1, corner2, region);
     }
+    public static void updateHouseMap(Location corner1, Location corner2, House house) {
+        regionMap.fillHouseData(corner1, corner2, house);
+    }
     public static Region getRegionAt(Location location) {
         if (regionMap != null) {
             return regionMap.getRegionAtLocation(location);
         } else {
             return Region.NONE;
+        }
+    }
+    public static House getHouseAt(Location location) {
+        if (regionMap != null) {
+            return regionMap.getHouseAtLocation(location);
+        } else {
+            return null;
         }
     }
     public static void addOnlinePlayer(Player player) {

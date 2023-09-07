@@ -16,7 +16,7 @@ public class Sagittarius extends CustomMob {
     public Entity spawn(Location loc) {
         Skeleton skelly = (Skeleton) DungeonManager.world.spawnEntity(loc, EntityType.SKELETON);
         skelly.customName(Component.text("Sagittarius"));
-        skelly.setHealth(6.0);
+        skelly.setHealth(12.0);
         EntityEquipment gear = skelly.getEquipment();
         gear.setItemInMainHand(DungeonItem.REFLEX_BOW.getItemStack());
         gear.setItemInMainHandDropChance(0.1f);

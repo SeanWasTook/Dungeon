@@ -66,7 +66,7 @@ public class SingularBuilder {
             newExitLoc = newExitLoc.add(newLoc);
             // This bit is very hardcoded because pieces don't correctly use subregions yet
             BorderPoint bp = new BorderPoint(SubRegion.STONE_BRICK_MAZE_HALLWAY, SubRegion.PUEBLO);
-            bp.specify(newExitLoc, dir);
+            bp.specify(newExitLoc.clone(), dir);
             exits.add(bp);
         }
     }

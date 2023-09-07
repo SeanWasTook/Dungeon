@@ -6,6 +6,7 @@ public enum Region {
     BRICK ("Ranic"),
     BRICK2 ("Deep Ranic"),
     HOUSE ("Ranic House"),
+    PLAYER_HOME ("Player Home"),
     SEWER ("Ranic Aqua"),
     PIPE2 ("Ranic pipe 2"),
     PIPE3 ("Ranic pipe 3"),

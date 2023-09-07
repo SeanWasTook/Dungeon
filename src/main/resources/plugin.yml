@@ -17,13 +17,16 @@ commands:
     usage: /<command> [Player] [Item] [Count]
   build:
     description: Builds the dungeon
-    usage: /<command> <brick|maze|mine|pueblo>
+    usage: /<command> <brick|maze|mine|pueblo|all>
   clear:
     description: Clears the dungeon
-    usage: /<command> <brick|maze|mine|pueblo>
+    usage: /<command> <brick|maze|mine|pueblo|all|fluff>
   gear:
     description: Gives the player some bread and a wooden sword and torches
     usage: /<command>
   place:
     description: Places a specific piece into the world at 50, 50, 50
     usage: /<command> <region> <name> [90|180|270] [0|1]
+  home:
+    description: Used to deal with player homes
+    usage: /<command> <buy|load|save|clear>

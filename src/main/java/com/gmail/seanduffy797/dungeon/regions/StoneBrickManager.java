@@ -30,7 +30,7 @@ public class StoneBrickManager implements RegionManager {
     SingularBuilder builder4;
     SingularBuilder builder5;
     SingularBuilder builder6;
-    PuebloBuilder puebloBuilder = new PuebloBuilder();
+    PuebloBuilder puebloBuilder;
     ArrayList<PieceTableEntry> basic_pieces = new ArrayList<>(Arrays.asList(
             StoneBrickMaze.STRAIGHT.getDefaultEntry().getCopyWithWeight(10),
             StoneBrickMaze.STRAIGHT_WOOD.getDefaultEntry().getCopyWithWeight(2),
@@ -76,6 +76,8 @@ public class StoneBrickManager implements RegionManager {
         builder4 = new SingularBuilder(BricksZone1.SHRINE1);
         builder5 = new SingularBuilder(MiscPiece.PUEBLO_LEVER);
         builder6 = new SingularBuilder(MiscPiece.PUEBLO_TRANSITION);
+
+        puebloBuilder = DungeonManager.builders.get(Region.PUEBLO);
     }
 
     public void build() {
@@ -87,6 +89,7 @@ public class StoneBrickManager implements RegionManager {
         builder6.build(border5.getLocation(), border5.getDirection(), Region.STONE_BRICK);
         for (BorderPoint exitBP: builder6.exits) {
             puebloBuilder.build(exitBP.getLocation(), exitBP.getDirection());
+            DungeonManager.isRegionGenerated.put(Region.PUEBLO, true);
             break; // just in case
         }
     }
@@ -98,6 +101,6 @@ public class StoneBrickManager implements RegionManager {
         builder4.clear();
         builder5.clear();
         builder6.clear();
-        puebloBuilder.clear();
+        DungeonManager.clearRegion(Region.PUEBLO);
     }
 }
